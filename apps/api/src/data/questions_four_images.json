@@ -1,0 +1,97 @@
+[
+  {
+    "id": "fi_001",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Feu",
+    "acceptedAnswers": ["Feu", "feu", "Le feu"],
+    "media": null,
+    "explanation": "Flamme, pompier, cheminée, dragon — tous liés au feu.",
+    "tags": ["culture", "vocabulaire"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "flame", "alt": "Flamme" },
+      { "svg": "firefighter", "alt": "Pompier" },
+      { "svg": "fireplace", "alt": "Cheminée" },
+      { "svg": "dragon", "alt": "Dragon" }
+    ]
+  },
+  {
+    "id": "fi_002",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Couronne",
+    "acceptedAnswers": ["Couronne", "couronne"],
+    "media": null,
+    "explanation": "Roi, dent, fleur, bague — tous peuvent avoir une couronne.",
+    "tags": ["culture", "vocabulaire"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "king", "alt": "Roi" },
+      { "svg": "tooth", "alt": "Dent" },
+      { "svg": "flower", "alt": "Fleur" },
+      { "svg": "ring", "alt": "Bague" }
+    ]
+  },
+  {
+    "id": "fi_003",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "sciences",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Étoile",
+    "acceptedAnswers": ["Étoile", "etoile", "Etoile"],
+    "media": null,
+    "explanation": "Ciel de nuit, étoile de mer, shérif, sapin de Noël.",
+    "tags": ["sciences", "vocabulaire"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "night_sky", "alt": "Ciel" },
+      { "svg": "starfish", "alt": "Étoile de mer" },
+      { "svg": "sheriff", "alt": "Shérif" },
+      { "svg": "christmas_tree", "alt": "Sapin" }
+    ]
+  },
+  {
+    "id": "fi_004",
+    "type": "fourImages",
+    "difficulty": "hard",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Pied",
+    "acceptedAnswers": ["Pied", "pied"],
+    "media": null,
+    "explanation": "Pied de table, pied de vigne, coup de pied, pied-à-terre.",
+    "tags": ["culture", "vocabulaire"],
+    "baseTimer": 35,
+    "images": [
+      { "svg": "table", "alt": "Table" },
+      { "svg": "vine", "alt": "Vigne" },
+      { "svg": "kick", "alt": "Coup" },
+      { "svg": "house", "alt": "Maison" }
+    ]
+  },
+  {
+    "id": "fi_005",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "sciences",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Glace",
+    "acceptedAnswers": ["Glace", "glace"],
+    "media": null,
+    "explanation": "Miroir, cornet, iceberg, patinoire — tous liés à la glace.",
+    "tags": ["sciences", "vocabulaire"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "mirror", "alt": "Miroir" },
+      { "svg": "ice_cream", "alt": "Cornet" },
+      { "svg": "iceberg", "alt": "Iceberg" },
+      { "svg": "skating", "alt": "Patinoire" }
+    ]
+  }
+]

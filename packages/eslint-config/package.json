@@ -1,0 +1,14 @@
+{
+  "name": "@kculture/eslint-config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.mjs",
+  "files": ["index.mjs"],
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
+    "eslint-plugin-vue": "^9.32.0",
+    "vue-eslint-parser": "^9.4.3"
+  }
+}

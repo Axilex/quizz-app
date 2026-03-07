@@ -1,0 +1,82 @@
+[
+  {
+    "id": "int_001",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "sciences",
+    "label": "Trouvez l'intrus parmi ces éléments :",
+    "answer": "Mercure",
+    "acceptedAnswers": ["Mercure", "mercure"],
+    "media": null,
+    "explanation": "Mercure est un métal, les autres sont des gaz.",
+    "tags": ["sciences", "chimie"],
+    "baseTimer": 20,
+    "intruderId": "int_001_d",
+    "options": [
+      { "id": "int_001_a", "svg": "oxygen", "label": "Oxygène" },
+      { "id": "int_001_b", "svg": "nitrogen", "label": "Azote" },
+      { "id": "int_001_c", "svg": "helium", "label": "Hélium" },
+      { "id": "int_001_d", "svg": "mercury", "label": "Mercure" }
+    ]
+  },
+  {
+    "id": "int_002",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Trouvez l'intrus parmi ces capitales :",
+    "answer": "Sydney",
+    "acceptedAnswers": ["Sydney", "sydney"],
+    "media": null,
+    "explanation": "Sydney n'est pas une capitale. La capitale de l'Australie est Canberra.",
+    "tags": ["géographie", "capitales"],
+    "baseTimer": 20,
+    "intruderId": "int_002_c",
+    "options": [
+      { "id": "int_002_a", "svg": "paris", "label": "Paris" },
+      { "id": "int_002_b", "svg": "tokyo", "label": "Tokyo" },
+      { "id": "int_002_c", "svg": "sydney", "label": "Sydney" },
+      { "id": "int_002_d", "svg": "berlin", "label": "Berlin" }
+    ]
+  },
+  {
+    "id": "int_003",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "culture",
+    "label": "Trouvez l'intrus parmi ces instruments :",
+    "answer": "Batterie",
+    "acceptedAnswers": ["Batterie", "batterie", "La batterie"],
+    "media": null,
+    "explanation": "La batterie est un instrument à percussion, les autres sont des cordes.",
+    "tags": ["culture", "musique"],
+    "baseTimer": 25,
+    "intruderId": "int_003_d",
+    "options": [
+      { "id": "int_003_a", "svg": "violin", "label": "Violon" },
+      { "id": "int_003_b", "svg": "guitar", "label": "Guitare" },
+      { "id": "int_003_c", "svg": "harp", "label": "Harpe" },
+      { "id": "int_003_d", "svg": "drums", "label": "Batterie" }
+    ]
+  },
+  {
+    "id": "int_004",
+    "type": "intruder",
+    "difficulty": "hard",
+    "category": "sciences",
+    "label": "Trouvez l'intrus parmi ces scientifiques :",
+    "answer": "Mozart",
+    "acceptedAnswers": ["Mozart", "mozart"],
+    "media": null,
+    "explanation": "Mozart est un compositeur, pas un scientifique.",
+    "tags": ["sciences", "culture"],
+    "baseTimer": 30,
+    "intruderId": "int_004_c",
+    "options": [
+      { "id": "int_004_a", "svg": "einstein", "label": "Einstein" },
+      { "id": "int_004_b", "svg": "curie", "label": "Marie Curie" },
+      { "id": "int_004_c", "svg": "mozart", "label": "Mozart" },
+      { "id": "int_004_d", "svg": "newton", "label": "Newton" }
+    ]
+  }
+]

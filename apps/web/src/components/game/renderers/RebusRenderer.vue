@@ -1,0 +1,81 @@
+<script setup lang="ts">
+  import type { RebusQuestion } from '@/types';
+  import { generateRebusClue } from '@/utils/svgPlaceholders';
+
+  interface Props {
+    question: RebusQuestion;
+  }
+
+  const props = defineProps<Props>();
+
+  const CLUE_EMOJIS: Record<string, string> = {
+    tower: '🗼', nose: '👃', ground: '🟫', cat: '🐱', pot: '🏺',
+    father: '👨', rat: '🐀', pond: '💧', mouth: '👄', ritual: '🕯️',
+    eye: '👁️',
+  };
+
+  function getClueImage(svg: string, alt: string, index: number): string {
+    const emoji = CLUE_EMOJIS[svg] ?? '❓';
+    return generateRebusClue(emoji, alt, index);
+  }
+</script>
+
+<template>
+  <div class="rebus">
+    <div class="rebus__clues">
+      <div v-for="(clue, i) in props.question.clues" :key="i" class="rebus__clue">
+        <img :src="getClueImage(clue.svg, clue.alt, i)" :alt="clue.alt" class="rebus__img" />
+        <span v-if="i < props.question.clues.length - 1" class="rebus__plus">+</span>
+      </div>
+    </div>
+    <span class="rebus__equals">=</span>
+    <span class="rebus__hint">?</span>
+  </div>
+</template>
+
+<style scoped>
+  .rebus {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem 0;
+  }
+  .rebus__clues {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .rebus__clue {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .rebus__img {
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  .rebus__plus {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin: 0 0.15rem;
+  }
+  .rebus__equals {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .rebus__hint {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--text-muted);
+    opacity: 0.5;
+  }
+  @media (max-width: 640px) {
+    .rebus__img { width: 70px; height: 70px; }
+  }
+</style>

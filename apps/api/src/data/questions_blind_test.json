@@ -1,0 +1,62 @@
+[
+  {
+    "id": "blt_001",
+    "type": "blindTest",
+    "difficulty": "easy",
+    "category": "culture",
+    "label": "Devinez ce qui se cache derrière le flou :",
+    "answer": "Tour Eiffel",
+    "acceptedAnswers": ["Tour Eiffel", "tour eiffel", "La tour Eiffel"],
+    "media": null,
+    "explanation": "La Tour Eiffel, construite en 1889 pour l'Exposition universelle.",
+    "tags": ["culture", "monuments"],
+    "baseTimer": 30,
+    "svg": "eiffel_tower",
+    "revealSteps": 4
+  },
+  {
+    "id": "blt_002",
+    "type": "blindTest",
+    "difficulty": "medium",
+    "category": "sciences",
+    "label": "Devinez ce qui se cache derrière le flou :",
+    "answer": "ADN",
+    "acceptedAnswers": ["ADN", "adn", "double hélice"],
+    "media": null,
+    "explanation": "La double hélice d'ADN, découverte par Watson et Crick en 1953.",
+    "tags": ["sciences", "biologie"],
+    "baseTimer": 35,
+    "svg": "dna",
+    "revealSteps": 4
+  },
+  {
+    "id": "blt_003",
+    "type": "blindTest",
+    "difficulty": "hard",
+    "category": "culture",
+    "label": "Devinez ce qui se cache derrière le flou :",
+    "answer": "Le Penseur",
+    "acceptedAnswers": ["Le Penseur", "le penseur", "Penseur"],
+    "media": null,
+    "explanation": "Le Penseur d'Auguste Rodin, créé en 1904.",
+    "tags": ["culture", "art", "sculpture"],
+    "baseTimer": 40,
+    "svg": "thinker",
+    "revealSteps": 5
+  },
+  {
+    "id": "blt_004",
+    "type": "blindTest",
+    "difficulty": "easy",
+    "category": "sciences",
+    "label": "Devinez ce qui se cache derrière le flou :",
+    "answer": "Saturne",
+    "acceptedAnswers": ["Saturne", "saturne"],
+    "media": null,
+    "explanation": "Saturne est reconnaissable à ses anneaux spectaculaires.",
+    "tags": ["sciences", "astronomie"],
+    "baseTimer": 25,
+    "svg": "saturn",
+    "revealSteps": 3
+  }
+]
