@@ -2,7 +2,7 @@
   import { ref, computed, watch } from 'vue';
   import { useRouter } from 'vue-router';
   import { useLobbyStore } from '@/stores';
-  import { timerService, TimerService } from '@/services';
+  import { timerService } from '@/services';
   import type { Question } from '@/types';
   import QuizCard from '@/components/game/QuizCard.vue';
   import TimerBar from '@/components/game/TimerBar.vue';
@@ -103,9 +103,7 @@
       <span class="play-multi__progress">
         Question <strong>{{ lobby.questionIndex + 1 }}</strong>
       </span>
-      <span class="play-multi__players">
-        {{ lobby.playerCount }} joueurs
-      </span>
+      <span class="play-multi__players"> {{ lobby.playerCount }} joueurs </span>
     </div>
 
     <TimerBar :remaining="timerRemaining" :total="timerTotal" />
@@ -130,11 +128,7 @@
     </div>
 
     <div v-else class="play-multi__input">
-      <AnswerInput
-        :question="question"
-        :disabled="hasAnswered"
-        @submit="handleAnswer"
-      />
+      <AnswerInput :question="question" :disabled="hasAnswered" @submit="handleAnswer" />
     </div>
 
     <!-- Live scoreboard -->
@@ -240,14 +234,30 @@
     color: var(--text-muted);
   }
 
-  .card-swap-enter-active { animation: card-in 0.3s ease; }
-  .card-swap-leave-active { animation: card-out 0.2s ease; }
+  .card-swap-enter-active {
+    animation: card-in 0.3s ease;
+  }
+  .card-swap-leave-active {
+    animation: card-out 0.2s ease;
+  }
   @keyframes card-in {
-    from { opacity: 0; transform: translateX(20px) scale(0.98); }
-    to { opacity: 1; transform: translateX(0) scale(1); }
+    from {
+      opacity: 0;
+      transform: translateX(20px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
   }
   @keyframes card-out {
-    from { opacity: 1; transform: translateX(0) scale(1); }
-    to { opacity: 0; transform: translateX(-20px) scale(0.98); }
+    from {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-20px) scale(0.98);
+    }
   }
 </style>

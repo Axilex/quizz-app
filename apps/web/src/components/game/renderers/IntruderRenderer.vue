@@ -11,10 +11,22 @@
   const emit = defineEmits<{ submit: [answer: string] }>();
 
   const ITEM_EMOJIS: Record<string, string> = {
-    oxygen: '💨', nitrogen: '🌫️', helium: '🎈', mercury: '🌡️',
-    paris: '🗼', tokyo: '🏯', sydney: '🐨', berlin: '🧱',
-    violin: '🎻', guitar: '🎸', harp: '🎵', drums: '🥁',
-    einstein: '🧑‍🔬', curie: '👩‍🔬', mozart: '🎹', newton: '🍎',
+    oxygen: '💨',
+    nitrogen: '🌫️',
+    helium: '🎈',
+    mercury: '🌡️',
+    paris: '🗼',
+    tokyo: '🏯',
+    sydney: '🐨',
+    berlin: '🧱',
+    violin: '🎻',
+    guitar: '🎸',
+    harp: '🎵',
+    drums: '🥁',
+    einstein: '🧑‍🔬',
+    curie: '👩‍🔬',
+    mozart: '🎹',
+    newton: '🍎',
   };
 
   function getImage(svg: string, label: string, index: number): string {

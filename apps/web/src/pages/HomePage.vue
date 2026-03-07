@@ -21,16 +21,12 @@
   <div class="home">
     <div class="home__hero">
       <div class="home__title-group">
-        <h1 class="home__title">
-          <span class="home__title-k">K</span>Culture
-        </h1>
+        <h1 class="home__title"><span class="home__title-k">K</span>Culture</h1>
         <p class="home__subtitle">Testez vos connaissances, défiez vos amis</p>
       </div>
 
       <div class="home__actions">
-        <BaseButton size="lg" full-width @click="startSolo">
-          Jouer en solo
-        </BaseButton>
+        <BaseButton size="lg" full-width @click="startSolo"> Jouer en solo </BaseButton>
         <BaseButton variant="secondary" size="lg" full-width @click="startMulti">
           Multijoueur
         </BaseButton>

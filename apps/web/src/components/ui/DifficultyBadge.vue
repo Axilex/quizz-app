@@ -22,7 +22,10 @@
 <template>
   <span
     class="badge"
-    :class="[`badge--${difficulty}`, { 'badge--interactive': interactive, 'badge--active': active }]"
+    :class="[
+      `badge--${difficulty}`,
+      { 'badge--interactive': interactive, 'badge--active': active },
+    ]"
     role="button"
     :tabindex="interactive ? 0 : undefined"
   >

@@ -18,10 +18,7 @@
         <span class="player-item__name">{{ player.name }}</span>
         <span v-if="player.isHost" class="player-item__badge">Hôte</span>
       </div>
-      <span
-        class="player-item__status"
-        :class="`player-item__status--${player.status}`"
-      />
+      <span class="player-item__status" :class="`player-item__status--${player.status}`" />
     </div>
   </div>
 </template>
@@ -109,7 +106,12 @@
   }
 
   @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
   }
 </style>

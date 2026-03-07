@@ -104,14 +104,30 @@
     min-height: 80px;
     flex-shrink: 0;
   }
-  .card-swap-enter-active { animation: card-in 0.3s ease; }
-  .card-swap-leave-active { animation: card-out 0.2s ease; }
+  .card-swap-enter-active {
+    animation: card-in 0.3s ease;
+  }
+  .card-swap-leave-active {
+    animation: card-out 0.2s ease;
+  }
   @keyframes card-in {
-    from { opacity: 0; transform: translateX(20px) scale(0.98); }
-    to { opacity: 1; transform: translateX(0) scale(1); }
+    from {
+      opacity: 0;
+      transform: translateX(20px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
   }
   @keyframes card-out {
-    from { opacity: 1; transform: translateX(0) scale(1); }
-    to { opacity: 0; transform: translateX(-20px) scale(0.98); }
+    from {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(-20px) scale(0.98);
+    }
   }
 </style>

@@ -58,7 +58,7 @@
   // Touch support
   let touchIndex = -1;
 
-  function onTouchStart(e: TouchEvent, index: number) {
+  function onTouchStart(_e: TouchEvent, index: number) {
     if (props.disabled) return;
     touchIndex = index;
     draggedIndex.value = index;
@@ -120,9 +120,15 @@
       >
         <!-- Timeline spine -->
         <div class="tl-item__spine">
-          <div class="tl-item__line tl-item__line--top" :class="{ 'tl-item__line--hidden': i === 0 }" />
+          <div
+            class="tl-item__line tl-item__line--top"
+            :class="{ 'tl-item__line--hidden': i === 0 }"
+          />
           <div class="tl-item__dot" />
-          <div class="tl-item__line tl-item__line--bottom" :class="{ 'tl-item__line--hidden': i === items.length - 1 }" />
+          <div
+            class="tl-item__line tl-item__line--bottom"
+            :class="{ 'tl-item__line--hidden': i === items.length - 1 }"
+          />
         </div>
 
         <!-- Content -->
@@ -243,7 +249,9 @@
   }
   .tl-item:hover .tl-item__dot {
     transform: scale(1.2);
-    box-shadow: 0 0 0 3px var(--accent), 0 0 8px var(--accent-glow);
+    box-shadow:
+      0 0 0 3px var(--accent),
+      0 0 8px var(--accent-glow);
   }
   .tl-item--dragging .tl-item__dot {
     background: var(--warning);

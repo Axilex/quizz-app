@@ -24,9 +24,7 @@
   <div class="review-page">
     <div class="review-page__container">
       <div class="review-page__header">
-        <BaseButton variant="ghost" size="sm" @click="handleBack">
-          ← Résultats
-        </BaseButton>
+        <BaseButton variant="ghost" size="sm" @click="handleBack"> ← Résultats </BaseButton>
         <h1 class="review-page__title">Revue des erreurs</h1>
         <p class="review-page__desc">
           {{ wrongAnswers.length }} question{{ wrongAnswers.length > 1 ? 's' : '' }} à retravailler
@@ -42,9 +40,7 @@
         />
       </div>
 
-      <BaseButton size="lg" full-width @click="handleReplay">
-        Rejouer ces questions
-      </BaseButton>
+      <BaseButton size="lg" full-width @click="handleReplay"> Rejouer ces questions </BaseButton>
     </div>
   </div>
 </template>

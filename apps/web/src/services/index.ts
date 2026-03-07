@@ -49,9 +49,7 @@ class AdaptiveMultiplayerGateway implements MultiplayerGateway {
   }
 
   async createRoom(playerName: string) {
-    return this._useReal
-      ? this.real.createRoom(playerName)
-      : this.mock.createRoom(playerName);
+    return this._useReal ? this.real.createRoom(playerName) : this.mock.createRoom(playerName);
   }
 
   async joinRoom(code: string, playerName: string) {
@@ -79,9 +77,7 @@ class AdaptiveMultiplayerGateway implements MultiplayerGateway {
   }
 
   onEvent(handler: (event: import('@/types').MultiplayerEvent) => void) {
-    return this._useReal
-      ? this.real.onEvent(handler)
-      : this.mock.onEvent(handler);
+    return this._useReal ? this.real.onEvent(handler) : this.mock.onEvent(handler);
   }
 }
 

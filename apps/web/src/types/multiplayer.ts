@@ -26,7 +26,14 @@ export type MultiplayerEvent =
   | { type: 'game:started'; questions: string[] }
   | { type: 'game:question'; index: number; question?: unknown; timer?: number }
   | { type: 'player:answered'; playerId: string; isCorrect: boolean }
-  | { type: 'game:answerResult'; questionId: string; isCorrect: boolean; correctAnswer: string; explanation?: string; timedOut?: boolean }
+  | {
+      type: 'game:answerResult';
+      questionId: string;
+      isCorrect: boolean;
+      correctAnswer: string;
+      explanation?: string;
+      timedOut?: boolean;
+    }
   | { type: 'game:timeout'; questionId: string }
   | { type: 'game:configured'; config: unknown }
   | { type: 'game:finished'; scores: Record<string, unknown> }

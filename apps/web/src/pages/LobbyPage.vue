@@ -134,7 +134,9 @@
         <RoomCodeCard :code="lobby.roomCode" />
 
         <div class="lobby-room-info">
-          <span class="lobby-room-info__count">{{ lobby.playerCount }} joueur{{ lobby.playerCount > 1 ? 's' : '' }}</span>
+          <span class="lobby-room-info__count"
+            >{{ lobby.playerCount }} joueur{{ lobby.playerCount > 1 ? 's' : '' }}</span
+          >
         </div>
 
         <LobbyPlayersList :players="lobby.players" />
@@ -151,9 +153,7 @@
           <p class="lobby-waiting__text">En attente du lancement par l'hôte...</p>
         </div>
 
-        <BaseButton variant="ghost" size="sm" @click="handleLeave">
-          Quitter la room
-        </BaseButton>
+        <BaseButton variant="ghost" size="sm" @click="handleLeave"> Quitter la room </BaseButton>
       </div>
 
       <p v-if="lobby.error" class="lobby-error">{{ lobby.error }}</p>
@@ -313,6 +313,8 @@
   }
 
   @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+      transform: rotate(360deg);
+    }
   }
 </style>

@@ -57,9 +57,17 @@ export class GameScoringService {
     if (question.baseTimer > 0) return question.baseTimer;
     const diffTimers: Record<string, number> = { easy: 15, medium: 25, hard: 35 };
     const typeMods: Record<string, number> = {
-      text: 0, number: 5, image: 8, qcm: 0,
-      rebus: 10, fourImages: 8, chronology: 15,
-      blindTest: 12, geoMap: 10, intruder: 5, silhouette: 8,
+      text: 0,
+      number: 5,
+      image: 8,
+      qcm: 0,
+      rebus: 10,
+      fourImages: 8,
+      chronology: 15,
+      blindTest: 12,
+      geoMap: 10,
+      intruder: 5,
+      silhouette: 8,
     };
     return (diffTimers[question.difficulty] ?? 25) + (typeMods[question.type] ?? 0);
   }

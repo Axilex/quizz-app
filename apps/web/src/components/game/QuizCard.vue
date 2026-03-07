@@ -1,6 +1,13 @@
 <script setup lang="ts">
   import { computed } from 'vue';
-  import type { Question, RebusQuestion, FourImagesQuestion, ChronologyQuestion, BlindTestQuestion, GeoMapQuestion, IntruderQuestion, SilhouetteQuestion } from '@/types';
+  import type {
+    Question,
+    RebusQuestion,
+    FourImagesQuestion,
+    BlindTestQuestion,
+    GeoMapQuestion,
+    SilhouetteQuestion,
+  } from '@/types';
   import { QUESTION_TYPE_LABELS, QUESTION_TYPE_ICONS } from '@/types';
   import DifficultyBadge from '@/components/ui/DifficultyBadge.vue';
   import RebusRenderer from './renderers/RebusRenderer.vue';
@@ -46,16 +53,22 @@
 
     <!-- Visual renderers -->
     <div v-if="hasVisualRenderer" class="quiz-card__visual">
-      <RebusRenderer v-if="question.type === 'rebus'" :question="(question as RebusQuestion)" />
-      <FourImagesRenderer v-if="question.type === 'fourImages'" :question="(question as FourImagesQuestion)" />
+      <RebusRenderer v-if="question.type === 'rebus'" :question="question as RebusQuestion" />
+      <FourImagesRenderer
+        v-if="question.type === 'fourImages'"
+        :question="question as FourImagesQuestion"
+      />
       <BlindTestRenderer
         v-if="question.type === 'blindTest'"
-        :question="(question as BlindTestQuestion)"
+        :question="question as BlindTestQuestion"
         :timer-total="timerTotal"
         :timer-remaining="timerRemaining"
       />
-      <GeoMapRenderer v-if="question.type === 'geoMap'" :question="(question as GeoMapQuestion)" />
-      <SilhouetteRenderer v-if="question.type === 'silhouette'" :question="(question as SilhouetteQuestion)" />
+      <GeoMapRenderer v-if="question.type === 'geoMap'" :question="question as GeoMapQuestion" />
+      <SilhouetteRenderer
+        v-if="question.type === 'silhouette'"
+        :question="question as SilhouetteQuestion"
+      />
     </div>
   </div>
 </template>

@@ -42,19 +42,17 @@
           class="podium__item"
           :class="{ 'podium__item--winner': i === 0, 'podium__item--me': player.isMe }"
         >
-          <span class="podium__rank">{{ i === 0 ? '🏆' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}.` }}</span>
+          <span class="podium__rank">{{
+            i === 0 ? '🏆' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}.`
+          }}</span>
           <span class="podium__name">{{ player.name }}</span>
           <span class="podium__score">{{ player.score }}</span>
         </div>
       </div>
 
       <div class="results-multi__actions">
-        <BaseButton size="lg" full-width @click="handleBackToLobby">
-          Rejouer
-        </BaseButton>
-        <BaseButton variant="ghost" size="sm" @click="handleHome">
-          Accueil
-        </BaseButton>
+        <BaseButton size="lg" full-width @click="handleBackToLobby"> Rejouer </BaseButton>
+        <BaseButton variant="ghost" size="sm" @click="handleHome"> Accueil </BaseButton>
       </div>
     </div>
   </div>

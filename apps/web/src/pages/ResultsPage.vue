@@ -68,20 +68,13 @@
 
       <!-- Actions -->
       <div class="results-page__actions">
-        <BaseButton
-          v-if="wrongAnswers.length > 0"
-          size="lg"
-          full-width
-          @click="handleReplay"
-        >
+        <BaseButton v-if="wrongAnswers.length > 0" size="lg" full-width @click="handleReplay">
           Revoir les erreurs ({{ wrongAnswers.length }})
         </BaseButton>
         <BaseButton variant="secondary" size="md" full-width @click="handleNewGame">
           Nouvelle partie
         </BaseButton>
-        <BaseButton variant="ghost" size="sm" @click="handleHome">
-          Accueil
-        </BaseButton>
+        <BaseButton variant="ghost" size="sm" @click="handleHome"> Accueil </BaseButton>
       </div>
 
       <!-- Answer list -->

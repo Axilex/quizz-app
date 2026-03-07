@@ -6,8 +6,8 @@
   import DifficultyBadge from '@/components/ui/DifficultyBadge.vue';
   import BaseButton from '@/components/ui/BaseButton.vue';
 
-  const session = useSessionStore();
   const emit = defineEmits<{ start: [] }>();
+  const session = useSessionStore();
 
   const countOptions = [20, 30, 40, 50];
   const difficulties: Difficulty[] = ['easy', 'medium', 'hard'];
@@ -40,7 +40,11 @@
     <section class="settings-section">
       <h3 class="settings-section__title">Thèmes</h3>
       <p class="settings-section__hint">
-        {{ session.selectedCategories.length === 0 ? 'Tous les thèmes sélectionnés' : `${session.selectedCategories.length} thème(s)` }}
+        {{
+          session.selectedCategories.length === 0
+            ? 'Tous les thèmes sélectionnés'
+            : `${session.selectedCategories.length} thème(s)`
+        }}
         — {{ availableCount }} questions disponibles
       </p>
       <div class="category-grid">
@@ -48,7 +52,11 @@
           v-for="cat in categories"
           :key="cat.id"
           class="category-chip"
-          :class="{ 'category-chip--active': isCategoryActive(cat.id), 'category-chip--filtered': session.selectedCategories.length > 0 && !session.selectedCategories.includes(cat.id) }"
+          :class="{
+            'category-chip--active': isCategoryActive(cat.id),
+            'category-chip--filtered':
+              session.selectedCategories.length > 0 && !session.selectedCategories.includes(cat.id),
+          }"
           @click="toggleCategory(cat.id)"
         >
           <span class="category-chip__icon">{{ cat.icon }}</span>

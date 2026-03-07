@@ -6,25 +6,49 @@ const scoreService = new ScoreService();
 
 function textQuestion(overrides: Partial<TextQuestion> = {}): TextQuestion {
   return {
-    id: 'q_test', type: 'text', difficulty: 'easy', category: 'test',
-    label: 'Test?', answer: 'Correct', acceptedAnswers: ['Correct', 'Also Correct'],
-    media: null, tags: [], baseTimer: 15, ...overrides,
+    id: 'q_test',
+    type: 'text',
+    difficulty: 'easy',
+    category: 'test',
+    label: 'Test?',
+    answer: 'Correct',
+    acceptedAnswers: ['Correct', 'Also Correct'],
+    media: null,
+    tags: [],
+    baseTimer: 15,
+    ...overrides,
   };
 }
 
 function numberQuestion(overrides: Partial<NumberQuestion> = {}): NumberQuestion {
   return {
-    id: 'q_num', type: 'number', difficulty: 'medium', category: 'test',
-    label: 'Number?', answer: '42', acceptedAnswers: ['42'],
-    media: null, tags: [], baseTimer: 20, tolerance: 2, ...overrides,
+    id: 'q_num',
+    type: 'number',
+    difficulty: 'medium',
+    category: 'test',
+    label: 'Number?',
+    answer: '42',
+    acceptedAnswers: ['42'],
+    media: null,
+    tags: [],
+    baseTimer: 20,
+    tolerance: 2,
+    ...overrides,
   };
 }
 
 function chronologyQuestion(): ChronologyQuestion {
   return {
-    id: 'q_chr', type: 'chronology', difficulty: 'medium', category: 'test',
-    label: 'Order these:', answer: 'a,b,c', acceptedAnswers: ['a,b,c'],
-    media: null, tags: [], baseTimer: 40,
+    id: 'q_chr',
+    type: 'chronology',
+    difficulty: 'medium',
+    category: 'test',
+    label: 'Order these:',
+    answer: 'a,b,c',
+    acceptedAnswers: ['a,b,c'],
+    media: null,
+    tags: [],
+    baseTimer: 40,
     items: [
       { id: 'a', label: 'First', year: 100 },
       { id: 'b', label: 'Second', year: 200 },
@@ -35,9 +59,17 @@ function chronologyQuestion(): ChronologyQuestion {
 
 function intruderQuestion(): IntruderQuestion {
   return {
-    id: 'q_int', type: 'intruder', difficulty: 'easy', category: 'test',
-    label: 'Find intruder:', answer: 'Intruder', acceptedAnswers: ['Intruder'],
-    media: null, tags: [], baseTimer: 20, intruderId: 'opt_c',
+    id: 'q_int',
+    type: 'intruder',
+    difficulty: 'easy',
+    category: 'test',
+    label: 'Find intruder:',
+    answer: 'Intruder',
+    acceptedAnswers: ['Intruder'],
+    media: null,
+    tags: [],
+    baseTimer: 20,
+    intruderId: 'opt_c',
     options: [
       { id: 'opt_a', svg: 'a', label: 'Normal A' },
       { id: 'opt_b', svg: 'b', label: 'Normal B' },
@@ -49,10 +81,14 @@ function intruderQuestion(): IntruderQuestion {
 
 describe('ScoreService', () => {
   describe('text validation', () => {
-    it('matches exact', () => expect(scoreService.validateAnswer(textQuestion(), 'Correct')).toBe(true));
-    it('case-insensitive', () => expect(scoreService.validateAnswer(textQuestion(), 'correct')).toBe(true));
-    it('accepted alternatives', () => expect(scoreService.validateAnswer(textQuestion(), 'Also Correct')).toBe(true));
-    it('rejects wrong', () => expect(scoreService.validateAnswer(textQuestion(), 'Wrong')).toBe(false));
+    it('matches exact', () =>
+      expect(scoreService.validateAnswer(textQuestion(), 'Correct')).toBe(true));
+    it('case-insensitive', () =>
+      expect(scoreService.validateAnswer(textQuestion(), 'correct')).toBe(true));
+    it('accepted alternatives', () =>
+      expect(scoreService.validateAnswer(textQuestion(), 'Also Correct')).toBe(true));
+    it('rejects wrong', () =>
+      expect(scoreService.validateAnswer(textQuestion(), 'Wrong')).toBe(false));
     it('rejects empty', () => expect(scoreService.validateAnswer(textQuestion(), '')).toBe(false));
     it('strips accents', () => {
       const q = textQuestion({ answer: 'Océan', acceptedAnswers: ['Océan'] });

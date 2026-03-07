@@ -9,11 +9,26 @@
   const props = defineProps<Props>();
 
   const IMG_EMOJIS: Record<string, string> = {
-    flame: '🔥', firefighter: '🧑‍🚒', fireplace: '🏠', dragon: '🐉',
-    king: '👑', tooth: '🦷', flower: '🌸', ring: '💍',
-    night_sky: '🌃', starfish: '🌟', sheriff: '⭐', christmas_tree: '🎄',
-    table: '🪑', vine: '🍇', kick: '⚽', house: '🏡',
-    mirror: '🪞', ice_cream: '🍦', iceberg: '🧊', skating: '⛸️',
+    flame: '🔥',
+    firefighter: '🧑‍🚒',
+    fireplace: '🏠',
+    dragon: '🐉',
+    king: '👑',
+    tooth: '🦷',
+    flower: '🌸',
+    ring: '💍',
+    night_sky: '🌃',
+    starfish: '🌟',
+    sheriff: '⭐',
+    christmas_tree: '🎄',
+    table: '🪑',
+    vine: '🍇',
+    kick: '⚽',
+    house: '🏡',
+    mirror: '🪞',
+    ice_cream: '🍦',
+    iceberg: '🧊',
+    skating: '⛸️',
   };
 
   function getImage(svg: string, alt: string, index: number): string {

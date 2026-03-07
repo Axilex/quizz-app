@@ -16,7 +16,11 @@ export const useLobbyStore = defineStore('lobby', () => {
   const currentQuestion = ref<Question | null>(null);
   const questionIndex = ref(0);
   const questionTimer = ref(0);
-  const lastResult = ref<{ isCorrect: boolean; correctAnswer: string; explanation?: string } | null>(null);
+  const lastResult = ref<{
+    isCorrect: boolean;
+    correctAnswer: string;
+    explanation?: string;
+  } | null>(null);
   const finalScores = ref<Record<string, { name: string; score: number }> | null>(null);
 
   let unsubscribe: (() => void) | null = null;
@@ -92,9 +96,10 @@ export const useLobbyStore = defineStore('lobby', () => {
       const r = await multiplayerGateway.createRoom(playerName);
       room.value = r;
       players.value = [...r.players];
-      playerId.value = (multiplayerGateway as { playerId?: string | null }).playerId
-        ?? r.players.find((p) => p.isHost)?.id
-        ?? null;
+      playerId.value =
+        (multiplayerGateway as { playerId?: string | null }).playerId ??
+        r.players.find((p) => p.isHost)?.id ??
+        null;
       isMockMode.value = isMock;
       unsubscribe = multiplayerGateway.onEvent(handleEvent);
     } catch (e) {
@@ -113,9 +118,10 @@ export const useLobbyStore = defineStore('lobby', () => {
       const r = await multiplayerGateway.joinRoom(code, playerName);
       room.value = r;
       players.value = [...r.players];
-      playerId.value = (multiplayerGateway as { playerId?: string | null }).playerId
-        ?? r.players.find((p) => !p.isHost)?.id
-        ?? null;
+      playerId.value =
+        (multiplayerGateway as { playerId?: string | null }).playerId ??
+        r.players.find((p) => !p.isHost)?.id ??
+        null;
       isMockMode.value = isMock;
       unsubscribe = multiplayerGateway.onEvent(handleEvent);
     } catch (e) {
@@ -125,7 +131,11 @@ export const useLobbyStore = defineStore('lobby', () => {
     }
   }
 
-  function configureGame(config: { questionCount: number; difficulties: string[]; categories?: string[] }) {
+  function configureGame(config: {
+    questionCount: number;
+    difficulties: string[];
+    categories?: string[];
+  }) {
     (multiplayerGateway as { configureGame?: (c: unknown) => void }).configureGame?.(config);
   }
 

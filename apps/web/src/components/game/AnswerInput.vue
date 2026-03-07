@@ -26,9 +26,7 @@
   // Types that use text input
   const isTextInput = computed(() => !isQcm.value && !isInteractive.value);
 
-  const qcmOptions = computed(() =>
-    isQcm.value ? (props.question as QcmQuestion).options : [],
-  );
+  const qcmOptions = computed(() => (isQcm.value ? (props.question as QcmQuestion).options : []));
 
   const placeholder = computed(() => {
     if (isNumber.value) return 'Entrez un nombre...';
@@ -78,7 +76,7 @@
     <!-- Chronology: drag & drop -->
     <ChronologyRenderer
       v-if="isChronology"
-      :question="(question as ChronologyQuestion)"
+      :question="question as ChronologyQuestion"
       :disabled="disabled"
       @submit="handleInteractiveSubmit"
     />
@@ -86,7 +84,7 @@
     <!-- Intruder: click to select -->
     <IntruderRenderer
       v-else-if="isIntruder"
-      :question="(question as IntruderQuestion)"
+      :question="question as IntruderQuestion"
       :disabled="disabled"
       @submit="handleInteractiveSubmit"
     />

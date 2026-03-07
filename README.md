@@ -4,19 +4,19 @@
 
 ## Stack
 
-| Layer       | Tech                            |
-|-------------|----------------------------------|
-| Frontend    | Vue 3 + Composition API + TS    |
-| Build       | Vite                            |
-| State       | Pinia                           |
-| Routing     | Vue Router                      |
-| Styling     | Custom CSS (design tokens)      |
-| Monorepo    | pnpm workspaces + Turborepo     |
-| Tests       | Vitest + Vue Test Utils         |
-| Quality     | ESLint + Prettier + Husky       |
-| CI          | GitHub Actions                  |
-| Backend     | NestJS (planned V2)             |
-| Realtime    | Socket.IO (planned V2)          |
+| Layer    | Tech                         |
+| -------- | ---------------------------- |
+| Frontend | Vue 3 + Composition API + TS |
+| Build    | Vite                         |
+| State    | Pinia                        |
+| Routing  | Vue Router                   |
+| Styling  | Custom CSS (design tokens)   |
+| Monorepo | pnpm workspaces + Turborepo  |
+| Tests    | Vitest + Vue Test Utils      |
+| Quality  | ESLint + Prettier + Husky    |
+| CI       | GitHub Actions               |
+| Backend  | NestJS (planned V2)          |
+| Realtime | Socket.IO (planned V2)       |
 
 ## Quick Start
 
@@ -80,19 +80,22 @@ quizzos/
 ## Architecture Decisions
 
 ### Services over components
+
 All business logic lives in services (`TimerService`, `ScoreService`, `GameEngineService`). Components are purely presentational + store bindings.
 
 ### Multiplayer-ready
+
 The `MultiplayerGateway` interface is defined in types. V1 uses `MockMultiplayerGateway`. Swapping to a real Socket.IO implementation requires no component changes.
 
 ### Timer system
+
 Timer duration = `DIFFICULTY_TIMERS[difficulty] + TYPE_MODIFIERS[type]`, overridden by `question.baseTimer` if set.
 
 | Difficulty | Base | +text | +number | +image | +qcm |
-|-----------|------|-------|---------|--------|------|
-| easy      | 15s  | 15s   | 20s     | 23s    | 15s  |
-| medium    | 25s  | 25s   | 30s     | 33s    | 25s  |
-| hard      | 35s  | 35s   | 40s     | 43s    | 35s  |
+| ---------- | ---- | ----- | ------- | ------ | ---- |
+| easy       | 15s  | 15s   | 20s     | 23s    | 15s  |
+| medium     | 25s  | 25s   | 30s     | 33s    | 25s  |
+| hard       | 35s  | 35s   | 40s     | 43s    | 35s  |
 
 ## V2 Roadmap
 

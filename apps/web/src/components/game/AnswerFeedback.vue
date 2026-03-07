@@ -16,7 +16,13 @@
       </div>
       <div class="feedback__text">
         <p class="feedback__status">
-          {{ result.timedOut ? 'Temps écoulé !' : result.isCorrect ? 'Bonne réponse !' : 'Mauvaise réponse' }}
+          {{
+            result.timedOut
+              ? 'Temps écoulé !'
+              : result.isCorrect
+                ? 'Bonne réponse !'
+                : 'Mauvaise réponse'
+          }}
         </p>
         <p v-if="!result.isCorrect" class="feedback__answer">
           Réponse : <strong>{{ result.question.answer }}</strong>
@@ -111,6 +117,10 @@
     }
   }
 
-  .feedback-enter-active { animation: slide-up 0.3s ease; }
-  .feedback-leave-active { animation: slide-up 0.2s ease reverse; }
+  .feedback-enter-active {
+    animation: slide-up 0.3s ease;
+  }
+  .feedback-leave-active {
+    animation: slide-up 0.2s ease reverse;
+  }
 </style>

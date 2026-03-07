@@ -103,7 +103,11 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
     this.socket?.emit('room:leave');
   }
 
-  configureGame(config: { questionCount: number; difficulties: string[]; categories?: string[] }): void {
+  configureGame(config: {
+    questionCount: number;
+    difficulties: string[];
+    categories?: string[];
+  }): void {
     this.socket?.emit('game:configure', config);
   }
 
@@ -151,18 +155,48 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
       this.emit({ type: 'player:left', playerId: data.playerId });
     });
 
-    this.socket.on('game:started', (data: { totalQuestions: number; question: unknown; questionIndex: number; timer: number }) => {
-      this.emit({ type: 'game:started', questions: [] });
-      this.emit({ type: 'game:question', index: data.questionIndex, question: data.question, timer: data.timer } as MultiplayerEvent);
-    });
+    this.socket.on(
+      'game:started',
+      (data: {
+        totalQuestions: number;
+        question: unknown;
+        questionIndex: number;
+        timer: number;
+      }) => {
+        this.emit({ type: 'game:started', questions: [] });
+        this.emit({
+          type: 'game:question',
+          index: data.questionIndex,
+          question: data.question,
+          timer: data.timer,
+        } as MultiplayerEvent);
+      },
+    );
 
-    this.socket.on('game:nextQuestion', (data: { question: unknown; questionIndex: number; timer: number }) => {
-      this.emit({ type: 'game:question', index: data.questionIndex, question: data.question, timer: data.timer } as MultiplayerEvent);
-    });
+    this.socket.on(
+      'game:nextQuestion',
+      (data: { question: unknown; questionIndex: number; timer: number }) => {
+        this.emit({
+          type: 'game:question',
+          index: data.questionIndex,
+          question: data.question,
+          timer: data.timer,
+        } as MultiplayerEvent);
+      },
+    );
 
-    this.socket.on('game:answerResult', (data: { questionId: string; isCorrect: boolean; correctAnswer: string; explanation?: string; timedOut?: boolean }) => {
-      this.emit({ type: 'game:answerResult', ...data } as MultiplayerEvent);
-    });
+    this.socket.on(
+      'game:answerResult',
+      (data: {
+        questionId: string;
+        isCorrect: boolean;
+        correctAnswer: string;
+        explanation?: string;
+        timedOut?: boolean;
+      }) => {
+        this.emit({ type: 'game:answerResult', ...data } as MultiplayerEvent);
+      },
+    );
 
     this.socket.on('player:answered', (data: { playerId: string; isCorrect: boolean }) => {
       this.emit({ type: 'player:answered', playerId: data.playerId, isCorrect: data.isCorrect });

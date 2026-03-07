@@ -18,9 +18,7 @@
   <div class="setup-page">
     <div class="setup-page__container">
       <div class="setup-page__header">
-        <BaseButton variant="ghost" size="sm" @click="router.push('/')">
-          ← Retour
-        </BaseButton>
+        <BaseButton variant="ghost" size="sm" @click="router.push('/')"> ← Retour </BaseButton>
         <h1 class="setup-page__title">Configuration</h1>
         <p class="setup-page__desc">Personnalisez votre partie avant de commencer</p>
       </div>

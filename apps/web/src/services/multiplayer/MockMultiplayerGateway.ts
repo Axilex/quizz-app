@@ -87,7 +87,7 @@ export class MockMultiplayerGateway implements MultiplayerGateway {
     this.emit({ type: 'game:started', questions: [] });
   }
 
-  submitAnswer(questionId: string, _answer: string): void {
+  submitAnswer(_questionId: string, _answer: string): void {
     // Mock: just emit that we answered
     this.emit({
       type: 'player:answered',

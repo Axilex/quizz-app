@@ -61,10 +61,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   @SubscribeMessage('room:create')
-  handleCreateRoom(
-    @ConnectedSocket() client: Socket,
-    @MessageBody() data: { playerName: string },
-  ) {
+  handleCreateRoom(@ConnectedSocket() client: Socket, @MessageBody() data: { playerName: string }) {
     Logger.log(`[WS] room:create from ${client.id}, name: ${data.playerName}`);
     const room = this.roomsService.createRoom(client.id, data.playerName);
     client.join(room.id);
@@ -107,10 +104,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   @SubscribeMessage('room:reconnect')
-  handleReconnect(
-    @ConnectedSocket() client: Socket,
-    @MessageBody() data: { playerId: string },
-  ) {
+  handleReconnect(@ConnectedSocket() client: Socket, @MessageBody() data: { playerId: string }) {
     const result = this.roomsService.handleReconnect(client.id, data.playerId);
     if (!result) {
       client.emit('error', { message: 'Impossible de reconnecter' });
@@ -147,10 +141,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   @SubscribeMessage('game:configure')
-  handleConfigure(
-    @ConnectedSocket() client: Socket,
-    @MessageBody() config: GameConfig,
-  ) {
+  handleConfigure(@ConnectedSocket() client: Socket, @MessageBody() config: GameConfig) {
     Logger.log(`[WS] game:configure from ${client.id}`, config);
     const result = this.roomsService.getPlayerBySocket(client.id);
     if (!result || !result.player.isHost) {
@@ -221,8 +212,13 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const isCorrect = this.scoringService.validateAnswer(currentQuestion, data.answer);
 
     this.roomsService.recordAnswer(
-      room, player.id, data.questionId, data.answer,
-      isCorrect, data.timeSpent, false,
+      room,
+      player.id,
+      data.questionId,
+      data.answer,
+      isCorrect,
+      data.timeSpent,
+      false,
     );
 
     client.emit('game:answerResult', {
@@ -255,9 +251,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const timerId = setTimeout(() => {
       for (const player of room.players.values()) {
         if (player.status === 'answering') {
-          this.roomsService.recordAnswer(
-            room, player.id, question.id, '', false, timerMs, true,
-          );
+          this.roomsService.recordAnswer(room, player.id, question.id, '', false, timerMs, true);
 
           this.server.to(player.socketId).emit('game:answerResult', {
             questionId: question.id,

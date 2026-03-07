@@ -9,8 +9,16 @@
   const props = defineProps<Props>();
 
   const CLUE_EMOJIS: Record<string, string> = {
-    tower: '🗼', nose: '👃', ground: '🟫', cat: '🐱', pot: '🏺',
-    father: '👨', rat: '🐀', pond: '💧', mouth: '👄', ritual: '🕯️',
+    tower: '🗼',
+    nose: '👃',
+    ground: '🟫',
+    cat: '🐱',
+    pot: '🏺',
+    father: '👨',
+    rat: '🐀',
+    pond: '💧',
+    mouth: '👄',
+    ritual: '🕯️',
     eye: '👁️',
   };
 
@@ -76,6 +84,9 @@
     opacity: 0.5;
   }
   @media (max-width: 640px) {
-    .rebus__img { width: 70px; height: 70px; }
+    .rebus__img {
+      width: 70px;
+      height: 70px;
+    }
   }
 </style>

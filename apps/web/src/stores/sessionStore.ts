@@ -22,9 +22,7 @@ export const useSessionStore = defineStore('session', () => {
     categories: selectedCategories.value.length ? selectedCategories.value : undefined,
   }));
 
-  const isValid = computed(
-    () => selectedDifficulties.value.length > 0 && effectiveCount.value > 0,
-  );
+  const isValid = computed(() => selectedDifficulties.value.length > 0 && effectiveCount.value > 0);
 
   function setMode(m: GameMode) {
     mode.value = m;

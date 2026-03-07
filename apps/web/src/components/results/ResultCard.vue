@@ -10,7 +10,10 @@
 </script>
 
 <template>
-  <div class="result-card" :class="result.isCorrect ? 'result-card--correct' : 'result-card--wrong'">
+  <div
+    class="result-card"
+    :class="result.isCorrect ? 'result-card--correct' : 'result-card--wrong'"
+  >
     <div class="result-card__number">{{ index + 1 }}</div>
     <div class="result-card__content">
       <p class="result-card__question">{{ result.question.label }}</p>

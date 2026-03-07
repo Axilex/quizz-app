@@ -70,7 +70,9 @@ export class QuestionsService {
     for (const q of this.questions) {
       map.set(q.category, (map.get(q.category) ?? 0) + 1);
     }
-    return [...map.entries()].map(([id, count]) => ({ id, count })).sort((a, b) => a.id.localeCompare(b.id));
+    return [...map.entries()]
+      .map(([id, count]) => ({ id, count }))
+      .sort((a, b) => a.id.localeCompare(b.id));
   }
 
   /** Strip answer data from question for sending to clients */

@@ -56,7 +56,11 @@ export class RoomsService {
     return room;
   }
 
-  joinRoom(code: string, socketId: string, playerName: string): { room: Room; player: Player } | null {
+  joinRoom(
+    code: string,
+    socketId: string,
+    playerName: string,
+  ): { room: Room; player: Player } | null {
     const roomId = this.codeToRoom.get(code.toUpperCase());
     if (!roomId) return null;
 

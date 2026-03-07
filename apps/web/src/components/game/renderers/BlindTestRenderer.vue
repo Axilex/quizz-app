@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, computed, onMounted, onUnmounted } from 'vue';
+  import { computed } from 'vue';
   import type { BlindTestQuestion } from '@/types';
   import { generateBlindTest } from '@/utils/svgPlaceholders';
 
@@ -12,7 +12,10 @@
   const props = defineProps<Props>();
 
   const SUBJECT_EMOJIS: Record<string, string> = {
-    eiffel_tower: '🗼', dna: '🧬', thinker: '🤔', saturn: '🪐',
+    eiffel_tower: '🗼',
+    dna: '🧬',
+    thinker: '🤔',
+    saturn: '🪐',
   };
 
   const emoji = computed(() => SUBJECT_EMOJIS[props.question.svg] ?? '🖼️');

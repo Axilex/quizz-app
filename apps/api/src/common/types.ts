@@ -2,9 +2,17 @@
 // In future: extract to a shared @quizzos/types package
 
 export type QuestionType =
-  | 'text' | 'number' | 'image' | 'qcm'
-  | 'rebus' | 'fourImages' | 'chronology'
-  | 'blindTest' | 'geoMap' | 'intruder' | 'silhouette';
+  | 'text'
+  | 'number'
+  | 'image'
+  | 'qcm'
+  | 'rebus'
+  | 'fourImages'
+  | 'chronology'
+  | 'blindTest'
+  | 'geoMap'
+  | 'intruder'
+  | 'silhouette';
 
 export type Difficulty = 'easy' | 'medium' | 'hard';
 
@@ -84,11 +92,21 @@ export interface GameConfig {
 }
 
 export const DIFFICULTY_TIMERS: Record<Difficulty, number> = {
-  easy: 15, medium: 25, hard: 35,
+  easy: 15,
+  medium: 25,
+  hard: 35,
 };
 
 export const TYPE_MODIFIERS: Record<QuestionType, number> = {
-  text: 0, number: 5, image: 8, qcm: 0,
-  rebus: 10, fourImages: 8, chronology: 15,
-  blindTest: 12, geoMap: 10, intruder: 5, silhouette: 8,
+  text: 0,
+  number: 5,
+  image: 8,
+  qcm: 0,
+  rebus: 10,
+  fourImages: 8,
+  chronology: 15,
+  blindTest: 12,
+  geoMap: 10,
+  intruder: 5,
+  silhouette: 8,
 };

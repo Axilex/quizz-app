@@ -45,7 +45,13 @@
     "category": "culture",
     "label": "Qui a peint La Joconde ?",
     "answer": "Léonard de Vinci",
-    "acceptedAnswers": ["Leonard de Vinci", "Léonard de Vinci", "De Vinci", "da Vinci", "Leonardo da Vinci"],
+    "acceptedAnswers": [
+      "Leonard de Vinci",
+      "Léonard de Vinci",
+      "De Vinci",
+      "da Vinci",
+      "Leonardo da Vinci"
+    ],
     "media": null,
     "explanation": "La Joconde a été peinte par Léonard de Vinci entre 1503 et 1519.",
     "tags": ["culture", "art", "peinture"],
