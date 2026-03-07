@@ -1,7 +1,7 @@
 {
-  "name": "kculture",
+  "name": "quizzos",
   "private": true,
-  "description": "KCulture — Modern quiz application",
+  "description": "Quizzos — Modern quiz application",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
@@ -13,7 +13,9 @@
     "test": "turbo test",
     "test:watch": "turbo test:watch",
     "clean": "turbo clean && rm -rf node_modules",
-    "prepare": "husky"
+    "prepare": "husky",
+    "start:front": "pnpm --filter web dev",
+    "start:back": "pnpm --filter api dev"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",

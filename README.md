@@ -1,4 +1,4 @@
-# KCulture
+# Quizzos
 
 > Quiz interactif moderne — testez vos connaissances, défiez vos amis.
 
@@ -24,8 +24,8 @@
 # Prerequisites: Node.js >= 20, pnpm >= 9
 
 # Clone and install
-git clone <repo-url> kculture
-cd kculture
+git clone <repo-url> quizzos
+cd quizzos
 pnpm install
 
 # Start development
@@ -48,7 +48,7 @@ pnpm build
 ## Project Structure
 
 ```
-kculture/
+quizzos/
 ├── apps/
 │   ├── web/                  # Vue 3 frontend
 │   │   └── src/

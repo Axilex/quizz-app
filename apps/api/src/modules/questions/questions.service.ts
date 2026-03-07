@@ -75,7 +75,7 @@ export class QuestionsService {
 
   /** Strip answer data from question for sending to clients */
   toPublic(question: Question): QuestionPublic {
-    const { answer, acceptedAnswers, explanation, ...rest } = question;
+    const { _answer, _acceptedAnswers, _explanation, ...rest } = question;
     // Also strip intruderId from intruder questions
     const pub = { ...rest } as QuestionPublic & { intruderId?: string };
     delete pub.intruderId;

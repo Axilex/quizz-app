@@ -1,5 +1,5 @@
 {
-  "extends": "@kculture/typescript-config/node.json",
+  "extends": "@quizzos/typescript-config/node.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

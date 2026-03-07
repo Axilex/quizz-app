@@ -1,5 +1,5 @@
 {
-  "name": "@kculture/prettier-config",
+  "name": "@quizzos/prettier-config",
   "version": "0.0.0",
   "private": true,
   "type": "module",

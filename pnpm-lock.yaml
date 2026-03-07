@@ -51,7 +51,7 @@ importers:
         specifier: ^4.8.1
         version: 4.8.3
     devDependencies:
-      '@kculture/typescript-config':
+      '@quizzos/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@nestjs/cli':
@@ -85,13 +85,13 @@ importers:
         specifier: ^4.5.0
         version: 4.6.4(vue@3.5.29(typescript@5.9.3))
     devDependencies:
-      '@kculture/eslint-config':
+      '@quizzos/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
-      '@kculture/prettier-config':
+      '@quizzos/prettier-config':
         specifier: workspace:*
         version: link:../../packages/prettier-config
-      '@kculture/typescript-config':
+      '@quizzos/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@vitejs/plugin-vue':

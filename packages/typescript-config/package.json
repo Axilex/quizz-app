@@ -1,5 +1,5 @@
 {
-  "name": "@kculture/typescript-config",
+  "name": "@quizzos/typescript-config",
   "version": "0.0.0",
   "private": true,
   "files": ["base.json", "vue.json", "node.json"]

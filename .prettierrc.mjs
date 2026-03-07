@@ -1,2 +1,2 @@
-import config from "@kculture/prettier-config";
+import config from "@quizzos/prettier-config";
 export default config;

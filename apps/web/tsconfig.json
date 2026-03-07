@@ -1,5 +1,5 @@
 {
-  "extends": "@kculture/typescript-config/vue.json",
+  "extends": "@quizzos/typescript-config/vue.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -11,7 +12,7 @@ async function bootstrap() {
 
   const port = process.env['PORT'] ?? 3000;
   await app.listen(port);
-  console.log(`[KCulture API] Running on http://localhost:${port}`);
+  Logger.log(`[Quizzos API] Running on http://localhost:${port}`);
 }
 
 bootstrap();

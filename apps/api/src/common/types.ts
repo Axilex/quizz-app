@@ -1,5 +1,5 @@
-// Shared types — keep in sync with @kculture/web types
-// In future: extract to a shared @kculture/types package
+// Shared types — keep in sync with @quizzos/web types
+// In future: extract to a shared @quizzos/types package
 
 export type QuestionType =
   | 'text' | 'number' | 'image' | 'qcm'

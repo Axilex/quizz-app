@@ -1,5 +1,5 @@
 {
-  "name": "@kculture/api",
+  "name": "@quizzos/api",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -25,7 +25,7 @@
     "socket.io": "^4.8.1"
   },
   "devDependencies": {
-    "@kculture/typescript-config": "workspace:*",
+    "@quizzos/typescript-config": "workspace:*",
     "@nestjs/cli": "^10.4.9",
     "@nestjs/schematics": "^10.2.3",
     "@types/node": "^22.10.7",

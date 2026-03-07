@@ -12,6 +12,7 @@ import { RoomsService } from './rooms.service';
 import { QuestionsService } from '../questions/questions.service';
 import { GameScoringService } from '../game/game-scoring.service';
 import type { GameConfig, Room } from '../../common/types';
+import { Logger } from '@nestjs/common';
 
 @WebSocketGateway({
   cors: {
@@ -33,11 +34,11 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   ) {}
 
   handleConnection(client: Socket) {
-    console.log(`[WS] Client connected: ${client.id}`);
+    Logger.log(`[WS] Client connected: ${client.id}`);
   }
 
   handleDisconnect(client: Socket) {
-    console.log(`[WS] Client disconnected: ${client.id}`);
+    Logger.log(`[WS] Client disconnected: ${client.id}`);
     const result = this.roomsService.getPlayerBySocket(client.id);
     if (!result) return;
 
@@ -64,7 +65,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @ConnectedSocket() client: Socket,
     @MessageBody() data: { playerName: string },
   ) {
-    console.log(`[WS] room:create from ${client.id}, name: ${data.playerName}`);
+    Logger.log(`[WS] room:create from ${client.id}, name: ${data.playerName}`);
     const room = this.roomsService.createRoom(client.id, data.playerName);
     client.join(room.id);
 
@@ -82,7 +83,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @ConnectedSocket() client: Socket,
     @MessageBody() data: { code: string; playerName: string },
   ) {
-    console.log(`[WS] room:join from ${client.id}, code: ${data.code}`);
+    Logger.log(`[WS] room:join from ${client.id}, code: ${data.code}`);
     const result = this.roomsService.joinRoom(data.code, client.id, data.playerName);
     if (!result) {
       client.emit('error', { message: 'Room introuvable ou partie déjà lancée' });
@@ -150,7 +151,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @ConnectedSocket() client: Socket,
     @MessageBody() config: GameConfig,
   ) {
-    console.log(`[WS] game:configure from ${client.id}`, config);
+    Logger.log(`[WS] game:configure from ${client.id}`, config);
     const result = this.roomsService.getPlayerBySocket(client.id);
     if (!result || !result.player.isHost) {
       client.emit('error', { message: "Seul l'hôte peut configurer" });
@@ -163,7 +164,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @SubscribeMessage('game:start')
   handleStartGame(@ConnectedSocket() client: Socket) {
-    console.log(`[WS] game:start from ${client.id}`);
+    Logger.log(`[WS] game:start from ${client.id}`);
     const result = this.roomsService.getPlayerBySocket(client.id);
     if (!result || !result.player.isHost) {
       client.emit('error', { message: "Seul l'hôte peut lancer" });
@@ -191,7 +192,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const firstQuestion = questions[0]!;
     const timer = this.scoringService.computeTimer(firstQuestion);
 
-    console.log(`[WS] Game started in room ${room.code}, ${questions.length} questions`);
+    Logger.log(`[WS] Game started in room ${room.code}, ${questions.length} questions`);
 
     this.server.to(room.id).emit('game:started', {
       totalQuestions: questions.length,
