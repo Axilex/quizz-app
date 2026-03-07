@@ -23,6 +23,9 @@
                 ? 'Bonne réponse !'
                 : 'Mauvaise réponse'
           }}
+          <span v-if="result.isCorrect && result.points > 0" class="feedback__points">
+            +{{ result.points }} pt{{ result.points > 1 ? 's' : '' }}
+          </span>
         </p>
         <p v-if="!result.isCorrect" class="feedback__answer">
           Réponse : <strong>{{ result.question.answer }}</strong>
@@ -87,6 +90,19 @@
     font-size: 1rem;
     margin: 0 0 0.25rem;
     color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .feedback__points {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
   }
 
   .feedback__answer {

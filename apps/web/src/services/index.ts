@@ -28,7 +28,7 @@ class AdaptiveMultiplayerGateway implements MultiplayerGateway {
   }
 
   get playerId() {
-    return this._useReal ? this.real.playerId : null;
+    return this._useReal ? this.real.playerId : this.mock.playerId;
   }
 
   async connect(): Promise<void> {

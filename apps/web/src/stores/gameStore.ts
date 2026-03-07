@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import type { AnswerResult, GameConfig, GamePhase, GameSession, Question } from '@/types';
+import { DIFFICULTY_POINTS } from '@/types';
 import { gameEngine, timerService, TimerService, scoreService } from '@/services';
 
 export const useGameStore = defineStore('game', () => {
@@ -140,8 +141,13 @@ export const useGameStore = defineStore('game', () => {
   function getResults() {
     if (!session.value) return null;
     const total = session.value.questions.length;
-    const correct = session.value.score;
-    const percentage = scoreService.calculatePercentage(correct, total);
+    const correct = session.value.answers.filter((a) => a.isCorrect).length;
+    const totalPoints = session.value.score;
+    const maxPoints = session.value.questions.reduce(
+      (sum, q) => sum + (DIFFICULTY_POINTS[q.difficulty] ?? 1),
+      0,
+    );
+    const percentage = scoreService.calculatePercentage(totalPoints, maxPoints);
     const grade = scoreService.getGrade(percentage);
     const times = session.value.answers.map((a) => a.timeSpent);
     const avgTime = scoreService.averageTime(times);
@@ -150,6 +156,8 @@ export const useGameStore = defineStore('game', () => {
       total,
       correct,
       wrong: total - correct,
+      totalPoints,
+      maxPoints,
       percentage,
       grade,
       avgTime,

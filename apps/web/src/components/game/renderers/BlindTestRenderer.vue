@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { computed } from 'vue';
   import type { BlindTestQuestion } from '@/types';
-  import { generateBlindTest } from '@/utils/svgPlaceholders';
+  import { getImageUrl } from '@/utils/imageLibrary';
 
   interface Props {
     question: BlindTestQuestion;
@@ -11,23 +11,14 @@
 
   const props = defineProps<Props>();
 
-  const SUBJECT_EMOJIS: Record<string, string> = {
-    eiffel_tower: '🗼',
-    dna: '🧬',
-    thinker: '🤔',
-    saturn: '🪐',
-  };
+  const imageSrc = computed(() => getImageUrl(props.question.svg));
 
-  const emoji = computed(() => SUBJECT_EMOJIS[props.question.svg] ?? '🖼️');
-  const imageSrc = computed(() => generateBlindTest(emoji.value, ''));
-
-  // Blur decreases as time passes (more revealed as timer runs down)
+  // Blur decreases as time passes: starts very blurred, ends fully clear
   const blurAmount = computed(() => {
     if (props.timerTotal <= 0) return 0;
-    const progress = 1 - props.timerRemaining / props.timerTotal;
-    const maxBlur = 20;
-    const minBlur = 0;
-    return Math.max(minBlur, maxBlur * (1 - progress));
+    const ratio = props.timerRemaining / props.timerTotal;
+    const maxBlur = 28;
+    return Math.max(0, maxBlur * ratio);
   });
 
   const revealPercent = computed(() => {
@@ -64,11 +55,11 @@
     background: var(--bg-tertiary);
   }
   .blind-test__image {
-    width: 240px;
-    height: 200px;
+    width: 280px;
+    height: 220px;
     object-fit: cover;
     display: block;
-    transition: filter 0.5s ease;
+    transition: filter 1s linear;
   }
   .blind-test__reveal-badge {
     position: absolute;
@@ -81,5 +72,12 @@
     font-weight: 600;
     padding: 0.2rem 0.5rem;
     border-radius: 6px;
+  }
+  @media (max-width: 640px) {
+    .blind-test__image {
+      width: 100%;
+      max-width: 280px;
+      height: 180px;
+    }
   }
 </style>

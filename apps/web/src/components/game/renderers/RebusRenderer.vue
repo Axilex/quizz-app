@@ -1,38 +1,19 @@
 <script setup lang="ts">
   import type { RebusQuestion } from '@/types';
-  import { generateRebusClue } from '@/utils/svgPlaceholders';
+  import { getImageUrl } from '@/utils/imageLibrary';
 
   interface Props {
     question: RebusQuestion;
   }
 
   const props = defineProps<Props>();
-
-  const CLUE_EMOJIS: Record<string, string> = {
-    tower: '🗼',
-    nose: '👃',
-    ground: '🟫',
-    cat: '🐱',
-    pot: '🏺',
-    father: '👨',
-    rat: '🐀',
-    pond: '💧',
-    mouth: '👄',
-    ritual: '🕯️',
-    eye: '👁️',
-  };
-
-  function getClueImage(svg: string, alt: string, index: number): string {
-    const emoji = CLUE_EMOJIS[svg] ?? '❓';
-    return generateRebusClue(emoji, alt, index);
-  }
 </script>
 
 <template>
   <div class="rebus">
     <div class="rebus__clues">
       <div v-for="(clue, i) in props.question.clues" :key="i" class="rebus__clue">
-        <img :src="getClueImage(clue.svg, clue.alt, i)" :alt="clue.alt" class="rebus__img" />
+        <img :src="getImageUrl(clue.svg)" :alt="clue.alt" class="rebus__img" loading="lazy" />
         <span v-if="i < props.question.clues.length - 1" class="rebus__plus">+</span>
       </div>
     </div>
@@ -65,6 +46,7 @@
     height: 90px;
     border-radius: 10px;
     object-fit: cover;
+    background: var(--bg-tertiary);
   }
   .rebus__plus {
     font-size: 1.5rem;

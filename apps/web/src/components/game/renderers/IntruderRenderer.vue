@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import type { IntruderQuestion } from '@/types';
-  import { generateIntruderItem } from '@/utils/svgPlaceholders';
+  import { getImageUrl } from '@/utils/imageLibrary';
 
   interface Props {
     question: IntruderQuestion;
@@ -9,30 +9,6 @@
 
   const props = withDefaults(defineProps<Props>(), { disabled: false });
   const emit = defineEmits<{ submit: [answer: string] }>();
-
-  const ITEM_EMOJIS: Record<string, string> = {
-    oxygen: '💨',
-    nitrogen: '🌫️',
-    helium: '🎈',
-    mercury: '🌡️',
-    paris: '🗼',
-    tokyo: '🏯',
-    sydney: '🐨',
-    berlin: '🧱',
-    violin: '🎻',
-    guitar: '🎸',
-    harp: '🎵',
-    drums: '🥁',
-    einstein: '🧑‍🔬',
-    curie: '👩‍🔬',
-    mozart: '🎹',
-    newton: '🍎',
-  };
-
-  function getImage(svg: string, label: string, index: number): string {
-    const emoji = ITEM_EMOJIS[svg] ?? '❓';
-    return generateIntruderItem(emoji, label, index);
-  }
 
   function handleSelect(optionId: string) {
     if (props.disabled) return;
@@ -44,13 +20,13 @@
   <div class="intruder">
     <div class="intruder__grid">
       <button
-        v-for="(opt, i) in props.question.options"
+        v-for="opt in props.question.options"
         :key="opt.id"
         class="intruder__option"
         :disabled="disabled"
         @click="handleSelect(opt.id)"
       >
-        <img :src="getImage(opt.svg, opt.label, i)" :alt="opt.label" class="intruder__img" />
+        <img :src="getImageUrl(opt.svg)" :alt="opt.label" class="intruder__img" loading="lazy" />
         <span class="intruder__label">{{ opt.label }}</span>
       </button>
     </div>
@@ -91,6 +67,7 @@
     border-radius: 8px;
     aspect-ratio: 1;
     object-fit: cover;
+    background: var(--bg-tertiary);
   }
   .intruder__label {
     font-size: 0.85rem;

@@ -1,2 +1,2 @@
-import config from "@quizzos/prettier-config";
+import config from "@quizzy/prettier-config";
 export default config;

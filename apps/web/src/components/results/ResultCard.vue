@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import type { AnswerResult } from '@/types';
+  import DifficultyBadge from '@/components/ui/DifficultyBadge.vue';
 
   interface Props {
     result: AnswerResult;
@@ -16,7 +17,10 @@
   >
     <div class="result-card__number">{{ index + 1 }}</div>
     <div class="result-card__content">
-      <p class="result-card__question">{{ result.question.label }}</p>
+      <div class="result-card__top">
+        <p class="result-card__question">{{ result.question.label }}</p>
+        <DifficultyBadge :difficulty="result.question.difficulty" />
+      </div>
       <div class="result-card__answers">
         <span v-if="!result.isCorrect && result.userAnswer" class="result-card__user">
           {{ result.timedOut ? 'Temps écoulé' : result.userAnswer }}
@@ -24,7 +28,12 @@
         <span class="result-card__correct">{{ result.question.answer }}</span>
       </div>
     </div>
-    <div class="result-card__icon">{{ result.isCorrect ? '✓' : '✗' }}</div>
+    <div class="result-card__right">
+      <div class="result-card__icon">{{ result.isCorrect ? '✓' : '✗' }}</div>
+      <span v-if="result.isCorrect" class="result-card__pts"
+        >+{{ result.points }}pt{{ result.points > 1 ? 's' : '' }}</span
+      >
+    </div>
   </div>
 </template>
 
@@ -56,11 +65,19 @@
     min-width: 0;
   }
 
+  .result-card__top {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.3rem;
+  }
+
   .result-card__question {
     font-size: 0.92rem;
     color: var(--text-primary);
-    margin: 0 0 0.3rem;
+    margin: 0;
     font-weight: 500;
+    flex: 1;
   }
 
   .result-card__answers {
@@ -85,6 +102,14 @@
     color: var(--success);
   }
 
+  .result-card__right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    flex-shrink: 0;
+  }
+
   .result-card__icon {
     font-weight: 900;
     font-size: 1.1rem;
@@ -94,7 +119,6 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    flex-shrink: 0;
   }
 
   .result-card--correct .result-card__icon {
@@ -105,5 +129,12 @@
   .result-card--wrong .result-card__icon {
     color: var(--error);
     background: color-mix(in srgb, var(--error) 15%, transparent);
+  }
+
+  .result-card__pts {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent);
   }
 </style>

@@ -1,7 +1,7 @@
 {
-  "name": "quizzos",
+  "name": "quizzy",
   "private": true,
-  "description": "Quizzos — Modern quiz application",
+  "description": "Quizzy — Le quiz entre amis qui pique le cerveau",
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",

@@ -1,4 +1,5 @@
 import type { AnswerResult, GameConfig, GameSession, Question } from '@/types';
+import { DIFFICULTY_POINTS } from '@/types';
 import { questionRepository } from '@/services/questions/QuestionRepository';
 import { scoreService } from './ScoreService';
 import { TimerService } from './TimerService';
@@ -64,18 +65,20 @@ export class GameEngineService {
     if (!question) throw new Error('No current question');
 
     const isCorrect = !timedOut && scoreService.validateAnswer(question, userAnswer);
+    const points = isCorrect ? (DIFFICULTY_POINTS[question.difficulty] ?? 1) : 0;
 
     const result: AnswerResult = {
       questionId: question.id,
       question,
       userAnswer,
       isCorrect,
+      points,
       timeSpent,
       timedOut,
     };
 
     session.answers.push(result);
-    if (isCorrect) session.score++;
+    if (isCorrect) session.score += points;
     session.currentIndex++;
 
     if (session.currentIndex >= session.questions.length) {

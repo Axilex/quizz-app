@@ -34,7 +34,7 @@
     <div class="play-page__top">
       <QuestionProgress v-bind="game.progress" />
       <div class="play-page__score">
-        Score : <strong>{{ game.score }}</strong>
+        <strong>{{ game.score }}</strong> pts
       </div>
     </div>
 

@@ -1,5 +1,5 @@
 {
-  "extends": "@quizzos/typescript-config/node.json",
+  "extends": "@quizzy/typescript-config/node.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

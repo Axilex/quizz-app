@@ -6,8 +6,8 @@
   <div class="app-shell">
     <header class="app-header">
       <router-link to="/" class="logo-link">
-        <span class="logo-k">K</span>
-        <span class="logo-culture">Culture</span>
+        <span class="logo-q">Q</span>
+        <span class="logo-text">uizzy</span>
       </router-link>
     </header>
 
@@ -40,7 +40,7 @@
     text-decoration: none;
     display: flex;
     align-items: baseline;
-    gap: 0.15em;
+    gap: 0;
     font-family: var(--font-display);
     transition: opacity 0.2s;
   }
@@ -49,18 +49,18 @@
     opacity: 0.8;
   }
 
-  .logo-k {
-    font-size: 2rem;
+  .logo-q {
+    font-size: 2.2rem;
     font-weight: 900;
     color: var(--accent);
     line-height: 1;
   }
 
-  .logo-culture {
-    font-size: 1.4rem;
+  .logo-text {
+    font-size: 1.5rem;
     font-weight: 300;
     color: var(--text-primary);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
   }
 
   .app-main {

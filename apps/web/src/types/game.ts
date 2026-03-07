@@ -15,6 +15,8 @@ export interface AnswerResult {
   question: Question;
   userAnswer: string;
   isCorrect: boolean;
+  /** Points earned for this answer (0 if wrong, difficulty-based if correct) */
+  points: number;
   timeSpent: number;
   timedOut: boolean;
 }
@@ -41,6 +43,13 @@ export const DIFFICULTY_TIMERS: Record<Difficulty, number> = {
   easy: 15,
   medium: 25,
   hard: 35,
+};
+
+/** Points awarded per difficulty level */
+export const DIFFICULTY_POINTS: Record<Difficulty, number> = {
+  easy: 1,
+  medium: 2,
+  hard: 3,
 };
 
 export const TYPE_MODIFIERS: Record<QuestionType, number> = {

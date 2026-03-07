@@ -1,5 +1,5 @@
 {
-  "name": "@quizzos/eslint-config",
+  "name": "@quizzy/eslint-config",
   "version": "0.0.0",
   "private": true,
   "type": "module",

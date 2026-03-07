@@ -19,6 +19,30 @@ export interface Room {
   createdAt: number;
 }
 
+/** A single player's answer to a question (used in end-of-game review) */
+export interface PlayerAnswer {
+  playerId: string;
+  playerName: string;
+  answer: string;
+  isCorrect: boolean;
+  timeSpent: number;
+  timedOut: boolean;
+  /** Host override: null = not yet judged, true/false = manual decision */
+  hostOverride: boolean | null;
+}
+
+/** Full review data for one question across all players */
+export interface QuestionReviewData {
+  questionId: string;
+  questionLabel: string;
+  questionType: string;
+  correctAnswer: string;
+  explanation?: string;
+  playerAnswers: PlayerAnswer[];
+  /** Whether this question type supports auto-validation */
+  autoValidated: boolean;
+}
+
 export type MultiplayerEvent =
   | { type: 'player:joined'; player: Player }
   | { type: 'player:left'; playerId: string }
@@ -36,7 +60,11 @@ export type MultiplayerEvent =
     }
   | { type: 'game:timeout'; questionId: string }
   | { type: 'game:configured'; config: unknown }
-  | { type: 'game:finished'; scores: Record<string, unknown> }
+  | {
+      type: 'game:finished';
+      scores: Record<string, unknown>;
+      review?: QuestionReviewData[];
+    }
   | { type: 'error'; message: string };
 
 export interface MultiplayerGateway {

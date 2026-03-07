@@ -41,7 +41,9 @@
       <!-- Score hero -->
       <div class="score-hero">
         <span class="score-hero__emoji">{{ results.grade.emoji }}</span>
-        <h1 class="score-hero__percentage">{{ results.percentage }}%</h1>
+        <h1 class="score-hero__percentage">
+          {{ results.totalPoints }}<span class="score-hero__max">/{{ results.maxPoints }} pts</span>
+        </h1>
         <p class="score-hero__grade">{{ results.grade.label }}</p>
         <div class="score-hero__stats">
           <div class="stat">
@@ -129,11 +131,17 @@
 
   .score-hero__percentage {
     font-family: var(--font-display);
-    font-size: 4.5rem;
+    font-size: 4rem;
     font-weight: 900;
     color: var(--accent);
     margin: 0;
     line-height: 1.1;
+  }
+
+  .score-hero__max {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-muted);
   }
 
   .score-hero__grade {

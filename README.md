@@ -1,4 +1,4 @@
-# Quizzos
+# Quizzy
 
 > Quiz interactif moderne — testez vos connaissances, défiez vos amis.
 
@@ -24,8 +24,8 @@
 # Prerequisites: Node.js >= 20, pnpm >= 9
 
 # Clone and install
-git clone <repo-url> quizzos
-cd quizzos
+git clone <repo-url> quizzy
+cd quizzy
 pnpm install
 
 # Start development
@@ -48,7 +48,7 @@ pnpm build
 ## Project Structure
 
 ```
-quizzos/
+quizzy/
 ├── apps/
 │   ├── web/                  # Vue 3 frontend
 │   │   └── src/

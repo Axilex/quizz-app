@@ -1,7 +1,19 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import type { Player, Room, MultiplayerEvent, Question } from '@/types';
+import type {
+  Player,
+  Room,
+  MultiplayerEvent,
+  Question,
+  QuestionReviewData,
+  PlayerAnswer,
+  Difficulty,
+} from '@/types';
+import { DIFFICULTY_POINTS } from '@/types';
 import { multiplayerGateway } from '@/services';
+
+/** Types that can be auto-validated (exact match) */
+const AUTO_VALIDATED_TYPES = new Set(['number', 'qcm', 'chronology', 'intruder']);
 
 export const useLobbyStore = defineStore('lobby', () => {
   const room = ref<Room | null>(null);
@@ -22,6 +34,17 @@ export const useLobbyStore = defineStore('lobby', () => {
     explanation?: string;
   } | null>(null);
   const finalScores = ref<Record<string, { name: string; score: number }> | null>(null);
+  const reviewData = ref<QuestionReviewData[]>([]);
+
+  // ── Local tracking for building review data ──
+  /** Questions seen during this multi game (indexed by questionIndex) */
+  const trackedQuestions = ref<Map<number, Question>>(new Map());
+  /** Local player's answers (indexed by questionIndex) */
+  const trackedAnswers = ref<Map<number, { answer: string; timeSpent: number; timedOut: boolean }>>(
+    new Map(),
+  );
+  /** Total questions count (tracked from question events) */
+  const totalQuestionsCount = ref(0);
 
   let unsubscribe: (() => void) | null = null;
 
@@ -32,6 +55,12 @@ export const useLobbyStore = defineStore('lobby', () => {
 
   const roomCode = computed(() => room.value?.code ?? '');
   const playerCount = computed(() => players.value.length);
+
+  /** Total questions — from reviewData if available, else from tracked count */
+  const totalQuestions = computed(() => {
+    if (reviewData.value.length > 0) return reviewData.value.length;
+    return totalQuestionsCount.value;
+  });
 
   function handleEvent(event: MultiplayerEvent) {
     switch (event.type) {
@@ -53,6 +82,9 @@ export const useLobbyStore = defineStore('lobby', () => {
 
       case 'game:started':
         isGameStarted.value = true;
+        trackedQuestions.value = new Map();
+        trackedAnswers.value = new Map();
+        totalQuestionsCount.value = 0;
         break;
 
       case 'game:question':
@@ -60,6 +92,12 @@ export const useLobbyStore = defineStore('lobby', () => {
         questionIndex.value = event.index;
         questionTimer.value = event.timer ?? 30;
         lastResult.value = null;
+        totalQuestionsCount.value = Math.max(totalQuestionsCount.value, event.index + 1);
+
+        // Track question locally
+        if (event.question) {
+          trackedQuestions.value.set(event.index, event.question as Question);
+        }
         break;
 
       case 'game:answerResult':
@@ -79,12 +117,71 @@ export const useLobbyStore = defineStore('lobby', () => {
       case 'game:finished':
         finalScores.value = event.scores as Record<string, { name: string; score: number }>;
         isGameStarted.value = false;
+
+        // Use server review data if provided, otherwise build locally
+        if (event.review && event.review.length > 0) {
+          reviewData.value = event.review;
+        } else {
+          reviewData.value = buildLocalReviewData();
+        }
         break;
 
       case 'error':
         error.value = event.message;
         break;
     }
+  }
+
+  /** Build review data from locally tracked questions/answers */
+  function buildLocalReviewData(): QuestionReviewData[] {
+    const result: QuestionReviewData[] = [];
+    const myId = playerId.value ?? 'unknown';
+
+    for (let i = 0; i < totalQuestionsCount.value; i++) {
+      const q = trackedQuestions.value.get(i);
+      if (!q) continue;
+
+      const myAnswer = trackedAnswers.value.get(i);
+      const autoValidated = AUTO_VALIDATED_TYPES.has(q.type);
+
+      // Build player answers — we only know our own answer locally
+      const playerAnswers: PlayerAnswer[] = players.value.map((p) => {
+        if (p.id === myId && myAnswer) {
+          const isCorrect = !myAnswer.timedOut && myAnswer.answer !== '';
+          return {
+            playerId: p.id,
+            playerName: p.name,
+            answer: myAnswer.answer,
+            isCorrect, // Will be refined when scores are known
+            timeSpent: myAnswer.timeSpent,
+            timedOut: myAnswer.timedOut,
+            hostOverride: null,
+          };
+        }
+        // For other players, we don't know their exact answer locally
+        return {
+          playerId: p.id,
+          playerName: p.name,
+          answer: '—',
+          isCorrect: false,
+          timeSpent: 0,
+          timedOut: false,
+          hostOverride: null,
+        };
+      });
+
+      result.push({
+        questionId: q.id,
+        questionLabel: q.label,
+        questionType: q.type,
+        correctAnswer: q.answer,
+        explanation: q.explanation,
+        playerAnswers,
+        autoValidated,
+      });
+    }
+
+    return result;
   }
 
   async function createRoom(playerName: string) {
@@ -144,6 +241,13 @@ export const useLobbyStore = defineStore('lobby', () => {
   }
 
   function submitAnswer(questionId: string, answer: string, timeSpent: number) {
+    // Track answer locally
+    trackedAnswers.value.set(questionIndex.value, {
+      answer,
+      timeSpent,
+      timedOut: !answer && timeSpent === 0,
+    });
+
     multiplayerGateway.submitAnswer(questionId, answer, timeSpent);
   }
 
@@ -157,6 +261,10 @@ export const useLobbyStore = defineStore('lobby', () => {
     isGameStarted.value = false;
     currentQuestion.value = null;
     finalScores.value = null;
+    reviewData.value = [];
+    trackedQuestions.value = new Map();
+    trackedAnswers.value = new Map();
+    totalQuestionsCount.value = 0;
   }
 
   function resetMultiGame() {
@@ -165,6 +273,38 @@ export const useLobbyStore = defineStore('lobby', () => {
     questionIndex.value = 0;
     lastResult.value = null;
     finalScores.value = null;
+    reviewData.value = [];
+    trackedQuestions.value = new Map();
+    trackedAnswers.value = new Map();
+    totalQuestionsCount.value = 0;
+  }
+
+  /** Update a player answer's validation override (host manual validation) */
+  function overrideAnswer(qIdx: number, pId: string, isCorrect: boolean) {
+    const q = reviewData.value[qIdx];
+    if (!q) return;
+    const pa = q.playerAnswers.find((a) => a.playerId === pId);
+    if (!pa) return;
+    pa.hostOverride = isCorrect;
+    pa.isCorrect = isCorrect;
+
+    // Recalculate scores from review data using difficulty points
+    if (finalScores.value) {
+      for (const [id] of Object.entries(finalScores.value)) {
+        let score = 0;
+        for (const qr of reviewData.value) {
+          const a = qr.playerAnswers.find((a) => a.playerId === id);
+          if (a?.isCorrect) {
+            // Find the question to get difficulty-based points
+            const trackedQ = trackedQuestions.value.get(reviewData.value.indexOf(qr));
+            const difficulty = (trackedQ?.difficulty ?? 'easy') as Difficulty;
+            score += DIFFICULTY_POINTS[difficulty] ?? 1;
+          }
+        }
+        finalScores.value[id]!.score = score;
+      }
+      finalScores.value = { ...finalScores.value };
+    }
   }
 
   return {
@@ -183,6 +323,8 @@ export const useLobbyStore = defineStore('lobby', () => {
     questionTimer,
     lastResult,
     finalScores,
+    reviewData,
+    totalQuestions,
     createRoom,
     joinRoom,
     configureGame,
@@ -190,5 +332,6 @@ export const useLobbyStore = defineStore('lobby', () => {
     submitAnswer,
     leaveRoom,
     resetMultiGame,
+    overrideAnswer,
   };
 });

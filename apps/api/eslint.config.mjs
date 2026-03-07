@@ -1,2 +1,2 @@
-import baseConfig from '@quizzos/eslint-config';
+import baseConfig from '@quizzy/eslint-config';
 export default baseConfig;

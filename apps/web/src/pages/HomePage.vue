@@ -21,8 +21,8 @@
   <div class="home">
     <div class="home__hero">
       <div class="home__title-group">
-        <h1 class="home__title"><span class="home__title-k">K</span>Culture</h1>
-        <p class="home__subtitle">Testez vos connaissances, défiez vos amis</p>
+        <h1 class="home__title"><span class="home__title-q">Q</span>uizzy</h1>
+        <p class="home__subtitle">Le quiz entre amis qui pique le cerveau</p>
       </div>
 
       <div class="home__actions">
@@ -86,7 +86,7 @@
     letter-spacing: -0.02em;
   }
 
-  .home__title-k {
+  .home__title-q {
     font-weight: 900;
     color: var(--accent);
   }

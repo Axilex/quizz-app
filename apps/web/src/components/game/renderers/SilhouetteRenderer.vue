@@ -1,32 +1,20 @@
 <script setup lang="ts">
   import { computed } from 'vue';
   import type { SilhouetteQuestion } from '@/types';
-  import { generateSilhouette } from '@/utils/svgPlaceholders';
+  import { getImageUrl } from '@/utils/imageLibrary';
 
   interface Props {
     question: SilhouetteQuestion;
   }
 
   const props = defineProps<Props>();
-
-  const SILHOUETTE_SHAPES: Record<string, string> = {
-    eiffel_silhouette: '🗼',
-    elephant_silhouette: '🐘',
-    saxophone_silhouette: '🎷',
-    liberty_silhouette: '🗽',
-    kangaroo_silhouette: '🦘',
-  };
-
-  const imageSrc = computed(() => {
-    const shape = SILHOUETTE_SHAPES[props.question.svg] ?? '❓';
-    return generateSilhouette(shape, '');
-  });
+  const imageSrc = computed(() => getImageUrl(props.question.svg));
 </script>
 
 <template>
   <div class="silhouette">
     <div class="silhouette__container">
-      <img :src="imageSrc" alt="Silhouette à deviner" class="silhouette__img" />
+      <img :src="imageSrc" alt="Silhouette à deviner" class="silhouette__img" loading="lazy" />
     </div>
   </div>
 </template>
@@ -47,5 +35,10 @@
     height: 200px;
     display: block;
     object-fit: cover;
+    filter: brightness(0) invert(0.85);
+    transition: filter 0.5s ease;
+  }
+  .silhouette__container:hover .silhouette__img {
+    filter: brightness(0) invert(0.95);
   }
 </style>
