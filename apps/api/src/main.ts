@@ -5,14 +5,20 @@ import { Logger } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // CORS — accept configured origins or localhost in dev
+  const allowedOrigins = process.env['CORS_ORIGINS']
+    ? process.env['CORS_ORIGINS'].split(',').map((o) => o.trim())
+    : ['http://localhost:5173', 'http://localhost:4173'];
+
   app.enableCors({
-    origin: ['http://localhost:5173', 'http://localhost:4173'],
+    origin: allowedOrigins,
     credentials: true,
   });
 
   const port = process.env['PORT'] ?? 3000;
   await app.listen(port);
-  Logger.log(`[Quizzos API] Running on http://localhost:${port}`);
+  Logger.log(`[Quizzy API] Running on port ${port}`);
+  Logger.log(`[Quizzy API] CORS origins: ${allowedOrigins.join(', ')}`);
 }
 
 bootstrap();

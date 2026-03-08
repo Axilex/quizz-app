@@ -17,7 +17,7 @@
     try {
       categories.value = await questionRepository.fetchCategories();
     } catch (err) {
-      console.log(err);
+      console.log(String(err));
       loadError.value = 'Impossible de charger les thèmes. Vérifiez que le backend est lancé.';
     }
     isLoadingCategories.value = false;

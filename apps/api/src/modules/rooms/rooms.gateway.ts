@@ -14,9 +14,13 @@ import { GameScoringService } from '../game/game-scoring.service';
 import type { GameConfig, Room } from '../../common/types';
 import { Logger } from '@nestjs/common';
 
+const WS_CORS_ORIGINS = process.env['CORS_ORIGINS']
+  ? process.env['CORS_ORIGINS'].split(',').map((o) => o.trim())
+  : ['http://localhost:5173', 'http://localhost:4173'];
+
 @WebSocketGateway({
   cors: {
-    origin: ['http://localhost:5173', 'http://localhost:4173'],
+    origin: WS_CORS_ORIGINS,
     credentials: true,
   },
   namespace: '/game',
