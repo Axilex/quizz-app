@@ -1,70 +1,71 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { LocalQuestionRepository } from '@/services/questions/QuestionRepository';
 
+// Mock the ApiClient
+vi.mock('@/services/api/ApiClient', () => ({
+  apiClient: {
+    getGameQuestions: vi.fn().mockResolvedValue({
+      questions: [
+        {
+          id: 'txt_001',
+          type: 'text',
+          difficulty: 'easy',
+          category: 'géographie',
+          label: 'Test?',
+          answer: 'Test',
+          acceptedAnswers: ['Test'],
+          media: null,
+          tags: ['test'],
+          baseTimer: 15,
+        },
+        {
+          id: 'txt_002',
+          type: 'text',
+          difficulty: 'medium',
+          category: 'histoire',
+          label: 'Test2?',
+          answer: 'Test2',
+          acceptedAnswers: ['Test2'],
+          media: null,
+          tags: ['test'],
+          baseTimer: 20,
+        },
+      ],
+      total: 2,
+      availableTotal: 100,
+    }),
+    getCategories: vi.fn().mockResolvedValue([
+      { id: 'géographie', count: 25 },
+      { id: 'histoire', count: 14 },
+      { id: 'sciences', count: 27 },
+    ]),
+  },
+}));
+
 describe('LocalQuestionRepository', () => {
-  const repo = new LocalQuestionRepository();
+  let repo: LocalQuestionRepository;
 
-  it('loads questions from all files', () => {
-    const all = repo.getAll();
-    expect(all.length).toBeGreaterThan(30);
+  beforeEach(() => {
+    repo = new LocalQuestionRepository();
   });
 
-  it('finds by id', () => {
-    expect(repo.getById('txt_001')).toBeDefined();
-    expect(repo.getById('num_001')).toBeDefined();
-    expect(repo.getById('reb_001')).toBeDefined();
-    expect(repo.getById('fi_001')).toBeDefined();
-    expect(repo.getById('chr_001')).toBeDefined();
-    expect(repo.getById('blt_001')).toBeDefined();
-    expect(repo.getById('geo_001')).toBeDefined();
-    expect(repo.getById('int_001')).toBeDefined();
-    expect(repo.getById('sil_001')).toBeDefined();
+  it('fetches game questions from API', async () => {
+    const questions = await repo.fetchGameQuestions(20);
+    expect(questions.length).toBe(2);
+    expect(questions[0]!.id).toBe('txt_001');
   });
 
-  it('filters by difficulty', () => {
-    const easy = repo.getFiltered({ difficulties: ['easy'] });
-    expect(easy.every((q) => q.difficulty === 'easy')).toBe(true);
-    expect(easy.length).toBeGreaterThan(0);
+  it('fetches categories from API', async () => {
+    const cats = await repo.fetchCategories();
+    expect(cats.length).toBe(3);
+    expect(cats[0]!.id).toBe('géographie');
+    expect(cats[0]!.icon).toBe('🌍');
+    expect(cats[0]!.label).toBe('Géographie');
   });
 
-  it('filters by category', () => {
-    const geo = repo.getFiltered({ categories: ['géographie'] });
-    expect(geo.every((q) => q.category === 'géographie')).toBe(true);
-  });
-
-  it('filters by type', () => {
-    const rebus = repo.getFiltered({ types: ['rebus'] });
-    expect(rebus.every((q) => q.type === 'rebus')).toBe(true);
-    expect(rebus.length).toBeGreaterThan(0);
-  });
-
-  it('returns categories with counts', () => {
-    const cats = repo.getCategories();
-    expect(cats.length).toBeGreaterThanOrEqual(4);
-    const geo = cats.find((c) => c.id === 'géographie');
-    expect(geo).toBeDefined();
-    expect(geo!.count).toBeGreaterThan(0);
-    expect(geo!.icon).toBe('🌍');
-  });
-
-  it('returns available types', () => {
-    const types = repo.getTypes();
-    expect(types).toContain('text');
-    expect(types).toContain('rebus');
-    expect(types).toContain('chronology');
-    expect(types).toContain('intruder');
-  });
-
-  it('returns random questions respecting count', () => {
-    const random = repo.getRandom(5);
-    expect(random.length).toBe(5);
-  });
-
-  it('combines filters', () => {
-    const result = repo.getFiltered({
-      difficulties: ['easy'],
-      categories: ['culture'],
-    });
-    expect(result.every((q) => q.difficulty === 'easy' && q.category === 'culture')).toBe(true);
+  it('caches categories after first call', async () => {
+    const cats1 = await repo.fetchCategories();
+    const cats2 = await repo.fetchCategories();
+    expect(cats1).toBe(cats2); // Same reference = cached
   });
 });

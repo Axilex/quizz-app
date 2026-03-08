@@ -39,7 +39,7 @@
         </div>
         <div class="feature-card">
           <span class="feature-card__icon">🎯</span>
-          <span class="feature-card__label">60+ questions</span>
+          <span class="feature-card__label">155+ questions</span>
         </div>
         <div class="feature-card">
           <span class="feature-card__icon">🔄</span>

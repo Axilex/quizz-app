@@ -9,12 +9,14 @@ function generateId(): string {
 }
 
 export class GameEngineService {
-  /** Build a new game session from config */
-  createSession(config: GameConfig): GameSession {
-    const questions = questionRepository.getRandom(config.questionCount, {
-      difficulties: config.difficulties,
-      categories: config.categories,
-    });
+  /**
+   * Build a new game session — fetches questions from the API.
+   */
+  async createSession(config: GameConfig): Promise<GameSession> {
+    const questions = await questionRepository.fetchGameQuestions(
+      config.questionCount,
+      config.categories,
+    );
 
     return {
       id: generateId(),
@@ -29,7 +31,7 @@ export class GameEngineService {
     };
   }
 
-  /** Build a replay session from wrong answers */
+  /** Build a replay session from wrong answers (no API needed) */
   createReplaySession(config: GameConfig, wrongQuestions: Question[]): GameSession {
     return {
       id: generateId(),
@@ -44,17 +46,15 @@ export class GameEngineService {
     };
   }
 
-  /** Get the current question */
   getCurrentQuestion(session: GameSession): Question | null {
     return session.questions[session.currentIndex] ?? null;
   }
 
-  /** Compute timer duration for current question */
   getTimerDuration(question: Question): number {
     return TimerService.computeDuration(question.difficulty, question.type, question.baseTimer);
   }
 
-  /** Record an answer and advance */
+  /** Record an answer and advance (solo mode — local validation) */
   submitAnswer(
     session: GameSession,
     userAnswer: string,
@@ -89,12 +89,10 @@ export class GameEngineService {
     return result;
   }
 
-  /** Get wrong answers from a session */
   getWrongAnswers(session: GameSession): AnswerResult[] {
     return session.answers.filter((a) => !a.isCorrect);
   }
 
-  /** Check if session is finished */
   isFinished(session: GameSession): boolean {
     return session.currentIndex >= session.questions.length;
   }

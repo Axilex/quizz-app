@@ -1,14 +1,16 @@
 import { io, Socket } from 'socket.io-client';
-import type { MultiplayerGateway, MultiplayerEvent, Room, Player } from '@/types';
+import type { MultiplayerGateway, MultiplayerEvent, Room, Player, ReviewViewMode } from '@/types';
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
 
 /**
- * Real Socket.IO gateway — connects to the NestJS backend.
- *
- * Communication pattern: the frontend emits events, the backend responds
- * by emitting named events back (not callbacks). We use Promises that
- * resolve when the corresponding response event arrives.
+ * Socket.IO gateway — connects to the NestJS backend.
+ * The backend is the single authority for:
+ *   - Answer validation & scoring
+ *   - Question progression / navigation
+ *   - Timer management
+ *   - Review data & host overrides
+ *   - Review screen navigation (shared screen)
  */
 export class SocketIOMultiplayerGateway implements MultiplayerGateway {
   private socket: Socket | null = null;
@@ -56,23 +58,18 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
   async createRoom(playerName: string): Promise<Room> {
     return new Promise((resolve, reject) => {
       if (!this.socket) return reject(new Error('Not connected'));
-
       const timeout = setTimeout(() => reject(new Error('Timeout')), 5000);
 
-      // Listen for the response event ONCE
       this.socket.once('room:created', (data: { room: Room; playerId: string }) => {
         clearTimeout(timeout);
         this._playerId = data.playerId;
-        console.log('[WS] Room created:', data.room.code);
         resolve(data.room);
       });
-
       this.socket.once('error', (data: { message: string }) => {
         clearTimeout(timeout);
         reject(new Error(data.message));
       });
 
-      // Send the request
       this.socket.emit('room:create', { playerName });
     });
   }
@@ -80,16 +77,13 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
   async joinRoom(code: string, playerName: string): Promise<Room> {
     return new Promise((resolve, reject) => {
       if (!this.socket) return reject(new Error('Not connected'));
-
       const timeout = setTimeout(() => reject(new Error('Timeout')), 5000);
 
       this.socket.once('room:joined', (data: { room: Room; playerId: string }) => {
         clearTimeout(timeout);
         this._playerId = data.playerId;
-        console.log('[WS] Joined room:', data.room.code);
         resolve(data.room);
       });
-
       this.socket.once('error', (data: { message: string }) => {
         clearTimeout(timeout);
         reject(new Error(data.message));
@@ -121,6 +115,15 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
       answer,
       timeSpent: timeSpent ?? 0,
     });
+  }
+
+  hostOverride(playerId: string, questionId: string, isCorrect: boolean): void {
+    this.socket?.emit('game:hostOverride', { playerId, questionId, isCorrect });
+  }
+
+  /** Host navigates the shared review screen — broadcasts to all clients */
+  reviewNavigate(view: ReviewViewMode, questionIdx: number): void {
+    this.socket?.emit('review:navigate', { view, questionIdx });
   }
 
   reconnect(playerId: string): void {
@@ -206,8 +209,35 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
       this.emit({ type: 'game:timeout', questionId: data.questionId } as MultiplayerEvent);
     });
 
-    this.socket.on('game:finished', (data: { scores: Record<string, number> }) => {
-      this.emit({ type: 'game:finished', scores: data.scores });
+    this.socket.on(
+      'game:finished',
+      (data: { scores: Record<string, unknown>; review?: unknown[] }) => {
+        this.emit({
+          type: 'game:finished',
+          scores: data.scores,
+          review: data.review,
+        } as MultiplayerEvent);
+      },
+    );
+
+    this.socket.on(
+      'game:reviewUpdated',
+      (data: { review: unknown[]; scores: Record<string, unknown> }) => {
+        this.emit({
+          type: 'game:reviewUpdated',
+          review: data.review,
+          scores: data.scores,
+        } as MultiplayerEvent);
+      },
+    );
+
+    // Shared review navigation — host drives, all clients follow
+    this.socket.on('review:navigated', (data: { view: ReviewViewMode; questionIdx: number }) => {
+      this.emit({
+        type: 'review:navigated',
+        view: data.view,
+        questionIdx: data.questionIdx,
+      });
     });
 
     this.socket.on('game:configured', (data: { config: unknown }) => {

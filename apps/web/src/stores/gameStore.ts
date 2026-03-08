@@ -12,6 +12,8 @@ export const useGameStore = defineStore('game', () => {
   const isTimerRunning = ref(false);
   const lastAnswerResult = ref<AnswerResult | null>(null);
   const showFeedback = ref(false);
+  const isLoading = ref(false);
+  const loadingError = ref<string | null>(null);
 
   // Computed
   const currentQuestion = computed<Question | null>(() => {
@@ -45,11 +47,24 @@ export const useGameStore = defineStore('game', () => {
   });
 
   // Actions
-  function startGame(config: GameConfig) {
-    session.value = gameEngine.createSession(config);
+
+  /** Start a new game — async because questions are fetched from the API */
+  async function startGame(config: GameConfig): Promise<boolean> {
+    isLoading.value = true;
+    loadingError.value = null;
     lastAnswerResult.value = null;
     showFeedback.value = false;
-    startTimer();
+
+    try {
+      session.value = await gameEngine.createSession(config);
+      isLoading.value = false;
+      startTimer();
+      return true;
+    } catch (err) {
+      isLoading.value = false;
+      loadingError.value = err instanceof Error ? err.message : 'Erreur inconnue';
+      return false;
+    }
   }
 
   function startReplay(wrongAnswers: AnswerResult[]) {
@@ -72,7 +87,6 @@ export const useGameStore = defineStore('game', () => {
     lastAnswerResult.value = result;
     showFeedback.value = true;
 
-    // Show feedback for a moment then advance
     setTimeout(() => {
       showFeedback.value = false;
       if (session.value && session.value.phase !== 'results') {
@@ -131,6 +145,8 @@ export const useGameStore = defineStore('game', () => {
     isTimerRunning.value = false;
     lastAnswerResult.value = null;
     showFeedback.value = false;
+    isLoading.value = false;
+    loadingError.value = null;
   }
 
   function getWrongAnswers(): AnswerResult[] {
@@ -176,6 +192,8 @@ export const useGameStore = defineStore('game', () => {
     isTimerRunning,
     lastAnswerResult,
     showFeedback,
+    isLoading,
+    loadingError,
     // Computed
     currentQuestion,
     progress,

@@ -30,7 +30,7 @@
   function handleConfigAndStart() {
     lobby.configureGame({
       questionCount: session.questionCount,
-      difficulties: session.selectedDifficulties,
+      difficulties: ['easy', 'medium', 'hard'],
       categories: session.selectedCategories.length ? session.selectedCategories : undefined,
     });
     setTimeout(() => lobby.startGame(), 200);
@@ -60,9 +60,6 @@
       <div class="lobby-page__header">
         <BaseButton variant="ghost" size="sm" @click="handleBack">← Accueil</BaseButton>
         <h1 class="lobby-page__title">Multijoueur</h1>
-        <p v-if="lobby.isMockMode" class="lobby-page__mock-badge">
-          Mode démo — lancez le backend pour le vrai multi
-        </p>
       </div>
 
       <!-- Step 1: Choose name + create or join -->
@@ -186,19 +183,6 @@
     font-weight: 800;
     color: var(--text-primary);
     margin: 0.5rem 0 0;
-  }
-  .lobby-page__mock-badge {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--warning);
-    background: color-mix(in srgb, var(--warning) 12%, transparent);
-    padding: 0.25rem 0.6rem;
-    border-radius: 4px;
-    margin: 0.25rem 0 0;
-    width: fit-content;
   }
   .lobby-flow {
     display: flex;

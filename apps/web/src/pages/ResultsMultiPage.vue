@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, computed } from 'vue';
+  import { computed } from 'vue';
   import { useRouter } from 'vue-router';
   import { useLobbyStore } from '@/stores';
   import BaseButton from '@/components/ui/BaseButton.vue';
@@ -7,8 +7,9 @@
   const router = useRouter();
   const lobby = useLobbyStore();
 
-  const viewMode = ref<'podium' | 'review'>('podium');
-  const currentQuestionIdx = ref(0);
+  // ─── All state comes from the store (synced via WebSocket) ───
+  const viewMode = computed(() => lobby.reviewViewMode);
+  const currentQuestionIdx = computed(() => lobby.reviewQuestionIdx);
 
   const rankings = computed(() => {
     if (!lobby.finalScores) return [];
@@ -37,20 +38,26 @@
     });
   });
 
+  // ─── Host navigation — emits to server, server broadcasts ───
+
+  function switchToView(view: 'podium' | 'review') {
+    lobby.navigateReview(view, currentQuestionIdx.value);
+  }
+
   function nextQuestion() {
     if (currentQuestionIdx.value < lobby.reviewData.length - 1) {
-      currentQuestionIdx.value++;
+      lobby.navigateReview('review', currentQuestionIdx.value + 1);
     }
   }
 
   function prevQuestion() {
     if (currentQuestionIdx.value > 0) {
-      currentQuestionIdx.value--;
+      lobby.navigateReview('review', currentQuestionIdx.value - 1);
     }
   }
 
   function goToQuestion(idx: number) {
-    currentQuestionIdx.value = idx;
+    lobby.navigateReview('review', idx);
   }
 
   function formatTime(ms: number): string {
@@ -75,24 +82,28 @@
 <template>
   <div class="results-multi">
     <div class="results-multi__container">
-      <!-- Tab toggle -->
+      <!-- Tab toggle — host can click, others see which tab is active -->
       <div class="tab-toggle">
         <button
           class="tab-toggle__btn"
           :class="{ 'tab-toggle__btn--active': viewMode === 'podium' }"
-          @click="viewMode = 'podium'"
+          :disabled="!lobby.isHost"
+          @click="switchToView('podium')"
         >
           Classement
         </button>
         <button
           class="tab-toggle__btn"
           :class="{ 'tab-toggle__btn--active': viewMode === 'review' }"
-          @click="viewMode = 'review'"
-          :disabled="!hasReview"
+          :disabled="!lobby.isHost || !hasReview"
+          @click="switchToView('review')"
         >
           Revue des questions
         </button>
       </div>
+
+      <!-- Non-host indicator -->
+      <p v-if="!lobby.isHost" class="results-multi__follower-hint">L'hôte contrôle la navigation</p>
 
       <!-- ═══ PODIUM VIEW ═══ -->
       <template v-if="viewMode === 'podium'">
@@ -120,7 +131,12 @@
         </div>
 
         <div class="results-multi__actions">
-          <BaseButton v-if="hasReview" size="lg" full-width @click="viewMode = 'review'">
+          <BaseButton
+            v-if="hasReview && lobby.isHost"
+            size="lg"
+            full-width
+            @click="switchToView('review')"
+          >
             Voir le détail des réponses
           </BaseButton>
           <BaseButton variant="secondary" size="md" full-width @click="handleBackToLobby">
@@ -132,11 +148,11 @@
 
       <!-- ═══ REVIEW VIEW ═══ -->
       <template v-else-if="hasReview && currentReview">
-        <!-- Question navigation -->
+        <!-- Question navigation — only host can interact -->
         <div class="review-nav">
           <button
             class="review-nav__arrow"
-            :disabled="currentQuestionIdx === 0"
+            :disabled="!lobby.isHost || currentQuestionIdx === 0"
             @click="prevQuestion"
           >
             ←
@@ -146,14 +162,14 @@
           </span>
           <button
             class="review-nav__arrow"
-            :disabled="currentQuestionIdx === lobby.reviewData.length - 1"
+            :disabled="!lobby.isHost || currentQuestionIdx === lobby.reviewData.length - 1"
             @click="nextQuestion"
           >
             →
           </button>
         </div>
 
-        <!-- Question dots -->
+        <!-- Question dots — only host can click -->
         <div class="review-dots">
           <button
             v-for="(q, idx) in lobby.reviewData"
@@ -164,6 +180,7 @@
               'review-dots__dot--all-correct': q.playerAnswers.every((a) => a.isCorrect),
               'review-dots__dot--some-wrong': !q.playerAnswers.every((a) => a.isCorrect),
             }"
+            :disabled="!lobby.isHost"
             @click="goToQuestion(idx)"
           />
         </div>
@@ -233,6 +250,7 @@
               <span v-else class="status-icon status-icon--wrong">✗</span>
             </span>
 
+            <!-- Host-only override buttons -->
             <span
               v-if="!currentReview.autoValidated && lobby.isHost"
               class="answers-table__col answers-table__col--action"
@@ -257,19 +275,26 @@
           </div>
         </div>
 
-        <!-- Bottom nav -->
+        <!-- Bottom nav — host only for navigation -->
         <div class="review-bottom">
-          <BaseButton variant="ghost" size="sm" @click="viewMode = 'podium'">
+          <BaseButton v-if="lobby.isHost" variant="ghost" size="sm" @click="switchToView('podium')">
             ← Classement
           </BaseButton>
+          <div v-else />
+
           <BaseButton
-            v-if="currentQuestionIdx < lobby.reviewData.length - 1"
+            v-if="lobby.isHost && currentQuestionIdx < lobby.reviewData.length - 1"
             size="md"
             @click="nextQuestion"
           >
             Question suivante →
           </BaseButton>
-          <BaseButton v-else variant="secondary" size="md" @click="viewMode = 'podium'">
+          <BaseButton
+            v-else-if="lobby.isHost"
+            variant="secondary"
+            size="md"
+            @click="switchToView('podium')"
+          >
             Voir le classement final
           </BaseButton>
         </div>
@@ -279,7 +304,7 @@
       <template v-else-if="viewMode === 'review' && !hasReview">
         <div class="no-review">
           <p>Aucune donnée de revue disponible pour cette partie.</p>
-          <BaseButton variant="ghost" size="sm" @click="viewMode = 'podium'">
+          <BaseButton v-if="lobby.isHost" variant="ghost" size="sm" @click="switchToView('podium')">
             ← Retour au classement
           </BaseButton>
         </div>
@@ -301,6 +326,14 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+  }
+
+  .results-multi__follower-hint {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: -0.75rem 0 0;
   }
 
   /* TAB TOGGLE */
@@ -332,9 +365,9 @@
   .tab-toggle__btn:hover:not(.tab-toggle__btn--active):not(:disabled) {
     color: var(--text-primary);
   }
-  .tab-toggle__btn:disabled {
+  .tab-toggle__btn:disabled:not(.tab-toggle__btn--active) {
     opacity: 0.4;
-    cursor: not-allowed;
+    cursor: default;
   }
 
   /* PODIUM */
@@ -430,7 +463,7 @@
   }
   .review-nav__arrow:disabled {
     opacity: 0.3;
-    cursor: not-allowed;
+    cursor: default;
   }
   .review-nav__label {
     font-family: var(--font-mono);
@@ -455,6 +488,9 @@
     cursor: pointer;
     padding: 0;
     transition: all 0.15s;
+  }
+  .review-dots__dot:disabled {
+    cursor: default;
   }
   .review-dots__dot--active {
     border-color: var(--accent);
@@ -627,7 +663,6 @@
     font-size: 0.82rem;
   }
 
-  /* Status icons */
   .status-icon {
     width: 1.4rem;
     height: 1.4rem;
@@ -647,7 +682,6 @@
     color: var(--error);
   }
 
-  /* Manual validation buttons */
   .validate-btn {
     width: 28px;
     height: 28px;
@@ -699,7 +733,6 @@
     gap: 1rem;
   }
 
-  /* RESPONSIVE */
   @media (max-width: 640px) {
     .results-multi__title {
       font-size: 2rem;

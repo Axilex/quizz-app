@@ -1,33 +1,36 @@
 <script setup lang="ts">
-  import { computed } from 'vue';
+  import { computed, ref, onMounted } from 'vue';
   import { useSessionStore } from '@/stores';
   import { questionRepository } from '@/services';
-  import type { Difficulty } from '@/types';
-  import DifficultyBadge from '@/components/ui/DifficultyBadge.vue';
+  import type { CategoryInfo } from '@/services/questions/QuestionRepository';
   import BaseButton from '@/components/ui/BaseButton.vue';
 
   const emit = defineEmits<{ start: [] }>();
   const session = useSessionStore();
 
   const countOptions = [20, 30, 40, 50];
-  const difficulties: Difficulty[] = ['easy', 'medium', 'hard'];
-  const categories = computed(() => questionRepository.getCategories());
+  const categories = ref<CategoryInfo[]>([]);
+  const isLoadingCategories = ref(true);
+  const loadError = ref<string | null>(null);
 
-  const availableCount = computed(() => {
-    return questionRepository.getFiltered({
-      difficulties: session.selectedDifficulties,
-      categories: session.selectedCategories.length ? session.selectedCategories : undefined,
-    }).length;
+  onMounted(async () => {
+    try {
+      categories.value = await questionRepository.fetchCategories();
+    } catch (err) {
+      console.log(err);
+      loadError.value = 'Impossible de charger les thèmes. Vérifiez que le backend est lancé.';
+    }
+    isLoadingCategories.value = false;
   });
 
-  function toggleCategory(catId: string) {
-    const idx = session.selectedCategories.indexOf(catId);
-    if (idx >= 0) {
-      session.selectedCategories.splice(idx, 1);
-    } else {
-      session.selectedCategories.push(catId);
+  const availableCount = computed(() => {
+    if (session.selectedCategories.length === 0) {
+      return categories.value.reduce((sum, c) => sum + c.count, 0);
     }
-  }
+    return categories.value
+      .filter((c) => session.selectedCategories.includes(c.id))
+      .reduce((sum, c) => sum + c.count, 0);
+  });
 
   function isCategoryActive(catId: string): boolean {
     return session.selectedCategories.length === 0 || session.selectedCategories.includes(catId);
@@ -36,6 +39,11 @@
 
 <template>
   <div class="settings-panel">
+    <!-- Error banner -->
+    <div v-if="loadError" class="settings-panel__error">
+      <p>{{ loadError }}</p>
+    </div>
+
     <!-- Categories -->
     <section class="settings-section">
       <h3 class="settings-section__title">Thèmes</h3>
@@ -45,9 +53,12 @@
             ? 'Tous les thèmes sélectionnés'
             : `${session.selectedCategories.length} thème(s)`
         }}
-        — {{ availableCount }} questions disponibles
+        <template v-if="!isLoadingCategories && !loadError">
+          — {{ availableCount }} questions disponibles
+        </template>
       </p>
-      <div class="category-grid">
+      <div v-if="isLoadingCategories" class="settings-section__loading">Chargement des thèmes…</div>
+      <div v-else-if="!loadError" class="category-grid">
         <button
           v-for="cat in categories"
           :key="cat.id"
@@ -57,7 +68,7 @@
             'category-chip--filtered':
               session.selectedCategories.length > 0 && !session.selectedCategories.includes(cat.id),
           }"
-          @click="toggleCategory(cat.id)"
+          @click="session.toggleCategory(cat.id)"
         >
           <span class="category-chip__icon">{{ cat.icon }}</span>
           <span class="category-chip__label">{{ cat.label }}</span>
@@ -76,9 +87,9 @@
           class="count-btn"
           :class="{
             'count-btn--active': session.questionCount === count,
-            'count-btn--disabled': count > availableCount,
+            'count-btn--disabled': availableCount > 0 && count > availableCount,
           }"
-          :disabled="count > availableCount"
+          :disabled="availableCount > 0 && count > availableCount"
           @click="session.setQuestionCount(count)"
         >
           {{ count }}
@@ -86,25 +97,10 @@
       </div>
     </section>
 
-    <!-- Difficulty -->
-    <section class="settings-section">
-      <h3 class="settings-section__title">Difficulté</h3>
-      <div class="difficulty-grid">
-        <DifficultyBadge
-          v-for="d in difficulties"
-          :key="d"
-          :difficulty="d"
-          :interactive="true"
-          :active="session.selectedDifficulties.includes(d)"
-          @click="session.toggleDifficulty(d)"
-        />
-      </div>
-    </section>
-
     <BaseButton
       size="lg"
       full-width
-      :disabled="!session.isValid || availableCount === 0"
+      :disabled="!session.isValid || !!loadError"
       @click="emit('start')"
     >
       Lancer la partie
@@ -117,6 +113,18 @@
     display: flex;
     flex-direction: column;
     gap: 1.75rem;
+  }
+  .settings-panel__error {
+    padding: 0.75rem 1rem;
+    background: color-mix(in srgb, var(--error) 10%, var(--bg-secondary));
+    border: 1px solid var(--error);
+    border-radius: 10px;
+    color: var(--error);
+    font-size: 0.88rem;
+    text-align: center;
+  }
+  .settings-panel__error p {
+    margin: 0;
   }
   .settings-section__title {
     font-family: var(--font-display);
@@ -132,8 +140,11 @@
     color: var(--text-muted);
     margin: 0 0 0.6rem;
   }
-
-  /* Categories */
+  .settings-section__loading {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 0.5rem 0;
+  }
   .category-grid {
     display: flex;
     flex-wrap: wrap;
@@ -178,8 +189,6 @@
     padding: 0.1rem 0.35rem;
     border-radius: 4px;
   }
-
-  /* Count */
   .count-grid {
     display: flex;
     gap: 0.5rem;
@@ -209,10 +218,5 @@
   .count-btn:disabled {
     opacity: 0.3;
     cursor: not-allowed;
-  }
-  .difficulty-grid {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
   }
 </style>

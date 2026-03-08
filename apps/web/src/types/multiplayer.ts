@@ -19,7 +19,6 @@ export interface Room {
   createdAt: number;
 }
 
-/** A single player's answer to a question (used in end-of-game review) */
 export interface PlayerAnswer {
   playerId: string;
   playerName: string;
@@ -27,11 +26,9 @@ export interface PlayerAnswer {
   isCorrect: boolean;
   timeSpent: number;
   timedOut: boolean;
-  /** Host override: null = not yet judged, true/false = manual decision */
   hostOverride: boolean | null;
 }
 
-/** Full review data for one question across all players */
 export interface QuestionReviewData {
   questionId: string;
   questionLabel: string;
@@ -39,9 +36,10 @@ export interface QuestionReviewData {
   correctAnswer: string;
   explanation?: string;
   playerAnswers: PlayerAnswer[];
-  /** Whether this question type supports auto-validation */
   autoValidated: boolean;
 }
+
+export type ReviewViewMode = 'podium' | 'review';
 
 export type MultiplayerEvent =
   | { type: 'player:joined'; player: Player }
@@ -65,6 +63,16 @@ export type MultiplayerEvent =
       scores: Record<string, unknown>;
       review?: QuestionReviewData[];
     }
+  | {
+      type: 'game:reviewUpdated';
+      review: QuestionReviewData[];
+      scores: Record<string, unknown>;
+    }
+  | {
+      type: 'review:navigated';
+      view: ReviewViewMode;
+      questionIdx: number;
+    }
   | { type: 'error'; message: string };
 
 export interface MultiplayerGateway {
@@ -73,8 +81,16 @@ export interface MultiplayerGateway {
   createRoom(playerName: string): Promise<Room>;
   joinRoom(code: string, playerName: string): Promise<Room>;
   leaveRoom(): void;
+  configureGame(config: {
+    questionCount: number;
+    difficulties: string[];
+    categories?: string[];
+  }): void;
   startGame(): void;
   submitAnswer(questionId: string, answer: string, timeSpent?: number): void;
+  hostOverride(playerId: string, questionId: string, isCorrect: boolean): void;
+  reviewNavigate(view: ReviewViewMode, questionIdx: number): void;
   onEvent(handler: (event: MultiplayerEvent) => void): () => void;
   readonly isConnected: boolean;
+  readonly playerId: string | null;
 }
