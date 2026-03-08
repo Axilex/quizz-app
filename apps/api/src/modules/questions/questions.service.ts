@@ -18,6 +18,16 @@ interface QuestionFilter {
   types?: QuestionType[];
 }
 
+function normalize(str: string): string {
+  return str
+    .toLowerCase()
+    .trim()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/['']/g, "'")
+    .replace(/\s+/g, ' ');
+}
+
 @Injectable()
 export class QuestionsService {
   private questions: Question[];
@@ -75,10 +85,50 @@ export class QuestionsService {
       .sort((a, b) => a.id.localeCompare(b.id));
   }
 
+  /** Validate a user's answer against the expected answer */
+  validateAnswer(question: Question, userAnswer: string): boolean {
+    const normalizedUser = normalize(userAnswer);
+    if (!normalizedUser) return false;
+
+    // Number: numeric comparison
+    if (question.type === 'number') {
+      const cleanUser = userAnswer.replace(/\s/g, '').replace(',', '.');
+      const cleanExpected = question.answer.replace(/\s/g, '').replace(',', '.');
+      const userNum = parseFloat(cleanUser);
+      const expectedNum = parseFloat(cleanExpected);
+      if (!isNaN(userNum) && !isNaN(expectedNum)) {
+        const tolerance = (question['tolerance'] as number) ?? 0;
+        if (Math.abs(userNum - expectedNum) <= tolerance) return true;
+      }
+    }
+
+    // Chronology: compare ordered ids
+    if (question.type === 'chronology') {
+      const userIds = userAnswer.split(',').map((s) => s.trim());
+      const expectedIds = question.answer.split(',').map((s) => s.trim());
+      if (userIds.length !== expectedIds.length) return false;
+      return userIds.every((id, i) => id === expectedIds[i]);
+    }
+
+    // Intruder: check intruder id or label
+    if (question.type === 'intruder') {
+      const intruderId = question['intruderId'] as string;
+      if (userAnswer === intruderId) return true;
+      const options = (question['options'] as Array<{ id: string; label: string }>) ?? [];
+      const intruderOption = options.find((o) => o.id === intruderId);
+      if (intruderOption && normalize(intruderOption.label) === normalizedUser) return true;
+    }
+
+    // Text comparison (all types)
+    if (normalize(question.answer) === normalizedUser) return true;
+    if (question.acceptedAnswers.some((a) => normalize(a) === normalizedUser)) return true;
+
+    return false;
+  }
+
   /** Strip answer data from question for sending to clients */
   toPublic(question: Question): QuestionPublic {
     const { _answer, _acceptedAnswers, _explanation, ...rest } = question;
-    // Also strip intruderId from intruder questions
     const pub = { ...rest } as QuestionPublic & { intruderId?: string };
     delete pub.intruderId;
     return pub as QuestionPublic;

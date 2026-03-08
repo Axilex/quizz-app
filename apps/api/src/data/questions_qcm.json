@@ -4,18 +4,30 @@
     "type": "qcm",
     "difficulty": "easy",
     "category": "sciences",
-    "label": "Quel est le symbole chimique de l'or ?",
-    "answer": "Au",
-    "acceptedAnswers": ["Au"],
+    "label": "Quel est le symbole chimique de l'eau ?",
+    "answer": "H2O",
+    "acceptedAnswers": ["H2O"],
     "media": null,
-    "explanation": "Au vient du latin 'aurum'.",
+    "explanation": "L'eau est composée de deux atomes d'hydrogène et un d'oxygène.",
     "tags": ["sciences", "chimie"],
     "baseTimer": 15,
     "options": [
-      { "id": "a", "label": "Or" },
-      { "id": "b", "label": "Au" },
-      { "id": "c", "label": "Ag" },
-      { "id": "d", "label": "Go" }
+      {
+        "id": "a",
+        "label": "CO2"
+      },
+      {
+        "id": "b",
+        "label": "H2O"
+      },
+      {
+        "id": "c",
+        "label": "NaCl"
+      },
+      {
+        "id": "d",
+        "label": "O2"
+      }
     ]
   },
   {
@@ -23,18 +35,30 @@
     "type": "qcm",
     "difficulty": "medium",
     "category": "histoire",
-    "label": "Quelle civilisation a construit le Machu Picchu ?",
-    "answer": "Les Incas",
-    "acceptedAnswers": ["Les Incas", "Incas"],
+    "label": "Quelle civilisation a inventé l'écriture cunéiforme ?",
+    "answer": "Sumériens",
+    "acceptedAnswers": ["Sumériens"],
     "media": null,
-    "explanation": "Le Machu Picchu a été construit par les Incas au XVe siècle.",
+    "explanation": "Les Sumériens ont développé l'écriture cunéiforme vers 3400 av. J.-C.",
     "tags": ["histoire", "civilisations"],
     "baseTimer": 20,
     "options": [
-      { "id": "a", "label": "Les Mayas" },
-      { "id": "b", "label": "Les Aztèques" },
-      { "id": "c", "label": "Les Incas" },
-      { "id": "d", "label": "Les Olmèques" }
+      {
+        "id": "a",
+        "label": "Égyptiens"
+      },
+      {
+        "id": "b",
+        "label": "Sumériens"
+      },
+      {
+        "id": "c",
+        "label": "Grecs"
+      },
+      {
+        "id": "d",
+        "label": "Romains"
+      }
     ]
   },
   {
@@ -42,18 +66,30 @@
     "type": "qcm",
     "difficulty": "hard",
     "category": "sciences",
-    "label": "Quelle particule confère leur masse aux objets ?",
-    "answer": "Le boson de Higgs",
-    "acceptedAnswers": ["Le boson de Higgs", "Boson de Higgs"],
+    "label": "Quel physicien a découvert la radioactivité ?",
+    "answer": "Henri Becquerel",
+    "acceptedAnswers": ["Henri Becquerel", "Becquerel"],
     "media": null,
-    "explanation": "Le boson de Higgs, découvert en 2012 au CERN.",
+    "explanation": "Becquerel a découvert la radioactivité en 1896.",
     "tags": ["sciences", "physique"],
-    "baseTimer": 30,
+    "baseTimer": 25,
     "options": [
-      { "id": "a", "label": "Le photon" },
-      { "id": "b", "label": "Le boson de Higgs" },
-      { "id": "c", "label": "Le neutrino" },
-      { "id": "d", "label": "Le graviton" }
+      {
+        "id": "a",
+        "label": "Marie Curie"
+      },
+      {
+        "id": "b",
+        "label": "Henri Becquerel"
+      },
+      {
+        "id": "c",
+        "label": "Ernest Rutherford"
+      },
+      {
+        "id": "d",
+        "label": "Niels Bohr"
+      }
     ]
   },
   {
@@ -61,18 +97,30 @@
     "type": "qcm",
     "difficulty": "easy",
     "category": "culture",
-    "label": "Quel instrument possède 88 touches ?",
-    "answer": "Le piano",
-    "acceptedAnswers": ["Le piano", "Piano"],
+    "label": "Quel instrument Mozart jouait-il principalement ?",
+    "answer": "Piano",
+    "acceptedAnswers": ["Piano"],
     "media": null,
-    "explanation": "Un piano standard a 52 touches blanches et 36 noires.",
+    "explanation": "Mozart était un virtuose du piano dès l'âge de 5 ans.",
     "tags": ["culture", "musique"],
     "baseTimer": 15,
     "options": [
-      { "id": "a", "label": "Le piano" },
-      { "id": "b", "label": "L'orgue" },
-      { "id": "c", "label": "Le clavecin" },
-      { "id": "d", "label": "L'accordéon" }
+      {
+        "id": "a",
+        "label": "Violon"
+      },
+      {
+        "id": "b",
+        "label": "Piano"
+      },
+      {
+        "id": "c",
+        "label": "Flûte"
+      },
+      {
+        "id": "d",
+        "label": "Harpe"
+      }
     ]
   },
   {
@@ -80,18 +128,340 @@
     "type": "qcm",
     "difficulty": "medium",
     "category": "culture",
-    "label": "Qui a sculpté le David de la Renaissance ?",
-    "answer": "Michel-Ange",
-    "acceptedAnswers": ["Michel-Ange", "Michelangelo"],
+    "label": "Qui a sculpté 'Le Penseur' ?",
+    "answer": "Auguste Rodin",
+    "acceptedAnswers": ["Auguste Rodin", "Rodin"],
     "media": null,
-    "explanation": "Le David a été sculpté entre 1501 et 1504 à Florence.",
-    "tags": ["culture", "art"],
+    "explanation": "Rodin a créé Le Penseur en 1880.",
+    "tags": ["culture", "art", "sculpture"],
     "baseTimer": 20,
     "options": [
-      { "id": "a", "label": "Donatello" },
-      { "id": "b", "label": "Michel-Ange" },
-      { "id": "c", "label": "Bernin" },
-      { "id": "d", "label": "Rodin" }
+      {
+        "id": "a",
+        "label": "Michel-Ange"
+      },
+      {
+        "id": "b",
+        "label": "Auguste Rodin"
+      },
+      {
+        "id": "c",
+        "label": "Donatello"
+      },
+      {
+        "id": "d",
+        "label": "Bernin"
+      }
+    ]
+  },
+  {
+    "id": "qcm_006",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel est le plus grand mammifère terrestre ?",
+    "answer": "Éléphant d'Afrique",
+    "acceptedAnswers": ["Éléphant d'Afrique", "Éléphant", "elephant"],
+    "media": null,
+    "explanation": "L'éléphant d'Afrique peut peser jusqu'à 6 tonnes.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 15,
+    "options": [
+      {
+        "id": "a",
+        "label": "Girafe"
+      },
+      {
+        "id": "b",
+        "label": "Éléphant d'Afrique"
+      },
+      {
+        "id": "c",
+        "label": "Rhinocéros"
+      },
+      {
+        "id": "d",
+        "label": "Hippopotame"
+      }
+    ]
+  },
+  {
+    "id": "qcm_007",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "sport",
+    "label": "Dans quel pays le cricket est-il le sport national ?",
+    "answer": "Inde",
+    "acceptedAnswers": ["Inde"],
+    "media": null,
+    "explanation": "Le cricket est immensément populaire en Inde.",
+    "tags": ["sport", "cricket"],
+    "baseTimer": 20,
+    "options": [
+      {
+        "id": "a",
+        "label": "Angleterre"
+      },
+      {
+        "id": "b",
+        "label": "Australie"
+      },
+      {
+        "id": "c",
+        "label": "Inde"
+      },
+      {
+        "id": "d",
+        "label": "Pakistan"
+      }
+    ]
+  },
+  {
+    "id": "qcm_008",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "technologie",
+    "label": "Qui a inventé le World Wide Web ?",
+    "answer": "Tim Berners-Lee",
+    "acceptedAnswers": ["Tim Berners-Lee", "Berners-Lee"],
+    "media": null,
+    "explanation": "Tim Berners-Lee a inventé le Web en 1989 au CERN.",
+    "tags": ["technologie", "internet"],
+    "baseTimer": 25,
+    "options": [
+      {
+        "id": "a",
+        "label": "Bill Gates"
+      },
+      {
+        "id": "b",
+        "label": "Steve Jobs"
+      },
+      {
+        "id": "c",
+        "label": "Tim Berners-Lee"
+      },
+      {
+        "id": "d",
+        "label": "Vint Cerf"
+      }
+    ]
+  },
+  {
+    "id": "qcm_009",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "gastronomie",
+    "label": "Quel fruit est utilisé pour faire le vin rouge ?",
+    "answer": "Raisin",
+    "acceptedAnswers": ["Raisin"],
+    "media": null,
+    "explanation": "Le vin rouge est produit à partir de raisins noirs.",
+    "tags": ["gastronomie", "vin"],
+    "baseTimer": 15,
+    "options": [
+      {
+        "id": "a",
+        "label": "Pomme"
+      },
+      {
+        "id": "b",
+        "label": "Raisin"
+      },
+      {
+        "id": "c",
+        "label": "Cerise"
+      },
+      {
+        "id": "d",
+        "label": "Prune"
+      }
+    ]
+  },
+  {
+    "id": "qcm_010",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "cinéma",
+    "label": "Qui a réalisé 'Pulp Fiction' ?",
+    "answer": "Quentin Tarantino",
+    "acceptedAnswers": ["Quentin Tarantino", "Tarantino"],
+    "media": null,
+    "explanation": "Pulp Fiction est sorti en 1994 et a remporté la Palme d'Or.",
+    "tags": ["cinéma", "réalisateurs"],
+    "baseTimer": 20,
+    "options": [
+      {
+        "id": "a",
+        "label": "Martin Scorsese"
+      },
+      {
+        "id": "b",
+        "label": "Quentin Tarantino"
+      },
+      {
+        "id": "c",
+        "label": "Steven Spielberg"
+      },
+      {
+        "id": "d",
+        "label": "Francis Ford Coppola"
+      }
+    ]
+  },
+  {
+    "id": "qcm_011",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "littérature",
+    "label": "Qui a écrit 'Guerre et Paix' ?",
+    "answer": "Léon Tolstoï",
+    "acceptedAnswers": ["Léon Tolstoï", "Tolstoï", "Tolstoi"],
+    "media": null,
+    "explanation": "Ce roman monumental a été publié entre 1865 et 1869.",
+    "tags": ["littérature", "russie"],
+    "baseTimer": 25,
+    "options": [
+      {
+        "id": "a",
+        "label": "Fiodor Dostoïevski"
+      },
+      {
+        "id": "b",
+        "label": "Léon Tolstoï"
+      },
+      {
+        "id": "c",
+        "label": "Anton Tchekhov"
+      },
+      {
+        "id": "d",
+        "label": "Alexandre Pouchkine"
+      }
+    ]
+  },
+  {
+    "id": "qcm_012",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quelle est la plus grande île du monde ?",
+    "answer": "Groenland",
+    "acceptedAnswers": ["Groenland"],
+    "media": null,
+    "explanation": "Le Groenland couvre environ 2,17 millions de km².",
+    "tags": ["géographie", "îles"],
+    "baseTimer": 15,
+    "options": [
+      {
+        "id": "a",
+        "label": "Australie"
+      },
+      {
+        "id": "b",
+        "label": "Madagascar"
+      },
+      {
+        "id": "c",
+        "label": "Groenland"
+      },
+      {
+        "id": "d",
+        "label": "Bornéo"
+      }
+    ]
+  },
+  {
+    "id": "qcm_013",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "musique",
+    "label": "Quel groupe a chanté 'Bohemian Rhapsody' ?",
+    "answer": "Queen",
+    "acceptedAnswers": ["Queen"],
+    "media": null,
+    "explanation": "Sortie en 1975, c'est l'une des chansons les plus emblématiques de l'histoire.",
+    "tags": ["musique", "rock"],
+    "baseTimer": 20,
+    "options": [
+      {
+        "id": "a",
+        "label": "The Rolling Stones"
+      },
+      {
+        "id": "b",
+        "label": "Queen"
+      },
+      {
+        "id": "c",
+        "label": "Led Zeppelin"
+      },
+      {
+        "id": "d",
+        "label": "Pink Floyd"
+      }
+    ]
+  },
+  {
+    "id": "qcm_014",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "sciences",
+    "label": "Quelle est la planète la plus chaude du système solaire ?",
+    "answer": "Vénus",
+    "acceptedAnswers": ["Vénus", "Venus"],
+    "media": null,
+    "explanation": "Malgré sa distance, l'effet de serre sur Vénus atteint ~460°C.",
+    "tags": ["sciences", "astronomie"],
+    "baseTimer": 25,
+    "options": [
+      {
+        "id": "a",
+        "label": "Mercure"
+      },
+      {
+        "id": "b",
+        "label": "Vénus"
+      },
+      {
+        "id": "c",
+        "label": "Mars"
+      },
+      {
+        "id": "d",
+        "label": "Jupiter"
+      }
+    ]
+  },
+  {
+    "id": "qcm_015",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "histoire",
+    "label": "Quel monument parisien a été construit pour l'Exposition universelle de 1889 ?",
+    "answer": "Tour Eiffel",
+    "acceptedAnswers": ["Tour Eiffel", "La Tour Eiffel"],
+    "media": null,
+    "explanation": "La Tour Eiffel a été conçue par Gustave Eiffel.",
+    "tags": ["histoire", "france", "monuments"],
+    "baseTimer": 15,
+    "options": [
+      {
+        "id": "a",
+        "label": "Arc de Triomphe"
+      },
+      {
+        "id": "b",
+        "label": "Tour Eiffel"
+      },
+      {
+        "id": "c",
+        "label": "Sacré-Cœur"
+      },
+      {
+        "id": "d",
+        "label": "Panthéon"
+      }
     ]
   }
 ]

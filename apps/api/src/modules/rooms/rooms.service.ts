@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import type { Room, Player, GameConfig, Question } from '../../common/types';
 
+/** Types that support exact auto-validation */
+const AUTO_VALIDATED_TYPES = new Set(['number', 'qcm', 'chronology', 'intruder']);
+
 function generateCode(): string {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   let code = '';
@@ -14,11 +17,31 @@ function generateId(): string {
   return `room_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 }
 
+export interface ReviewPlayerAnswer {
+  playerId: string;
+  playerName: string;
+  answer: string;
+  isCorrect: boolean;
+  timeSpent: number;
+  timedOut: boolean;
+  hostOverride: boolean | null;
+}
+
+export interface QuestionReviewData {
+  questionId: string;
+  questionLabel: string;
+  questionType: string;
+  correctAnswer: string;
+  explanation?: string;
+  playerAnswers: ReviewPlayerAnswer[];
+  autoValidated: boolean;
+}
+
 @Injectable()
 export class RoomsService {
   private rooms = new Map<string, Room>();
-  private codeToRoom = new Map<string, string>(); // code -> roomId
-  private socketToRoom = new Map<string, string>(); // socketId -> roomId
+  private codeToRoom = new Map<string, string>();
+  private socketToRoom = new Map<string, string>();
 
   createRoom(socketId: string, playerName: string): Room {
     const playerId = `player_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
@@ -118,7 +141,6 @@ export class RoomsService {
   advanceQuestion(room: Room): boolean {
     room.currentQuestionIndex++;
     if (room.currentQuestionIndex >= room.questions.length) {
-      // Game over
       for (const player of room.players.values()) {
         player.status = 'finished';
       }
@@ -170,7 +192,6 @@ export class RoomsService {
       this.rooms.delete(room.id);
       this.codeToRoom.delete(room.code);
     } else if (player.isHost) {
-      // Transfer host to next player
       const nextPlayer = room.players.values().next().value;
       if (nextPlayer) nextPlayer.isHost = true;
       room.hostId = nextPlayer?.id ?? '';
@@ -221,5 +242,62 @@ export class RoomsService {
       };
     }
     return scores;
+  }
+
+  /**
+   * Override a player's answer validation (host manual review).
+   * Recalculates the player's score from scratch.
+   */
+  overrideAnswer(room: Room, playerId: string, questionId: string, isCorrect: boolean): boolean {
+    const player = room.players.get(playerId);
+    if (!player) return false;
+
+    const answerRecord = player.answers.find((a) => a.questionId === questionId);
+    if (!answerRecord) return false;
+
+    answerRecord.isCorrect = isCorrect;
+
+    // Recalculate player's total score from all answers
+    player.score = player.answers.filter((a) => a.isCorrect).length;
+
+    return true;
+  }
+
+  /**
+   * Build complete review data for all questions in the room.
+   * Includes every player's answer per question.
+   * This is sent to ALL clients at game:finished so the host can review/override.
+   */
+  buildReviewData(room: Room): QuestionReviewData[] {
+    const players = [...room.players.values()];
+
+    return room.questions.map((question, _qIdx) => {
+      const autoValidated = AUTO_VALIDATED_TYPES.has(question.type);
+
+      const playerAnswers: ReviewPlayerAnswer[] = players.map((player) => {
+        // Find the player's answer for this question
+        const answerRecord = player.answers.find((a) => a.questionId === question.id);
+
+        return {
+          playerId: player.id,
+          playerName: player.name,
+          answer: answerRecord?.answer ?? '',
+          isCorrect: answerRecord?.isCorrect ?? false,
+          timeSpent: answerRecord?.timeSpent ?? 0,
+          timedOut: answerRecord?.timedOut ?? true,
+          hostOverride: null,
+        };
+      });
+
+      return {
+        questionId: question.id,
+        questionLabel: question.label,
+        questionType: question.type,
+        correctAnswer: question.answer,
+        explanation: question.explanation,
+        playerAnswers,
+        autoValidated,
+      };
+    });
   }
 }

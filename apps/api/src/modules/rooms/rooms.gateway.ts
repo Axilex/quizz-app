@@ -60,6 +60,8 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     this.server.to(room.id).emit('player:disconnected', { playerId: player.id });
   }
 
+  // ─── Room lifecycle ───────────────────────────────────────
+
   @SubscribeMessage('room:create')
   handleCreateRoom(@ConnectedSocket() client: Socket, @MessageBody() data: { playerName: string }) {
     Logger.log(`[WS] room:create from ${client.id}, name: ${data.playerName}`);
@@ -67,8 +69,6 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     client.join(room.id);
 
     const host = room.players.values().next().value!;
-
-    // Emit directly to the client — this is what the front listens for
     client.emit('room:created', {
       room: this.roomsService.serializeRoom(room),
       playerId: host.id,
@@ -90,13 +90,11 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const { room, player } = result;
     client.join(room.id);
 
-    // Tell the joiner
     client.emit('room:joined', {
       room: this.roomsService.serializeRoom(room),
       playerId: player.id,
     });
 
-    // Notify others in the room
     client.to(room.id).emit('player:joined', {
       player: { id: player.id, name: player.name, score: 0, status: 'connected', isHost: false },
       room: this.roomsService.serializeRoom(room),
@@ -140,9 +138,10 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     }
   }
 
+  // ─── Game configuration & start ───────────────────────────
+
   @SubscribeMessage('game:configure')
   handleConfigure(@ConnectedSocket() client: Socket, @MessageBody() config: GameConfig) {
-    Logger.log(`[WS] game:configure from ${client.id}`, config);
     const result = this.roomsService.getPlayerBySocket(client.id);
     if (!result || !result.player.isHost) {
       client.emit('error', { message: "Seul l'hôte peut configurer" });
@@ -155,7 +154,6 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @SubscribeMessage('game:start')
   handleStartGame(@ConnectedSocket() client: Socket) {
-    Logger.log(`[WS] game:start from ${client.id}`);
     const result = this.roomsService.getPlayerBySocket(client.id);
     if (!result || !result.player.isHost) {
       client.emit('error', { message: "Seul l'hôte peut lancer" });
@@ -194,6 +192,8 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
     this.startQuestionTimer(room);
   }
+
+  // ─── In-game answers ──────────────────────────────────────
 
   @SubscribeMessage('game:answer')
   handleAnswer(
@@ -239,6 +239,63 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       this.advanceToNextQuestion(room);
     }
   }
+
+  // ─── Post-game review (host-driven, shared screen) ────────
+
+  /**
+   * Host overrides a player's answer validation.
+   * Broadcasts updated review + scores to ALL clients.
+   */
+  @SubscribeMessage('game:hostOverride')
+  handleHostOverride(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { playerId: string; questionId: string; isCorrect: boolean },
+  ) {
+    const result = this.roomsService.getPlayerBySocket(client.id);
+    if (!result || !result.player.isHost) {
+      client.emit('error', { message: "Seul l'hôte peut modifier les résultats" });
+      return;
+    }
+
+    const { room } = result;
+    const updated = this.roomsService.overrideAnswer(
+      room,
+      data.playerId,
+      data.questionId,
+      data.isCorrect,
+    );
+
+    if (!updated) {
+      client.emit('error', { message: 'Réponse introuvable' });
+      return;
+    }
+
+    const review = this.roomsService.buildReviewData(room);
+    this.server.to(room.id).emit('game:reviewUpdated', {
+      review,
+      scores: this.roomsService.getScores(room),
+    });
+  }
+
+  /**
+   * Host navigates the shared review screen.
+   * Broadcasts the new view + question index to ALL clients.
+   */
+  @SubscribeMessage('review:navigate')
+  handleReviewNavigate(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { view: 'podium' | 'review'; questionIdx: number },
+  ) {
+    const result = this.roomsService.getPlayerBySocket(client.id);
+    if (!result || !result.player.isHost) return;
+
+    this.server.to(result.room.id).emit('review:navigated', {
+      view: data.view,
+      questionIdx: data.questionIdx,
+    });
+  }
+
+  // ─── Timer internals ──────────────────────────────────────
 
   private startQuestionTimer(room: Room) {
     this.clearQuestionTimer(room.id);
@@ -287,9 +344,11 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       const hasMore = this.roomsService.advanceQuestion(room);
 
       if (!hasMore) {
+        const review = this.roomsService.buildReviewData(room);
         this.server.to(room.id).emit('game:finished', {
           scores: this.roomsService.getScores(room),
           room: this.roomsService.serializeRoom(room),
+          review,
         });
         room.isStarted = false;
         return;
