@@ -1,0 +1,72 @@
+## ============================================================
+## Quizzy — Docker Compose (production)
+## ============================================================
+## Architecture :
+##   Caddy (reverse proxy + HTTPS)  ←──→  API (NestJS + Socket.IO)
+##     └── sert aussi les fichiers statiques Vue.js
+##
+## Usage :
+##   docker compose up -d --build      # Premier lancement
+##   docker compose up -d --build web   # Rebuild front uniquement
+##   docker compose up -d --build api   # Rebuild back uniquement
+##   docker compose logs -f             # Logs en temps réel
+## ============================================================
+
+services:
+
+  # ── Caddy — Reverse proxy + HTTPS auto + fichiers statiques ──
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"    # HTTP/3 QUIC
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - frontend_dist:/srv/frontend:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      - DOMAIN=${DOMAIN:-localhost}
+    depends_on:
+      web:
+        condition: service_completed_successfully
+      api:
+        condition: service_healthy
+
+  # ── Frontend Vue 3 — build → copie les fichiers dans le volume ──
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      args:
+        VITE_API_URL: ""   # Vide = même domaine, Caddy proxy /questions/* vers l'API
+    volumes:
+      - frontend_dist:/output
+    # Ce conteneur s'exécute une seule fois : il copie dist/ dans le volume puis s'arrête
+    restart: "no"
+
+  # ── API NestJS + Socket.IO ──
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - CORS_ORIGINS=https://${DOMAIN:-localhost}
+    expose:
+      - "3000"    # Accessible uniquement par Caddy via le réseau Docker interne
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/questions/categories').then(r=>{if(!r.ok)throw r;process.exit(0)}).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+volumes:
+  frontend_dist:    # Partagé entre web (écriture) et caddy (lecture)
+  caddy_data:       # Certificats SSL Let's Encrypt
+  caddy_config:
