@@ -16,6 +16,16 @@ export type QuestionType =
 
 export type Difficulty = 'easy' | 'medium' | 'hard';
 
+export interface QuestionMedia {
+  type: 'image';
+  url: string;
+  alt?: string;
+}
+
+/**
+ * Full question (server-side only).
+ * Contains answer, explanation, and all secret data.
+ */
 export interface Question {
   id: string;
   type: QuestionType;
@@ -24,33 +34,37 @@ export interface Question {
   label: string;
   answer: string;
   acceptedAnswers: string[];
-  media: { type: string; src: string; alt?: string } | null;
+  media: QuestionMedia | null;
   explanation?: string;
   tags: string[];
   baseTimer: number;
   [key: string]: unknown; // allow type-specific fields
 }
 
-/** Question sent to clients (no answer) */
+/**
+ * Question sent to clients (no answer, no explanation, no intruderId).
+ * All media URLs are ready-to-display — the frontend does ZERO transformation.
+ */
 export interface QuestionPublic {
   id: string;
   type: QuestionType;
   difficulty: Difficulty;
   category: string;
   label: string;
-  media: Question['media'];
+  media: QuestionMedia | null;
   tags: string[];
   baseTimer: number;
-  // Type-specific public fields
-  options?: unknown[];
-  clues?: unknown[];
-  images?: unknown[];
-  items?: unknown[];
-  svg?: string;
-  revealSteps?: number;
+
+  // Type-specific public fields (all with direct URLs)
+  options?: Array<{ id: string; label: string } | { id: string; imageUrl: string; label: string }>;
+  clues?: Array<{ imageUrl: string; alt: string }>;
+  images?: Array<{ imageUrl: string; alt: string }>;
+  hint?: string;
+  items?: Array<{ id: string; label: string; imageUrl?: string }>;
+  imageUrl?: string;
   region?: string;
-  outlineSvg?: string;
-  intruderId?: never; // never expose intruder answer
+  outlineUrl?: string | null;
+  outlineSvgPath?: string | null;
 }
 
 export type PlayerStatus = 'connected' | 'disconnected' | 'answering' | 'waiting' | 'finished';

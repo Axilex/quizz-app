@@ -18,24 +18,42 @@ const WS_CORS_ORIGINS = process.env['CORS_ORIGINS']
   ? process.env['CORS_ORIGINS'].split(',').map((o) => o.trim())
   : ['http://localhost:5173', 'http://localhost:4173'];
 
+/** How long to wait before removing a disconnected player (ms) */
+const DISCONNECT_GRACE_PERIOD = parseInt(process.env['DISCONNECT_GRACE_MS'] ?? '30000', 10);
+
+/** Interval to clean up stale/empty rooms (ms) */
+const ROOM_CLEANUP_INTERVAL = 60000;
+
+/** Max age for an idle room before cleanup (ms) — 2 hours */
+const ROOM_MAX_IDLE_AGE = 2 * 60 * 60 * 1000;
+
 @WebSocketGateway({
   cors: {
     origin: WS_CORS_ORIGINS,
     credentials: true,
   },
   namespace: '/game',
+  pingInterval: 25000,
+  pingTimeout: 10000,
 })
 export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   server!: Server;
 
   private roomTimers = new Map<string, ReturnType<typeof setTimeout>>();
+  /** Pending disconnect cleanup timers per playerId */
+  private disconnectTimers = new Map<string, ReturnType<typeof setTimeout>>();
+  /** Room cleanup interval */
+  private cleanupInterval: ReturnType<typeof setInterval> | null = null;
 
   constructor(
     private readonly roomsService: RoomsService,
     private readonly questionsService: QuestionsService,
     private readonly scoringService: GameScoringService,
-  ) {}
+  ) {
+    // Start periodic room cleanup
+    this.cleanupInterval = setInterval(() => this.cleanupStaleRooms(), ROOM_CLEANUP_INTERVAL);
+  }
 
   handleConnection(client: Socket) {
     Logger.log(`[WS] Client connected: ${client.id}`);
@@ -49,19 +67,51 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const { room, player } = result;
     player.status = 'disconnected';
 
-    setTimeout(() => {
-      if (player.status === 'disconnected') {
-        const removal = this.roomsService.removePlayer(client.id);
-        if (removal && !removal.isEmpty) {
-          this.server.to(room.id).emit('player:left', {
-            playerId: player.id,
-            room: this.roomsService.serializeRoom(room),
-          });
-        }
-      }
-    }, 30000);
-
+    // Notify the room immediately
     this.server.to(room.id).emit('player:disconnected', { playerId: player.id });
+
+    // Cancel any existing disconnect timer for this player
+    this.cancelDisconnectTimer(player.id);
+
+    // Start grace period — if the player doesn't reconnect, remove them
+    const timer = setTimeout(() => {
+      this.disconnectTimers.delete(player.id);
+
+      if (player.status !== 'disconnected') return; // Reconnected in time
+
+      Logger.log(`[WS] Grace period expired for ${player.name} (${player.id}), removing`);
+      const removal = this.roomsService.removePlayer(client.id);
+
+      if (removal && !removal.isEmpty) {
+        this.server.to(room.id).emit('player:left', {
+          playerId: player.id,
+          room: this.roomsService.serializeRoom(room),
+        });
+      }
+
+      // If the room is now empty, clean up timers
+      if (removal?.isEmpty) {
+        this.clearQuestionTimer(room.id);
+      }
+
+      // If a game is in progress and the disconnected player was the last answering,
+      // check if we should advance
+      if (room.isStarted && this.roomsService.allPlayersAnswered(room)) {
+        this.clearQuestionTimer(room.id);
+        this.advanceToNextQuestion(room);
+      }
+    }, DISCONNECT_GRACE_PERIOD);
+
+    this.disconnectTimers.set(player.id, timer);
+  }
+
+  // ─── Heartbeat (client-initiated ping) ────────────────────
+
+  @SubscribeMessage('ping')
+  handlePing(@ConnectedSocket() client: Socket) {
+    // The callback-based ping is handled by Socket.IO automatically.
+    // This explicit handler is a fallback for the volatile.emit('ping', callback) pattern.
+    client.emit('pong');
   }
 
   // ─── Room lifecycle ───────────────────────────────────────
@@ -107,6 +157,9 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @SubscribeMessage('room:reconnect')
   handleReconnect(@ConnectedSocket() client: Socket, @MessageBody() data: { playerId: string }) {
+    // Cancel any pending disconnect cleanup for this player
+    this.cancelDisconnectTimer(data.playerId);
+
     const result = this.roomsService.handleReconnect(client.id, data.playerId);
     if (!result) {
       client.emit('error', { message: 'Impossible de reconnecter' });
@@ -115,6 +168,8 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
     const { room, player } = result;
     client.join(room.id);
+
+    Logger.log(`[WS] Player ${player.name} reconnected to room ${room.code}`);
 
     this.server.to(room.id).emit('player:reconnected', { playerId: player.id });
 
@@ -132,6 +187,8 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const result = this.roomsService.removePlayer(client.id);
     if (!result) return;
 
+    // Cancel any pending disconnect timer
+    this.cancelDisconnectTimer(result.player.id);
     client.leave(result.room.id);
 
     if (!result.isEmpty) {
@@ -139,6 +196,9 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
         playerId: result.player.id,
         room: this.roomsService.serializeRoom(result.room),
       });
+    } else {
+      // Room is empty — clean up game timers
+      this.clearQuestionTimer(result.room.id);
     }
   }
 
@@ -244,12 +304,8 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     }
   }
 
-  // ─── Post-game review (host-driven, shared screen) ────────
+  // ─── Post-game review (host-driven) ───────────────────────
 
-  /**
-   * Host overrides a player's answer validation.
-   * Broadcasts updated review + scores to ALL clients.
-   */
   @SubscribeMessage('game:hostOverride')
   handleHostOverride(
     @ConnectedSocket() client: Socket,
@@ -281,10 +337,6 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     });
   }
 
-  /**
-   * Host navigates the shared review screen.
-   * Broadcasts the new view + question index to ALL clients.
-   */
   @SubscribeMessage('review:navigate')
   handleReviewNavigate(
     @ConnectedSocket() client: Socket,
@@ -310,10 +362,19 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const timerMs = this.scoringService.computeTimer(question) * 1000 + 2000;
 
     const timerId = setTimeout(() => {
-      for (const player of room.players.values()) {
-        if (player.status === 'answering') {
-          this.roomsService.recordAnswer(room, player.id, question.id, '', false, timerMs, true);
+      this.roomTimers.delete(room.id);
 
+      for (const player of room.players.values()) {
+        // Record timeout for anyone who hasn't answered yet (connected or disconnected)
+        const wasConnected = player.status === 'answering';
+        const needsTimeout = wasConnected || player.status === 'disconnected';
+
+        if (!needsTimeout) continue;
+
+        this.roomsService.recordAnswer(room, player.id, question.id, '', false, timerMs, true);
+
+        // Only emit the result event to players who were connected
+        if (wasConnected) {
           this.server.to(player.socketId).emit('game:answerResult', {
             questionId: question.id,
             isCorrect: false,
@@ -348,6 +409,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       const hasMore = this.roomsService.advanceQuestion(room);
 
       if (!hasMore) {
+        this.clearQuestionTimer(room.id);
         const review = this.roomsService.buildReviewData(room);
         this.server.to(room.id).emit('game:finished', {
           scores: this.roomsService.getScores(room),
@@ -372,5 +434,27 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
       this.startQuestionTimer(room);
     }, 500);
+  }
+
+  // ─── Disconnect timer management ──────────────────────────
+
+  private cancelDisconnectTimer(playerId: string): void {
+    const timer = this.disconnectTimers.get(playerId);
+    if (timer) {
+      clearTimeout(timer);
+      this.disconnectTimers.delete(playerId);
+    }
+  }
+
+  // ─── Room cleanup ─────────────────────────────────────────
+
+  /** Periodically clean up stale/empty rooms */
+  private cleanupStaleRooms(): void {
+    const staleRoomIds = this.roomsService.getStaleRoomIds(ROOM_MAX_IDLE_AGE);
+    for (const roomId of staleRoomIds) {
+      Logger.log(`[WS] Cleaning up stale room: ${roomId}`);
+      this.clearQuestionTimer(roomId);
+      this.roomsService.deleteRoom(roomId);
+    }
   }
 }
