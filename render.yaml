@@ -1,0 +1,24 @@
+# ============================================================
+# Quizzy API — Render.com
+# ============================================================
+# Render détecte ce fichier et configure le service automatiquement.
+# Doc : https://docs.render.com/blueprint-spec
+# ============================================================
+
+services:
+  - type: web
+    name: quizzy-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free         # free = cold start après 15 min d'inactivité
+                       # starter ($7/mois) = toujours allumé
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "3000"
+      - key: CORS_ORIGINS
+        sync: false    # À remplir manuellement après déploiement Vercel
+                       # Ex: https://quizzy.vercel.app
+    healthCheckPath: /questions/categories
