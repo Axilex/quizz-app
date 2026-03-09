@@ -43,8 +43,6 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   private roomTimers = new Map<string, ReturnType<typeof setTimeout>>();
   /** Pending disconnect cleanup timers per playerId */
   private disconnectTimers = new Map<string, ReturnType<typeof setTimeout>>();
-  /** Room cleanup interval */
-  private cleanupInterval: ReturnType<typeof setInterval> | null = null;
 
   constructor(
     private readonly roomsService: RoomsService,
@@ -52,7 +50,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     private readonly scoringService: GameScoringService,
   ) {
     // Start periodic room cleanup
-    this.cleanupInterval = setInterval(() => this.cleanupStaleRooms(), ROOM_CLEANUP_INTERVAL);
+    setInterval(() => this.cleanupStaleRooms(), ROOM_CLEANUP_INTERVAL);
   }
 
   handleConnection(client: Socket) {
