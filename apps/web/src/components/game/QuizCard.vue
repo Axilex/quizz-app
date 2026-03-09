@@ -44,9 +44,9 @@
       <span class="quiz-card__type">{{ typeIcon }} {{ typeLabel }}</span>
     </div>
 
-    <!-- Standard image media -->
-    <div v-if="question.media?.type === 'image'" class="quiz-card__media">
-      <img :src="question.media.src" :alt="question.media.alt || 'Question image'" />
+    <!-- Standard image media (used by 'image' type questions) -->
+    <div v-if="question.media" class="quiz-card__media">
+      <img :src="question.media.url" :alt="question.media.alt || 'Question image'" />
     </div>
 
     <h2 class="quiz-card__label">{{ question.label }}</h2>

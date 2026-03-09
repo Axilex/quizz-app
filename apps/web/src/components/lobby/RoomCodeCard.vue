@@ -1,27 +1,54 @@
 <script setup lang="ts">
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
 
   interface Props {
     code: string;
   }
 
-  defineProps<Props>();
+  const props = defineProps<Props>();
 
   const copied = ref(false);
 
-  function copyCode(code: string) {
-    navigator.clipboard.writeText(code).then(() => {
+  /** Build the full shareable join URL */
+  const joinUrl = computed(() => {
+    const base = window.location.origin;
+    return `${base}/join/${props.code}`;
+  });
+
+  function copyUrl() {
+    navigator.clipboard.writeText(joinUrl.value).then(() => {
       copied.value = true;
-      setTimeout(() => (copied.value = false), 2000);
+      setTimeout(() => (copied.value = false), 2500);
     });
+  }
+
+  /** Native share (mobile) if available, else fallback to copy */
+  function shareOrCopy() {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: 'Rejoins ma partie Quizzy !',
+          text: `Rejoins ma partie avec le code ${props.code}`,
+          url: joinUrl.value,
+        })
+        .catch(() => {
+          // Share cancelled or failed — fallback to copy
+          copyUrl();
+        });
+    } else {
+      copyUrl();
+    }
   }
 </script>
 
 <template>
-  <div class="room-code-card" @click="copyCode(code)">
-    <span class="room-code-card__label">Code de la room</span>
+  <div class="room-code-card" @click="shareOrCopy">
+    <span class="room-code-card__label">Invite tes amis</span>
     <span class="room-code-card__code">{{ code }}</span>
-    <span class="room-code-card__copy">{{ copied ? 'Copié !' : 'Cliquer pour copier' }}</span>
+    <span class="room-code-card__url">{{ joinUrl }}</span>
+    <span class="room-code-card__copy">
+      {{ copied ? '✓ Lien copié !' : 'Cliquer pour copier le lien' }}
+    </span>
   </div>
 </template>
 
@@ -59,8 +86,26 @@
     color: var(--accent);
   }
 
+  .room-code-card__url {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    background: var(--bg-tertiary);
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    word-break: break-all;
+    text-align: center;
+    max-width: 100%;
+    line-height: 1.5;
+  }
+
   .room-code-card__copy {
     font-size: 0.78rem;
     color: var(--text-muted);
+    transition: color 0.2s;
+  }
+
+  .room-code-card:hover .room-code-card__copy {
+    color: var(--accent);
   }
 </style>

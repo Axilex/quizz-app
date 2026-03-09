@@ -1,7 +1,7 @@
 import type { AnswerResult, GameConfig, GameSession, Question } from '@/types';
 import { DIFFICULTY_POINTS } from '@/types';
 import { questionRepository } from '@/services/questions/QuestionRepository';
-import { scoreService } from './ScoreService';
+import { apiClient } from '@/services/api/ApiClient';
 import { TimerService } from './TimerService';
 
 function generateId(): string {
@@ -11,6 +11,7 @@ function generateId(): string {
 export class GameEngineService {
   /**
    * Build a new game session — fetches questions from the API.
+   * Questions arrive ready-to-display, no transformation needed.
    */
   async createSession(config: GameConfig): Promise<GameSession> {
     const questions = await questionRepository.fetchGameQuestions(
@@ -31,7 +32,7 @@ export class GameEngineService {
     };
   }
 
-  /** Build a replay session from wrong answers (no API needed) */
+  /** Build a replay session from wrong answers (no API needed — questions already loaded) */
   createReplaySession(config: GameConfig, wrongQuestions: Question[]): GameSession {
     return {
       id: generateId(),
@@ -54,17 +55,40 @@ export class GameEngineService {
     return TimerService.computeDuration(question.difficulty, question.type, question.baseTimer);
   }
 
-  /** Record an answer and advance (solo mode — local validation) */
-  submitAnswer(
+  /**
+   * Submit an answer — validates via the backend API.
+   * Returns a promise because validation is async.
+   */
+  async submitAnswer(
     session: GameSession,
     userAnswer: string,
     timeSpent: number,
     timedOut: boolean,
-  ): AnswerResult {
+  ): Promise<AnswerResult> {
     const question = this.getCurrentQuestion(session);
     if (!question) throw new Error('No current question');
 
-    const isCorrect = !timedOut && scoreService.validateAnswer(question, userAnswer);
+    let isCorrect = false;
+    let correctAnswer = '';
+    let explanation: string | undefined;
+
+    if (timedOut) {
+      // On timeout, ask the API for the correct answer
+      try {
+        const validation = await apiClient.validateAnswer(question.id, '');
+        correctAnswer = validation.correctAnswer;
+        explanation = validation.explanation;
+      } catch {
+        correctAnswer = '?';
+      }
+    } else {
+      // Validate via API
+      const validation = await apiClient.validateAnswer(question.id, userAnswer);
+      isCorrect = validation.isCorrect;
+      correctAnswer = validation.correctAnswer;
+      explanation = validation.explanation;
+    }
+
     const points = isCorrect ? (DIFFICULTY_POINTS[question.difficulty] ?? 1) : 0;
 
     const result: AnswerResult = {
@@ -72,6 +96,8 @@ export class GameEngineService {
       question,
       userAnswer,
       isCorrect,
+      correctAnswer,
+      explanation,
       points,
       timeSpent,
       timedOut,

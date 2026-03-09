@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import type { IntruderQuestion } from '@/types';
-  import { getImageUrl } from '@/utils/imageLibrary';
 
   interface Props {
     question: IntruderQuestion;
@@ -26,7 +25,7 @@
         :disabled="disabled"
         @click="handleSelect(opt.id)"
       >
-        <img :src="getImageUrl(opt.svg)" :alt="opt.label" class="intruder__img" loading="lazy" />
+        <img :src="opt.imageUrl" :alt="opt.label" class="intruder__img" loading="lazy" />
         <span class="intruder__label">{{ opt.label }}</span>
       </button>
     </div>

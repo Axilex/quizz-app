@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { computed } from 'vue';
   import type { BlindTestQuestion } from '@/types';
-  import { getImageUrl } from '@/utils/imageLibrary';
 
   interface Props {
     question: BlindTestQuestion;
@@ -10,8 +9,6 @@
   }
 
   const props = defineProps<Props>();
-
-  const imageSrc = computed(() => getImageUrl(props.question.svg));
 
   // Blur decreases as time passes: starts very blurred, ends fully clear
   const blurAmount = computed(() => {
@@ -31,7 +28,7 @@
   <div class="blind-test">
     <div class="blind-test__image-container">
       <img
-        :src="imageSrc"
+        :src="question.imageUrl"
         alt="Image à deviner"
         class="blind-test__image"
         :style="{ filter: `blur(${blurAmount}px)` }"

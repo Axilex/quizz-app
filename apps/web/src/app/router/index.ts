@@ -18,6 +18,13 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/LobbyPage.vue'),
   },
   {
+    // Direct join via shareable URL — code is pre-filled, player only enters pseudo
+    path: '/join/:code',
+    name: 'join',
+    component: () => import('@/pages/LobbyPage.vue'),
+    props: true,
+  },
+  {
     path: '/play',
     name: 'play',
     component: () => import('@/pages/PlayPage.vue'),

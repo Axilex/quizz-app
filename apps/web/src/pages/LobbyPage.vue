@@ -1,19 +1,42 @@
 <script setup lang="ts">
-  import { ref, watch } from 'vue';
-  import { useRouter } from 'vue-router';
+  import { ref, watch, onMounted, computed } from 'vue';
+  import { useRouter, useRoute } from 'vue-router';
   import { useLobbyStore, useSessionStore } from '@/stores';
+  import { multiplayerGateway } from '@/services';
+  import type { ConnectionState } from '@/services/multiplayer/SocketIOMultiplayerGateway';
   import BaseButton from '@/components/ui/BaseButton.vue';
   import LobbyPlayersList from '@/components/lobby/LobbyPlayersList.vue';
   import RoomCodeCard from '@/components/lobby/RoomCodeCard.vue';
   import GameSettingsPanel from '@/components/lobby/GameSettingsPanel.vue';
 
   const router = useRouter();
+  const route = useRoute();
   const lobby = useLobbyStore();
   const session = useSessionStore();
 
   const playerName = ref('Joueur');
   const joinCode = ref('');
   const view = ref<'choice' | 'join' | 'room'>('choice');
+  const connectionState = ref<ConnectionState>(multiplayerGateway.connectionState);
+
+  // Track connection state changes for UI indicator
+  const unsubState = multiplayerGateway.onStateChange((state) => {
+    connectionState.value = state;
+  });
+
+  const isReconnecting = computed(() => connectionState.value === 'reconnecting');
+
+  /**
+   * If arrived via /join/:code, pre-fill the code and go straight to the join view.
+   * The player only needs to enter their pseudo.
+   */
+  onMounted(() => {
+    const codeFromUrl = route.params.code as string | undefined;
+    if (codeFromUrl) {
+      joinCode.value = codeFromUrl.toUpperCase();
+      view.value = 'join';
+    }
+  });
 
   async function handleCreate() {
     if (!playerName.value.trim()) return;
@@ -43,6 +66,7 @@
 
   function handleBack() {
     lobby.leaveRoom();
+    unsubState();
     router.push('/');
   }
 
@@ -60,6 +84,12 @@
       <div class="lobby-page__header">
         <BaseButton variant="ghost" size="sm" @click="handleBack">← Accueil</BaseButton>
         <h1 class="lobby-page__title">Multijoueur</h1>
+      </div>
+
+      <!-- Reconnecting banner -->
+      <div v-if="isReconnecting" class="lobby-reconnecting">
+        <div class="lobby-reconnecting__spinner" />
+        <span>Reconnexion en cours...</span>
       </div>
 
       <!-- Step 1: Choose name + create or join -->
@@ -95,16 +125,29 @@
         </BaseButton>
       </div>
 
-      <!-- Step 1b: Join with code -->
+      <!-- Step 1b: Join with code (also used for /join/:code direct links) -->
       <div v-else-if="view === 'join'" class="lobby-flow">
         <BaseButton variant="ghost" size="sm" @click="view = 'choice'">← Retour</BaseButton>
 
-        <div class="name-field">
-          <label class="name-field__label">Votre pseudo</label>
-          <input v-model="playerName" class="name-field__input" placeholder="Pseudo..." />
+        <!-- If code comes from URL, show it prominently -->
+        <div v-if="route.params.code" class="join-invite">
+          <span class="join-invite__label">Tu as été invité à rejoindre</span>
+          <span class="join-invite__code">{{ joinCode }}</span>
         </div>
 
         <div class="name-field">
+          <label class="name-field__label">Choisis ton pseudo</label>
+          <input
+            v-model="playerName"
+            class="name-field__input"
+            placeholder="Pseudo..."
+            autofocus
+            @keydown.enter="handleJoin"
+          />
+        </div>
+
+        <!-- Only show code input if NOT from URL (manual join) -->
+        <div v-if="!route.params.code" class="name-field">
           <label class="name-field__label">Code de la room</label>
           <input
             v-model="joinCode"
@@ -122,7 +165,7 @@
           :disabled="!joinCode.trim() || !playerName.trim()"
           @click="handleJoin"
         >
-          Rejoindre
+          Rejoindre la partie
         </BaseButton>
       </div>
 
@@ -189,6 +232,55 @@
     flex-direction: column;
     gap: 1rem;
   }
+
+  /* Reconnecting banner */
+  .lobby-reconnecting {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.65rem 1rem;
+    background: color-mix(in srgb, var(--warning) 12%, var(--bg-secondary));
+    border: 1px solid color-mix(in srgb, var(--warning) 30%, transparent);
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--warning);
+  }
+  .lobby-reconnecting__spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid color-mix(in srgb, var(--warning) 30%, transparent);
+    border-top-color: var(--warning);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  /* Invite card (when joining via URL) */
+  .join-invite {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 1.25rem 1.5rem;
+    background: color-mix(in srgb, var(--accent) 6%, var(--bg-secondary));
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+    border-radius: 14px;
+  }
+  .join-invite__label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .join-invite__code {
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+  }
+
+  /* Form fields */
   .name-field {
     display: flex;
     flex-direction: column;

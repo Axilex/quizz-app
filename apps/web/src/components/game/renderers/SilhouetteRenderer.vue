@@ -1,20 +1,22 @@
 <script setup lang="ts">
-  import { computed } from 'vue';
   import type { SilhouetteQuestion } from '@/types';
-  import { getImageUrl } from '@/utils/imageLibrary';
 
   interface Props {
     question: SilhouetteQuestion;
   }
 
   const props = defineProps<Props>();
-  const imageSrc = computed(() => getImageUrl(props.question.svg));
 </script>
 
 <template>
   <div class="silhouette">
     <div class="silhouette__container">
-      <img :src="imageSrc" alt="Silhouette à deviner" class="silhouette__img" loading="lazy" />
+      <img
+        :src="props.question.imageUrl"
+        alt="Silhouette à deviner"
+        class="silhouette__img"
+        loading="lazy"
+      />
     </div>
   </div>
 </template>

@@ -13,6 +13,7 @@ export const useGameStore = defineStore('game', () => {
   const lastAnswerResult = ref<AnswerResult | null>(null);
   const showFeedback = ref(false);
   const isLoading = ref(false);
+  const isSubmitting = ref(false);
   const loadingError = ref<string | null>(null);
 
   // Computed
@@ -76,16 +77,39 @@ export const useGameStore = defineStore('game', () => {
     startTimer();
   }
 
-  function submitAnswer(userAnswer: string) {
-    if (!session.value || !currentQuestion.value) return;
+  /**
+   * Submit an answer — async because the backend validates.
+   * Timer is stopped immediately, UI waits for API response.
+   */
+  async function submitAnswer(userAnswer: string) {
+    if (!session.value || !currentQuestion.value || isSubmitting.value) return;
 
     const timeSpent = timerService.getElapsed();
     timerService.stop();
     isTimerRunning.value = false;
+    isSubmitting.value = true;
 
-    const result = gameEngine.submitAnswer(session.value, userAnswer, timeSpent, false);
-    lastAnswerResult.value = result;
-    showFeedback.value = true;
+    try {
+      const result = await gameEngine.submitAnswer(session.value, userAnswer, timeSpent, false);
+      lastAnswerResult.value = result;
+      showFeedback.value = true;
+    } catch (err) {
+      console.log(err);
+      // On API error, mark as wrong and continue
+      lastAnswerResult.value = {
+        questionId: currentQuestion.value!.id,
+        question: currentQuestion.value!,
+        userAnswer,
+        isCorrect: false,
+        correctAnswer: '?',
+        points: 0,
+        timeSpent,
+        timedOut: false,
+      };
+      showFeedback.value = true;
+    } finally {
+      isSubmitting.value = false;
+    }
 
     setTimeout(() => {
       showFeedback.value = false;
@@ -95,15 +119,27 @@ export const useGameStore = defineStore('game', () => {
     }, 1500);
   }
 
-  function handleTimeout() {
-    if (!session.value || !currentQuestion.value) return;
+  async function handleTimeout() {
+    if (!session.value || !currentQuestion.value || isSubmitting.value) return;
 
     timerService.stop();
     isTimerRunning.value = false;
+    isSubmitting.value = true;
 
-    const result = gameEngine.submitAnswer(session.value, '', timerTotal.value * 1000, true);
-    lastAnswerResult.value = result;
-    showFeedback.value = true;
+    try {
+      const result = await gameEngine.submitAnswer(
+        session.value,
+        '',
+        timerTotal.value * 1000,
+        true,
+      );
+      lastAnswerResult.value = result;
+      showFeedback.value = true;
+    } catch {
+      showFeedback.value = true;
+    } finally {
+      isSubmitting.value = false;
+    }
 
     setTimeout(() => {
       showFeedback.value = false;
@@ -146,6 +182,7 @@ export const useGameStore = defineStore('game', () => {
     lastAnswerResult.value = null;
     showFeedback.value = false;
     isLoading.value = false;
+    isSubmitting.value = false;
     loadingError.value = null;
   }
 
@@ -193,6 +230,7 @@ export const useGameStore = defineStore('game', () => {
     lastAnswerResult,
     showFeedback,
     isLoading,
+    isSubmitting,
     loadingError,
     // Computed
     currentQuestion,
