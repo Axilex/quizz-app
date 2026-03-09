@@ -1,4 +1,4 @@
-import { Controller, Get, Query, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Query, Body, BadRequestException } from '@nestjs/common';
 import { QuestionsService } from './questions.service';
 import type { Difficulty } from '../../common/types';
 
@@ -30,8 +30,7 @@ export class QuestionsController {
    * GET /questions/game?count=20&categories=sport,cinéma
    *
    * Returns a randomized set of N questions for starting a game.
-   * Always includes all difficulty levels.
-   * Optionally filtered by categories.
+   * All data is ready-to-display — the frontend does ZERO transformation.
    */
   @Get('game')
   getGameQuestions(@Query('count') count?: string, @Query('categories') categories?: string) {
@@ -59,12 +58,15 @@ export class QuestionsController {
   }
 
   /**
-   * GET /questions/validate?id=txt_001&answer=Pacifique
+   * POST /questions/validate
+   * Body: { id: string, answer: string }
    *
    * Server-side answer validation.
+   * This is the SINGLE source of truth for correctness.
    */
-  @Get('validate')
-  validateAnswer(@Query('id') questionId: string, @Query('answer') answer: string) {
+  @Post('validate')
+  validateAnswer(@Body() body: { id: string; answer: string }) {
+    const { id: questionId, answer } = body;
     if (!questionId || answer === undefined) {
       throw new BadRequestException('id and answer are required');
     }

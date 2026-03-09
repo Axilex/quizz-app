@@ -108,6 +108,13 @@ export class RoomsService {
     return { room, player };
   }
 
+  /** Check if a room code exists (used for URL validation) */
+  roomExistsByCode(code: string): boolean {
+    const roomId = this.codeToRoom.get(code.toUpperCase());
+    if (!roomId) return false;
+    return this.rooms.has(roomId);
+  }
+
   getRoomBySocket(socketId: string): Room | null {
     const roomId = this.socketToRoom.get(socketId);
     if (!roomId) return null;
@@ -148,7 +155,9 @@ export class RoomsService {
     }
 
     for (const player of room.players.values()) {
-      player.status = 'answering';
+      if (player.status !== 'disconnected') {
+        player.status = 'answering';
+      }
     }
     return true;
   }
@@ -172,9 +181,9 @@ export class RoomsService {
 
   allPlayersAnswered(room: Room): boolean {
     for (const player of room.players.values()) {
-      if (player.status === 'connected' || player.status === 'answering') {
-        return false;
-      }
+      // Disconnected players don't block progression
+      if (player.status === 'disconnected') continue;
+      if (player.status === 'answering') return false;
     }
     return true;
   }
@@ -204,8 +213,11 @@ export class RoomsService {
     for (const room of this.rooms.values()) {
       const player = room.players.get(playerId);
       if (player && player.status === 'disconnected') {
+        // Clean up old socket mapping
+        this.socketToRoom.delete(player.socketId);
+
         player.socketId = socketId;
-        player.status = 'connected';
+        player.status = room.isStarted ? 'answering' : 'connected';
         this.socketToRoom.set(socketId, room.id);
         return { room, player };
       }
@@ -256,8 +268,6 @@ export class RoomsService {
     if (!answerRecord) return false;
 
     answerRecord.isCorrect = isCorrect;
-
-    // Recalculate player's total score from all answers
     player.score = player.answers.filter((a) => a.isCorrect).length;
 
     return true;
@@ -265,19 +275,15 @@ export class RoomsService {
 
   /**
    * Build complete review data for all questions in the room.
-   * Includes every player's answer per question.
-   * This is sent to ALL clients at game:finished so the host can review/override.
    */
   buildReviewData(room: Room): QuestionReviewData[] {
     const players = [...room.players.values()];
 
-    return room.questions.map((question, _qIdx) => {
+    return room.questions.map((question) => {
       const autoValidated = AUTO_VALIDATED_TYPES.has(question.type);
 
       const playerAnswers: ReviewPlayerAnswer[] = players.map((player) => {
-        // Find the player's answer for this question
         const answerRecord = player.answers.find((a) => a.questionId === question.id);
-
         return {
           playerId: player.id,
           playerName: player.name,
@@ -299,5 +305,39 @@ export class RoomsService {
         autoValidated,
       };
     });
+  }
+
+  // ─── Cleanup ──────────────────────────────────────────────
+
+  /** Return IDs of rooms that are idle (not started and old) or empty */
+  getStaleRoomIds(maxIdleAge: number): string[] {
+    const now = Date.now();
+    const stale: string[] = [];
+
+    for (const [roomId, room] of this.rooms.entries()) {
+      const age = now - room.createdAt;
+      const isEmpty = room.players.size === 0;
+      const isIdle = !room.isStarted && age > maxIdleAge;
+
+      if (isEmpty || isIdle) {
+        stale.push(roomId);
+      }
+    }
+
+    return stale;
+  }
+
+  /** Delete a room and clean up all mappings */
+  deleteRoom(roomId: string): void {
+    const room = this.rooms.get(roomId);
+    if (!room) return;
+
+    // Clean up socket mappings for all players
+    for (const player of room.players.values()) {
+      this.socketToRoom.delete(player.socketId);
+    }
+
+    this.codeToRoom.delete(room.code);
+    this.rooms.delete(roomId);
   }
 }

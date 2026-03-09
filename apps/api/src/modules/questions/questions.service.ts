@@ -126,12 +126,65 @@ export class QuestionsService {
     return false;
   }
 
-  /** Strip answer data from question for sending to clients */
+  /**
+   * Strip answer data and prepare a question for the frontend.
+   * The returned object is ready-to-display: all URLs are direct, no keys to resolve.
+   *
+   * CRITICAL: This is the only transformation point.
+   * The frontend receives this and displays it as-is.
+   */
   toPublic(question: Question): QuestionPublic {
-    const { _answer, _acceptedAnswers, _explanation, ...rest } = question;
-    const pub = { ...rest } as QuestionPublic & { intruderId?: string };
-    delete pub.intruderId;
-    return pub as QuestionPublic;
+    const base: QuestionPublic = {
+      id: question.id,
+      type: question.type,
+      difficulty: question.difficulty,
+      category: question.category,
+      label: question.label,
+      media: question.media,
+      tags: question.tags,
+      baseTimer: question.baseTimer,
+    };
+
+    // Add type-specific fields (WITHOUT answers)
+    switch (question.type) {
+      case 'qcm':
+        base.options = question['options'] as QuestionPublic['options'];
+        break;
+
+      case 'rebus':
+        base.clues = question['clues'] as QuestionPublic['clues'];
+        break;
+
+      case 'fourImages':
+        base.images = question['images'] as QuestionPublic['images'];
+        if (question['hint']) base.hint = question['hint'] as string;
+        break;
+
+      case 'chronology':
+        base.items = question['items'] as QuestionPublic['items'];
+        break;
+
+      case 'blindTest':
+        base.imageUrl = question['imageUrl'] as string;
+        break;
+
+      case 'geoMap':
+        base.region = question['region'] as string;
+        base.outlineUrl = (question['outlineUrl'] as string) ?? null;
+        base.outlineSvgPath = (question['outlineSvgPath'] as string) ?? null;
+        break;
+
+      case 'intruder':
+        // Send options but NEVER the intruderId (that's the answer)
+        base.options = question['options'] as QuestionPublic['options'];
+        break;
+
+      case 'silhouette':
+        base.imageUrl = question['imageUrl'] as string;
+        break;
+    }
+
+    return base;
   }
 
   private shuffle<T>(arr: T[]): T[] {
