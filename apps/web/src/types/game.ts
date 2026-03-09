@@ -15,7 +15,8 @@ export interface AnswerResult {
   question: Question;
   userAnswer: string;
   isCorrect: boolean;
-  /** Points earned for this answer (0 if wrong, difficulty-based if correct) */
+  correctAnswer: string;
+  explanation?: string;
   points: number;
   timeSpent: number;
   timedOut: boolean;

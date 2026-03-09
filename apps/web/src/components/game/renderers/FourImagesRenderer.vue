@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import type { FourImagesQuestion } from '@/types';
-  import { getImageUrl } from '@/utils/imageLibrary';
 
   interface Props {
     question: FourImagesQuestion;
@@ -13,7 +12,7 @@
   <div class="four-images">
     <div class="four-images__grid">
       <div v-for="(img, i) in props.question.images" :key="i" class="four-images__item">
-        <img :src="getImageUrl(img.svg)" :alt="img.alt" loading="lazy" />
+        <img :src="img.imageUrl" :alt="img.alt" loading="lazy" />
       </div>
     </div>
   </div>

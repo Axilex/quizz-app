@@ -55,10 +55,14 @@
       <AnswerFeedback :result="game.lastAnswerResult" />
     </div>
 
+    <div v-else-if="game.isSubmitting" class="play-page__submitting">
+      <div class="submitting-indicator">Vérification...</div>
+    </div>
+
     <div v-else class="play-page__input">
       <AnswerInput
         :question="game.currentQuestion"
-        :disabled="game.showFeedback"
+        :disabled="game.showFeedback || game.isSubmitting"
         @submit="handleAnswer"
       />
     </div>
@@ -100,9 +104,29 @@
     flex-shrink: 0;
   }
   .play-page__feedback,
-  .play-page__input {
+  .play-page__input,
+  .play-page__submitting {
     min-height: 80px;
     flex-shrink: 0;
+  }
+  .submitting-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    animation: pulse 1s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
   }
   .card-swap-enter-active {
     animation: card-in 0.3s ease;

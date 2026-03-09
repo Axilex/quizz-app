@@ -27,11 +27,11 @@
             +{{ result.points }} pt{{ result.points > 1 ? 's' : '' }}
           </span>
         </p>
-        <p v-if="!result.isCorrect" class="feedback__answer">
-          Réponse : <strong>{{ result.question.answer }}</strong>
+        <p v-if="!result.isCorrect && result.correctAnswer" class="feedback__answer">
+          Réponse : <strong>{{ result.correctAnswer }}</strong>
         </p>
-        <p v-if="result.question.explanation" class="feedback__explanation">
-          {{ result.question.explanation }}
+        <p v-if="result.explanation" class="feedback__explanation">
+          {{ result.explanation }}
         </p>
       </div>
     </div>

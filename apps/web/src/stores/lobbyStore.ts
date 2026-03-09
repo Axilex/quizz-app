@@ -28,13 +28,11 @@ export const useLobbyStore = defineStore('lobby', () => {
     explanation?: string;
   } | null>(null);
 
-  // Post-game review — all state is synced via WebSocket
+  // Post-game review
   const finalScores = ref<Record<string, { name: string; score: number }> | null>(null);
   const reviewData = ref<QuestionReviewData[]>([]);
   const totalQuestionsCount = ref(0);
-  /** Shared review view mode — driven by host, synced to all */
   const reviewViewMode = ref<ReviewViewMode>('podium');
-  /** Shared review question index — driven by host, synced to all */
   const reviewQuestionIdx = ref(0);
 
   let unsubscribe: (() => void) | null = null;
@@ -107,19 +105,16 @@ export const useLobbyStore = defineStore('lobby', () => {
         if (event.review && event.review.length > 0) {
           reviewData.value = event.review;
         }
-        // Reset review navigation to podium
         reviewViewMode.value = 'podium';
         reviewQuestionIdx.value = 0;
         break;
 
       case 'game:reviewUpdated':
-        // Host override → server broadcasts fresh data to everyone
         reviewData.value = event.review;
         finalScores.value = event.scores as Record<string, { name: string; score: number }>;
         break;
 
       case 'review:navigated':
-        // Host navigated → all clients follow
         reviewViewMode.value = event.view;
         reviewQuestionIdx.value = event.questionIdx;
         break;
@@ -184,17 +179,12 @@ export const useLobbyStore = defineStore('lobby', () => {
 
   // ─── Post-game review (host-driven) ───────────────────
 
-  /** Host override — server validates, broadcasts to all */
   function overrideAnswer(qIdx: number, pId: string, isCorrect: boolean) {
     const q = reviewData.value[qIdx];
     if (!q) return;
     multiplayerGateway.hostOverride(pId, q.questionId, isCorrect);
   }
 
-  /**
-   * Host navigates the shared review screen.
-   * Emits to server → server broadcasts to all → all stores update.
-   */
   function navigateReview(view: ReviewViewMode, questionIdx: number) {
     multiplayerGateway.reviewNavigate(view, questionIdx);
   }

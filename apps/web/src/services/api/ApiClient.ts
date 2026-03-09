@@ -23,7 +23,12 @@ export interface CategoryInfo {
 
 /**
  * HTTP client for the Quizzy API.
- * All question data and validation logic lives server-side.
+ * The backend is the single source of truth for:
+ * - All question data (including media URLs, ready to display)
+ * - Answer validation
+ * - Categories
+ *
+ * The frontend NEVER validates answers locally or transforms question data.
  */
 export class ApiClient {
   private baseUrl: string;
@@ -43,10 +48,16 @@ export class ApiClient {
     return res.json();
   }
 
-  /** Server-side answer validation */
+  /**
+   * Server-side answer validation.
+   * This is the ONLY place answers are validated. No local validation.
+   */
   async validateAnswer(questionId: string, answer: string): Promise<ValidateAnswerResponse> {
-    const params = new URLSearchParams({ id: questionId, answer });
-    const res = await fetch(`${this.baseUrl}/questions/validate?${params}`);
+    const res = await fetch(`${this.baseUrl}/questions/validate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: questionId, answer }),
+    });
     if (!res.ok) throw new Error(`API error: ${res.status} ${res.statusText}`);
     return res.json();
   }

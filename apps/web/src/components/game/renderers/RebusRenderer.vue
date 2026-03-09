@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import type { RebusQuestion } from '@/types';
-  import { getImageUrl } from '@/utils/imageLibrary';
 
   interface Props {
     question: RebusQuestion;
@@ -13,7 +12,7 @@
   <div class="rebus">
     <div class="rebus__clues">
       <div v-for="(clue, i) in props.question.clues" :key="i" class="rebus__clue">
-        <img :src="getImageUrl(clue.svg)" :alt="clue.alt" class="rebus__img" loading="lazy" />
+        <img :src="clue.imageUrl" :alt="clue.alt" class="rebus__img" loading="lazy" />
         <span v-if="i < props.question.clues.length - 1" class="rebus__plus">+</span>
       </div>
     </div>
