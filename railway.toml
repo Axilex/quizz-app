@@ -1,7 +1,0 @@
-[build]
-buildCommand = "pnpm install --frozen-lockfile && pnpm --filter @quizzy/api build"
-
-[deploy]
-startCommand = "node apps/api/dist/main.js"
-restartPolicyType = "on-failure"
-restartPolicyMaxRetries = 5
