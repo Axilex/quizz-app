@@ -12,11 +12,58 @@ import geoQuestions from '../../data/questions_geo.json';
 import intruderQuestions from '../../data/questions_intruder.json';
 import silhouetteQuestions from '../../data/questions_silhouette.json';
 import imagesQuestions from '../../data/questions_image.json';
+import splitImageQuestions from '../../data/questions_splitimage.json';
+import mathMaxQuestions from '../../data/questions_math_max.json';
 
 interface QuestionFilter {
   difficulties?: Difficulty[];
   categories?: string[];
   types?: QuestionType[];
+}
+
+/** Generate random arithmetic questions dynamically */
+function generateMathSimpleQuestions(count: number): Question[] {
+  const ops = ['+', '-', '×'] as const;
+  const questions: Question[] = [];
+
+  for (let i = 0; i < count; i++) {
+    const op = ops[Math.floor(Math.random() * ops.length)]!;
+    let a: number, b: number, answer: number;
+
+    if (op === '+') {
+      a = Math.floor(Math.random() * 50) + 1;
+      b = Math.floor(Math.random() * 50) + 1;
+      answer = a + b;
+    } else if (op === '-') {
+      a = Math.floor(Math.random() * 50) + 25;
+      b = Math.floor(Math.random() * 25) + 1;
+      answer = a - b;
+    } else {
+      a = Math.floor(Math.random() * 12) + 2;
+      b = Math.floor(Math.random() * 12) + 2;
+      answer = a * b;
+    }
+
+    const difficulty: Difficulty = answer > 50 ? 'hard' : answer > 20 ? 'medium' : 'easy';
+    const opSymbol = op === '×' ? '×' : op;
+
+    questions.push({
+      id: `math_simple_gen_${Date.now()}_${i}`,
+      type: 'mathSimple' as QuestionType,
+      difficulty,
+      category: 'mathématiques',
+      label: 'Calculez mentalement :',
+      answer: String(answer),
+      acceptedAnswers: [String(answer)],
+      media: null,
+      explanation: `${a} ${opSymbol} ${b} = ${answer}`,
+      tags: ['mathématiques', 'calcul'],
+      baseTimer: 20,
+      expression: `${a} ${opSymbol} ${b}`,
+    });
+  }
+
+  return questions;
 }
 
 function normalize(str: string): string {
@@ -32,6 +79,7 @@ function normalize(str: string): string {
 @Injectable()
 export class QuestionsService {
   private questions: Question[];
+  private mathSimplePool: Question[] = [];
 
   constructor() {
     this.questions = [
@@ -46,7 +94,11 @@ export class QuestionsService {
       ...(intruderQuestions as Question[]),
       ...(silhouetteQuestions as Question[]),
       ...(imagesQuestions as Question[]),
+      ...(splitImageQuestions as Question[]),
+      ...(mathMaxQuestions as Question[]),
     ];
+    // Generate a pool of math simple questions
+    this.mathSimplePool = generateMathSimpleQuestions(50);
   }
 
   getAll(): Question[] {
@@ -54,7 +106,7 @@ export class QuestionsService {
   }
 
   getById(id: string): Question | undefined {
-    return this.questions.find((q) => q.id === id);
+    return this.questions.find((q) => q.id === id) ?? this.mathSimplePool.find((q) => q.id === id);
   }
 
   getFiltered(filter: QuestionFilter): Question[] {
@@ -72,9 +124,57 @@ export class QuestionsService {
   }
 
   getRandom(count: number, filter?: QuestionFilter): Question[] {
-    const pool = filter ? this.getFiltered(filter) : [...this.questions];
-    const shuffled = this.shuffle(pool);
-    return shuffled.slice(0, Math.min(count, shuffled.length));
+    // Combine static questions with a fresh batch of mathSimple
+    const mathSimpleCount = Math.min(10, Math.ceil(count / 5));
+    const freshMathSimple = generateMathSimpleQuestions(mathSimpleCount);
+    const allQuestions = [...this.questions, ...freshMathSimple];
+
+    const pool = filter
+      ? [
+          ...this.getFiltered(filter),
+          ...(!filter.types || filter.types.includes('mathSimple' as QuestionType)
+            ? freshMathSimple
+            : []),
+        ]
+      : allQuestions;
+
+    // Group questions by type
+    const byType = new Map<string, Question[]>();
+    for (const q of pool) {
+      const group = byType.get(q.type) ?? [];
+      group.push(q);
+      byType.set(q.type, group);
+    }
+
+    const types = [...byType.keys()];
+    if (types.length === 0) return [];
+
+    // Rare types (< 20 questions): always take all; then fill from large pools
+    const RARE_THRESHOLD = 20;
+    const rareTypes = types.filter((t) => (byType.get(t)?.length ?? 0) < RARE_THRESHOLD);
+    const commonTypes = types.filter((t) => (byType.get(t)?.length ?? 0) >= RARE_THRESHOLD);
+
+    const selected: Question[] = [];
+
+    // Step 1 — pick all rare-type questions (shuffled), up to count
+    for (const type of rareTypes) {
+      const shuffled = this.shuffle(byType.get(type)!);
+      selected.push(...shuffled);
+    }
+
+    // Step 2 — fill remaining slots from common types proportionally
+    const remaining = count - selected.length;
+    if (remaining > 0 && commonTypes.length > 0) {
+      // Equal share per common type
+      const perType = Math.ceil(remaining / commonTypes.length);
+      for (const type of commonTypes) {
+        const shuffled = this.shuffle(byType.get(type)!);
+        selected.push(...shuffled.slice(0, perType));
+      }
+    }
+
+    // Step 3 — final shuffle and slice to exact count
+    return this.shuffle(selected).slice(0, Math.min(count, selected.length));
   }
 
   getCategories(): Array<{ id: string; count: number }> {
@@ -85,6 +185,16 @@ export class QuestionsService {
     return [...map.entries()]
       .map(([id, count]) => ({ id, count }))
       .sort((a, b) => a.id.localeCompare(b.id));
+  }
+
+  getRandomMathSimple(count: number): Question[] {
+    if (count <= 0) return [];
+    // Regenerate fresh math questions each time for variety
+    return generateMathSimpleQuestions(count);
+  }
+
+  shufflePublic(questions: Question[]): Question[] {
+    return this.shuffle(questions);
   }
 
   /** Validate a user's answer against the expected answer */
@@ -174,6 +284,7 @@ export class QuestionsService {
         base.region = question['region'] as string;
         base.outlineUrl = (question['outlineUrl'] as string) ?? null;
         base.outlineSvgPath = (question['outlineSvgPath'] as string) ?? null;
+        base.outlineSvg = (question['outlineSvg'] as string) ?? null;
         break;
 
       case 'intruder':
@@ -182,7 +293,23 @@ export class QuestionsService {
         break;
 
       case 'silhouette':
-        base.imageUrl = question['imageUrl'] as string;
+        base.imageUrl = (question['imageUrl'] as string) ?? null;
+        base.svgShape = (question['svgShape'] as string) ?? null;
+        base.contextHints = (question['contextHints'] as string[]) ?? [];
+        break;
+
+      case 'splitImage':
+        base.topHalf = question['topHalf'] as QuestionPublic['topHalf'];
+        base.bottomHalf = question['bottomHalf'] as QuestionPublic['bottomHalf'];
+        if (question['hint']) base.hint = question['hint'] as string;
+        break;
+
+      case 'mathMax':
+        base.tiles = question['tiles'] as QuestionPublic['tiles'];
+        break;
+
+      case 'mathSimple':
+        base.expression = question['expression'] as string;
         break;
     }
 

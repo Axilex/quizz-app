@@ -71,6 +71,9 @@ export const useLobbyStore = defineStore('lobby', () => {
 
       case 'game:started':
         isGameStarted.value = true;
+        questionIndex.value = -1;
+        currentQuestion.value = null;
+        lastResult.value = null;
         totalQuestionsCount.value = 0;
         reviewData.value = [];
         reviewViewMode.value = 'podium';

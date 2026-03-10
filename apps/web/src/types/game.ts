@@ -3,11 +3,18 @@ import type { Difficulty, Question, QuestionType } from './question';
 export type GameMode = 'solo' | 'multi';
 export type GamePhase = 'idle' | 'setup' | 'lobby' | 'playing' | 'review' | 'results' | 'replay';
 
+export interface TypeRatio {
+  type: QuestionType;
+  weight: number; // relative weight 0–10
+}
+
 export interface GameConfig {
   mode: GameMode;
   questionCount: number;
   difficulties: Difficulty[];
   categories?: string[];
+  /** Optional type ratios — controls distribution of question types */
+  typeRatios?: TypeRatio[];
 }
 
 export interface AnswerResult {
@@ -65,4 +72,7 @@ export const TYPE_MODIFIERS: Record<QuestionType, number> = {
   geoMap: 10,
   intruder: 5,
   silhouette: 8,
+  splitImage: 12,
+  mathMax: 20,
+  mathSimple: 5,
 };

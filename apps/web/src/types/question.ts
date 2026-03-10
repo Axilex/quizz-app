@@ -13,7 +13,10 @@ export type QuestionType =
   | 'blindTest'
   | 'geoMap'
   | 'intruder'
-  | 'silhouette';
+  | 'silhouette'
+  | 'splitImage'
+  | 'mathMax'
+  | 'mathSimple';
 
 export type Difficulty = 'easy' | 'medium' | 'hard';
 
@@ -131,7 +134,43 @@ export interface IntruderQuestion extends BaseQuestion {
 /** Silhouette: identify a shape shown as a dark silhouette */
 export interface SilhouetteQuestion extends BaseQuestion {
   type: 'silhouette';
+  imageUrl: string | null;
+  /** Inline SVG path data for the silhouette shape */
+  svgShape?: string | null;
+  /** Progressive context hints shown during countdown */
+  contextHints?: string[];
+}
+
+/** SplitImage: top half of image A + bottom half of image B → guess portmanteau */
+export interface SplitImageHalf {
   imageUrl: string;
+  alt: string;
+}
+
+export interface SplitImageQuestion extends BaseQuestion {
+  type: 'splitImage';
+  topHalf: SplitImageHalf;
+  bottomHalf: SplitImageHalf;
+  /** Optional hint shown after half the timer */
+  hint?: string;
+}
+
+/** MathMax: arrange tokens (numbers + operators) to get the largest possible result */
+export interface MathTile {
+  id: string;
+  value: string; // '5', '+', '×', '-', etc.
+  tileType: 'number' | 'operator';
+}
+
+export interface MathMaxQuestion extends BaseQuestion {
+  type: 'mathMax';
+  tiles: MathTile[];
+}
+
+/** MathSimple: randomly generated arithmetic — solve the expression */
+export interface MathSimpleQuestion extends BaseQuestion {
+  type: 'mathSimple';
+  expression: string; // e.g. "3 × 8 + 5"
 }
 
 // --- Discriminated union ---
@@ -147,7 +186,10 @@ export type Question =
   | BlindTestQuestion
   | GeoMapQuestion
   | IntruderQuestion
-  | SilhouetteQuestion;
+  | SilhouetteQuestion
+  | SplitImageQuestion
+  | MathMaxQuestion
+  | MathSimpleQuestion;
 
 // --- Display helpers (pure UI labels, no logic) ---
 
@@ -163,6 +205,9 @@ export const QUESTION_TYPE_LABELS: Record<QuestionType, string> = {
   geoMap: 'Carte Géo',
   intruder: 'Intrus',
   silhouette: 'Silhouette',
+  splitImage: 'Image Coupée',
+  mathMax: 'Math Max',
+  mathSimple: 'Calcul',
 };
 
 export const QUESTION_TYPE_ICONS: Record<QuestionType, string> = {
@@ -177,4 +222,7 @@ export const QUESTION_TYPE_ICONS: Record<QuestionType, string> = {
   geoMap: '🗺️',
   intruder: '👀',
   silhouette: '🌑',
+  splitImage: '✂️',
+  mathMax: '🏆',
+  mathSimple: '🧮',
 };
