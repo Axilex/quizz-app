@@ -3,6 +3,7 @@ import { ref, computed } from 'vue';
 import type { AnswerResult, GameConfig, GamePhase, GameSession, Question } from '@/types';
 import { DIFFICULTY_POINTS } from '@/types';
 import { gameEngine, timerService, TimerService, scoreService } from '@/services';
+import { logger } from '@/utils';
 
 export const useGameStore = defineStore('game', () => {
   // State
@@ -94,7 +95,7 @@ export const useGameStore = defineStore('game', () => {
       lastAnswerResult.value = result;
       showFeedback.value = true;
     } catch (err) {
-      console.log(err);
+      logger.log(err);
       // On API error, mark as wrong and continue
       lastAnswerResult.value = {
         questionId: currentQuestion.value!.id,
