@@ -25,7 +25,7 @@
         <span v-if="!result.isCorrect && result.userAnswer" class="result-card__user">
           {{ result.timedOut ? 'Temps écoulé' : result.userAnswer }}
         </span>
-        <span class="result-card__correct">{{ result.question.answer }}</span>
+        <span class="result-card__correct">{{ result.correctAnswer }}</span>
       </div>
     </div>
     <div class="result-card__right">
