@@ -1,8 +1,15 @@
 <script setup lang="ts">
   import { ref, computed, watch, nextTick } from 'vue';
-  import type { Question, QcmQuestion, ChronologyQuestion, IntruderQuestion } from '@/types';
+  import type {
+    Question,
+    QcmQuestion,
+    ChronologyQuestion,
+    IntruderQuestion,
+    MathMaxQuestion,
+  } from '@/types';
   import ChronologyRenderer from './renderers/ChronologyRenderer.vue';
   import IntruderRenderer from './renderers/IntruderRenderer.vue';
+  import MathMaxRenderer from './renderers/MathMaxRenderer.vue';
 
   interface Props {
     question: Question;
@@ -19,9 +26,11 @@
   const isNumber = computed(() => props.question.type === 'number');
   const isChronology = computed(() => props.question.type === 'chronology');
   const isIntruder = computed(() => props.question.type === 'intruder');
+  const isMathMax = computed(() => props.question.type === 'mathMax');
+  const isMathSimple = computed(() => props.question.type === 'mathSimple');
 
   // Types that handle their own submit via interactive renderer
-  const isInteractive = computed(() => isChronology.value || isIntruder.value);
+  const isInteractive = computed(() => isChronology.value || isIntruder.value || isMathMax.value);
 
   // Types that use text input
   const isTextInput = computed(() => !isQcm.value && !isInteractive.value);
@@ -29,12 +38,13 @@
   const qcmOptions = computed(() => (isQcm.value ? (props.question as QcmQuestion).options : []));
 
   const placeholder = computed(() => {
-    if (isNumber.value) return 'Entrez un nombre...';
+    if (isNumber.value || isMathSimple.value) return 'Entrez un nombre...';
     if (props.question.type === 'rebus') return 'Quel mot se cache dans ce rébus ?';
     if (props.question.type === 'fourImages') return 'Quel mot relie ces images ?';
     if (props.question.type === 'blindTest') return 'Que voyez-vous ?';
     if (props.question.type === 'geoMap') return 'Quel pays ou lieu ?';
     if (props.question.type === 'silhouette') return 'Que représente cette silhouette ?';
+    if (props.question.type === 'splitImage') return 'Quelle est la réponse ?';
     return 'Tapez votre réponse...';
   });
 
@@ -85,6 +95,14 @@
     <IntruderRenderer
       v-else-if="isIntruder"
       :question="question as IntruderQuestion"
+      :disabled="disabled"
+      @submit="handleInteractiveSubmit"
+    />
+
+    <!-- MathMax: drag tiles (interactive) -->
+    <MathMaxRenderer
+      v-else-if="isMathMax"
+      :question="question as MathMaxQuestion"
       :disabled="disabled"
       @submit="handleInteractiveSubmit"
     />

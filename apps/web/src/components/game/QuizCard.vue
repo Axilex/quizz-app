@@ -7,6 +7,8 @@
     BlindTestQuestion,
     GeoMapQuestion,
     SilhouetteQuestion,
+    SplitImageQuestion,
+    MathSimpleQuestion,
   } from '@/types';
   import { QUESTION_TYPE_LABELS, QUESTION_TYPE_ICONS } from '@/types';
   import DifficultyBadge from '@/components/ui/DifficultyBadge.vue';
@@ -15,6 +17,8 @@
   import BlindTestRenderer from './renderers/BlindTestRenderer.vue';
   import GeoMapRenderer from './renderers/GeoMapRenderer.vue';
   import SilhouetteRenderer from './renderers/SilhouetteRenderer.vue';
+  import SplitImageRenderer from './renderers/SplitImageRenderer.vue';
+  import MathSimpleRenderer from './renderers/MathSimpleRenderer.vue';
 
   interface Props {
     question: Question;
@@ -30,9 +34,16 @@
   const typeLabel = computed(() => QUESTION_TYPE_LABELS[props.question.type]);
   const typeIcon = computed(() => QUESTION_TYPE_ICONS[props.question.type]);
 
-  // Visual question types that render inside the card
   const hasVisualRenderer = computed(() =>
-    ['rebus', 'fourImages', 'blindTest', 'geoMap', 'silhouette'].includes(props.question.type),
+    [
+      'rebus',
+      'fourImages',
+      'blindTest',
+      'geoMap',
+      'silhouette',
+      'splitImage',
+      'mathSimple',
+    ].includes(props.question.type),
   );
 </script>
 
@@ -44,9 +55,9 @@
       <span class="quiz-card__type">{{ typeIcon }} {{ typeLabel }}</span>
     </div>
 
-    <!-- Standard image media (used by 'image' type questions) -->
+    <!-- Standard image media -->
     <div v-if="question.media" class="quiz-card__media">
-      <img :src="question.media.url" :alt="question.media.alt || 'Question image'" />
+      <img :src="question.media.url" :alt="question.media.alt || 'Image'" />
     </div>
 
     <h2 class="quiz-card__label">{{ question.label }}</h2>
@@ -69,6 +80,14 @@
         v-if="question.type === 'silhouette'"
         :question="question as SilhouetteQuestion"
       />
+      <SplitImageRenderer
+        v-if="question.type === 'splitImage'"
+        :question="question as SplitImageQuestion"
+      />
+      <MathSimpleRenderer
+        v-if="question.type === 'mathSimple'"
+        :question="question as MathSimpleQuestion"
+      />
     </div>
   </div>
 </template>
@@ -77,34 +96,58 @@
   .quiz-card {
     background: var(--bg-secondary);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 18px;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.1rem;
+    position: relative;
+    overflow: hidden;
   }
+
+  .quiz-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--accent) 30%,
+      rgba(229, 166, 62, 0.3) 70%,
+      transparent 100%
+    );
+    opacity: 0.6;
+  }
+
   .quiz-card__meta {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.6rem;
     flex-wrap: wrap;
   }
+
   .quiz-card__category {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 600;
-  }
-  .quiz-card__type {
     font-size: 0.75rem;
     color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  .quiz-card__type {
+    font-size: 0.72rem;
+    color: var(--text-muted);
     background: var(--bg-tertiary);
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
+    padding: 0.2rem 0.55rem;
+    border-radius: 5px;
     font-weight: 500;
     margin-left: auto;
+    border: 1px solid rgba(255, 255, 255, 0.04);
   }
+
   .quiz-card__media {
     width: 100%;
     max-height: 280px;
@@ -114,29 +157,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid var(--border);
   }
+
   .quiz-card__media img {
     max-width: 100%;
     max-height: 280px;
     object-fit: contain;
   }
+
   .quiz-card__label {
     font-family: var(--font-display);
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     font-weight: 700;
     line-height: 1.35;
     color: var(--text-primary);
     margin: 0;
   }
+
   .quiz-card__visual {
-    padding: 0.5rem 0;
+    padding: 0.25rem 0;
+    display: flex;
+    justify-content: center;
   }
+
   @media (max-width: 640px) {
     .quiz-card {
-      padding: 1rem;
+      padding: 1.1rem;
     }
+
     .quiz-card__label {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
     }
   }
 </style>

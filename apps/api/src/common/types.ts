@@ -12,7 +12,10 @@ export type QuestionType =
   | 'blindTest'
   | 'geoMap'
   | 'intruder'
-  | 'silhouette';
+  | 'silhouette'
+  | 'splitImage'
+  | 'mathMax'
+  | 'mathSimple';
 
 export type Difficulty = 'easy' | 'medium' | 'hard';
 
@@ -62,9 +65,20 @@ export interface QuestionPublic {
   hint?: string;
   items?: Array<{ id: string; label: string; imageUrl?: string }>;
   imageUrl?: string;
+  // silhouette
+  svgShape?: string | null;
+  contextHints?: string[];
   region?: string;
   outlineUrl?: string | null;
   outlineSvgPath?: string | null;
+  outlineSvg?: string | null; // country key for frontend path lookup
+  // splitImage
+  topHalf?: { imageUrl: string; alt: string };
+  bottomHalf?: { imageUrl: string; alt: string };
+  // mathMax
+  tiles?: Array<{ id: string; value: string; tileType: 'number' | 'operator' }>;
+  // mathSimple
+  expression?: string;
 }
 
 export type PlayerStatus = 'connected' | 'disconnected' | 'answering' | 'waiting' | 'finished';
@@ -123,4 +137,7 @@ export const TYPE_MODIFIERS: Record<QuestionType, number> = {
   geoMap: 10,
   intruder: 5,
   silhouette: 8,
+  splitImage: 12,
+  mathMax: 20,
+  mathSimple: 5,
 };

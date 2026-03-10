@@ -1,0 +1,110 @@
+[
+  {
+    "id": "split_001",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié requin, moitié dauphin. Quel est le nom de cette créature ?",
+    "answer": "Requiphin",
+    "acceptedAnswers": ["Requiphin", "requiphin", "requin-dauphin", "requindauphin"],
+    "media": null,
+    "explanation": "REQUIn + dauPHIN = REQUIPHIN ! Le mélange parfait des deux animaux.",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "topHalf": {
+      "imageUrl": "https://images.unsplash.com/photo-1559825481-12a05cc00344?w=400&q=80",
+      "alt": "Tête de requin"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=400&q=80",
+      "alt": "Queue de dauphin"
+    },
+    "hint": "Pensez aux sons : RE... + ...PHIN"
+  },
+  {
+    "id": "split_002",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié lion, moitié tigre. Quel est ce félin hybride ?",
+    "answer": "Ligre",
+    "acceptedAnswers": ["Ligre", "ligre", "liger", "tigron"],
+    "media": null,
+    "explanation": "LIon + tiGRE = LIGRE ! Ce croisement existe réellement dans certains zoos.",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "topHalf": {
+      "imageUrl": "https://images.unsplash.com/photo-1535338454770-8be927b5a00b?w=400&q=80",
+      "alt": "Crinière de lion"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=400&q=80",
+      "alt": "Rayures de tigre"
+    },
+    "hint": "LI... + ...GRE"
+  },
+  {
+    "id": "split_003",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié ours, moitié poisson. Quelle est cette créature aquatique ?",
+    "answer": "Ourson",
+    "acceptedAnswers": ["Ourson", "ourson", "ours-on"],
+    "media": null,
+    "explanation": "OURS + poisSON = OURSON ! Un bébé ours, mais aussi un croisement imaginaire.",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 35,
+    "topHalf": {
+      "imageUrl": "https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=400&q=80",
+      "alt": "Tête d'ours"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://images.unsplash.com/photo-1559825481-12a05cc00344?w=400&q=80",
+      "alt": "Queue de poisson"
+    },
+    "hint": "Le bébé d'un ours s'appelle..."
+  },
+  {
+    "id": "split_004",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié cheval, moitié zèbre. Quel est ce curieux animal ?",
+    "answer": "Zébral",
+    "acceptedAnswers": ["Zébral", "zebral", "zébral", "zèbrecheval", "zorsqual"],
+    "media": null,
+    "explanation": "ZEbre + cheval = ZÉBRAL ! Ce croisement s'appelle aussi un 'zébrule'.",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 35,
+    "topHalf": {
+      "imageUrl": "https://images.unsplash.com/photo-1534204832849-73290e51e07c?w=400&q=80",
+      "alt": "Tête de cheval"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://images.unsplash.com/photo-1551209028-3d7dbafb4ff2?w=400&q=80",
+      "alt": "Rayures de zèbre"
+    }
+  },
+  {
+    "id": "split_005",
+    "type": "splitImage",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Moitié renard, moitié lapin. Quelle est cette créature floue ?",
+    "answer": "Renardeau",
+    "acceptedAnswers": ["Renardeau", "renardeau", "larenard", "renardapin"],
+    "media": null,
+    "explanation": "RENARd + lapinEAU... un renardeau est aussi le bébé renard !",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 40,
+    "topHalf": {
+      "imageUrl": "https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=400&q=80",
+      "alt": "Oreilles de renard"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://images.unsplash.com/photo-1535591273668-578e31182c4f?w=400&q=80",
+      "alt": "Corps de lapin"
+    }
+  }
+]

@@ -4,6 +4,7 @@
   import { questionRepository } from '@/services';
   import type { CategoryInfo } from '@/services/questions/QuestionRepository';
   import BaseButton from '@/components/ui/BaseButton.vue';
+  import { logger } from '@/utils';
 
   const emit = defineEmits<{ start: [] }>();
   const session = useSessionStore();
@@ -17,7 +18,7 @@
     try {
       categories.value = await questionRepository.fetchCategories();
     } catch (err) {
-      console.log(String(err));
+      logger.log(String(err));
       loadError.value = 'Impossible de charger les thèmes. Vérifiez que le backend est lancé.';
     }
     isLoadingCategories.value = false;
