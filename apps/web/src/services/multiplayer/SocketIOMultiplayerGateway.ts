@@ -1,5 +1,6 @@
 import { io, Socket } from 'socket.io-client';
 import type { MultiplayerGateway, MultiplayerEvent, Room, Player, ReviewViewMode } from '@/types';
+import { logger } from '@/utils';
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
 
@@ -101,7 +102,7 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
 
       this.socket.on('connect', () => {
         clearTimeout(timeout);
-        console.log('[WS] Connected');
+        logger.log('[WS] Connected');
         this.setConnectionState('connected');
         this.reconnectAttempts = 0;
         this.setupListeners();
@@ -111,13 +112,13 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
 
       this.socket.on('connect_error', (err) => {
         clearTimeout(timeout);
-        console.error('[WS] Connection error:', err.message);
+        logger.error('[WS] Connection error:', err.message);
         this.setConnectionState('disconnected');
         reject(err);
       });
 
       this.socket.on('disconnect', (reason) => {
-        console.warn('[WS] Disconnected:', reason);
+        logger.warn('[WS] Disconnected:', reason);
         this.stopHeartbeat();
 
         // Server-initiated or transport close → try to reconnect
@@ -166,7 +167,7 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
 
       // Send ping, expect pong within timeout
       this.heartbeatTimeoutTimer = setTimeout(() => {
-        console.warn('[WS] Heartbeat timeout — connection stale');
+        logger.warn('[WS] Heartbeat timeout — connection stale');
         // Force disconnect → triggers reconnect
         this.socket?.disconnect();
       }, CONNECTION_CONFIG.heartbeatTimeout);
@@ -196,7 +197,7 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
 
   private attemptReconnect(): void {
     if (this.reconnectAttempts >= CONNECTION_CONFIG.maxReconnectAttempts) {
-      console.error('[WS] Max reconnect attempts reached');
+      logger.error('[WS] Max reconnect attempts reached');
       this.setConnectionState('disconnected');
       this.emit({ type: 'error', message: 'Connexion perdue. Veuillez rafraîchir la page.' });
       return;
@@ -210,7 +211,7 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
       CONNECTION_CONFIG.reconnectMaxDelay,
     );
 
-    console.log(
+    logger.log(
       `[WS] Reconnect attempt ${this.reconnectAttempts}/${CONNECTION_CONFIG.maxReconnectAttempts} in ${delay}ms`,
     );
 
@@ -220,11 +221,11 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
 
         // If we had a player session, try to reconnect to the room
         if (this._playerId) {
-          console.log('[WS] Attempting session reconnect for player:', this._playerId);
+          logger.log('[WS] Attempting session reconnect for player:', this._playerId);
           this.socket?.emit('room:reconnect', { playerId: this._playerId });
         }
       } catch (err) {
-        console.error('[WS] Reconnect failed:', err);
+        logger.error('[WS] Reconnect failed:', err);
         this.attemptReconnect();
       }
     }, delay);
