@@ -1,0 +1,427 @@
+[
+  {
+    "id": "img_001",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "culture",
+    "label": "Quel monument est représenté sur cette image ?",
+    "answer": "Colisée",
+    "acceptedAnswers": ["Colisée", "colisée", "Le Colisée", "Colosseum"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&q=80",
+      "alt": "Monument antique à Rome"
+    },
+    "explanation": "Le Colisée est un amphithéâtre construit à Rome entre 70 et 80 après J.-C.",
+    "tags": ["culture", "monuments", "italie"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_002",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel animal voyez-vous ?",
+    "answer": "Panda",
+    "acceptedAnswers": ["Panda", "panda", "Un panda", "panda géant"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=400&q=80",
+      "alt": "Animal noir et blanc"
+    },
+    "explanation": "Le panda géant, originaire de Chine.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_003",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "culture",
+    "label": "Quel monument célèbre est-ce ?",
+    "answer": "Tour Eiffel",
+    "acceptedAnswers": ["Tour Eiffel", "tour eiffel", "La Tour Eiffel", "Eiffel"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=400&q=80",
+      "alt": "Monument parisien"
+    },
+    "explanation": "La Tour Eiffel, construite en 1889 pour l'Exposition universelle.",
+    "tags": ["culture", "monuments", "france"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_004",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "nature",
+    "label": "Quelle fleur est représentée ?",
+    "answer": "Rose",
+    "acceptedAnswers": ["Rose", "rose", "Une rose"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&q=80",
+      "alt": "Fleur rouge"
+    },
+    "explanation": "Une rose rouge, symbole de l'amour.",
+    "tags": ["nature", "fleurs"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_005",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel animal est-ce ?",
+    "answer": "Lion",
+    "acceptedAnswers": ["Lion", "lion", "Un lion"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=400&q=80",
+      "alt": "Félin sauvage"
+    },
+    "explanation": "Le lion, roi de la savane.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_006",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "culture",
+    "label": "Quel monument est visible sur cette photo ?",
+    "answer": "Taj Mahal",
+    "acceptedAnswers": ["Taj Mahal", "taj mahal", "Le Taj Mahal"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=400&q=80",
+      "alt": "Monument blanc en Inde"
+    },
+    "explanation": "Le Taj Mahal, mausolée de marbre blanc en Inde.",
+    "tags": ["culture", "monuments", "inde"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_007",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel animal reconnaissez-vous ?",
+    "answer": "Éléphant",
+    "acceptedAnswers": ["Éléphant", "elephant", "Un éléphant"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=400&q=80",
+      "alt": "Grand mammifère"
+    },
+    "explanation": "L'éléphant, le plus grand mammifère terrestre.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_008",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "culture",
+    "label": "Quelle merveille du monde est-ce ?",
+    "answer": "Grande Muraille de Chine",
+    "acceptedAnswers": ["Grande Muraille de Chine", "Muraille de Chine", "grande muraille"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=400&q=80",
+      "alt": "Fortification historique"
+    },
+    "explanation": "La Grande Muraille de Chine, construite sur plus de 2000 ans.",
+    "tags": ["culture", "monuments", "chine"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_009",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel oiseau voyez-vous ?",
+    "answer": "Aigle",
+    "acceptedAnswers": ["Aigle", "aigle", "Un aigle"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1611689342806-0863700ce1e4?w=400&q=80",
+      "alt": "Oiseau de proie"
+    },
+    "explanation": "L'aigle, majestueux oiseau de proie.",
+    "tags": ["nature", "oiseaux"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_010",
+    "type": "image",
+    "difficulty": "hard",
+    "category": "culture",
+    "label": "Quel monument antique est représenté ?",
+    "answer": "Parthénon",
+    "acceptedAnswers": ["Parthénon", "parthenon", "Le Parthénon"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1555993539-1732b0258235?w=400&q=80",
+      "alt": "Temple grec antique"
+    },
+    "explanation": "Le Parthénon, temple dédié à Athéna à Athènes.",
+    "tags": ["culture", "monuments", "grèce"],
+    "baseTimer": 25
+  },
+  {
+    "id": "img_011",
+    "type": "image",
+    "difficulty": "hard",
+    "category": "nature",
+    "label": "Identifiez cet élément sur l'image :",
+    "answer": "Pyramides",
+    "acceptedAnswers": ["Pyramides", "pyramides", "Pyramides de Gizeh"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1568322445389-f64ac2515020?w=400&q=80",
+      "alt": "Pyramides de Gizeh"
+    },
+    "explanation": "Il s'agit de Pyramides.",
+    "tags": ["nature", "égypte"],
+    "baseTimer": 25
+  },
+  {
+    "id": "img_012",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "culture",
+    "label": "Identifiez cet élément sur l'image :",
+    "answer": "Statue de la Liberté",
+    "acceptedAnswers": ["Statue de la Liberté", "statue de la liberté"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=400&q=80",
+      "alt": "Statue de la Liberté"
+    },
+    "explanation": "Il s'agit de Statue de la Liberté.",
+    "tags": ["nature", "usa"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_013",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "nature",
+    "label": "Identifiez cet élément sur l'image :",
+    "answer": "Girafe",
+    "acceptedAnswers": ["Girafe", "girafe", "Une girafe"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1547721064-da6cfb341d50?w=400&q=80",
+      "alt": "Girafe"
+    },
+    "explanation": "Il s'agit de Girafe.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 25
+  },
+  {
+    "id": "img_014",
+    "type": "image",
+    "difficulty": "hard",
+    "category": "culture",
+    "label": "Identifiez cet élément sur l'image :",
+    "answer": "Big Ben",
+    "acceptedAnswers": ["Big Ben", "big ben"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&q=80",
+      "alt": "Big Ben"
+    },
+    "explanation": "Il s'agit de Big Ben.",
+    "tags": ["nature", "londres"],
+    "baseTimer": 25
+  },
+  {
+    "id": "img_015",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Identifiez cet élément sur l'image :",
+    "answer": "Papillon",
+    "acceptedAnswers": ["Papillon", "papillon", "Un papillon"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?w=400&q=80",
+      "alt": "Papillon"
+    },
+    "explanation": "Il s'agit de Papillon.",
+    "tags": ["nature", "insectes"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_016",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "nature",
+    "label": "Identifiez cet élément sur l'image :",
+    "answer": "Mont Fuji",
+    "acceptedAnswers": ["Mont Fuji", "mont fuji", "Fuji"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=400&q=80",
+      "alt": "Mont Fuji"
+    },
+    "explanation": "Il s'agit de Mont Fuji.",
+    "tags": ["nature", "japon"],
+    "baseTimer": 25
+  },
+  {
+    "id": "img_017",
+    "type": "image",
+    "difficulty": "hard",
+    "category": "nature",
+    "label": "Identifiez cet élément sur l'image :",
+    "answer": "Dauphin",
+    "acceptedAnswers": ["Dauphin", "dauphin", "Un dauphin"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1607153333879-c174d265f1d2?w=400&q=80",
+      "alt": "Dauphin"
+    },
+    "explanation": "Il s'agit de Dauphin.",
+    "tags": ["nature", "animaux marins"],
+    "baseTimer": 25
+  },
+  {
+    "id": "img_018",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Identifiez cet élément sur l'image :",
+    "answer": "Opéra de Sydney",
+    "acceptedAnswers": ["Opéra de Sydney", "opera de sydney"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1523059623039-a9ed027e7fad?w=400&q=80",
+      "alt": "Opéra de Sydney"
+    },
+    "explanation": "Il s'agit de Opéra de Sydney.",
+    "tags": ["nature", "australie"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_019",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "nature",
+    "label": "Identifiez cet élément sur l'image :",
+    "answer": "Tigre",
+    "acceptedAnswers": ["Tigre", "tigre", "Un tigre"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=400&q=80",
+      "alt": "Tigre"
+    },
+    "explanation": "Il s'agit de Tigre.",
+    "tags": ["nature", "félins"],
+    "baseTimer": 25
+  },
+  {
+    "id": "img_020",
+    "type": "image",
+    "difficulty": "hard",
+    "category": "nature",
+    "label": "Identifiez cet élément sur l'image :",
+    "answer": "Machu Picchu",
+    "acceptedAnswers": ["Machu Picchu", "machu picchu"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=400&q=80",
+      "alt": "Machu Picchu"
+    },
+    "explanation": "Il s'agit de Machu Picchu.",
+    "tags": ["nature", "pérou"],
+    "baseTimer": 25
+  },
+  {
+    "id": "img_021",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Identifiez cet élément sur l'image :",
+    "answer": "Cheval",
+    "acceptedAnswers": ["Cheval", "cheval", "Un cheval"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?w=400&q=80",
+      "alt": "Cheval"
+    },
+    "explanation": "Il s'agit de Cheval.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_022",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "culture",
+    "label": "Identifiez cet élément sur l'image :",
+    "answer": "Arc de Triomphe",
+    "acceptedAnswers": ["Arc de Triomphe", "arc de triomphe"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1549041536-28f1ca837b96?w=400&q=80",
+      "alt": "Arc de Triomphe"
+    },
+    "explanation": "Il s'agit de Arc de Triomphe.",
+    "tags": ["nature", "paris"],
+    "baseTimer": 25
+  },
+  {
+    "id": "img_023",
+    "type": "image",
+    "difficulty": "hard",
+    "category": "nature",
+    "label": "Identifiez cet élément sur l'image :",
+    "answer": "Requin",
+    "acceptedAnswers": ["Requin", "requin", "Un requin"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1560275619-4662e36fa65c?w=400&q=80",
+      "alt": "Requin"
+    },
+    "explanation": "Il s'agit de Requin.",
+    "tags": ["nature", "animaux marins"],
+    "baseTimer": 25
+  },
+  {
+    "id": "img_024",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Identifiez cet élément sur l'image :",
+    "answer": "Stonehenge",
+    "acceptedAnswers": ["Stonehenge", "stonehenge"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1599833975787-5304e5c0c267?w=400&q=80",
+      "alt": "Stonehenge"
+    },
+    "explanation": "Il s'agit de Stonehenge.",
+    "tags": ["nature", "angleterre"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_025",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "nature",
+    "label": "Identifiez cet élément sur l'image :",
+    "answer": "Koala",
+    "acceptedAnswers": ["Koala", "koala", "Un koala"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1459262838948-3e2de6c1ec80?w=400&q=80",
+      "alt": "Koala"
+    },
+    "explanation": "Il s'agit de Koala.",
+    "tags": ["nature", "australie"],
+    "baseTimer": 25
+  }
+]

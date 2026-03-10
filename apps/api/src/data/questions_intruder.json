@@ -3,80 +3,107 @@
     "id": "int_001",
     "type": "intruder",
     "difficulty": "easy",
-    "category": "sciences",
-    "label": "Trouvez l'intrus parmi ces éléments :",
-    "answer": "Mercure",
-    "acceptedAnswers": ["Mercure", "mercure"],
+    "category": "nature",
+    "label": "Trouvez l'intrus parmi ces animaux :",
+    "answer": "Manchot",
+    "acceptedAnswers": ["Manchot", "manchot", "Pingouin"],
     "media": null,
-    "explanation": "Mercure est un métal, les autres sont des gaz.",
-    "tags": ["sciences", "chimie"],
+    "explanation": "Le manchot ne vole pas, contrairement aux autres oiseaux.",
+    "tags": ["nature", "animaux"],
     "baseTimer": 20,
-    "intruderId": "int_001_d",
+    "intruderId": "int_001_b",
     "options": [
-      { "id": "int_001_a", "svg": "oxygen", "label": "Oxygène" },
-      { "id": "int_001_b", "svg": "nitrogen", "label": "Azote" },
-      { "id": "int_001_c", "svg": "helium", "label": "Hélium" },
-      { "id": "int_001_d", "svg": "mercury", "label": "Mercure" }
+      {
+        "id": "int_001_a",
+        "imageUrl": "https://images.unsplash.com/photo-1611689342806-0863700ce1e4?w=400&q=80",
+        "label": "Aigle"
+      },
+      {
+        "id": "int_001_b",
+        "imageUrl": "https://images.unsplash.com/photo-1551986782-d0169b3f8fa7?w=400&q=80",
+        "label": "Manchot"
+      },
+      {
+        "id": "int_001_c",
+        "imageUrl": "https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&q=80",
+        "label": "Mouette"
+      },
+      {
+        "id": "int_001_d",
+        "imageUrl": "https://images.unsplash.com/photo-1534695941753-73cf13435eb4?w=400&q=80",
+        "label": "Pigeon"
+      }
     ]
   },
   {
     "id": "int_002",
     "type": "intruder",
-    "difficulty": "easy",
-    "category": "géographie",
-    "label": "Trouvez l'intrus parmi ces capitales :",
-    "answer": "Sydney",
-    "acceptedAnswers": ["Sydney", "sydney"],
-    "media": null,
-    "explanation": "Sydney n'est pas une capitale. La capitale de l'Australie est Canberra.",
-    "tags": ["géographie", "capitales"],
-    "baseTimer": 20,
-    "intruderId": "int_002_c",
-    "options": [
-      { "id": "int_002_a", "svg": "paris", "label": "Paris" },
-      { "id": "int_002_b", "svg": "tokyo", "label": "Tokyo" },
-      { "id": "int_002_c", "svg": "sydney", "label": "Sydney" },
-      { "id": "int_002_d", "svg": "berlin", "label": "Berlin" }
-    ]
-  },
-  {
-    "id": "int_003",
-    "type": "intruder",
     "difficulty": "medium",
     "category": "culture",
-    "label": "Trouvez l'intrus parmi ces instruments :",
-    "answer": "Batterie",
-    "acceptedAnswers": ["Batterie", "batterie", "La batterie"],
+    "label": "Quel monument n'est pas en Europe ?",
+    "answer": "Statue de la Liberté",
+    "acceptedAnswers": ["Statue de la Liberté", "statue de la liberté", "Liberté"],
     "media": null,
-    "explanation": "La batterie est un instrument à percussion, les autres sont des cordes.",
-    "tags": ["culture", "musique"],
+    "explanation": "La Statue de la Liberté est aux États-Unis, les autres sont en Europe.",
+    "tags": ["culture", "géographie"],
     "baseTimer": 25,
-    "intruderId": "int_003_d",
+    "intruderId": "int_002_d",
     "options": [
-      { "id": "int_003_a", "svg": "violin", "label": "Violon" },
-      { "id": "int_003_b", "svg": "guitar", "label": "Guitare" },
-      { "id": "int_003_c", "svg": "harp", "label": "Harpe" },
-      { "id": "int_003_d", "svg": "drums", "label": "Batterie" }
+      {
+        "id": "int_002_a",
+        "imageUrl": "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=400&q=80",
+        "label": "Tour Eiffel"
+      },
+      {
+        "id": "int_002_b",
+        "imageUrl": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&q=80",
+        "label": "Big Ben"
+      },
+      {
+        "id": "int_002_c",
+        "imageUrl": "https://images.unsplash.com/photo-1525874684015-58379d421a52?w=400&q=80",
+        "label": "Colisée"
+      },
+      {
+        "id": "int_002_d",
+        "imageUrl": "https://images.unsplash.com/photo-1503572327579-b5c6afe5c5c5?w=400&q=80",
+        "label": "Statue de la Liberté"
+      }
     ]
   },
   {
-    "id": "int_004",
-    "type": "intruder",
-    "difficulty": "hard",
-    "category": "sciences",
-    "label": "Trouvez l'intrus parmi ces scientifiques :",
-    "answer": "Mozart",
-    "acceptedAnswers": ["Mozart", "mozart"],
+    "id": "fou_001",
+    "type": "four",
+    "difficulty": "medium",
+    "category": "éléments",
+    "label": "Associez chaque élément à son image :",
+    "answer": null,
+    "acceptedAnswers": null,
     "media": null,
-    "explanation": "Mozart est un compositeur, pas un scientifique.",
-    "tags": ["sciences", "culture"],
+    "explanation": "Le feu brûle, l'eau coule, la terre est solide et l'air circule.",
+    "tags": ["éléments", "nature"],
     "baseTimer": 30,
-    "intruderId": "int_004_c",
-    "options": [
-      { "id": "int_004_a", "svg": "einstein", "label": "Einstein" },
-      { "id": "int_004_b", "svg": "curie", "label": "Marie Curie" },
-      { "id": "int_004_c", "svg": "mozart", "label": "Mozart" },
-      { "id": "int_004_d", "svg": "newton", "label": "Newton" }
+    "pairs": [
+      {
+        "id": "fou_001_1",
+        "imageUrl": "https://images.unsplash.com/photo-1517594422361-5eeb8ae275a9?w=400&q=80",
+        "label": "Feu"
+      },
+      {
+        "id": "fou_001_2",
+        "imageUrl": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&q=80",
+        "label": "Eau"
+      },
+      {
+        "id": "fou_001_3",
+        "imageUrl": "https://images.unsplash.com/photo-1533055640609-24b498dfd74c?w=400&q=80",
+        "label": "Terre"
+      },
+      {
+        "id": "fou_001_4",
+        "imageUrl": "https://images.unsplash.com/photo-1505672678657-cc7037095e60?w=400&q=80",
+        "label": "Air"
+      }
     ]
   }
 ]

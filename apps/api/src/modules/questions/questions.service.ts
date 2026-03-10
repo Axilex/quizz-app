@@ -11,6 +11,7 @@ import blindTestQuestions from '../../data/questions_blind_test.json';
 import geoQuestions from '../../data/questions_geo.json';
 import intruderQuestions from '../../data/questions_intruder.json';
 import silhouetteQuestions from '../../data/questions_silhouette.json';
+import imagesQuestions from '../../data/questions_image.json';
 
 interface QuestionFilter {
   difficulties?: Difficulty[];
@@ -44,6 +45,7 @@ export class QuestionsService {
       ...(geoQuestions as Question[]),
       ...(intruderQuestions as Question[]),
       ...(silhouetteQuestions as Question[]),
+      ...(imagesQuestions as Question[]),
     ];
   }
 
