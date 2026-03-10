@@ -5,7 +5,7 @@ export type GamePhase = 'idle' | 'setup' | 'lobby' | 'playing' | 'review' | 'res
 
 export interface TypeRatio {
   type: QuestionType;
-  weight: number; // relative weight 0–10
+  weight: number;
 }
 
 export interface GameConfig {
@@ -13,7 +13,6 @@ export interface GameConfig {
   questionCount: number;
   difficulties: Difficulty[];
   categories?: string[];
-  /** Optional type ratios — controls distribution of question types */
   typeRatios?: TypeRatio[];
 }
 
@@ -53,11 +52,23 @@ export const DIFFICULTY_TIMERS: Record<Difficulty, number> = {
   hard: 35,
 };
 
-/** Points awarded per difficulty level */
+/** Speed-based max points per difficulty */
+export const MAX_POINTS: Record<Difficulty, number> = {
+  easy: 500,
+  medium: 750,
+  hard: 1000,
+};
+
+/** Minimum ratio of max points when answering at last second */
+export const MIN_POINTS_RATIO = 0.3;
+
+/** Flash round bonus points */
+export const FLASH_POINTS = 1500;
+
 export const DIFFICULTY_POINTS: Record<Difficulty, number> = {
-  easy: 1,
-  medium: 2,
-  hard: 3,
+  easy: 500,
+  medium: 750,
+  hard: 1000,
 };
 
 export const TYPE_MODIFIERS: Record<QuestionType, number> = {
@@ -70,6 +81,7 @@ export const TYPE_MODIFIERS: Record<QuestionType, number> = {
   chronology: 15,
   blindTest: 12,
   geoMap: 10,
+  geoClickMap: 15,
   intruder: 5,
   silhouette: 8,
   splitImage: 12,

@@ -11,27 +11,19 @@ import { Server, Socket } from 'socket.io';
 import { RoomsService } from './rooms.service';
 import { QuestionsService } from '../questions/questions.service';
 import { GameScoringService } from '../game/game-scoring.service';
-import type { GameConfig, Room } from '../../common/types';
+import type { GameConfig, Room, PowerUpType } from '../../common/types';
 import { Logger } from '@nestjs/common';
 
 const WS_CORS_ORIGINS = process.env['CORS_ORIGINS']
   ? process.env['CORS_ORIGINS'].split(',').map((o) => o.trim())
   : ['http://localhost:5173', 'http://localhost:4173'];
 
-/** How long to wait before removing a disconnected player (ms) */
 const DISCONNECT_GRACE_PERIOD = parseInt(process.env['DISCONNECT_GRACE_MS'] ?? '30000', 10);
-
-/** Interval to clean up stale/empty rooms (ms) */
 const ROOM_CLEANUP_INTERVAL = 60000;
-
-/** Max age for an idle room before cleanup (ms) — 2 hours */
 const ROOM_MAX_IDLE_AGE = 2 * 60 * 60 * 1000;
 
 @WebSocketGateway({
-  cors: {
-    origin: WS_CORS_ORIGINS,
-    credentials: true,
-  },
+  cors: { origin: WS_CORS_ORIGINS, credentials: true },
   namespace: '/game',
   pingInterval: 25000,
   pingTimeout: 10000,
@@ -41,7 +33,6 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   server!: Server;
 
   private roomTimers = new Map<string, ReturnType<typeof setTimeout>>();
-  /** Pending disconnect cleanup timers per playerId */
   private disconnectTimers = new Map<string, ReturnType<typeof setTimeout>>();
 
   constructor(
@@ -49,7 +40,6 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     private readonly questionsService: QuestionsService,
     private readonly scoringService: GameScoringService,
   ) {
-    // Start periodic room cleanup
     setInterval(() => this.cleanupStaleRooms(), ROOM_CLEANUP_INTERVAL);
   }
 
@@ -65,17 +55,12 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const { room, player } = result;
     player.status = 'disconnected';
 
-    // Notify the room immediately
     this.server.to(room.id).emit('player:disconnected', { playerId: player.id });
-
-    // Cancel any existing disconnect timer for this player
     this.cancelDisconnectTimer(player.id);
 
-    // Start grace period — if the player doesn't reconnect, remove them
     const timer = setTimeout(() => {
       this.disconnectTimers.delete(player.id);
-
-      if (player.status !== 'disconnected') return; // Reconnected in time
+      if (player.status !== 'disconnected') return;
 
       Logger.log(`[WS] Grace period expired for ${player.name} (${player.id}), removing`);
       const removal = this.roomsService.removePlayer(client.id);
@@ -87,13 +72,10 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
         });
       }
 
-      // If the room is now empty, clean up timers
       if (removal?.isEmpty) {
         this.clearQuestionTimer(room.id);
       }
 
-      // If a game is in progress and the disconnected player was the last answering,
-      // check if we should advance
       if (room.isStarted && this.roomsService.allPlayersAnswered(room)) {
         this.clearQuestionTimer(room.id);
         this.advanceToNextQuestion(room);
@@ -103,12 +85,8 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     this.disconnectTimers.set(player.id, timer);
   }
 
-  // ─── Heartbeat (client-initiated ping) ────────────────────
-
   @SubscribeMessage('ping')
   handlePing(@ConnectedSocket() client: Socket) {
-    // The callback-based ping is handled by Socket.IO automatically.
-    // This explicit handler is a fallback for the volatile.emit('ping', callback) pattern.
     client.emit('pong');
   }
 
@@ -148,14 +126,20 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     });
 
     client.to(room.id).emit('player:joined', {
-      player: { id: player.id, name: player.name, score: 0, status: 'connected', isHost: false },
+      player: {
+        id: player.id,
+        name: player.name,
+        score: 0,
+        status: 'connected',
+        isHost: false,
+        powerUpsLeft: 3,
+      },
       room: this.roomsService.serializeRoom(room),
     });
   }
 
   @SubscribeMessage('room:reconnect')
   handleReconnect(@ConnectedSocket() client: Socket, @MessageBody() data: { playerId: string }) {
-    // Cancel any pending disconnect cleanup for this player
     this.cancelDisconnectTimer(data.playerId);
 
     const result = this.roomsService.handleReconnect(client.id, data.playerId);
@@ -171,12 +155,21 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
     this.server.to(room.id).emit('player:reconnected', { playerId: player.id });
 
-    const currentQ = room.questions[room.currentQuestionIndex];
+    const currentQ = room.isStarted ? room.questions[room.currentQuestionIndex] : null;
+    const timer = currentQ ? this.scoringService.computeTimer(currentQ) : 0;
+    const isFlash = room.isStarted ? this.roomsService.isCurrentFlash(room) : false;
+
+    // Send full state back to the reconnecting player
     client.emit('room:reconnected', {
       room: this.roomsService.serializeRoom(room),
       playerId: player.id,
+      scores: this.roomsService.getScores(room),
       currentQuestion: currentQ ? this.questionsService.toPublic(currentQ) : null,
       questionIndex: room.currentQuestionIndex,
+      totalQuestions: room.questions.length,
+      timer,
+      isFlash,
+      isGameStarted: room.isStarted,
     });
   }
 
@@ -185,7 +178,6 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const result = this.roomsService.removePlayer(client.id);
     if (!result) return;
 
-    // Cancel any pending disconnect timer
     this.cancelDisconnectTimer(result.player.id);
     client.leave(result.room.id);
 
@@ -195,7 +187,6 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
         room: this.roomsService.serializeRoom(result.room),
       });
     } else {
-      // Room is empty — clean up game timers
       this.clearQuestionTimer(result.room.id);
     }
   }
@@ -241,7 +232,10 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     this.roomsService.startGame(room, room.config, questions);
 
     const firstQuestion = questions[0]!;
-    const timer = this.scoringService.computeTimer(firstQuestion);
+    const isFlash = this.roomsService.isCurrentFlash(room);
+    const timer = isFlash
+      ? this.scoringService.getFlashTimer()
+      : this.scoringService.computeTimer(firstQuestion);
 
     Logger.log(`[WS] Game started in room ${room.code}, ${questions.length} questions`);
 
@@ -250,6 +244,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       question: this.questionsService.toPublic(firstQuestion),
       questionIndex: 0,
       timer,
+      isFlash,
     });
 
     this.startQuestionTimer(room);
@@ -271,7 +266,66 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const currentQuestion = room.questions[room.currentQuestionIndex];
     if (!currentQuestion || currentQuestion.id !== data.questionId) return;
 
+    const isFlash = this.roomsService.isCurrentFlash(room);
+
+    // Flash: if winner already claimed it, late correct answers get 0
+    if (isFlash && room.flashWinner !== null) {
+      const isCorrect = this.scoringService.validateAnswer(currentQuestion, data.answer);
+      this.roomsService.recordAnswer(
+        room,
+        player.id,
+        data.questionId,
+        data.answer,
+        false,
+        data.timeSpent,
+        false,
+        0,
+      );
+
+      client.emit('game:answerResult', {
+        questionId: data.questionId,
+        isCorrect,
+        correctAnswer: currentQuestion.answer,
+        explanation: currentQuestion.explanation,
+        points: 0,
+        flashLate: true,
+      });
+
+      if (this.roomsService.allPlayersAnswered(room)) {
+        this.clearQuestionTimer(room.id);
+        this.advanceToNextQuestion(room);
+      }
+      return;
+    }
+
     const isCorrect = this.scoringService.validateAnswer(currentQuestion, data.answer);
+    const totalTimerMs =
+      (isFlash
+        ? this.scoringService.getFlashTimer()
+        : this.scoringService.computeTimer(currentQuestion)) * 1000;
+
+    let points = 0;
+    if (isCorrect) {
+      if (isFlash) {
+        // First correct answer wins all points
+        room.flashWinner = player.id;
+        points = this.scoringService.computePoints(
+          true,
+          data.timeSpent,
+          totalTimerMs,
+          currentQuestion.difficulty,
+          true,
+        );
+      } else {
+        points = this.scoringService.computePoints(
+          isCorrect,
+          data.timeSpent,
+          totalTimerMs,
+          currentQuestion.difficulty,
+          false,
+        );
+      }
+    }
 
     this.roomsService.recordAnswer(
       room,
@@ -281,6 +335,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       isCorrect,
       data.timeSpent,
       false,
+      points,
     );
 
     client.emit('game:answerResult', {
@@ -288,6 +343,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       isCorrect,
       correctAnswer: currentQuestion.answer,
       explanation: currentQuestion.explanation,
+      points,
     });
 
     this.server.to(room.id).emit('player:answered', {
@@ -296,9 +352,115 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       scores: this.roomsService.getScores(room),
     });
 
+    // Flash: once winner answers, advance after short delay
+    if (isFlash && isCorrect) {
+      // Mark all remaining 'answering' players as waiting with 0 points
+      for (const p of room.players.values()) {
+        if (p.status === 'answering') {
+          this.roomsService.recordAnswer(
+            room,
+            p.id,
+            data.questionId,
+            '',
+            false,
+            totalTimerMs,
+            true,
+            0,
+          );
+        }
+      }
+      this.clearQuestionTimer(room.id);
+      setTimeout(() => this.advanceToNextQuestion(room), 1500);
+      return;
+    }
+
     if (this.roomsService.allPlayersAnswered(room)) {
       this.clearQuestionTimer(room.id);
       this.advanceToNextQuestion(room);
+    }
+  }
+
+  // ─── PowerUp system ───────────────────────────────────────
+
+  @SubscribeMessage('game:powerup')
+  handlePowerUp(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { type: PowerUpType; targetPlayerId?: string },
+  ) {
+    const result = this.roomsService.getPlayerBySocket(client.id);
+    if (!result) return;
+
+    const { room, player } = result;
+    if (!room.isStarted) return;
+
+    const used = this.roomsService.usePowerUp(room, player.id);
+    if (!used) {
+      client.emit('error', { message: 'Plus de power-ups disponibles' });
+      return;
+    }
+
+    if (data.type === 'malus_blur') {
+      const targetId = data.targetPlayerId;
+      const targetPlayer = targetId ? room.players.get(targetId) : null;
+
+      if (!targetPlayer || targetPlayer.status === 'disconnected') {
+        // Refund
+        player.powerUpsLeft++;
+        client.emit('error', { message: 'Joueur cible introuvable' });
+        return;
+      }
+
+      // Send blur malus to target
+      this.server.to(targetPlayer.socketId).emit('game:malus', {
+        fromPlayerName: player.name,
+        duration: 6000,
+      });
+
+      // Confirm to sender
+      client.emit('game:powerupUsed', {
+        type: data.type,
+        powerUpsLeft: player.powerUpsLeft,
+        targetName: targetPlayer.name,
+      });
+
+      // Notify room
+      this.server.to(room.id).emit('game:powerupEvent', {
+        fromName: player.name,
+        targetName: targetPlayer.name,
+        type: 'malus_blur',
+      });
+    } else if (data.type === 'bonus_fifty50') {
+      const currentQuestion = room.questions[room.currentQuestionIndex];
+      if (!currentQuestion || currentQuestion.type !== 'qcm') {
+        // Refund if not QCM
+        player.powerUpsLeft++;
+        client.emit('error', { message: 'Le 50/50 ne fonctionne que sur les QCM' });
+        return;
+      }
+
+      const options = (currentQuestion['options'] as Array<{ id: string; label: string }>) ?? [];
+      const correctAnswer = currentQuestion.answer;
+
+      // Find 2 wrong options to remove
+      const wrongOptions = options.filter(
+        (o) => o.label.toLowerCase() !== correctAnswer.toLowerCase(),
+      );
+
+      const toRemove: string[] = [];
+      const shuffled = [...wrongOptions].sort(() => Math.random() - 0.5);
+      for (let i = 0; i < Math.min(2, shuffled.length); i++) {
+        toRemove.push(shuffled[i]!.id);
+      }
+
+      client.emit('game:bonus5050', {
+        removeOptionIds: toRemove,
+        powerUpsLeft: player.powerUpsLeft,
+      });
+
+      client.emit('game:powerupUsed', {
+        type: data.type,
+        powerUpsLeft: player.powerUpsLeft,
+      });
     }
   }
 
@@ -357,21 +519,22 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const question = room.questions[room.currentQuestionIndex];
     if (!question) return;
 
-    const timerMs = this.scoringService.computeTimer(question) * 1000 + 2000;
+    const isFlash = this.roomsService.isCurrentFlash(room);
+    const timerSec = isFlash
+      ? this.scoringService.getFlashTimer()
+      : this.scoringService.computeTimer(question);
+    const timerMs = timerSec * 1000 + 2000;
 
     const timerId = setTimeout(() => {
       this.roomTimers.delete(room.id);
 
       for (const player of room.players.values()) {
-        // Record timeout for anyone who hasn't answered yet (connected or disconnected)
         const wasConnected = player.status === 'answering';
         const needsTimeout = wasConnected || player.status === 'disconnected';
-
         if (!needsTimeout) continue;
 
-        this.roomsService.recordAnswer(room, player.id, question.id, '', false, timerMs, true);
+        this.roomsService.recordAnswer(room, player.id, question.id, '', false, timerMs, true, 0);
 
-        // Only emit the result event to players who were connected
         if (wasConnected) {
           this.server.to(player.socketId).emit('game:answerResult', {
             questionId: question.id,
@@ -379,6 +542,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
             correctAnswer: question.answer,
             explanation: question.explanation,
             timedOut: true,
+            points: 0,
           });
         }
       }
@@ -421,20 +585,23 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       const nextQuestion = room.questions[room.currentQuestionIndex];
       if (!nextQuestion) return;
 
-      const timer = this.scoringService.computeTimer(nextQuestion);
+      const isFlash = this.roomsService.isCurrentFlash(room);
+      const timer = isFlash
+        ? this.scoringService.getFlashTimer()
+        : this.scoringService.computeTimer(nextQuestion);
 
       this.server.to(room.id).emit('game:nextQuestion', {
         question: this.questionsService.toPublic(nextQuestion),
         questionIndex: room.currentQuestionIndex,
         timer,
         scores: this.roomsService.getScores(room),
+        isFlash,
+        totalQuestions: room.questions.length,
       });
 
       this.startQuestionTimer(room);
     }, 500);
   }
-
-  // ─── Disconnect timer management ──────────────────────────
 
   private cancelDisconnectTimer(playerId: string): void {
     const timer = this.disconnectTimers.get(playerId);
@@ -444,9 +611,6 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     }
   }
 
-  // ─── Room cleanup ─────────────────────────────────────────
-
-  /** Periodically clean up stale/empty rooms */
   private cleanupStaleRooms(): void {
     const staleRoomIds = this.roomsService.getStaleRoomIds(ROOM_MAX_IDLE_AGE);
     for (const roomId of staleRoomIds) {

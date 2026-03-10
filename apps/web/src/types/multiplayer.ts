@@ -7,6 +7,7 @@ export interface Player {
   score: number;
   status: PlayerStatus;
   isHost: boolean;
+  powerUpsLeft?: number;
 }
 
 export interface Room {
@@ -27,6 +28,7 @@ export interface PlayerAnswer {
   timeSpent: number;
   timedOut: boolean;
   hostOverride: boolean | null;
+  points: number;
 }
 
 export interface QuestionReviewData {
@@ -41,13 +43,39 @@ export interface QuestionReviewData {
 
 export type ReviewViewMode = 'podium' | 'review';
 
+export type PowerUpType = 'malus_blur' | 'bonus_fifty50';
+
 export type MultiplayerEvent =
   | { type: 'player:joined'; player: Player }
   | { type: 'player:left'; playerId: string }
   | { type: 'player:reconnected'; playerId: string }
-  | { type: 'game:started'; questions: string[] }
-  | { type: 'game:question'; index: number; question?: unknown; timer?: number }
-  | { type: 'player:answered'; playerId: string; isCorrect: boolean }
+  | {
+      type: 'room:reconnected';
+      room: Room;
+      playerId: string;
+      scores: Record<string, unknown>;
+      currentQuestion?: unknown;
+      questionIndex: number;
+      totalQuestions: number;
+      timer: number;
+      isFlash: boolean;
+      isGameStarted: boolean;
+    }
+  | { type: 'game:started'; questions: string[]; totalQuestions: number; isFlash: boolean }
+  | {
+      type: 'game:question';
+      index: number;
+      question?: unknown;
+      timer?: number;
+      isFlash?: boolean;
+      totalQuestions?: number;
+    }
+  | {
+      type: 'player:answered';
+      playerId: string;
+      isCorrect: boolean;
+      scores?: Record<string, unknown>;
+    }
   | {
       type: 'game:answerResult';
       questionId: string;
@@ -55,24 +83,23 @@ export type MultiplayerEvent =
       correctAnswer: string;
       explanation?: string;
       timedOut?: boolean;
+      points: number;
+      flashLate?: boolean;
     }
   | { type: 'game:timeout'; questionId: string }
   | { type: 'game:configured'; config: unknown }
+  | { type: 'game:finished'; scores: Record<string, unknown>; review?: QuestionReviewData[] }
+  | { type: 'game:reviewUpdated'; review: QuestionReviewData[]; scores: Record<string, unknown> }
+  | { type: 'review:navigated'; view: ReviewViewMode; questionIdx: number }
+  | { type: 'game:malus'; fromPlayerName: string; duration: number }
+  | { type: 'game:bonus5050'; removeOptionIds: string[]; powerUpsLeft: number }
   | {
-      type: 'game:finished';
-      scores: Record<string, unknown>;
-      review?: QuestionReviewData[];
+      type: 'game:powerupUsed';
+      powerUpType: PowerUpType;
+      powerUpsLeft: number;
+      targetName?: string;
     }
-  | {
-      type: 'game:reviewUpdated';
-      review: QuestionReviewData[];
-      scores: Record<string, unknown>;
-    }
-  | {
-      type: 'review:navigated';
-      view: ReviewViewMode;
-      questionIdx: number;
-    }
+  | { type: 'game:powerupEvent'; fromName: string; targetName?: string; powerUpType: PowerUpType }
   | { type: 'error'; message: string };
 
 export interface MultiplayerGateway {
@@ -88,6 +115,7 @@ export interface MultiplayerGateway {
   }): void;
   startGame(): void;
   submitAnswer(questionId: string, answer: string, timeSpent?: number): void;
+  usePowerUp(type: PowerUpType, targetPlayerId?: string): void;
   hostOverride(playerId: string, questionId: string, isCorrect: boolean): void;
   reviewNavigate(view: ReviewViewMode, questionIdx: number): void;
   onEvent(handler: (event: MultiplayerEvent) => void): () => void;

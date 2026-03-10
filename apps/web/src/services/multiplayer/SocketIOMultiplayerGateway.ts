@@ -1,41 +1,29 @@
 import { io, Socket } from 'socket.io-client';
-import type { MultiplayerGateway, MultiplayerEvent, Room, Player, ReviewViewMode } from '@/types';
+import type {
+  MultiplayerGateway,
+  MultiplayerEvent,
+  Room,
+  Player,
+  ReviewViewMode,
+  PowerUpType,
+} from '@/types';
 import { logger } from '@/utils';
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
 
-/** Connection configuration */
 const CONNECTION_CONFIG = {
-  /** Initial connection timeout (ms) */
   connectTimeout: 8000,
-  /** Timeout for emit-and-wait operations like createRoom/joinRoom (ms) */
   operationTimeout: 8000,
-  /** Max reconnection attempts before giving up */
-  maxReconnectAttempts: 5,
-  /** Base delay for exponential backoff (ms) */
+  maxReconnectAttempts: 8,
   reconnectBaseDelay: 1000,
-  /** Max delay cap for backoff (ms) */
   reconnectMaxDelay: 15000,
-  /** Server heartbeat interval — if no pong after this, connection is stale (ms) */
   heartbeatInterval: 25000,
-  /** How long to wait for a pong before considering connection dead (ms) */
   heartbeatTimeout: 10000,
-  /** Grace period before fully cleaning up after disconnect (ms) */
   disconnectGracePeriod: 5000,
 } as const;
 
 export type ConnectionState = 'disconnected' | 'connecting' | 'connected' | 'reconnecting';
 
-/**
- * Socket.IO gateway — connects to the NestJS backend.
- *
- * Resilience features:
- * - Heartbeat monitoring with configurable interval
- * - Auto-reconnect with exponential backoff
- * - Operation timeouts on all emit-and-wait calls
- * - Graceful cleanup on disconnect
- * - Connection state tracking for UI feedback
- */
 export class SocketIOMultiplayerGateway implements MultiplayerGateway {
   private socket: Socket | null = null;
   private listeners = new Set<(event: MultiplayerEvent) => void>();
@@ -44,15 +32,10 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
   private _lastRoomCode: string | null = null;
   private _lastPlayerName: string | null = null;
 
-  // Reconnect state
   private reconnectAttempts = 0;
   private reconnectTimer: ReturnType<typeof setTimeout> | null = null;
-
-  // Heartbeat state
   private heartbeatTimer: ReturnType<typeof setInterval> | null = null;
   private heartbeatTimeoutTimer: ReturnType<typeof setTimeout> | null = null;
-
-  // State change listeners
   private stateListeners = new Set<(state: ConnectionState) => void>();
 
   get isConnected(): boolean {
@@ -67,7 +50,6 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
     return this._connectionState;
   }
 
-  /** Subscribe to connection state changes (for UI indicators) */
   onStateChange(handler: (state: ConnectionState) => void): () => void {
     this.stateListeners.add(handler);
     return () => this.stateListeners.delete(handler);
@@ -78,8 +60,6 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
     this._connectionState = state;
     this.stateListeners.forEach((fn) => fn(state));
   }
-
-  // ─── Connect / Disconnect ─────────────────────────────────
 
   async connect(): Promise<void> {
     if (this.socket?.connected) return;
@@ -96,7 +76,7 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
       this.socket = io(`${API_URL}/game`, {
         transports: ['websocket'],
         autoConnect: true,
-        reconnection: false, // We handle reconnection ourselves
+        reconnection: false,
         timeout: CONNECTION_CONFIG.connectTimeout,
       });
 
@@ -121,13 +101,10 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
         logger.warn('[WS] Disconnected:', reason);
         this.stopHeartbeat();
 
-        // Server-initiated or transport close → try to reconnect
         if (reason === 'io server disconnect') {
-          // Server kicked us — don't auto-reconnect
           this.setConnectionState('disconnected');
           this.emit({ type: 'error', message: 'Déconnecté par le serveur' });
         } else {
-          // Transport error or client timeout → attempt reconnect
           this.attemptReconnect();
         }
       });
@@ -142,7 +119,6 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
     this.setConnectionState('disconnected');
   }
 
-  /** Full cleanup — kill socket, timers, state */
   private cleanup(): void {
     this.stopHeartbeat();
     this.cancelReconnect();
@@ -154,26 +130,19 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
     }
   }
 
-  // ─── Heartbeat ────────────────────────────────────────────
-
   private startHeartbeat(): void {
     this.stopHeartbeat();
-
     this.heartbeatTimer = setInterval(() => {
       if (!this.socket?.connected) {
         this.stopHeartbeat();
         return;
       }
-
-      // Send ping, expect pong within timeout
       this.heartbeatTimeoutTimer = setTimeout(() => {
         logger.warn('[WS] Heartbeat timeout — connection stale');
-        // Force disconnect → triggers reconnect
         this.socket?.disconnect();
       }, CONNECTION_CONFIG.heartbeatTimeout);
 
       this.socket.volatile.emit('ping', () => {
-        // Pong received — connection is alive
         if (this.heartbeatTimeoutTimer) {
           clearTimeout(this.heartbeatTimeoutTimer);
           this.heartbeatTimeoutTimer = null;
@@ -193,13 +162,11 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
     }
   }
 
-  // ─── Auto-reconnect with exponential backoff ──────────────
-
   private attemptReconnect(): void {
     if (this.reconnectAttempts >= CONNECTION_CONFIG.maxReconnectAttempts) {
       logger.error('[WS] Max reconnect attempts reached');
       this.setConnectionState('disconnected');
-      this.emit({ type: 'error', message: 'Connexion perdue. Veuillez rafraîchir la page.' });
+      this.emit({ type: 'error', message: 'Connexion perdue. Appuyez sur "Reconnecter".' });
       return;
     }
 
@@ -218,9 +185,8 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
     this.reconnectTimer = setTimeout(async () => {
       try {
         await this.connect();
-
-        // If we had a player session, try to reconnect to the room
-        if (this._playerId) {
+        // If we had a room session, attempt to rejoin
+        if (this._playerId && this._lastRoomCode) {
           logger.log('[WS] Attempting session reconnect for player:', this._playerId);
           this.socket?.emit('room:reconnect', { playerId: this._playerId });
         }
@@ -239,11 +205,8 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
     this.reconnectAttempts = 0;
   }
 
-  // ─── Room lifecycle ───────────────────────────────────────
-
   async createRoom(playerName: string): Promise<Room> {
     this._lastPlayerName = playerName;
-
     return this.emitWithTimeout<Room>('room:create', { playerName }, 'room:created', (data) => {
       const { room, playerId } = data as { room: Room; playerId: string };
       this._playerId = playerId;
@@ -255,7 +218,6 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
   async joinRoom(code: string, playerName: string): Promise<Room> {
     this._lastPlayerName = playerName;
     this._lastRoomCode = code;
-
     return this.emitWithTimeout<Room>('room:join', { code, playerName }, 'room:joined', (data) => {
       const { room, playerId } = data as { room: Room; playerId: string };
       this._playerId = playerId;
@@ -280,11 +242,11 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
   }
 
   submitAnswer(questionId: string, answer: string, timeSpent?: number): void {
-    this.socket?.emit('game:answer', {
-      questionId,
-      answer,
-      timeSpent: timeSpent ?? 0,
-    });
+    this.socket?.emit('game:answer', { questionId, answer, timeSpent: timeSpent ?? 0 });
+  }
+
+  usePowerUp(type: PowerUpType, targetPlayerId?: string): void {
+    this.socket?.emit('game:powerup', { type, targetPlayerId });
   }
 
   hostOverride(playerId: string, questionId: string, isCorrect: boolean): void {
@@ -300,12 +262,19 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
     return () => this.listeners.delete(handler);
   }
 
+  // ─── Manual reconnect (called from UI) ───────────────────
+
+  async manualReconnect(): Promise<void> {
+    this.cancelReconnect();
+    this.reconnectAttempts = 0;
+    await this.connect();
+    if (this._playerId && this._lastRoomCode) {
+      this.socket?.emit('room:reconnect', { playerId: this._playerId });
+    }
+  }
+
   // ─── Helpers ──────────────────────────────────────────────
 
-  /**
-   * Emit an event and wait for a response, with a timeout.
-   * Rejects if no response within operationTimeout.
-   */
   private emitWithTimeout<T>(
     emitEvent: string,
     payload: unknown,
@@ -368,6 +337,37 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
       this.emit({ type: 'player:left', playerId: data.playerId });
     });
 
+    // ─── Reconnection state restore ───────────────────────
+    this.socket.on(
+      'room:reconnected',
+      (data: {
+        room: Room;
+        playerId: string;
+        scores: Record<string, unknown>;
+        currentQuestion?: unknown;
+        questionIndex: number;
+        totalQuestions: number;
+        timer: number;
+        isFlash: boolean;
+        isGameStarted: boolean;
+      }) => {
+        logger.log('[WS] Room reconnected, restoring state');
+        this._playerId = data.playerId;
+        this.emit({
+          type: 'room:reconnected',
+          room: data.room,
+          playerId: data.playerId,
+          scores: data.scores,
+          currentQuestion: data.currentQuestion,
+          questionIndex: data.questionIndex,
+          totalQuestions: data.totalQuestions,
+          timer: data.timer,
+          isFlash: data.isFlash,
+          isGameStarted: data.isGameStarted,
+        });
+      },
+    );
+
     this.socket.on(
       'game:started',
       (data: {
@@ -375,25 +375,42 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
         question: unknown;
         questionIndex: number;
         timer: number;
+        isFlash: boolean;
       }) => {
-        this.emit({ type: 'game:started', questions: [] });
+        this.emit({
+          type: 'game:started',
+          questions: [],
+          totalQuestions: data.totalQuestions,
+          isFlash: data.isFlash,
+        });
         this.emit({
           type: 'game:question',
           index: data.questionIndex,
           question: data.question,
           timer: data.timer,
+          isFlash: data.isFlash,
+          totalQuestions: data.totalQuestions,
         } as MultiplayerEvent);
       },
     );
 
     this.socket.on(
       'game:nextQuestion',
-      (data: { question: unknown; questionIndex: number; timer: number }) => {
+      (data: {
+        question: unknown;
+        questionIndex: number;
+        timer: number;
+        scores: Record<string, unknown>;
+        isFlash: boolean;
+        totalQuestions: number;
+      }) => {
         this.emit({
           type: 'game:question',
           index: data.questionIndex,
           question: data.question,
           timer: data.timer,
+          isFlash: data.isFlash,
+          totalQuestions: data.totalQuestions,
         } as MultiplayerEvent);
       },
     );
@@ -406,14 +423,24 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
         correctAnswer: string;
         explanation?: string;
         timedOut?: boolean;
+        points: number;
+        flashLate?: boolean;
       }) => {
         this.emit({ type: 'game:answerResult', ...data } as MultiplayerEvent);
       },
     );
 
-    this.socket.on('player:answered', (data: { playerId: string; isCorrect: boolean }) => {
-      this.emit({ type: 'player:answered', playerId: data.playerId, isCorrect: data.isCorrect });
-    });
+    this.socket.on(
+      'player:answered',
+      (data: { playerId: string; isCorrect: boolean; scores?: Record<string, unknown> }) => {
+        this.emit({
+          type: 'player:answered',
+          playerId: data.playerId,
+          isCorrect: data.isCorrect,
+          scores: data.scores,
+        });
+      },
+    );
 
     this.socket.on('game:timeout', (data: { questionId: string }) => {
       this.emit({ type: 'game:timeout', questionId: data.questionId } as MultiplayerEvent);
@@ -442,16 +469,56 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
     );
 
     this.socket.on('review:navigated', (data: { view: ReviewViewMode; questionIdx: number }) => {
-      this.emit({
-        type: 'review:navigated',
-        view: data.view,
-        questionIdx: data.questionIdx,
-      });
+      this.emit({ type: 'review:navigated', view: data.view, questionIdx: data.questionIdx });
     });
 
     this.socket.on('game:configured', (data: { config: unknown }) => {
       this.emit({ type: 'game:configured', config: data.config } as MultiplayerEvent);
     });
+
+    // PowerUp events
+    this.socket.on('game:malus', (data: { fromPlayerName: string; duration: number }) => {
+      this.emit({
+        type: 'game:malus',
+        fromPlayerName: data.fromPlayerName,
+        duration: data.duration,
+      });
+    });
+
+    this.socket.on(
+      'game:bonus5050',
+      (data: { removeOptionIds: string[]; powerUpsLeft: number }) => {
+        this.emit({
+          type: 'game:bonus5050',
+          removeOptionIds: data.removeOptionIds,
+          powerUpsLeft: data.powerUpsLeft,
+        });
+      },
+    );
+
+    this.socket.on(
+      'game:powerupUsed',
+      (data: { type: PowerUpType; powerUpsLeft: number; targetName?: string }) => {
+        this.emit({
+          type: 'game:powerupUsed',
+          powerUpType: data.type,
+          powerUpsLeft: data.powerUpsLeft,
+          targetName: data.targetName,
+        });
+      },
+    );
+
+    this.socket.on(
+      'game:powerupEvent',
+      (data: { fromName: string; targetName?: string; type: PowerUpType }) => {
+        this.emit({
+          type: 'game:powerupEvent',
+          fromName: data.fromName,
+          targetName: data.targetName,
+          powerUpType: data.type,
+        });
+      },
+    );
 
     this.socket.on('error', (data: { message: string }) => {
       this.emit({ type: 'error', message: data.message });

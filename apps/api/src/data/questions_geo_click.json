@@ -1,0 +1,20 @@
+[
+  {
+    "id": "geoclik_001",
+    "type": "geoClickMap",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Cliquez sur la France sur la carte du monde",
+    "answer": "46.2,2.2",
+    "acceptedAnswers": ["46.2,2.2"],
+    "media": null,
+    "explanation": "La France est située en Europe occidentale.",
+    "tags": ["géographie", "europe"],
+    "baseTimer": 20,
+    "targetLat": 46.2276,
+    "targetLng": 2.2137,
+    "targetName": "France",
+    "toleranceKm": 500,
+    "geoHint": "Europe occidentale"
+  }
+]

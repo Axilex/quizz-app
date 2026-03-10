@@ -14,6 +14,7 @@ import silhouetteQuestions from '../../data/questions_silhouette.json';
 import imagesQuestions from '../../data/questions_image.json';
 import splitImageQuestions from '../../data/questions_splitimage.json';
 import mathMaxQuestions from '../../data/questions_math_max.json';
+import geoClickQuestions from '../../data/questions_geo_click.json';
 
 interface QuestionFilter {
   difficulties?: Difficulty[];
@@ -96,6 +97,7 @@ export class QuestionsService {
       ...(imagesQuestions as Question[]),
       ...(splitImageQuestions as Question[]),
       ...(mathMaxQuestions as Question[]),
+      ...(geoClickQuestions as Question[]),
     ];
     // Generate a pool of math simple questions
     this.mathSimplePool = generateMathSimpleQuestions(50);
@@ -302,6 +304,12 @@ export class QuestionsService {
         base.topHalf = question['topHalf'] as QuestionPublic['topHalf'];
         base.bottomHalf = question['bottomHalf'] as QuestionPublic['bottomHalf'];
         if (question['hint']) base.hint = question['hint'] as string;
+        break;
+
+      case 'geoClickMap':
+        // Never send targetLat/targetLng to clients — only a hint
+        base.geoHint = (question['geoHint'] as string) ?? '';
+        base.targetName = question['targetName'] as string;
         break;
 
       case 'mathMax':
