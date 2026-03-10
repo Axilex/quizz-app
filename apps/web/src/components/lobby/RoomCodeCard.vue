@@ -24,20 +24,7 @@
 
   /** Native share (mobile) if available, else fallback to copy */
   function shareOrCopy() {
-    if (navigator.share) {
-      navigator
-        .share({
-          title: 'Rejoins ma partie Quizzy !',
-          text: `Rejoins ma partie avec le code ${props.code}`,
-          url: joinUrl.value,
-        })
-        .catch(() => {
-          // Share cancelled or failed — fallback to copy
-          copyUrl();
-        });
-    } else {
-      copyUrl();
-    }
+    copyUrl();
   }
 </script>
 

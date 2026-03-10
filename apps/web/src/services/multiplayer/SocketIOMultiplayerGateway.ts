@@ -17,26 +17,24 @@ const CONNECTION_CONFIG = {
   maxReconnectAttempts: 8,
   reconnectBaseDelay: 1000,
   reconnectMaxDelay: 15000,
-  heartbeatInterval: 25000,
-  heartbeatTimeout: 10000,
-  disconnectGracePeriod: 5000,
 } as const;
 
 export type ConnectionState = 'disconnected' | 'connecting' | 'connected' | 'reconnecting';
 
+type StateListener = (state: ConnectionState) => void;
+type EventListener = (event: MultiplayerEvent) => void;
+
 export class SocketIOMultiplayerGateway implements MultiplayerGateway {
   private socket: Socket | null = null;
-  private listeners = new Set<(event: MultiplayerEvent) => void>();
+  private listeners = new Set<EventListener>();
+  private stateListeners = new Set<StateListener>();
+
   private _playerId: string | null = null;
   private _connectionState: ConnectionState = 'disconnected';
   private _lastRoomCode: string | null = null;
   private _lastPlayerName: string | null = null;
 
-  private reconnectAttempts = 0;
-  private reconnectTimer: ReturnType<typeof setTimeout> | null = null;
-  private heartbeatTimer: ReturnType<typeof setInterval> | null = null;
-  private heartbeatTimeoutTimer: ReturnType<typeof setTimeout> | null = null;
-  private stateListeners = new Set<(state: ConnectionState) => void>();
+  private didSetupListeners = false;
 
   get isConnected(): boolean {
     return this.socket?.connected ?? false;
@@ -52,7 +50,9 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
 
   onStateChange(handler: (state: ConnectionState) => void): () => void {
     this.stateListeners.add(handler);
-    return () => this.stateListeners.delete(handler);
+    return () => {
+      this.stateListeners.delete(handler);
+    };
   }
 
   private setConnectionState(state: ConnectionState): void {
@@ -64,149 +64,68 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
   async connect(): Promise<void> {
     if (this.socket?.connected) return;
 
-    this.cleanup();
+    this.destroySocket();
     this.setConnectionState('connecting');
 
-    return new Promise((resolve, reject) => {
-      const timeout = setTimeout(() => {
-        this.cleanup();
-        reject(new Error('Connexion au serveur impossible (timeout)'));
-      }, CONNECTION_CONFIG.connectTimeout);
-
-      this.socket = io(`${API_URL}/game`, {
-        transports: ['websocket'],
+    await new Promise<void>((resolve, reject) => {
+      const socket = io(`${API_URL}/game`, {
         autoConnect: true,
-        reconnection: false,
+        withCredentials: true,
+        reconnection: true,
+        reconnectionAttempts: CONNECTION_CONFIG.maxReconnectAttempts,
+        reconnectionDelay: CONNECTION_CONFIG.reconnectBaseDelay,
+        reconnectionDelayMax: CONNECTION_CONFIG.reconnectMaxDelay,
         timeout: CONNECTION_CONFIG.connectTimeout,
       });
 
-      this.socket.on('connect', () => {
-        clearTimeout(timeout);
-        logger.log('[WS] Connected');
-        this.setConnectionState('connected');
-        this.reconnectAttempts = 0;
-        this.setupListeners();
-        this.startHeartbeat();
-        resolve();
-      });
+      this.socket = socket;
+      this.didSetupListeners = false;
+      this.setupListeners();
 
-      this.socket.on('connect_error', (err) => {
-        clearTimeout(timeout);
-        logger.error('[WS] Connection error:', err.message);
+      let settled = false;
+
+      const cleanupInitListeners = () => {
+        socket.off('connect', onConnect);
+        socket.off('connect_error', onConnectError);
+      };
+
+      const onConnect = () => {
+        if (settled) return;
+        settled = true;
+        cleanupInitListeners();
+        resolve();
+      };
+
+      const onConnectError = (err: Error) => {
+        if (settled) return;
+        settled = true;
+        cleanupInitListeners();
         this.setConnectionState('disconnected');
         reject(err);
-      });
+      };
 
-      this.socket.on('disconnect', (reason) => {
-        logger.warn('[WS] Disconnected:', reason);
-        this.stopHeartbeat();
-
-        if (reason === 'io server disconnect') {
-          this.setConnectionState('disconnected');
-          this.emit({ type: 'error', message: 'Déconnecté par le serveur' });
-        } else {
-          this.attemptReconnect();
-        }
-      });
+      socket.once('connect', onConnect);
+      socket.once('connect_error', onConnectError);
     });
   }
 
   disconnect(): void {
-    this.cleanup();
+    this.destroySocket();
     this._playerId = null;
     this._lastRoomCode = null;
     this._lastPlayerName = null;
     this.setConnectionState('disconnected');
   }
 
-  private cleanup(): void {
-    this.stopHeartbeat();
-    this.cancelReconnect();
-
-    if (this.socket) {
-      this.socket.removeAllListeners();
-      this.socket.disconnect();
-      this.socket = null;
-    }
-  }
-
-  private startHeartbeat(): void {
-    this.stopHeartbeat();
-    this.heartbeatTimer = setInterval(() => {
-      if (!this.socket?.connected) {
-        this.stopHeartbeat();
-        return;
-      }
-      this.heartbeatTimeoutTimer = setTimeout(() => {
-        logger.warn('[WS] Heartbeat timeout — connection stale');
-        this.socket?.disconnect();
-      }, CONNECTION_CONFIG.heartbeatTimeout);
-
-      this.socket.volatile.emit('ping', () => {
-        if (this.heartbeatTimeoutTimer) {
-          clearTimeout(this.heartbeatTimeoutTimer);
-          this.heartbeatTimeoutTimer = null;
-        }
-      });
-    }, CONNECTION_CONFIG.heartbeatInterval);
-  }
-
-  private stopHeartbeat(): void {
-    if (this.heartbeatTimer) {
-      clearInterval(this.heartbeatTimer);
-      this.heartbeatTimer = null;
-    }
-    if (this.heartbeatTimeoutTimer) {
-      clearTimeout(this.heartbeatTimeoutTimer);
-      this.heartbeatTimeoutTimer = null;
-    }
-  }
-
-  private attemptReconnect(): void {
-    if (this.reconnectAttempts >= CONNECTION_CONFIG.maxReconnectAttempts) {
-      logger.error('[WS] Max reconnect attempts reached');
-      this.setConnectionState('disconnected');
-      this.emit({ type: 'error', message: 'Connexion perdue. Appuyez sur "Reconnecter".' });
-      return;
-    }
-
-    this.setConnectionState('reconnecting');
-    this.reconnectAttempts++;
-
-    const delay = Math.min(
-      CONNECTION_CONFIG.reconnectBaseDelay * Math.pow(2, this.reconnectAttempts - 1),
-      CONNECTION_CONFIG.reconnectMaxDelay,
-    );
-
-    logger.log(
-      `[WS] Reconnect attempt ${this.reconnectAttempts}/${CONNECTION_CONFIG.maxReconnectAttempts} in ${delay}ms`,
-    );
-
-    this.reconnectTimer = setTimeout(async () => {
-      try {
-        await this.connect();
-        // If we had a room session, attempt to rejoin
-        if (this._playerId && this._lastRoomCode) {
-          logger.log('[WS] Attempting session reconnect for player:', this._playerId);
-          this.socket?.emit('room:reconnect', { playerId: this._playerId });
-        }
-      } catch (err) {
-        logger.error('[WS] Reconnect failed:', err);
-        this.attemptReconnect();
-      }
-    }, delay);
-  }
-
-  private cancelReconnect(): void {
-    if (this.reconnectTimer) {
-      clearTimeout(this.reconnectTimer);
-      this.reconnectTimer = null;
-    }
-    this.reconnectAttempts = 0;
+  leaveRoom(): void {
+    this.socket?.emit('room:leave');
+    this._playerId = null;
+    this._lastRoomCode = null;
   }
 
   async createRoom(playerName: string): Promise<Room> {
     this._lastPlayerName = playerName;
+
     return this.emitWithTimeout<Room>('room:create', { playerName }, 'room:created', (data) => {
       const { room, playerId } = data as { room: Room; playerId: string };
       this._playerId = playerId;
@@ -218,15 +137,13 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
   async joinRoom(code: string, playerName: string): Promise<Room> {
     this._lastPlayerName = playerName;
     this._lastRoomCode = code;
+
     return this.emitWithTimeout<Room>('room:join', { code, playerName }, 'room:joined', (data) => {
       const { room, playerId } = data as { room: Room; playerId: string };
       this._playerId = playerId;
+      this._lastRoomCode = room.code;
       return room;
     });
-  }
-
-  leaveRoom(): void {
-    this.socket?.emit('room:leave');
   }
 
   configureGame(config: {
@@ -242,7 +159,11 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
   }
 
   submitAnswer(questionId: string, answer: string, timeSpent?: number): void {
-    this.socket?.emit('game:answer', { questionId, answer, timeSpent: timeSpent ?? 0 });
+    this.socket?.emit('game:answer', {
+      questionId,
+      answer,
+      timeSpent: timeSpent ?? 0,
+    });
   }
 
   usePowerUp(type: PowerUpType, targetPlayerId?: string): void {
@@ -259,21 +180,30 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
 
   onEvent(handler: (event: MultiplayerEvent) => void): () => void {
     this.listeners.add(handler);
-    return () => this.listeners.delete(handler);
+    return () => {
+      this.listeners.delete(handler);
+    };
   }
-
-  // ─── Manual reconnect (called from UI) ───────────────────
 
   async manualReconnect(): Promise<void> {
-    this.cancelReconnect();
-    this.reconnectAttempts = 0;
-    await this.connect();
-    if (this._playerId && this._lastRoomCode) {
-      this.socket?.emit('room:reconnect', { playerId: this._playerId });
+    if (this.socket && !this.socket.connected) {
+      this.setConnectionState('reconnecting');
+      this.socket.connect();
+      return;
     }
+
+    await this.connect();
   }
 
-  // ─── Helpers ──────────────────────────────────────────────
+  private destroySocket(): void {
+    if (!this.socket) return;
+
+    this.socket.removeAllListeners();
+    this.socket.io.removeAllListeners();
+    this.socket.disconnect();
+    this.socket = null;
+    this.didSetupListeners = false;
+  }
 
   private emitWithTimeout<T>(
     emitEvent: string,
@@ -282,35 +212,39 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
     transform: (data: unknown) => T,
   ): Promise<T> {
     return new Promise((resolve, reject) => {
-      if (!this.socket) return reject(new Error('Non connecté'));
+      const socket = this.socket;
+
+      if (!socket || !socket.connected) {
+        reject(new Error('Non connecté'));
+        return;
+      }
 
       const timeout = setTimeout(() => {
-        this.socket?.off(successEvent);
-        this.socket?.off('error');
+        socket.off(successEvent, onSuccess);
+        socket.off('error', onError);
         reject(new Error('Le serveur ne répond pas (timeout)'));
       }, CONNECTION_CONFIG.operationTimeout);
 
-      const cleanup = () => {
+      const onSuccess = (data: unknown) => {
         clearTimeout(timeout);
-        this.socket?.off(successEvent);
-        this.socket?.off('error');
-      };
+        socket.off('error', onError);
 
-      this.socket.once(successEvent, (data: unknown) => {
-        cleanup();
         try {
           resolve(transform(data));
         } catch (err) {
           reject(err);
         }
-      });
+      };
 
-      this.socket.once('error', (data: { message: string }) => {
-        cleanup();
+      const onError = (data: { message: string }) => {
+        clearTimeout(timeout);
+        socket.off(successEvent, onSuccess);
         reject(new Error(data.message));
-      });
+      };
 
-      this.socket.emit(emitEvent, payload);
+      socket.once(successEvent, onSuccess);
+      socket.once('error', onError);
+      socket.emit(emitEvent, payload);
     });
   }
 
@@ -319,26 +253,78 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
   }
 
   private setupListeners(): void {
-    if (!this.socket) return;
+    if (!this.socket || this.didSetupListeners) return;
 
-    this.socket.on('player:joined', (data: { player: Player; room: Room }) => {
+    const socket = this.socket;
+    this.didSetupListeners = true;
+
+    socket.on('connect', () => {
+      logger.log('[WS] Connected:', socket.id);
+      this.setConnectionState('connected');
+
+      if (this._playerId && this._lastRoomCode) {
+        logger.log('[WS] Restoring room session for player:', this._playerId);
+        socket.emit('room:reconnect', { playerId: this._playerId });
+      }
+    });
+
+    socket.on('disconnect', (reason) => {
+      logger.warn('[WS] Disconnected:', reason);
+
+      if (reason === 'io client disconnect') {
+        this.setConnectionState('disconnected');
+        return;
+      }
+
+      if (reason === 'io server disconnect') {
+        this.setConnectionState('reconnecting');
+        socket.connect();
+        return;
+      }
+
+      this.setConnectionState('reconnecting');
+    });
+
+    socket.on('connect_error', (err) => {
+      logger.error('[WS] Connection error:', err.message);
+    });
+
+    socket.io.on('reconnect_attempt', (attempt) => {
+      logger.log(`[WS] Reconnect attempt ${attempt}/${CONNECTION_CONFIG.maxReconnectAttempts}`);
+      this.setConnectionState('reconnecting');
+    });
+
+    socket.io.on('reconnect_error', (err) => {
+      logger.error('[WS] Reconnect error:', err);
+      this.setConnectionState('reconnecting');
+    });
+
+    socket.io.on('reconnect_failed', () => {
+      logger.error('[WS] Reconnect failed');
+      this.setConnectionState('disconnected');
+      this.emit({
+        type: 'error',
+        message: 'Connexion perdue. Appuyez sur "Reconnecter".',
+      });
+    });
+
+    socket.on('player:joined', (data: { player: Player; room: Room }) => {
       this.emit({ type: 'player:joined', player: data.player });
     });
 
-    this.socket.on('player:left', (data: { playerId: string }) => {
+    socket.on('player:left', (data: { playerId: string }) => {
       this.emit({ type: 'player:left', playerId: data.playerId });
     });
 
-    this.socket.on('player:reconnected', (data: { playerId: string }) => {
+    socket.on('player:reconnected', (data: { playerId: string }) => {
       this.emit({ type: 'player:reconnected', playerId: data.playerId });
     });
 
-    this.socket.on('player:disconnected', (data: { playerId: string }) => {
+    socket.on('player:disconnected', (data: { playerId: string }) => {
       this.emit({ type: 'player:left', playerId: data.playerId });
     });
 
-    // ─── Reconnection state restore ───────────────────────
-    this.socket.on(
+    socket.on(
       'room:reconnected',
       (data: {
         room: Room;
@@ -353,6 +339,7 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
       }) => {
         logger.log('[WS] Room reconnected, restoring state');
         this._playerId = data.playerId;
+
         this.emit({
           type: 'room:reconnected',
           room: data.room,
@@ -364,11 +351,11 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
           timer: data.timer,
           isFlash: data.isFlash,
           isGameStarted: data.isGameStarted,
-        });
+        } as MultiplayerEvent);
       },
     );
 
-    this.socket.on(
+    socket.on(
       'game:started',
       (data: {
         totalQuestions: number;
@@ -382,7 +369,8 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
           questions: [],
           totalQuestions: data.totalQuestions,
           isFlash: data.isFlash,
-        });
+        } as MultiplayerEvent);
+
         this.emit({
           type: 'game:question',
           index: data.questionIndex,
@@ -394,7 +382,7 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
       },
     );
 
-    this.socket.on(
+    socket.on(
       'game:nextQuestion',
       (data: {
         question: unknown;
@@ -415,7 +403,7 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
       },
     );
 
-    this.socket.on(
+    socket.on(
       'game:answerResult',
       (data: {
         questionId: string;
@@ -430,7 +418,7 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
       },
     );
 
-    this.socket.on(
+    socket.on(
       'player:answered',
       (data: { playerId: string; isCorrect: boolean; scores?: Record<string, unknown> }) => {
         this.emit({
@@ -438,26 +426,26 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
           playerId: data.playerId,
           isCorrect: data.isCorrect,
           scores: data.scores,
-        });
-      },
-    );
-
-    this.socket.on('game:timeout', (data: { questionId: string }) => {
-      this.emit({ type: 'game:timeout', questionId: data.questionId } as MultiplayerEvent);
-    });
-
-    this.socket.on(
-      'game:finished',
-      (data: { scores: Record<string, unknown>; review?: unknown[] }) => {
-        this.emit({
-          type: 'game:finished',
-          scores: data.scores,
-          review: data.review,
         } as MultiplayerEvent);
       },
     );
 
-    this.socket.on(
+    socket.on('game:timeout', (data: { questionId: string }) => {
+      this.emit({
+        type: 'game:timeout',
+        questionId: data.questionId,
+      } as MultiplayerEvent);
+    });
+
+    socket.on('game:finished', (data: { scores: Record<string, unknown>; review?: unknown[] }) => {
+      this.emit({
+        type: 'game:finished',
+        scores: data.scores,
+        review: data.review,
+      } as MultiplayerEvent);
+    });
+
+    socket.on(
       'game:reviewUpdated',
       (data: { review: unknown[]; scores: Record<string, unknown> }) => {
         this.emit({
@@ -468,35 +456,38 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
       },
     );
 
-    this.socket.on('review:navigated', (data: { view: ReviewViewMode; questionIdx: number }) => {
-      this.emit({ type: 'review:navigated', view: data.view, questionIdx: data.questionIdx });
+    socket.on('review:navigated', (data: { view: ReviewViewMode; questionIdx: number }) => {
+      this.emit({
+        type: 'review:navigated',
+        view: data.view,
+        questionIdx: data.questionIdx,
+      } as MultiplayerEvent);
     });
 
-    this.socket.on('game:configured', (data: { config: unknown }) => {
-      this.emit({ type: 'game:configured', config: data.config } as MultiplayerEvent);
+    socket.on('game:configured', (data: { config: unknown }) => {
+      this.emit({
+        type: 'game:configured',
+        config: data.config,
+      } as MultiplayerEvent);
     });
 
-    // PowerUp events
-    this.socket.on('game:malus', (data: { fromPlayerName: string; duration: number }) => {
+    socket.on('game:malus', (data: { fromPlayerName: string; duration: number }) => {
       this.emit({
         type: 'game:malus',
         fromPlayerName: data.fromPlayerName,
         duration: data.duration,
-      });
+      } as MultiplayerEvent);
     });
 
-    this.socket.on(
-      'game:bonus5050',
-      (data: { removeOptionIds: string[]; powerUpsLeft: number }) => {
-        this.emit({
-          type: 'game:bonus5050',
-          removeOptionIds: data.removeOptionIds,
-          powerUpsLeft: data.powerUpsLeft,
-        });
-      },
-    );
+    socket.on('game:bonus5050', (data: { removeOptionIds: string[]; powerUpsLeft: number }) => {
+      this.emit({
+        type: 'game:bonus5050',
+        removeOptionIds: data.removeOptionIds,
+        powerUpsLeft: data.powerUpsLeft,
+      } as MultiplayerEvent);
+    });
 
-    this.socket.on(
+    socket.on(
       'game:powerupUsed',
       (data: { type: PowerUpType; powerUpsLeft: number; targetName?: string }) => {
         this.emit({
@@ -504,11 +495,11 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
           powerUpType: data.type,
           powerUpsLeft: data.powerUpsLeft,
           targetName: data.targetName,
-        });
+        } as MultiplayerEvent);
       },
     );
 
-    this.socket.on(
+    socket.on(
       'game:powerupEvent',
       (data: { fromName: string; targetName?: string; type: PowerUpType }) => {
         this.emit({
@@ -516,12 +507,12 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
           fromName: data.fromName,
           targetName: data.targetName,
           powerUpType: data.type,
-        });
+        } as MultiplayerEvent);
       },
     );
 
-    this.socket.on('error', (data: { message: string }) => {
-      this.emit({ type: 'error', message: data.message });
+    socket.on('error', (data: { message: string }) => {
+      this.emit({ type: 'error', message: data.message } as MultiplayerEvent);
     });
   }
 }
