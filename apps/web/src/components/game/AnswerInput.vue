@@ -14,9 +14,10 @@
   interface Props {
     question: Question;
     disabled?: boolean;
+    removedOptionIds?: string[];
   }
 
-  const props = withDefaults(defineProps<Props>(), { disabled: false });
+  const props = withDefaults(defineProps<Props>(), { disabled: false, removedOptionIds: () => [] });
   const emit = defineEmits<{ submit: [answer: string] }>();
 
   const textAnswer = ref('');
@@ -28,14 +29,22 @@
   const isIntruder = computed(() => props.question.type === 'intruder');
   const isMathMax = computed(() => props.question.type === 'mathMax');
   const isMathSimple = computed(() => props.question.type === 'mathSimple');
+  const isGeoClick = computed(() => props.question.type === 'geoClickMap');
 
   // Types that handle their own submit via interactive renderer
-  const isInteractive = computed(() => isChronology.value || isIntruder.value || isMathMax.value);
+  const isInteractive = computed(
+    () => isChronology.value || isIntruder.value || isMathMax.value || isGeoClick.value,
+  );
 
   // Types that use text input
   const isTextInput = computed(() => !isQcm.value && !isInteractive.value);
 
-  const qcmOptions = computed(() => (isQcm.value ? (props.question as QcmQuestion).options : []));
+  const qcmOptions = computed(() => {
+    if (!isQcm.value) return [];
+    const opts = (props.question as QcmQuestion).options;
+    if (!props.removedOptionIds?.length) return opts;
+    return opts.filter((o) => !props.removedOptionIds!.includes(o.id));
+  });
 
   const placeholder = computed(() => {
     if (isNumber.value || isMathSimple.value) return 'Entrez un nombre...';

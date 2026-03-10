@@ -1,11 +1,22 @@
-import type { AnswerResult, GameConfig, GameSession, Question } from '@/types';
-import { DIFFICULTY_POINTS } from '@/types';
+import type { AnswerResult, GameConfig, GameSession, Question, Difficulty } from '@/types';
+import { MAX_POINTS, MIN_POINTS_RATIO } from '@/types';
 import { questionRepository } from '@/services/questions/QuestionRepository';
 import { apiClient } from '@/services/api/ApiClient';
 import { TimerService } from './TimerService';
 
 function generateId(): string {
   return `session_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function computeSpeedPoints(
+  difficulty: Difficulty,
+  timeSpentMs: number,
+  totalTimerMs: number,
+): number {
+  const maxPts = MAX_POINTS[difficulty];
+  const ratio = totalTimerMs > 0 ? Math.max(0, 1 - timeSpentMs / totalTimerMs) : 0;
+  const points = Math.round(maxPts * (MIN_POINTS_RATIO + (1 - MIN_POINTS_RATIO) * ratio));
+  return Math.max(Math.round(maxPts * MIN_POINTS_RATIO), points);
 }
 
 export class GameEngineService {
@@ -89,7 +100,14 @@ export class GameEngineService {
       explanation = validation.explanation;
     }
 
-    const points = isCorrect ? (DIFFICULTY_POINTS[question.difficulty] ?? 1) : 0;
+    const totalTimer = TimerService.computeDuration(
+      question.difficulty,
+      question.type,
+      question.baseTimer,
+    );
+    const points = isCorrect
+      ? computeSpeedPoints(question.difficulty, timeSpent, totalTimer * 1000)
+      : 0;
 
     const result: AnswerResult = {
       questionId: question.id,

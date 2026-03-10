@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import type { Room, Player, GameConfig, Question } from '../../common/types';
+import { POWERUPS_PER_GAME } from '../../common/types';
 
-/** Types that support exact auto-validation */
-const AUTO_VALIDATED_TYPES = new Set(['number', 'qcm', 'chronology', 'intruder']);
+const AUTO_VALIDATED_TYPES = new Set(['number', 'qcm', 'chronology', 'intruder', 'geoClickMap']);
 
 function generateCode(): string {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -25,6 +25,7 @@ export interface ReviewPlayerAnswer {
   timeSpent: number;
   timedOut: boolean;
   hostOverride: boolean | null;
+  points: number;
 }
 
 export interface QuestionReviewData {
@@ -58,6 +59,7 @@ export class RoomsService {
       status: 'connected',
       isHost: true,
       answers: [],
+      powerUpsLeft: POWERUPS_PER_GAME,
     };
 
     const room: Room = {
@@ -70,6 +72,9 @@ export class RoomsService {
       questions: [],
       isStarted: false,
       createdAt: Date.now(),
+      flashWinner: null,
+      isFlashQuestion: false,
+      flashIndices: new Set(),
     };
 
     this.rooms.set(room.id, room);
@@ -100,6 +105,7 @@ export class RoomsService {
       status: 'connected',
       isHost: false,
       answers: [],
+      powerUpsLeft: POWERUPS_PER_GAME,
     };
 
     room.players.set(playerId, player);
@@ -108,26 +114,15 @@ export class RoomsService {
     return { room, player };
   }
 
-  /** Check if a room code exists (used for URL validation) */
-  roomExistsByCode(code: string): boolean {
-    const roomId = this.codeToRoom.get(code.toUpperCase());
-    if (!roomId) return false;
-    return this.rooms.has(roomId);
-  }
-
-  getRoomBySocket(socketId: string): Room | null {
+  getPlayerBySocket(socketId: string): { room: Room; player: Player } | null {
     const roomId = this.socketToRoom.get(socketId);
     if (!roomId) return null;
-    return this.rooms.get(roomId) ?? null;
-  }
 
-  getPlayerBySocket(socketId: string): { room: Room; player: Player } | null {
-    const room = this.getRoomBySocket(socketId);
+    const room = this.rooms.get(roomId);
     if (!room) return null;
+
     for (const player of room.players.values()) {
-      if (player.socketId === socketId) {
-        return { room, player };
-      }
+      if (player.socketId === socketId) return { room, player };
     }
     return null;
   }
@@ -137,16 +132,35 @@ export class RoomsService {
     room.questions = questions;
     room.isStarted = true;
     room.currentQuestionIndex = 0;
+    room.flashWinner = null;
+    room.isFlashQuestion = false;
+
+    // Randomly assign ~20% of questions as flash rounds (min 1 if >= 5 questions)
+    room.flashIndices = new Set<number>();
+    if (questions.length >= 5) {
+      const flashCount = Math.max(1, Math.floor(questions.length * 0.2));
+      const indices = [...Array(questions.length).keys()];
+      for (let i = indices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [indices[i], indices[j]] = [indices[j]!, indices[i]!];
+      }
+      for (let i = 0; i < flashCount; i++) {
+        room.flashIndices.add(indices[i]!);
+      }
+    }
 
     for (const player of room.players.values()) {
       player.score = 0;
       player.answers = [];
       player.status = 'answering';
+      player.powerUpsLeft = POWERUPS_PER_GAME;
     }
   }
 
   advanceQuestion(room: Room): boolean {
     room.currentQuestionIndex++;
+    room.flashWinner = null;
+
     if (room.currentQuestionIndex >= room.questions.length) {
       for (const player of room.players.values()) {
         player.status = 'finished';
@@ -154,12 +168,18 @@ export class RoomsService {
       return false;
     }
 
+    room.isFlashQuestion = room.flashIndices.has(room.currentQuestionIndex);
+
     for (const player of room.players.values()) {
       if (player.status !== 'disconnected') {
         player.status = 'answering';
       }
     }
     return true;
+  }
+
+  isCurrentFlash(room: Room): boolean {
+    return room.flashIndices.has(room.currentQuestionIndex);
   }
 
   recordAnswer(
@@ -170,21 +190,28 @@ export class RoomsService {
     isCorrect: boolean,
     timeSpent: number,
     timedOut: boolean,
+    points: number = 0,
   ): void {
     const player = room.players.get(playerId);
     if (!player) return;
 
-    player.answers.push({ questionId, answer, isCorrect, timeSpent, timedOut });
-    if (isCorrect) player.score++;
+    player.answers.push({ questionId, answer, isCorrect, timeSpent, timedOut, points });
+    player.score += points;
     player.status = 'waiting';
   }
 
   allPlayersAnswered(room: Room): boolean {
     for (const player of room.players.values()) {
-      // Disconnected players don't block progression
       if (player.status === 'disconnected') continue;
       if (player.status === 'answering') return false;
     }
+    return true;
+  }
+
+  usePowerUp(room: Room, playerId: string): boolean {
+    const player = room.players.get(playerId);
+    if (!player || player.powerUpsLeft <= 0) return false;
+    player.powerUpsLeft--;
     return true;
   }
 
@@ -213,9 +240,7 @@ export class RoomsService {
     for (const room of this.rooms.values()) {
       const player = room.players.get(playerId);
       if (player && player.status === 'disconnected') {
-        // Clean up old socket mapping
         this.socketToRoom.delete(player.socketId);
-
         player.socketId = socketId;
         player.status = room.isStarted ? 'answering' : 'connected';
         this.socketToRoom.set(socketId, room.id);
@@ -225,7 +250,6 @@ export class RoomsService {
     return null;
   }
 
-  /** Serialize room for sending to clients */
   serializeRoom(room: Room) {
     return {
       id: room.id,
@@ -237,6 +261,7 @@ export class RoomsService {
         score: p.score,
         status: p.status,
         isHost: p.isHost,
+        powerUpsLeft: p.powerUpsLeft,
       })),
       isStarted: room.isStarted,
       maxPlayers: 8,
@@ -256,10 +281,6 @@ export class RoomsService {
     return scores;
   }
 
-  /**
-   * Override a player's answer validation (host manual review).
-   * Recalculates the player's score from scratch.
-   */
   overrideAnswer(room: Room, playerId: string, questionId: string, isCorrect: boolean): boolean {
     const player = room.players.get(playerId);
     if (!player) return false;
@@ -267,15 +288,23 @@ export class RoomsService {
     const answerRecord = player.answers.find((a) => a.questionId === questionId);
     if (!answerRecord) return false;
 
+    const wasCorrect = answerRecord.isCorrect;
     answerRecord.isCorrect = isCorrect;
-    player.score = player.answers.filter((a) => a.isCorrect).length;
+
+    // Recompute score delta
+    if (wasCorrect && !isCorrect) {
+      player.score = Math.max(0, player.score - answerRecord.points);
+      answerRecord.points = 0;
+    } else if (!wasCorrect && isCorrect) {
+      // Grant fixed points for manual override
+      const bonus = 300;
+      answerRecord.points = bonus;
+      player.score += bonus;
+    }
 
     return true;
   }
 
-  /**
-   * Build complete review data for all questions in the room.
-   */
   buildReviewData(room: Room): QuestionReviewData[] {
     const players = [...room.players.values()];
 
@@ -292,6 +321,7 @@ export class RoomsService {
           timeSpent: answerRecord?.timeSpent ?? 0,
           timedOut: answerRecord?.timedOut ?? true,
           hostOverride: null,
+          points: answerRecord?.points ?? 0,
         };
       });
 
@@ -307,9 +337,6 @@ export class RoomsService {
     });
   }
 
-  // ─── Cleanup ──────────────────────────────────────────────
-
-  /** Return IDs of rooms that are idle (not started and old) or empty */
   getStaleRoomIds(maxIdleAge: number): string[] {
     const now = Date.now();
     const stale: string[] = [];
@@ -327,12 +354,10 @@ export class RoomsService {
     return stale;
   }
 
-  /** Delete a room and clean up all mappings */
   deleteRoom(roomId: string): void {
     const room = this.rooms.get(roomId);
     if (!room) return;
 
-    // Clean up socket mappings for all players
     for (const player of room.players.values()) {
       this.socketToRoom.delete(player.socketId);
     }

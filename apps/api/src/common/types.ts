@@ -1,5 +1,4 @@
 // Shared types — keep in sync with @quizzos/web types
-// In future: extract to a shared @quizzos/types package
 
 export type QuestionType =
   | 'text'
@@ -11,6 +10,7 @@ export type QuestionType =
   | 'chronology'
   | 'blindTest'
   | 'geoMap'
+  | 'geoClickMap'
   | 'intruder'
   | 'silhouette'
   | 'splitImage'
@@ -25,10 +25,6 @@ export interface QuestionMedia {
   alt?: string;
 }
 
-/**
- * Full question (server-side only).
- * Contains answer, explanation, and all secret data.
- */
 export interface Question {
   id: string;
   type: QuestionType;
@@ -41,13 +37,9 @@ export interface Question {
   explanation?: string;
   tags: string[];
   baseTimer: number;
-  [key: string]: unknown; // allow type-specific fields
+  [key: string]: unknown;
 }
 
-/**
- * Question sent to clients (no answer, no explanation, no intruderId).
- * All media URLs are ready-to-display — the frontend does ZERO transformation.
- */
 export interface QuestionPublic {
   id: string;
   type: QuestionType;
@@ -58,27 +50,26 @@ export interface QuestionPublic {
   tags: string[];
   baseTimer: number;
 
-  // Type-specific public fields (all with direct URLs)
+  // Type-specific public fields
   options?: Array<{ id: string; label: string } | { id: string; imageUrl: string; label: string }>;
   clues?: Array<{ imageUrl: string; alt: string }>;
   images?: Array<{ imageUrl: string; alt: string }>;
   hint?: string;
   items?: Array<{ id: string; label: string; imageUrl?: string }>;
   imageUrl?: string;
-  // silhouette
   svgShape?: string | null;
   contextHints?: string[];
   region?: string;
   outlineUrl?: string | null;
   outlineSvgPath?: string | null;
-  outlineSvg?: string | null; // country key for frontend path lookup
-  // splitImage
+  outlineSvg?: string | null;
   topHalf?: { imageUrl: string; alt: string };
   bottomHalf?: { imageUrl: string; alt: string };
-  // mathMax
   tiles?: Array<{ id: string; value: string; tileType: 'number' | 'operator' }>;
-  // mathSimple
   expression?: string;
+  // geoClickMap: only public region hint, never coordinates
+  geoHint?: string;
+  targetName?: string;
 }
 
 export type PlayerStatus = 'connected' | 'disconnected' | 'answering' | 'waiting' | 'finished';
@@ -91,6 +82,7 @@ export interface Player {
   status: PlayerStatus;
   isHost: boolean;
   answers: AnswerRecord[];
+  powerUpsLeft: number;
 }
 
 export interface AnswerRecord {
@@ -99,6 +91,7 @@ export interface AnswerRecord {
   isCorrect: boolean;
   timeSpent: number;
   timedOut: boolean;
+  points: number;
 }
 
 export interface Room {
@@ -111,6 +104,11 @@ export interface Room {
   questions: Question[];
   isStarted: boolean;
   createdAt: number;
+  /** Flash round state */
+  flashWinner: string | null;
+  isFlashQuestion: boolean;
+  /** Flash round indices (set at game start) */
+  flashIndices: Set<number>;
 }
 
 export interface GameConfig {
@@ -118,6 +116,10 @@ export interface GameConfig {
   difficulties: Difficulty[];
   categories?: string[];
 }
+
+export type PowerUpType = 'malus_blur' | 'bonus_fifty50';
+
+export const POWERUPS_PER_GAME = 3;
 
 export const DIFFICULTY_TIMERS: Record<Difficulty, number> = {
   easy: 15,
@@ -135,9 +137,20 @@ export const TYPE_MODIFIERS: Record<QuestionType, number> = {
   chronology: 15,
   blindTest: 12,
   geoMap: 10,
+  geoClickMap: 15,
   intruder: 5,
   silhouette: 8,
   splitImage: 12,
   mathMax: 20,
   mathSimple: 5,
 };
+
+/** Max speed-based points per difficulty */
+export const MAX_POINTS: Record<Difficulty, number> = {
+  easy: 500,
+  medium: 750,
+  hard: 1000,
+};
+
+/** Flash round bonus points (first correct answer wins this) */
+export const FLASH_POINTS = 1500;
