@@ -27,6 +27,7 @@
       question: question.value,
       userAnswer: '',
       isCorrect: lobby.lastResult.isCorrect,
+      correctAnswer: lobby.lastResult.correctAnswer,
       points: 0, // Points not tracked in multi feedback (shown in results)
       timeSpent: 0,
       timedOut: false,
