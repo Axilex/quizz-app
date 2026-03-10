@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, watch, onMounted, computed } from 'vue';
+  import { ref, watch, onMounted, onUnmounted, computed } from 'vue';
   import { useRouter, useRoute } from 'vue-router';
   import { useLobbyStore, useSessionStore } from '@/stores';
   import { multiplayerGateway } from '@/services';
@@ -25,6 +25,10 @@
   });
 
   const isReconnecting = computed(() => connectionState.value === 'reconnecting');
+
+  onUnmounted(() => {
+    unsubState();
+  });
 
   /**
    * If arrived via /join/:code, pre-fill the code and go straight to the join view.

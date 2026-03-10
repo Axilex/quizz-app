@@ -171,135 +171,129 @@
 </script>
 
 <template>
-  <!-- Disconnected overlay -->
-  <Transition name="overlay">
-    <div v-if="isDisconnected" class="reconnect-overlay">
-      <div class="reconnect-card">
-        <div class="reconnect-card__icon">📡</div>
-        <h3 class="reconnect-card__title">Connexion perdue</h3>
-        <p class="reconnect-card__desc">Votre connexion au serveur a été interrompue.</p>
-        <button class="reconnect-card__btn" @click="handleManualReconnect">Reconnecter</button>
+  <section class="play-multi-page">
+    <!-- Disconnected overlay -->
+    <Transition name="overlay">
+      <div v-if="isDisconnected" class="reconnect-overlay">
+        <div class="reconnect-card">
+          <div class="reconnect-card__icon">📡</div>
+          <h3 class="reconnect-card__title">Connexion perdue</h3>
+          <p class="reconnect-card__desc">Votre connexion au serveur a été interrompue.</p>
+          <button class="reconnect-card__btn" @click="handleManualReconnect">Reconnecter</button>
+        </div>
       </div>
-    </div>
-  </Transition>
-
-  <!-- Reconnecting spinner -->
-  <Transition name="overlay">
-    <div v-if="isReconnecting" class="reconnecting-bar">
-      <div class="reconnecting-bar__spinner" />
-      <span>Reconnexion en cours...</span>
-    </div>
-  </Transition>
-
-  <div v-if="question" class="play-multi">
-    <!-- Header: progress + players count -->
-    <div class="play-multi__top">
-      <div class="play-multi__progress-info">
-        <span class="play-multi__label">Question</span>
-        <span class="play-multi__progress-num">
-          {{ lobby.questionIndex + 1 }}<span class="play-multi__progress-sep">/</span
-          >{{ lobby.totalQuestions || '?' }}
-        </span>
-      </div>
-
-      <!-- Flash badge -->
-      <Transition name="flash-in">
-        <div v-if="lobby.isFlashQuestion" class="play-multi__flash-pill">⚡ FLASH</div>
-      </Transition>
-
-      <div class="play-multi__player-count">👥 {{ lobby.playerCount }}</div>
-    </div>
-
-    <!-- Timer -->
-    <TimerBar
-      :remaining="timerRemaining"
-      :total="timerTotal"
-      :class="{ 'timer--flash': lobby.isFlashQuestion }"
-    />
-
-    <!-- Question card -->
-    <div class="play-multi__card">
-      <Transition name="card-swap" mode="out-in">
-        <QuizCard
-          :key="question.id"
-          :question="question"
-          :timer-total="timerTotal"
-          :timer-remaining="timerRemaining"
-          :is-flash="lobby.isFlashQuestion"
-          :is-malus-active="lobby.isMalusActive"
-          :malus-from-name="lobby.malusFromName"
-          :disabled="hasAnswered"
-          @submit="handleGeoSubmit"
-        />
-      </Transition>
-    </div>
-
-    <!-- Points animation -->
-    <Transition name="pts-pop">
-      <div v-if="showPointsAnim && pointsEarned" class="points-pop">+{{ pointsEarned }} pts</div>
     </Transition>
 
-    <!-- Feedback / Waiting / Input -->
-    <div class="play-multi__interaction">
-      <AnswerFeedback v-if="showFeedback && feedbackResult" :result="feedbackResult" />
+    <!-- Reconnecting spinner -->
+    <Transition name="overlay">
+      <div v-if="isReconnecting" class="reconnecting-bar">
+        <div class="reconnecting-bar__spinner" />
+        <span>Reconnexion en cours...</span>
+      </div>
+    </Transition>
 
-      <div v-else-if="hasAnswered" class="play-multi__waiting">
-        <div class="waiting-spinner" />
-        <p>En attente des autres joueurs...</p>
+    <div v-if="question" class="play-multi">
+      <!-- Header: progress + players count -->
+      <div class="play-multi__top">
+        <div class="play-multi__progress-info">
+          <span class="play-multi__label">Question</span>
+          <span class="play-multi__progress-num">
+            {{ lobby.questionIndex + 1 }}<span class="play-multi__progress-sep">/</span>
+            {{ lobby.totalQuestions || '?' }}
+          </span>
+        </div>
+
+        <Transition name="flash-in">
+          <div v-if="lobby.isFlashQuestion" class="play-multi__flash-pill">⚡ FLASH</div>
+        </Transition>
+
+        <div class="play-multi__player-count">👥 {{ lobby.playerCount }}</div>
       </div>
 
-      <AnswerInput
-        v-else-if="question.type !== 'geoClickMap'"
-        :question="question"
-        :disabled="hasAnswered"
-        :removed-option-ids="lobby.removedOptionIds"
-        @submit="handleAnswer"
+      <TimerBar
+        :remaining="timerRemaining"
+        :total="timerTotal"
+        :class="{ 'timer--flash': lobby.isFlashQuestion }"
       />
+
+      <div class="play-multi__card">
+        <Transition name="card-swap" mode="out-in">
+          <QuizCard
+            :key="question.id"
+            :question="question"
+            :timer-total="timerTotal"
+            :timer-remaining="timerRemaining"
+            :is-flash="lobby.isFlashQuestion"
+            :is-malus-active="lobby.isMalusActive"
+            :malus-from-name="lobby.malusFromName"
+            :disabled="hasAnswered"
+            @submit="handleGeoSubmit"
+          />
+        </Transition>
+      </div>
+
+      <Transition name="pts-pop">
+        <div v-if="showPointsAnim && pointsEarned" class="points-pop">+{{ pointsEarned }} pts</div>
+      </Transition>
+
+      <div class="play-multi__interaction">
+        <AnswerFeedback v-if="showFeedback && feedbackResult" :result="feedbackResult" />
+
+        <div v-else-if="hasAnswered" class="play-multi__waiting">
+          <div class="waiting-spinner" />
+          <p>En attente des autres joueurs...</p>
+        </div>
+
+        <AnswerInput
+          v-else-if="question.type !== 'geoClickMap'"
+          :question="question"
+          :disabled="hasAnswered"
+          :removed-option-ids="lobby.removedOptionIds"
+          @submit="handleAnswer"
+        />
+      </div>
+
+      <PowerUpBar
+        v-if="!showFeedback && !hasAnswered"
+        :power-ups-left="lobby.myPowerUpsLeft"
+        :players="lobby.players"
+        :my-player-id="lobby.playerId"
+        :current-question-type="question.type"
+        :disabled="hasAnswered"
+        :is-flash="lobby.isFlashQuestion"
+        @malus="handleMalus"
+        @bonus50="handleBonus50"
+      />
+
+      <Transition name="toast">
+        <div v-if="lobby.powerUpNotification" class="powerup-toast">
+          {{ lobby.powerUpNotification }}
+        </div>
+      </Transition>
+
+      <div class="play-multi__scores">
+        <div
+          v-for="(p, rank) in sortedPlayers"
+          :key="p.id"
+          class="score-pill"
+          :class="{
+            'score-pill--me': p.id === lobby.playerId,
+            'score-pill--answered': p.status === 'waiting',
+            'score-pill--disconnected': p.status === 'disconnected',
+          }"
+        >
+          <span class="score-pill__rank">{{ rank + 1 }}</span>
+          <span class="score-pill__name">{{ p.name }}</span>
+          <span class="score-pill__score">{{ p.score }}</span>
+        </div>
+      </div>
     </div>
 
-    <!-- PowerUp bar -->
-    <PowerUpBar
-      v-if="!showFeedback && !hasAnswered"
-      :power-ups-left="lobby.myPowerUpsLeft"
-      :players="lobby.players"
-      :my-player-id="lobby.playerId"
-      :current-question-type="question.type"
-      :disabled="hasAnswered"
-      :is-flash="lobby.isFlashQuestion"
-      @malus="handleMalus"
-      @bonus50="handleBonus50"
-    />
-
-    <!-- PowerUp notification toast -->
-    <Transition name="toast">
-      <div v-if="lobby.powerUpNotification" class="powerup-toast">
-        {{ lobby.powerUpNotification }}
-      </div>
-    </Transition>
-
-    <!-- Live scoreboard -->
-    <div class="play-multi__scores">
-      <div
-        v-for="(p, rank) in sortedPlayers"
-        :key="p.id"
-        class="score-pill"
-        :class="{
-          'score-pill--me': p.id === lobby.playerId,
-          'score-pill--answered': p.status === 'waiting',
-          'score-pill--disconnected': p.status === 'disconnected',
-        }"
-      >
-        <span class="score-pill__rank">{{ rank + 1 }}</span>
-        <span class="score-pill__name">{{ p.name }}</span>
-        <span class="score-pill__score">{{ p.score }}</span>
-      </div>
+    <div v-else class="play-multi__loading">
+      <div class="loading-spinner" />
+      <p>En attente de la question...</p>
     </div>
-  </div>
-
-  <div v-else class="play-multi__loading">
-    <div class="loading-spinner" />
-    <p>En attente de la question...</p>
-  </div>
+  </section>
 </template>
 
 <style scoped>
@@ -312,6 +306,12 @@
     flex-direction: column;
     gap: 1rem;
     padding: 1rem 0;
+  }
+
+  .play-multi-page {
+    position: relative;
+    flex: 1;
+    width: 100%;
   }
 
   /* ─── Header ─────────────────────────────────── */

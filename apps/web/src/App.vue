@@ -3,5 +3,19 @@
 </script>
 
 <template>
-  <AppShell />
+  <AppShell>
+    <RouterView v-slot="{ Component, route }">
+      <Transition name="page" mode="out-in">
+        <div :key="route.fullPath" class="page-shell">
+          <component :is="Component" />
+        </div>
+      </Transition>
+    </RouterView>
+  </AppShell>
 </template>
+
+<style scoped>
+  .page-shell {
+    min-height: 100%;
+  }
+</style>

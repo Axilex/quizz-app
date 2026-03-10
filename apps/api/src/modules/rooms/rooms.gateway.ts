@@ -8,25 +8,29 @@ import {
   ConnectedSocket,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
+import { Logger } from '@nestjs/common';
 import { RoomsService } from './rooms.service';
 import { QuestionsService } from '../questions/questions.service';
 import { GameScoringService } from '../game/game-scoring.service';
-import type { GameConfig, Room, PowerUpType } from '../../common/types';
-import { Logger } from '@nestjs/common';
+import type { GameConfig, Room, PowerUpType, Question } from '../../common/types';
 
 const WS_CORS_ORIGINS = process.env['CORS_ORIGINS']
   ? process.env['CORS_ORIGINS'].split(',').map((o) => o.trim())
   : ['http://localhost:5173', 'http://localhost:4173'];
 
 const DISCONNECT_GRACE_PERIOD = parseInt(process.env['DISCONNECT_GRACE_MS'] ?? '30000', 10);
-const ROOM_CLEANUP_INTERVAL = 60000;
+const ROOM_CLEANUP_INTERVAL = 60_000;
 const ROOM_MAX_IDLE_AGE = 2 * 60 * 60 * 1000;
 
 @WebSocketGateway({
   cors: { origin: WS_CORS_ORIGINS, credentials: true },
   namespace: '/game',
-  pingInterval: 25000,
-  pingTimeout: 10000,
+  pingInterval: 25_000,
+  pingTimeout: 20_000,
+  connectionStateRecovery: {
+    maxDisconnectionDuration: DISCONNECT_GRACE_PERIOD,
+    skipMiddlewares: true,
+  },
 })
 export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
@@ -43,12 +47,13 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     setInterval(() => this.cleanupStaleRooms(), ROOM_CLEANUP_INTERVAL);
   }
 
-  handleConnection(client: Socket) {
+  handleConnection(client: Socket): void {
     Logger.log(`[WS] Client connected: ${client.id}`);
   }
 
-  handleDisconnect(client: Socket) {
+  handleDisconnect(client: Socket): void {
     Logger.log(`[WS] Client disconnected: ${client.id}`);
+
     const result = this.roomsService.getPlayerBySocket(client.id);
     if (!result) return;
 
@@ -60,19 +65,20 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
     const timer = setTimeout(() => {
       this.disconnectTimers.delete(player.id);
+
       if (player.status !== 'disconnected') return;
 
       Logger.log(`[WS] Grace period expired for ${player.name} (${player.id}), removing`);
-      const removal = this.roomsService.removePlayer(client.id);
 
-      if (removal && !removal.isEmpty) {
+      const removal = this.roomsService.removePlayer(client.id);
+      if (!removal) return;
+
+      if (!removal.isEmpty) {
         this.server.to(room.id).emit('player:left', {
           playerId: player.id,
           room: this.roomsService.serializeRoom(room),
         });
-      }
-
-      if (removal?.isEmpty) {
+      } else {
         this.clearQuestionTimer(room.id);
       }
 
@@ -85,16 +91,13 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     this.disconnectTimers.set(player.id, timer);
   }
 
-  @SubscribeMessage('ping')
-  handlePing(@ConnectedSocket() client: Socket) {
-    client.emit('pong');
-  }
-
-  // ─── Room lifecycle ───────────────────────────────────────
-
   @SubscribeMessage('room:create')
-  handleCreateRoom(@ConnectedSocket() client: Socket, @MessageBody() data: { playerName: string }) {
+  handleCreateRoom(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { playerName: string },
+  ): void {
     Logger.log(`[WS] room:create from ${client.id}, name: ${data.playerName}`);
+
     const room = this.roomsService.createRoom(client.id, data.playerName);
     client.join(room.id);
 
@@ -109,8 +112,9 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   handleJoinRoom(
     @ConnectedSocket() client: Socket,
     @MessageBody() data: { code: string; playerName: string },
-  ) {
+  ): void {
     Logger.log(`[WS] room:join from ${client.id}, code: ${data.code}`);
+
     const result = this.roomsService.joinRoom(data.code, client.id, data.playerName);
     if (!result) {
       client.emit('error', { message: 'Room introuvable ou partie déjà lancée' });
@@ -139,7 +143,10 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   @SubscribeMessage('room:reconnect')
-  handleReconnect(@ConnectedSocket() client: Socket, @MessageBody() data: { playerId: string }) {
+  handleReconnect(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { playerId: string },
+  ): void {
     this.cancelDisconnectTimer(data.playerId);
 
     const result = this.roomsService.handleReconnect(client.id, data.playerId);
@@ -155,26 +162,35 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
     this.server.to(room.id).emit('player:reconnected', { playerId: player.id });
 
-    const currentQ = room.isStarted ? room.questions[room.currentQuestionIndex] : null;
-    const timer = currentQ ? this.scoringService.computeTimer(currentQ) : 0;
+    const currentQuestion = room.isStarted ? room.questions[room.currentQuestionIndex] : null;
     const isFlash = room.isStarted ? this.roomsService.isCurrentFlash(room) : false;
+    const timer = currentQuestion
+      ? isFlash
+        ? this.scoringService.getFlashTimer()
+        : this.scoringService.computeTimer(currentQuestion)
+      : 0;
 
-    // Send full state back to the reconnecting player
+    const review =
+      !room.isStarted && room.questions.length > 0
+        ? this.roomsService.buildReviewData(room)
+        : undefined;
+
     client.emit('room:reconnected', {
       room: this.roomsService.serializeRoom(room),
       playerId: player.id,
       scores: this.roomsService.getScores(room),
-      currentQuestion: currentQ ? this.questionsService.toPublic(currentQ) : null,
+      currentQuestion: currentQuestion ? this.questionsService.toPublic(currentQuestion) : null,
       questionIndex: room.currentQuestionIndex,
       totalQuestions: room.questions.length,
       timer,
       isFlash,
       isGameStarted: room.isStarted,
+      review,
     });
   }
 
   @SubscribeMessage('room:leave')
-  handleLeaveRoom(@ConnectedSocket() client: Socket) {
+  handleLeaveRoom(@ConnectedSocket() client: Socket): void {
     const result = this.roomsService.removePlayer(client.id);
     if (!result) return;
 
@@ -191,11 +207,10 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     }
   }
 
-  // ─── Game configuration & start ───────────────────────────
-
   @SubscribeMessage('game:configure')
-  handleConfigure(@ConnectedSocket() client: Socket, @MessageBody() config: GameConfig) {
+  handleConfigure(@ConnectedSocket() client: Socket, @MessageBody() config: GameConfig): void {
     const result = this.roomsService.getPlayerBySocket(client.id);
+
     if (!result || !result.player.isHost) {
       client.emit('error', { message: "Seul l'hôte peut configurer" });
       return;
@@ -206,14 +221,16 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   @SubscribeMessage('game:start')
-  handleStartGame(@ConnectedSocket() client: Socket) {
+  handleStartGame(@ConnectedSocket() client: Socket): void {
     const result = this.roomsService.getPlayerBySocket(client.id);
+
     if (!result || !result.player.isHost) {
       client.emit('error', { message: "Seul l'hôte peut lancer" });
       return;
     }
 
     const { room } = result;
+
     if (!room.config) {
       client.emit('error', { message: "Configurez la partie d'abord" });
       return;
@@ -250,17 +267,16 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     this.startQuestionTimer(room);
   }
 
-  // ─── In-game answers ──────────────────────────────────────
-
   @SubscribeMessage('game:answer')
   handleAnswer(
     @ConnectedSocket() client: Socket,
     @MessageBody() data: { questionId: string; answer: string; timeSpent: number },
-  ) {
+  ): void {
     const result = this.roomsService.getPlayerBySocket(client.id);
     if (!result) return;
 
     const { room, player } = result;
+
     if (!room.isStarted || player.status !== 'answering') return;
 
     const currentQuestion = room.questions[room.currentQuestionIndex];
@@ -268,15 +284,15 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
     const isFlash = this.roomsService.isCurrentFlash(room);
 
-    // Flash: if winner already claimed it, late correct answers get 0
     if (isFlash && room.flashWinner !== null) {
       const isCorrect = this.scoringService.validateAnswer(currentQuestion, data.answer);
+
       this.roomsService.recordAnswer(
         room,
         player.id,
         data.questionId,
         data.answer,
-        false,
+        isCorrect,
         data.timeSpent,
         false,
         0,
@@ -295,6 +311,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
         this.clearQuestionTimer(room.id);
         this.advanceToNextQuestion(room);
       }
+
       return;
     }
 
@@ -305,9 +322,9 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
         : this.scoringService.computeTimer(currentQuestion)) * 1000;
 
     let points = 0;
+
     if (isCorrect) {
       if (isFlash) {
-        // First correct answer wins all points
         room.flashWinner = player.id;
         points = this.scoringService.computePoints(
           true,
@@ -318,7 +335,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
         );
       } else {
         points = this.scoringService.computePoints(
-          isCorrect,
+          true,
           data.timeSpent,
           totalTimerMs,
           currentQuestion.difficulty,
@@ -352,9 +369,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       scores: this.roomsService.getScores(room),
     });
 
-    // Flash: once winner answers, advance after short delay
     if (isFlash && isCorrect) {
-      // Mark all remaining 'answering' players as waiting with 0 points
       for (const p of room.players.values()) {
         if (p.status === 'answering') {
           this.roomsService.recordAnswer(
@@ -369,6 +384,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
           );
         }
       }
+
       this.clearQuestionTimer(room.id);
       setTimeout(() => this.advanceToNextQuestion(room), 1500);
       return;
@@ -380,13 +396,11 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     }
   }
 
-  // ─── PowerUp system ───────────────────────────────────────
-
   @SubscribeMessage('game:powerup')
   handlePowerUp(
     @ConnectedSocket() client: Socket,
     @MessageBody() data: { type: PowerUpType; targetPlayerId?: string },
-  ) {
+  ): void {
     const result = this.roomsService.getPlayerBySocket(client.id);
     if (!result) return;
 
@@ -404,53 +418,51 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       const targetPlayer = targetId ? room.players.get(targetId) : null;
 
       if (!targetPlayer || targetPlayer.status === 'disconnected') {
-        // Refund
         player.powerUpsLeft++;
         client.emit('error', { message: 'Joueur cible introuvable' });
         return;
       }
 
-      // Send blur malus to target
       this.server.to(targetPlayer.socketId).emit('game:malus', {
         fromPlayerName: player.name,
         duration: 6000,
       });
 
-      // Confirm to sender
       client.emit('game:powerupUsed', {
         type: data.type,
         powerUpsLeft: player.powerUpsLeft,
         targetName: targetPlayer.name,
       });
 
-      // Notify room
       this.server.to(room.id).emit('game:powerupEvent', {
         fromName: player.name,
         targetName: targetPlayer.name,
         type: 'malus_blur',
       });
-    } else if (data.type === 'bonus_fifty50') {
-      const currentQuestion = room.questions[room.currentQuestionIndex];
+
+      return;
+    }
+
+    if (data.type === 'bonus_fifty50') {
+      const currentQuestion = room.questions[room.currentQuestionIndex] as Question & {
+        options?: Array<{ id: string; label: string }>;
+      };
+
       if (!currentQuestion || currentQuestion.type !== 'qcm') {
-        // Refund if not QCM
         player.powerUpsLeft++;
         client.emit('error', { message: 'Le 50/50 ne fonctionne que sur les QCM' });
         return;
       }
 
-      const options = (currentQuestion['options'] as Array<{ id: string; label: string }>) ?? [];
+      const options = currentQuestion.options ?? [];
       const correctAnswer = currentQuestion.answer;
 
-      // Find 2 wrong options to remove
       const wrongOptions = options.filter(
-        (o) => o.label.toLowerCase() !== correctAnswer.toLowerCase(),
+        (option) => option.label.toLowerCase() !== correctAnswer.toLowerCase(),
       );
 
-      const toRemove: string[] = [];
       const shuffled = [...wrongOptions].sort(() => Math.random() - 0.5);
-      for (let i = 0; i < Math.min(2, shuffled.length); i++) {
-        toRemove.push(shuffled[i]!.id);
-      }
+      const toRemove = shuffled.slice(0, 2).map((option) => option.id);
 
       client.emit('game:bonus5050', {
         removeOptionIds: toRemove,
@@ -464,20 +476,20 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     }
   }
 
-  // ─── Post-game review (host-driven) ───────────────────────
-
   @SubscribeMessage('game:hostOverride')
   handleHostOverride(
     @ConnectedSocket() client: Socket,
     @MessageBody() data: { playerId: string; questionId: string; isCorrect: boolean },
-  ) {
+  ): void {
     const result = this.roomsService.getPlayerBySocket(client.id);
+
     if (!result || !result.player.isHost) {
       client.emit('error', { message: "Seul l'hôte peut modifier les résultats" });
       return;
     }
 
     const { room } = result;
+
     const updated = this.roomsService.overrideAnswer(
       room,
       data.playerId,
@@ -491,6 +503,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     }
 
     const review = this.roomsService.buildReviewData(room);
+
     this.server.to(room.id).emit('game:reviewUpdated', {
       review,
       scores: this.roomsService.getScores(room),
@@ -501,7 +514,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   handleReviewNavigate(
     @ConnectedSocket() client: Socket,
     @MessageBody() data: { view: 'podium' | 'review'; questionIdx: number },
-  ) {
+  ): void {
     const result = this.roomsService.getPlayerBySocket(client.id);
     if (!result || !result.player.isHost) return;
 
@@ -511,9 +524,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     });
   }
 
-  // ─── Timer internals ──────────────────────────────────────
-
-  private startQuestionTimer(room: Room) {
+  private startQuestionTimer(room: Room): void {
     this.clearQuestionTimer(room.id);
 
     const question = room.questions[room.currentQuestionIndex];
@@ -531,6 +542,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       for (const player of room.players.values()) {
         const wasConnected = player.status === 'answering';
         const needsTimeout = wasConnected || player.status === 'disconnected';
+
         if (!needsTimeout) continue;
 
         this.roomsService.recordAnswer(room, player.id, question.id, '', false, timerMs, true, 0);
@@ -558,26 +570,29 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     this.roomTimers.set(room.id, timerId);
   }
 
-  private clearQuestionTimer(roomId: string) {
+  private clearQuestionTimer(roomId: string): void {
     const timer = this.roomTimers.get(roomId);
-    if (timer) {
-      clearTimeout(timer);
-      this.roomTimers.delete(roomId);
-    }
+    if (!timer) return;
+
+    clearTimeout(timer);
+    this.roomTimers.delete(roomId);
   }
 
-  private advanceToNextQuestion(room: Room) {
+  private advanceToNextQuestion(room: Room): void {
     setTimeout(() => {
       const hasMore = this.roomsService.advanceQuestion(room);
 
       if (!hasMore) {
         this.clearQuestionTimer(room.id);
+
         const review = this.roomsService.buildReviewData(room);
+
         this.server.to(room.id).emit('game:finished', {
           scores: this.roomsService.getScores(room),
           room: this.roomsService.serializeRoom(room),
           review,
         });
+
         room.isStarted = false;
         return;
       }
@@ -605,14 +620,15 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   private cancelDisconnectTimer(playerId: string): void {
     const timer = this.disconnectTimers.get(playerId);
-    if (timer) {
-      clearTimeout(timer);
-      this.disconnectTimers.delete(playerId);
-    }
+    if (!timer) return;
+
+    clearTimeout(timer);
+    this.disconnectTimers.delete(playerId);
   }
 
   private cleanupStaleRooms(): void {
     const staleRoomIds = this.roomsService.getStaleRoomIds(ROOM_MAX_IDLE_AGE);
+
     for (const roomId of staleRoomIds) {
       Logger.log(`[WS] Cleaning up stale room: ${roomId}`);
       this.clearQuestionTimer(roomId);
