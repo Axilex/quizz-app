@@ -19,8 +19,14 @@
 
 <template>
   <div class="home">
+    <!-- Ambient glow -->
+    <div class="home__glow" />
+
     <div class="home__hero">
-      <div class="home__badge">✦ Quiz &amp; Culture</div>
+      <div class="home__badge">
+        <span class="home__badge-dot" />
+        Quiz &amp; Culture
+      </div>
 
       <div class="home__title-group">
         <h1 class="home__title">
@@ -45,29 +51,20 @@
       </div>
 
       <div class="home__features">
-        <div class="feature-pill">
-          <span class="feature-pill__icon">⚡</span>
-          <span>Timer adaptatif</span>
-        </div>
-        <div class="feature-pill">
-          <span class="feature-pill__icon">🎯</span>
-          <span>170+ questions</span>
-        </div>
-        <div class="feature-pill">
-          <span class="feature-pill__icon">✂️</span>
-          <span>Images coupées</span>
-        </div>
-        <div class="feature-pill">
-          <span class="feature-pill__icon">🧮</span>
-          <span>Calcul mental</span>
-        </div>
-        <div class="feature-pill">
-          <span class="feature-pill__icon">🗺️</span>
-          <span>Géographie</span>
-        </div>
-        <div class="feature-pill">
-          <span class="feature-pill__icon">🔄</span>
-          <span>Rejeu des erreurs</span>
+        <div
+          class="feature-pill"
+          v-for="feat in [
+            { icon: '⚡', label: 'Timer adaptatif' },
+            { icon: '🎯', label: '170+ questions' },
+            { icon: '✂️', label: 'Images coupées' },
+            { icon: '🧮', label: 'Calcul mental' },
+            { icon: '🗺️', label: 'Géographie' },
+            { icon: '🔄', label: 'Rejeu erreurs' },
+          ]"
+          :key="feat.label"
+        >
+          <span class="feature-pill__icon">{{ feat.icon }}</span>
+          <span>{{ feat.label }}</span>
         </div>
       </div>
     </div>
@@ -80,38 +77,77 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2.5rem 0;
-    min-height: calc(100vh - 60px);
+    padding: var(--space-xl) 0;
+    min-height: calc(100dvh - var(--header-height));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .home__glow {
+    position: absolute;
+    width: min(500px, 90vw);
+    height: min(500px, 90vw);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232, 178, 80, 0.06) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: glow-breathe 6s ease-in-out infinite;
+  }
+
+  @keyframes glow-breathe {
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.15);
+    }
   }
 
   .home__hero {
-    max-width: 400px;
+    max-width: min(420px, 100%);
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2.25rem;
+    gap: var(--space-xl);
+    position: relative;
+    z-index: 1;
   }
 
   /* Badge */
   .home__badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: var(--text-xs);
     font-weight: 600;
     color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 10%, var(--bg-secondary));
-    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
-    padding: 0.3rem 0.85rem;
-    border-radius: 100px;
+    background: var(--accent-soft);
+    border: 1px solid rgba(232, 178, 80, 0.18);
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-full);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    animation: badge-pulse 3s ease-in-out infinite;
   }
 
-  @keyframes badge-pulse {
+  .home__badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: dot-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes dot-pulse {
     0%,
     100% {
-      opacity: 0.7;
+      opacity: 0.4;
     }
     50% {
       opacity: 1;
@@ -125,7 +161,7 @@
 
   .home__title {
     font-family: var(--font-display);
-    font-size: 5rem;
+    font-size: var(--text-hero);
     font-weight: 400;
     color: var(--text-primary);
     margin: 0;
@@ -136,21 +172,21 @@
   .home__title-q {
     color: var(--accent);
     font-style: italic;
-    font-weight: 400;
-    filter: drop-shadow(0 0 20px var(--accent-glow));
+    font-weight: 700;
+    filter: drop-shadow(0 0 24px var(--accent-glow));
   }
 
   .home__title-rest {
-    font-weight: 200;
-    letter-spacing: 0.04em;
+    font-weight: 300;
+    letter-spacing: 0.05em;
   }
 
   .home__subtitle {
-    margin: 0.6rem 0 0;
-    font-size: 1rem;
+    margin: var(--space-sm) 0 0;
+    font-size: var(--text-base);
     color: var(--text-secondary);
     font-weight: 400;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
   }
 
   /* Actions */
@@ -158,39 +194,39 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: var(--space-sm);
   }
 
   .btn-inner {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.6rem;
+    gap: 0.65rem;
   }
 
   .btn-icon {
-    font-size: 0.9em;
-    opacity: 0.8;
+    font-size: 0.95em;
+    opacity: 0.85;
   }
 
   /* Feature pills */
   .home__features {
     display: flex;
-    gap: 0.5rem;
+    gap: var(--space-xs);
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 380px;
+    max-width: 400px;
   }
 
   .feature-pill {
     display: flex;
     align-items: center;
-    gap: 0.3rem;
-    padding: 0.38rem 0.7rem;
+    gap: 0.35rem;
+    padding: 0.4rem 0.75rem;
     background: var(--bg-secondary);
-    border: 1px solid var(--border-subtle);
-    border-radius: 100px;
-    font-size: 0.78rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
     color: var(--text-muted);
     font-weight: 500;
     transition:
@@ -199,21 +235,26 @@
   }
 
   .feature-pill:hover {
-    border-color: var(--border);
+    border-color: var(--border-strong);
     color: var(--text-secondary);
   }
 
   .feature-pill__icon {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 
-  @media (max-width: 640px) {
-    .home__title {
-      font-size: 3.8rem;
-    }
+  @media (max-width: 480px) {
     .home {
-      padding: 1.5rem 0;
-      min-height: auto;
+      padding: var(--space-lg) 0;
+    }
+    .home__hero {
+      gap: var(--space-lg);
+    }
+    .home__features {
+      gap: 0.35rem;
+    }
+    .feature-pill {
+      padding: 0.35rem 0.6rem;
     }
   }
 </style>

@@ -25,12 +25,14 @@
   .progress {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-sm);
+    flex: 1;
+    min-width: 0;
   }
 
   .progress__count {
     font-family: var(--font-mono);
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     color: var(--text-secondary);
     white-space: nowrap;
   }
@@ -42,7 +44,7 @@
 
   .progress__sep {
     margin: 0 0.15em;
-    opacity: 0.5;
+    opacity: 0.4;
   }
 
   .progress__track {
@@ -57,6 +59,6 @@
     height: 100%;
     background: var(--accent);
     border-radius: 2px;
-    transition: width 0.4s ease;
+    transition: width 0.4s var(--ease-out-expo);
   }
 </style>

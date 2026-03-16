@@ -31,18 +31,18 @@
   <div class="setup-page">
     <div class="setup-page__container">
       <div class="setup-page__header">
-        <BaseButton variant="ghost" size="sm" @click="router.push('/')"> ← Retour </BaseButton>
+        <BaseButton variant="ghost" size="sm" @click="router.push('/')">← Retour</BaseButton>
         <h1 class="setup-page__title">Configuration</h1>
         <p class="setup-page__desc">Personnalisez votre partie avant de commencer</p>
       </div>
 
-      <!-- Loading overlay -->
+      <!-- Loading -->
       <div v-if="isStarting" class="setup-page__loading">
         <div class="loader" />
         <p>Préparation des questions…</p>
       </div>
 
-      <!-- Error message -->
+      <!-- Error -->
       <div v-if="startError" class="setup-page__error">
         <p>{{ startError }}</p>
         <BaseButton variant="ghost" size="sm" @click="startError = null">Réessayer</BaseButton>
@@ -58,34 +58,34 @@
     flex: 1;
     display: flex;
     justify-content: center;
-    padding: 1rem 0;
+    padding: var(--space-lg) 0;
   }
 
   .setup-page__container {
-    max-width: 480px;
+    max-width: var(--max-narrow);
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: var(--space-xl);
   }
 
   .setup-page__header {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: var(--space-xs);
   }
 
   .setup-page__title {
     font-family: var(--font-display);
-    font-size: 2rem;
+    font-size: var(--text-xl);
     font-weight: 800;
     color: var(--text-primary);
-    margin: 0.5rem 0 0;
+    margin: var(--space-xs) 0 0;
   }
 
   .setup-page__desc {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: var(--text-sm);
     margin: 0;
   }
 
@@ -93,16 +93,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    padding: 3rem 0;
+    gap: var(--space-md);
+    padding: var(--space-2xl) 0;
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: var(--text-sm);
   }
 
   .loader {
     width: 36px;
     height: 36px;
-    border: 3px solid var(--border);
+    border: 3px solid var(--border-strong);
     border-top-color: var(--accent);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
@@ -118,13 +118,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    padding: 1rem;
-    background: color-mix(in srgb, var(--error) 10%, var(--bg-secondary));
-    border: 1px solid var(--error);
-    border-radius: 10px;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: var(--error-soft);
+    border: 1px solid rgba(239, 107, 107, 0.2);
+    border-radius: var(--radius-md);
     color: var(--error);
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     text-align: center;
   }
 </style>

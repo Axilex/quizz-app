@@ -7,7 +7,6 @@
   const router = useRouter();
   const lobby = useLobbyStore();
 
-  // ─── All state comes from the store (synced via WebSocket) ───
   const viewMode = computed(() => lobby.reviewViewMode);
   const currentQuestionIdx = computed(() => lobby.reviewQuestionIdx);
 
@@ -25,10 +24,7 @@
 
   const hasReview = computed(() => lobby.reviewData.length > 0);
   const totalQ = computed(() => lobby.totalQuestions);
-
-  const currentReview = computed(() => {
-    return lobby.reviewData[currentQuestionIdx.value] ?? null;
-  });
+  const currentReview = computed(() => lobby.reviewData[currentQuestionIdx.value] ?? null);
 
   const sortedAnswers = computed(() => {
     if (!currentReview.value) return [];
@@ -37,8 +33,6 @@
       return a.timeSpent - b.timeSpent;
     });
   });
-
-  // ─── Host navigation — emits to server, server broadcasts ───
 
   function switchToView(view: 'podium' | 'review') {
     lobby.navigateReview(view, currentQuestionIdx.value);
@@ -82,7 +76,7 @@
 <template>
   <div class="results-multi">
     <div class="results-multi__container">
-      <!-- Tab toggle — host can click, others see which tab is active -->
+      <!-- Tab toggle -->
       <div class="tab-toggle">
         <button
           class="tab-toggle__btn"
@@ -102,15 +96,15 @@
         </button>
       </div>
 
-      <!-- Non-host indicator -->
       <p v-if="!lobby.isHost" class="results-multi__follower-hint">L'hôte contrôle la navigation</p>
 
-      <!-- ═══ PODIUM VIEW ═══ -->
+      <!-- ═══ PODIUM ═══ -->
       <template v-if="viewMode === 'podium'">
-        <h1 class="results-multi__title">Résultats</h1>
-
-        <div v-if="totalQ > 0" class="results-multi__summary">
-          {{ totalQ }} question{{ totalQ > 1 ? 's' : '' }} jouées
+        <div class="podium-header">
+          <h1 class="results-multi__title">Résultats</h1>
+          <div v-if="totalQ > 0" class="results-multi__summary">
+            {{ totalQ }} question{{ totalQ > 1 ? 's' : '' }} jouées
+          </div>
         </div>
 
         <div class="podium">
@@ -118,7 +112,12 @@
             v-for="(player, i) in rankings"
             :key="player.id"
             class="podium__item"
-            :class="{ 'podium__item--winner': i === 0, 'podium__item--me': player.isMe }"
+            :class="{
+              'podium__item--gold': i === 0,
+              'podium__item--silver': i === 1,
+              'podium__item--bronze': i === 2,
+              'podium__item--me': player.isMe,
+            }"
           >
             <span class="podium__rank">{{
               i === 0 ? '🏆' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}.`
@@ -142,13 +141,12 @@
           <BaseButton variant="secondary" size="md" full-width @click="handleBackToLobby">
             Rejouer
           </BaseButton>
-          <BaseButton variant="ghost" size="sm" @click="handleHome"> Accueil </BaseButton>
+          <BaseButton variant="ghost" size="sm" @click="handleHome">Accueil</BaseButton>
         </div>
       </template>
 
-      <!-- ═══ REVIEW VIEW ═══ -->
+      <!-- ═══ REVIEW ═══ -->
       <template v-else-if="hasReview && currentReview">
-        <!-- Question navigation — only host can interact -->
         <div class="review-nav">
           <button
             class="review-nav__arrow"
@@ -169,7 +167,7 @@
           </button>
         </div>
 
-        <!-- Question dots — only host can click -->
+        <!-- Dots -->
         <div class="review-dots">
           <button
             v-for="(q, idx) in lobby.reviewData"
@@ -208,7 +206,7 @@
           </p>
         </div>
 
-        <!-- Player answers table -->
+        <!-- Answers table -->
         <div class="answers-table">
           <div class="answers-table__header">
             <span class="answers-table__col answers-table__col--player">Joueur</span>
@@ -250,7 +248,6 @@
               <span v-else class="status-icon status-icon--wrong">✗</span>
             </span>
 
-            <!-- Host-only override buttons -->
             <span
               v-if="!currentReview.autoValidated && lobby.isHost"
               class="answers-table__col answers-table__col--action"
@@ -275,13 +272,12 @@
           </div>
         </div>
 
-        <!-- Bottom nav — host only for navigation -->
+        <!-- Bottom nav -->
         <div class="review-bottom">
           <BaseButton v-if="lobby.isHost" variant="ghost" size="sm" @click="switchToView('podium')">
             ← Classement
           </BaseButton>
           <div v-else />
-
           <BaseButton
             v-if="lobby.isHost && currentQuestionIdx < lobby.reviewData.length - 1"
             size="md"
@@ -300,7 +296,7 @@
         </div>
       </template>
 
-      <!-- No review data fallback -->
+      <!-- No review -->
       <template v-else-if="viewMode === 'review' && !hasReview">
         <div class="no-review">
           <p>Aucune donnée de revue disponible pour cette partie.</p>
@@ -318,91 +314,104 @@
     flex: 1;
     display: flex;
     justify-content: center;
-    padding: 1rem 0 3rem;
+    padding: var(--space-lg) 0 var(--space-2xl);
   }
   .results-multi__container {
-    max-width: 600px;
+    max-width: 620px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--space-lg);
   }
 
   .results-multi__follower-hint {
     text-align: center;
-    font-size: 0.78rem;
+    font-size: var(--text-xs);
     color: var(--text-muted);
     font-style: italic;
-    margin: -0.75rem 0 0;
+    margin: calc(-1 * var(--space-sm)) 0 0;
   }
 
-  /* TAB TOGGLE */
+  /* Tab toggle */
   .tab-toggle {
     display: flex;
     background: var(--bg-secondary);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 0.25rem;
-    gap: 0.25rem;
+    border-radius: var(--radius-md);
+    padding: 4px;
+    gap: 4px;
   }
   .tab-toggle__btn {
     flex: 1;
-    padding: 0.6rem 1rem;
+    padding: 0.65rem var(--space-md);
     background: none;
     border: none;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     font-family: var(--font-body);
-    font-size: 0.88rem;
+    font-size: var(--text-sm);
     font-weight: 600;
     color: var(--text-muted);
     cursor: pointer;
     transition: all 0.2s;
+    min-height: 44px;
   }
   .tab-toggle__btn--active {
-    background: var(--accent);
-    color: var(--bg-primary);
+    background: linear-gradient(135deg, var(--accent), #d4a03a);
+    color: var(--bg-base);
+    box-shadow: 0 2px 8px rgba(232, 178, 80, 0.2);
   }
   .tab-toggle__btn:hover:not(.tab-toggle__btn--active):not(:disabled) {
     color: var(--text-primary);
   }
   .tab-toggle__btn:disabled:not(.tab-toggle__btn--active) {
-    opacity: 0.4;
+    opacity: 0.35;
     cursor: default;
   }
 
-  /* PODIUM */
+  /* Podium */
+  .podium-header {
+    text-align: center;
+  }
   .results-multi__title {
     font-family: var(--font-display);
-    font-size: 2.5rem;
+    font-size: var(--text-2xl);
     font-weight: 800;
     color: var(--text-primary);
-    text-align: center;
     margin: 0;
   }
   .results-multi__summary {
-    text-align: center;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     color: var(--text-muted);
     font-weight: 500;
+    margin-top: var(--space-xs);
   }
+
   .podium {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--space-sm);
   }
   .podium__item {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.9rem 1.2rem;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
     background: var(--bg-secondary);
-    border: 2px solid var(--border);
-    border-radius: 12px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-md);
     transition: all 0.2s;
+    min-height: 56px;
   }
-  .podium__item--winner {
-    border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 8%, var(--bg-secondary));
+  .podium__item--gold {
+    border-color: rgba(232, 178, 80, 0.35);
+    background: var(--accent-soft);
+    box-shadow: 0 0 24px rgba(232, 178, 80, 0.06);
+  }
+  .podium__item--silver {
+    border-color: rgba(192, 192, 192, 0.2);
+  }
+  .podium__item--bronze {
+    border-color: rgba(205, 127, 50, 0.2);
   }
   .podium__item--me {
     border-color: var(--accent);
@@ -420,12 +429,12 @@
   }
   .podium__score {
     font-family: var(--font-mono);
-    font-size: 1.2rem;
+    font-size: var(--text-lg);
     font-weight: 700;
     color: var(--accent);
   }
   .podium__unit {
-    font-size: 0.8rem;
+    font-size: var(--text-sm);
     font-weight: 400;
     color: var(--text-muted);
   }
@@ -433,22 +442,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-sm);
   }
 
-  /* REVIEW NAV */
+  /* Review nav */
   .review-nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: var(--space-lg);
   }
   .review-nav__arrow {
     background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    width: 36px;
-    height: 36px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    width: 40px;
+    height: 40px;
     font-size: 1.1rem;
     color: var(--text-primary);
     cursor: pointer;
@@ -462,20 +471,20 @@
     color: var(--accent);
   }
   .review-nav__arrow:disabled {
-    opacity: 0.3;
+    opacity: 0.25;
     cursor: default;
   }
   .review-nav__label {
     font-family: var(--font-mono);
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     color: var(--text-secondary);
     font-weight: 600;
   }
 
-  /* DOTS */
+  /* Dots */
   .review-dots {
     display: flex;
-    gap: 0.35rem;
+    gap: 0.4rem;
     justify-content: center;
     flex-wrap: wrap;
   }
@@ -495,59 +504,61 @@
   .review-dots__dot--active {
     border-color: var(--accent);
     background: var(--accent);
-    transform: scale(1.3);
+    transform: scale(1.35);
+    box-shadow: 0 0 8px var(--accent-glow);
   }
   .review-dots__dot--all-correct:not(.review-dots__dot--active) {
     border-color: var(--success);
     background: var(--success);
-    opacity: 0.6;
+    opacity: 0.5;
   }
   .review-dots__dot--some-wrong:not(.review-dots__dot--active) {
     border-color: var(--error);
     background: var(--error);
-    opacity: 0.5;
+    opacity: 0.45;
   }
 
-  /* QUESTION CARD */
+  /* Question card */
   .review-question {
     background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 1.25rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: var(--space-sm);
+    box-shadow: var(--shadow-md);
   }
   .review-question__meta {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-sm);
   }
   .review-question__type {
-    font-size: 0.75rem;
+    font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--text-muted);
     font-weight: 600;
   }
   .review-question__badge {
-    font-size: 0.7rem;
-    padding: 0.15rem 0.5rem;
+    font-size: var(--text-xs);
+    padding: 0.18rem 0.55rem;
     border-radius: 4px;
     font-weight: 600;
     margin-left: auto;
   }
   .review-question__badge--auto {
-    background: color-mix(in srgb, var(--success) 15%, transparent);
+    background: var(--success-soft);
     color: var(--success);
   }
   .review-question__badge--manual {
-    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    background: var(--accent-soft);
     color: var(--accent);
   }
   .review-question__label {
     font-family: var(--font-display);
-    font-size: 1.15rem;
+    font-size: var(--text-lg);
     font-weight: 700;
     color: var(--text-primary);
     margin: 0;
@@ -556,39 +567,39 @@
   .review-question__answer {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-sm);
   }
   .review-question__answer-label {
-    font-size: 0.82rem;
+    font-size: var(--text-sm);
     color: var(--text-muted);
     font-weight: 500;
   }
   .review-question__answer-value {
-    font-size: 0.95rem;
+    font-size: var(--text-base);
     font-weight: 700;
     color: var(--success);
   }
   .review-question__explanation {
-    font-size: 0.82rem;
+    font-size: var(--text-sm);
     color: var(--text-secondary);
     margin: 0;
     font-style: italic;
     line-height: 1.5;
   }
 
-  /* ANSWERS TABLE */
+  /* Answers table */
   .answers-table {
     background: var(--bg-secondary);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     overflow: hidden;
   }
   .answers-table__header {
     display: flex;
-    padding: 0.6rem 1rem;
+    padding: var(--space-sm) var(--space-md);
     background: var(--bg-tertiary);
     border-bottom: 1px solid var(--border);
-    font-size: 0.72rem;
+    font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--text-muted);
@@ -596,19 +607,20 @@
   }
   .answers-table__row {
     display: flex;
-    padding: 0.75rem 1rem;
+    padding: var(--space-sm) var(--space-md);
     border-bottom: 1px solid var(--border);
     align-items: center;
     transition: background 0.15s;
+    min-height: 48px;
   }
   .answers-table__row:last-child {
     border-bottom: none;
   }
   .answers-table__row--me {
-    background: color-mix(in srgb, var(--accent) 4%, transparent);
+    background: rgba(232, 178, 80, 0.03);
   }
   .answers-table__row:hover {
-    background: color-mix(in srgb, var(--accent) 3%, var(--bg-secondary));
+    background: rgba(232, 178, 80, 0.02);
   }
   .answers-table__col {
     display: flex;
@@ -622,12 +634,12 @@
   .answers-table__col--answer {
     flex: 3;
     min-width: 0;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
   }
   .answers-table__col--time {
     flex: 1;
     font-family: var(--font-mono);
-    font-size: 0.82rem;
+    font-size: var(--text-sm);
     color: var(--text-secondary);
     justify-content: center;
   }
@@ -642,17 +654,17 @@
   }
   .answers-table__player-name {
     font-weight: 600;
-    font-size: 0.88rem;
+    font-size: var(--text-sm);
     color: var(--text-primary);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
   .answers-table__me-badge {
-    font-size: 0.65rem;
-    background: var(--accent);
-    color: var(--bg-primary);
-    padding: 0.05rem 0.35rem;
+    font-size: 0.6rem;
+    background: linear-gradient(135deg, var(--accent), #d4a03a);
+    color: var(--bg-base);
+    padding: 0.08rem 0.4rem;
     border-radius: 3px;
     font-weight: 700;
     flex-shrink: 0;
@@ -660,12 +672,12 @@
   .answers-table__timeout-text {
     color: var(--text-muted);
     font-style: italic;
-    font-size: 0.82rem;
+    font-size: var(--text-sm);
   }
 
   .status-icon {
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 1.5rem;
+    height: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -674,19 +686,19 @@
     font-weight: 900;
   }
   .status-icon--correct {
-    background: color-mix(in srgb, var(--success) 18%, transparent);
+    background: var(--success-soft);
     color: var(--success);
   }
   .status-icon--wrong {
-    background: color-mix(in srgb, var(--error) 18%, transparent);
+    background: var(--error-soft);
     color: var(--error);
   }
 
   .validate-btn {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     border-radius: 6px;
-    border: 2px solid var(--border);
+    border: 1.5px solid var(--border-strong);
     background: transparent;
     font-size: 0.8rem;
     font-weight: 900;
@@ -701,7 +713,7 @@
   }
   .validate-btn--accept:hover,
   .validate-btn--accept.validate-btn--active {
-    background: color-mix(in srgb, var(--success) 15%, transparent);
+    background: var(--success-soft);
     border-color: var(--success);
   }
   .validate-btn--reject {
@@ -709,33 +721,31 @@
   }
   .validate-btn--reject:hover,
   .validate-btn--reject.validate-btn--active {
-    background: color-mix(in srgb, var(--error) 15%, transparent);
+    background: var(--error-soft);
     border-color: var(--error);
   }
 
-  /* BOTTOM NAV */
   .review-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.5rem;
-    padding-top: 0.5rem;
+    gap: var(--space-sm);
+    padding-top: var(--space-sm);
   }
 
-  /* NO REVIEW */
   .no-review {
     text-align: center;
     color: var(--text-muted);
-    padding: 3rem 1rem;
+    padding: var(--space-2xl) var(--space-md);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-md);
   }
 
   @media (max-width: 640px) {
     .results-multi__title {
-      font-size: 2rem;
+      font-size: var(--text-xl);
     }
     .answers-table__col--time {
       display: none;
@@ -744,7 +754,7 @@
       flex: 2;
     }
     .review-question__label {
-      font-size: 1rem;
+      font-size: var(--text-base);
     }
   }
 </style>

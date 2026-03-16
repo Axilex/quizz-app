@@ -40,6 +40,7 @@
     <div class="results-page__container">
       <!-- Score hero -->
       <div class="score-hero">
+        <div class="score-hero__glow" />
         <span class="score-hero__emoji">{{ results.grade.emoji }}</span>
         <h1 class="score-hero__percentage">
           {{ results.totalPoints }}<span class="score-hero__max">/{{ results.maxPoints }} pts</span>
@@ -76,7 +77,7 @@
         <BaseButton variant="secondary" size="md" full-width @click="handleNewGame">
           Nouvelle partie
         </BaseButton>
-        <BaseButton variant="ghost" size="sm" @click="handleHome"> Accueil </BaseButton>
+        <BaseButton variant="ghost" size="sm" @click="handleHome">Accueil</BaseButton>
       </div>
 
       <!-- Answer list -->
@@ -100,15 +101,15 @@
     flex: 1;
     display: flex;
     justify-content: center;
-    padding: 1rem 0 3rem;
+    padding: var(--space-lg) 0 var(--space-2xl);
   }
 
   .results-page__container {
-    max-width: 540px;
+    max-width: 560px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: var(--space-xl);
   }
 
   /* Score hero */
@@ -117,58 +118,81 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.25rem;
-    padding: 2rem;
+    gap: var(--space-xs);
+    padding: var(--space-xl);
     background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 20px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-xl);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .score-hero__glow {
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232, 178, 80, 0.08), transparent 70%);
+    transform: translateX(-50%);
+    pointer-events: none;
   }
 
   .score-hero__emoji {
-    font-size: 3rem;
+    font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem);
     line-height: 1;
+    position: relative;
+    z-index: 1;
   }
 
   .score-hero__percentage {
     font-family: var(--font-display);
-    font-size: 4rem;
+    font-size: var(--text-2xl);
     font-weight: 900;
     color: var(--accent);
     margin: 0;
     line-height: 1.1;
+    position: relative;
+    z-index: 1;
   }
 
   .score-hero__max {
-    font-size: 1.5rem;
+    font-size: clamp(0.9rem, 0.7rem + 0.6vw, 1.3rem);
     font-weight: 400;
     color: var(--text-muted);
   }
 
   .score-hero__grade {
-    font-size: 1.1rem;
+    font-size: var(--text-base);
     color: var(--text-secondary);
-    margin: 0 0 1rem;
+    margin: 0 0 var(--space-md);
     font-weight: 500;
+    position: relative;
+    z-index: 1;
   }
 
   .score-hero__stats {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: var(--space-md);
     flex-wrap: wrap;
     justify-content: center;
+    position: relative;
+    z-index: 1;
   }
 
   .stat {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.15rem;
+    gap: 0.1rem;
   }
 
   .stat__value {
     font-family: var(--font-mono);
-    font-size: 1.2rem;
+    font-size: var(--text-lg);
     font-weight: 700;
     color: var(--text-primary);
   }
@@ -176,13 +200,12 @@
   .stat__value--correct {
     color: var(--success);
   }
-
   .stat__value--wrong {
     color: var(--error);
   }
 
   .stat__label {
-    font-size: 0.72rem;
+    font-size: var(--text-xs);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--text-muted);
@@ -192,7 +215,7 @@
   .stat__divider {
     width: 1px;
     height: 2rem;
-    background: var(--border);
+    background: var(--border-strong);
   }
 
   /* Actions */
@@ -200,23 +223,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-sm);
   }
 
   /* List */
   .results-page__list-title {
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: var(--text-sm);
     font-weight: 700;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    margin: 0 0 0.75rem;
+    margin: 0 0 var(--space-sm);
   }
 
   .results-page__cards {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--space-sm);
   }
 </style>

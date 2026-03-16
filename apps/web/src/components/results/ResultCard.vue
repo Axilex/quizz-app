@@ -41,21 +41,24 @@
   .result-card {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.25rem;
-    border-radius: 12px;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
     border: 1px solid var(--border);
     background: var(--bg-secondary);
-    transition: transform 0.2s;
+    transition:
+      transform 0.2s var(--ease-out-expo),
+      box-shadow 0.2s;
   }
 
   .result-card:hover {
     transform: translateX(4px);
+    box-shadow: var(--shadow-sm);
   }
 
   .result-card__number {
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: var(--text-xs);
     color: var(--text-muted);
     min-width: 2ch;
   }
@@ -68,29 +71,30 @@
   .result-card__top {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;
-    margin-bottom: 0.3rem;
+    gap: var(--space-sm);
+    margin-bottom: 0.25rem;
   }
 
   .result-card__question {
-    font-size: 0.92rem;
+    font-size: var(--text-sm);
     color: var(--text-primary);
     margin: 0;
     font-weight: 500;
     flex: 1;
+    line-height: 1.4;
   }
 
   .result-card__answers {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.82rem;
+    gap: var(--space-sm);
+    font-size: var(--text-sm);
   }
 
   .result-card__user {
     color: var(--error);
     text-decoration: line-through;
-    opacity: 0.7;
+    opacity: 0.65;
   }
 
   .result-card__correct {
@@ -98,23 +102,19 @@
     font-weight: 600;
   }
 
-  .result-card--correct .result-card__correct {
-    color: var(--success);
-  }
-
   .result-card__right {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.2rem;
+    gap: 0.15rem;
     flex-shrink: 0;
   }
 
   .result-card__icon {
     font-weight: 900;
     font-size: 1.1rem;
-    width: 2rem;
-    height: 2rem;
+    width: 2.2rem;
+    height: 2.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -123,18 +123,24 @@
 
   .result-card--correct .result-card__icon {
     color: var(--success);
-    background: color-mix(in srgb, var(--success) 15%, transparent);
+    background: var(--success-soft);
   }
 
   .result-card--wrong .result-card__icon {
     color: var(--error);
-    background: color-mix(in srgb, var(--error) 15%, transparent);
+    background: var(--error-soft);
   }
 
   .result-card__pts {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: var(--text-xs);
     font-weight: 700;
     color: var(--accent);
+  }
+
+  @media (hover: none) {
+    .result-card:hover {
+      transform: none;
+    }
   }
 </style>
