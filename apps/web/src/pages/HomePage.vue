@@ -55,7 +55,7 @@
           class="feature-pill"
           v-for="feat in [
             { icon: '⚡', label: 'Timer adaptatif' },
-            { icon: '🎯', label: '170+ questions' },
+            { icon: '🎯', label: '270+ questions' },
             { icon: '✂️', label: 'Images coupées' },
             { icon: '🧮', label: 'Calcul mental' },
             { icon: '🗺️', label: 'Géographie' },

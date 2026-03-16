@@ -24,10 +24,8 @@
 
   function reset() {
     availableTiles.value = [...props.question.tiles];
-    // Total slots = numbers + operators
-    const numNumbers = props.question.tiles.filter((t) => t.tileType === 'number').length;
-    const numOps = props.question.tiles.filter((t) => t.tileType === 'operator').length;
-    const total = numNumbers + numOps;
+    // Total slots = all tiles (numbers + operators + parentheses)
+    const total = props.question.tiles.length;
     slots.value = Array(total).fill(null);
   }
 
@@ -100,27 +98,45 @@
   }
 
   // ─── Evaluate & submit ────────────────────────────────────────────────────
-  const currentValue = computed<number | null>(() => {
-    if (slots.value.some((s) => s === null)) return null;
-    try {
-      const nums = slots.value
-        .filter((t) => t?.tileType === 'number')
-        .map((t) => parseFloat(t!.value));
-      const ops = slots.value.filter((t) => t?.tileType === 'operator').map((t) => t!.value);
 
-      let result = nums[0]!;
-      for (let i = 0; i < ops.length; i++) {
-        const op = ops[i]!;
-        const b = nums[i + 1]!;
-        if (op === '+') result += b;
-        else if (op === '-') result -= b;
-        else if (op === '×') result *= b;
-        else if (op === '÷' && b !== 0) result /= b;
+  /** Tokenize the slots into a string expression and evaluate with proper math rules */
+  function evaluateExpression(tokens: MathTile[]): number | null {
+    // Build expression string from tiles
+    const expr = tokens
+      .map((t) => {
+        if (t.value === '×') return '*';
+        if (t.value === '÷') return '/';
+        return t.value;
+      })
+      .join(' ');
+
+    try {
+      // Safe math evaluation using Function (no eval)
+      // Only allows digits, operators, parentheses, spaces, and dots
+      const sanitized = expr.replace(/[^0-9+\-*/().  ]/g, '');
+      if (!sanitized.trim()) return null;
+
+      // Check balanced parentheses
+      let depth = 0;
+      for (const ch of sanitized) {
+        if (ch === '(') depth++;
+        if (ch === ')') depth--;
+        if (depth < 0) return null;
       }
-      return result;
+      if (depth !== 0) return null;
+
+      const result = new Function(`return (${sanitized})`)() as number;
+      if (typeof result !== 'number' || !isFinite(result)) return null;
+      return Math.round(result * 1000) / 1000; // avoid floating point weirdness
     } catch {
       return null;
     }
+  }
+
+  const currentValue = computed<number | null>(() => {
+    if (slots.value.some((s) => s === null)) return null;
+    const tiles = slots.value.filter((s): s is MathTile => s !== null);
+    return evaluateExpression(tiles);
   });
 
   const isComplete = computed(() => slots.value.every((s) => s !== null));
@@ -143,6 +159,7 @@
           'math-max__slot--filled': !!slot,
           'math-max__slot--number': slot?.tileType === 'number',
           'math-max__slot--operator': slot?.tileType === 'operator',
+          'math-max__slot--parenthesis': slot?.tileType === 'parenthesis',
         }"
         @dragover="onDragOver"
         @drop="onDropSlot(i)"
@@ -246,6 +263,11 @@
     background: var(--bg-secondary);
   }
 
+  .math-max__slot--parenthesis.math-max__slot--filled {
+    border-color: var(--warning, #f0ad4e);
+    background: color-mix(in srgb, var(--warning, #f0ad4e) 10%, var(--bg-secondary));
+  }
+
   .math-max__slot-placeholder {
     font-size: 1.5rem;
     color: var(--text-muted);
@@ -331,6 +353,14 @@
   .math-max__tile--operator {
     background: var(--bg-secondary);
     font-size: 1.5rem;
+  }
+
+  .math-max__tile--parenthesis {
+    border-color: var(--warning, #f0ad4e);
+    background: color-mix(in srgb, var(--warning, #f0ad4e) 10%, var(--bg-secondary));
+    color: var(--warning, #f0ad4e);
+    font-size: 1.6rem;
+    font-weight: 900;
   }
 
   .math-max__tile:hover:not(:disabled) {

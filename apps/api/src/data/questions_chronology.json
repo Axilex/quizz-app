@@ -12,10 +12,26 @@
     "tags": ["histoire"],
     "baseTimer": 40,
     "items": [
-      { "id": "chr_001_a", "label": "Chute de Rome", "year": 476 },
-      { "id": "chr_001_b", "label": "Découverte de l'Amérique", "year": 1492 },
-      { "id": "chr_001_c", "label": "Révolution française", "year": 1789 },
-      { "id": "chr_001_d", "label": "Première Guerre mondiale", "year": 1914 }
+      {
+        "id": "chr_001_a",
+        "label": "Chute de Rome",
+        "year": 476
+      },
+      {
+        "id": "chr_001_b",
+        "label": "Découverte de l'Amérique",
+        "year": 1492
+      },
+      {
+        "id": "chr_001_c",
+        "label": "Révolution française",
+        "year": 1789
+      },
+      {
+        "id": "chr_001_d",
+        "label": "Première Guerre mondiale",
+        "year": 1914
+      }
     ]
   },
   {
@@ -31,48 +47,306 @@
     "tags": ["sciences", "inventions"],
     "baseTimer": 35,
     "items": [
-      { "id": "chr_002_a", "label": "La roue", "year": -3500 },
-      { "id": "chr_002_b", "label": "L'imprimerie", "year": 1440 },
-      { "id": "chr_002_c", "label": "Le téléphone", "year": 1876 },
-      { "id": "chr_002_d", "label": "Internet", "year": 1969 }
+      {
+        "id": "chr_002_a",
+        "label": "Roue",
+        "year": -3500
+      },
+      {
+        "id": "chr_002_b",
+        "label": "Imprimerie",
+        "year": 1440
+      },
+      {
+        "id": "chr_002_c",
+        "label": "Téléphone",
+        "year": 1876
+      },
+      {
+        "id": "chr_002_d",
+        "label": "Internet",
+        "year": 1969
+      }
     ]
   },
   {
     "id": "chr_003",
     "type": "chronology",
-    "difficulty": "hard",
-    "category": "culture",
-    "label": "Classez ces œuvres d'art de la plus ancienne à la plus récente :",
+    "difficulty": "medium",
+    "category": "cinéma",
+    "label": "Classez ces films du plus ancien au plus récent :",
     "answer": "chr_003_a,chr_003_b,chr_003_c,chr_003_d",
     "acceptedAnswers": ["chr_003_a,chr_003_b,chr_003_c,chr_003_d"],
     "media": null,
-    "explanation": "La Joconde (1503) → La Ronde de nuit (1642) → La Liberté guidant le peuple (1830) → Les Nymphéas (1906).",
-    "tags": ["culture", "art"],
-    "baseTimer": 45,
+    "explanation": "Star Wars (1977) → Retour vers le futur (1985) → Titanic (1997) → Avatar (2009).",
+    "tags": ["cinéma"],
+    "baseTimer": 40,
     "items": [
-      { "id": "chr_003_a", "label": "La Joconde", "year": 1503 },
-      { "id": "chr_003_b", "label": "La Ronde de nuit", "year": 1642 },
-      { "id": "chr_003_c", "label": "La Liberté guidant le peuple", "year": 1830 },
-      { "id": "chr_003_d", "label": "Les Nymphéas", "year": 1906 }
+      {
+        "id": "chr_003_a",
+        "label": "Star Wars",
+        "year": 1977
+      },
+      {
+        "id": "chr_003_b",
+        "label": "Retour vers le futur",
+        "year": 1985
+      },
+      {
+        "id": "chr_003_c",
+        "label": "Titanic",
+        "year": 1997
+      },
+      {
+        "id": "chr_003_d",
+        "label": "Avatar",
+        "year": 2009
+      }
     ]
   },
   {
     "id": "chr_004",
     "type": "chronology",
-    "difficulty": "medium",
-    "category": "sciences",
-    "label": "Classez ces planètes de la plus proche du Soleil à la plus éloignée :",
+    "difficulty": "easy",
+    "category": "jeux vidéo",
+    "label": "Classez ces consoles de la plus ancienne à la plus récente :",
     "answer": "chr_004_a,chr_004_b,chr_004_c,chr_004_d",
     "acceptedAnswers": ["chr_004_a,chr_004_b,chr_004_c,chr_004_d"],
     "media": null,
-    "explanation": "Mercure → Terre → Jupiter → Neptune.",
-    "tags": ["sciences", "astronomie"],
+    "explanation": "Game Boy (1989) → PlayStation (1994) → Xbox 360 (2005) → Nintendo Switch (2017).",
+    "tags": ["jeux vidéo", "consoles"],
     "baseTimer": 35,
     "items": [
-      { "id": "chr_004_a", "label": "Mercure" },
-      { "id": "chr_004_b", "label": "Terre" },
-      { "id": "chr_004_c", "label": "Jupiter" },
-      { "id": "chr_004_d", "label": "Neptune" }
+      {
+        "id": "chr_004_a",
+        "label": "Game Boy",
+        "year": 1989
+      },
+      {
+        "id": "chr_004_b",
+        "label": "PlayStation",
+        "year": 1994
+      },
+      {
+        "id": "chr_004_c",
+        "label": "Xbox 360",
+        "year": 2005
+      },
+      {
+        "id": "chr_004_d",
+        "label": "Nintendo Switch",
+        "year": 2017
+      }
+    ]
+  },
+  {
+    "id": "chr_005",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "musique",
+    "label": "Classez ces artistes par date de premier album :",
+    "answer": "chr_005_a,chr_005_b,chr_005_c,chr_005_d",
+    "acceptedAnswers": ["chr_005_a,chr_005_b,chr_005_c,chr_005_d"],
+    "media": null,
+    "explanation": "Beatles (1963) → Michael Jackson - Off the Wall (1979) → Nirvana (1989) → Daft Punk (1997).",
+    "tags": ["musique"],
+    "baseTimer": 40,
+    "items": [
+      {
+        "id": "chr_005_a",
+        "label": "The Beatles",
+        "year": 1963
+      },
+      {
+        "id": "chr_005_b",
+        "label": "Michael Jackson (solo)",
+        "year": 1979
+      },
+      {
+        "id": "chr_005_c",
+        "label": "Nirvana",
+        "year": 1989
+      },
+      {
+        "id": "chr_005_d",
+        "label": "Daft Punk",
+        "year": 1997
+      }
+    ]
+  },
+  {
+    "id": "chr_006",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "technologie",
+    "label": "Classez ces réseaux sociaux par date de lancement :",
+    "answer": "chr_006_a,chr_006_b,chr_006_c,chr_006_d",
+    "acceptedAnswers": ["chr_006_a,chr_006_b,chr_006_c,chr_006_d"],
+    "media": null,
+    "explanation": "Facebook (2004) → Twitter (2006) → Instagram (2010) → TikTok (2016).",
+    "tags": ["technologie", "réseaux sociaux"],
+    "baseTimer": 45,
+    "items": [
+      {
+        "id": "chr_006_a",
+        "label": "Facebook",
+        "year": 2004
+      },
+      {
+        "id": "chr_006_b",
+        "label": "Twitter",
+        "year": 2006
+      },
+      {
+        "id": "chr_006_c",
+        "label": "Instagram",
+        "year": 2010
+      },
+      {
+        "id": "chr_006_d",
+        "label": "TikTok",
+        "year": 2016
+      }
+    ]
+  },
+  {
+    "id": "chr_007",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "sport",
+    "label": "Classez ces Coupes du monde de football par année :",
+    "answer": "chr_007_a,chr_007_b,chr_007_c,chr_007_d",
+    "acceptedAnswers": ["chr_007_a,chr_007_b,chr_007_c,chr_007_d"],
+    "media": null,
+    "explanation": "France 98 → Allemagne 2006 → Brésil 2014 → Qatar 2022.",
+    "tags": ["sport", "football"],
+    "baseTimer": 40,
+    "items": [
+      {
+        "id": "chr_007_a",
+        "label": "France 1998",
+        "year": 1998
+      },
+      {
+        "id": "chr_007_b",
+        "label": "Allemagne 2006",
+        "year": 2006
+      },
+      {
+        "id": "chr_007_c",
+        "label": "Brésil 2014",
+        "year": 2014
+      },
+      {
+        "id": "chr_007_d",
+        "label": "Qatar 2022",
+        "year": 2022
+      }
+    ]
+  },
+  {
+    "id": "chr_008",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "sciences",
+    "label": "Classez ces découvertes scientifiques :",
+    "answer": "chr_008_a,chr_008_b,chr_008_c,chr_008_d",
+    "acceptedAnswers": ["chr_008_a,chr_008_b,chr_008_c,chr_008_d"],
+    "media": null,
+    "explanation": "Gravitation (1687) → Évolution (1859) → Relativité (1905) → ADN (1953).",
+    "tags": ["sciences"],
+    "baseTimer": 45,
+    "items": [
+      {
+        "id": "chr_008_a",
+        "label": "Loi de la gravitation (Newton)",
+        "year": 1687
+      },
+      {
+        "id": "chr_008_b",
+        "label": "Théorie de l'évolution (Darwin)",
+        "year": 1859
+      },
+      {
+        "id": "chr_008_c",
+        "label": "Relativité (Einstein)",
+        "year": 1905
+      },
+      {
+        "id": "chr_008_d",
+        "label": "Structure de l'ADN",
+        "year": 1953
+      }
+    ]
+  },
+  {
+    "id": "chr_009",
+    "type": "chronology",
+    "difficulty": "easy",
+    "category": "culture",
+    "label": "Classez ces créations Disney :",
+    "answer": "chr_009_a,chr_009_b,chr_009_c,chr_009_d",
+    "acceptedAnswers": ["chr_009_a,chr_009_b,chr_009_c,chr_009_d"],
+    "media": null,
+    "explanation": "Blanche-Neige (1937) → Le Roi Lion (1994) → La Reine des Neiges (2013) → Encanto (2021).",
+    "tags": ["culture", "Disney"],
+    "baseTimer": 35,
+    "items": [
+      {
+        "id": "chr_009_a",
+        "label": "Blanche-Neige",
+        "year": 1937
+      },
+      {
+        "id": "chr_009_b",
+        "label": "Le Roi Lion",
+        "year": 1994
+      },
+      {
+        "id": "chr_009_c",
+        "label": "La Reine des Neiges",
+        "year": 2013
+      },
+      {
+        "id": "chr_009_d",
+        "label": "Encanto",
+        "year": 2021
+      }
+    ]
+  },
+  {
+    "id": "chr_010",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "séries",
+    "label": "Classez ces séries par date de première diffusion :",
+    "answer": "chr_010_a,chr_010_b,chr_010_c,chr_010_d",
+    "acceptedAnswers": ["chr_010_a,chr_010_b,chr_010_c,chr_010_d"],
+    "media": null,
+    "explanation": "Friends (1994) → Breaking Bad (2008) → Game of Thrones (2011) → Squid Game (2021).",
+    "tags": ["séries"],
+    "baseTimer": 40,
+    "items": [
+      {
+        "id": "chr_010_a",
+        "label": "Friends",
+        "year": 1994
+      },
+      {
+        "id": "chr_010_b",
+        "label": "Breaking Bad",
+        "year": 2008
+      },
+      {
+        "id": "chr_010_c",
+        "label": "Game of Thrones",
+        "year": 2011
+      },
+      {
+        "id": "chr_010_d",
+        "label": "Squid Game",
+        "year": 2021
+      }
     ]
   }
 ]

@@ -135,7 +135,7 @@ export interface SplitImageQuestion extends BaseQuestion {
 export interface MathTile {
   id: string;
   value: string;
-  tileType: 'number' | 'operator';
+  tileType: 'number' | 'operator' | 'parenthesis';
 }
 export interface MathMaxQuestion extends BaseQuestion {
   type: 'mathMax';
