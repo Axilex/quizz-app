@@ -4,19 +4,49 @@
     "type": "mathMax",
     "difficulty": "easy",
     "category": "mathématiques",
-    "label": "Arrangez ces tuiles pour obtenir le plus grand nombre possible !",
-    "answer": "23",
-    "acceptedAnswers": ["23"],
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "25",
+    "acceptedAnswers": ["25"],
     "media": null,
-    "explanation": "3 × (5 + 2) = 21, mais 5 × 3 + 2 = 17... le maximum est 3 × 5 + 2 = 17 ? Non : (3+2)×5=25 > 23. Attention à l'ordre des opérations !",
+    "explanation": "(3 + 2) × 5 = 25. Les parenthèses permettent d'additionner d'abord.",
     "tags": ["mathématiques", "calcul"],
     "baseTimer": 45,
     "tiles": [
-      { "id": "t1", "value": "3", "tileType": "number" },
-      { "id": "t2", "value": "5", "tileType": "number" },
-      { "id": "t3", "value": "2", "tileType": "number" },
-      { "id": "t4", "value": "+", "tileType": "operator" },
-      { "id": "t5", "value": "×", "tileType": "operator" }
+      {
+        "id": "t1",
+        "value": "3",
+        "tileType": "number"
+      },
+      {
+        "id": "t2",
+        "value": "5",
+        "tileType": "number"
+      },
+      {
+        "id": "t3",
+        "value": "2",
+        "tileType": "number"
+      },
+      {
+        "id": "t4",
+        "value": "+",
+        "tileType": "operator"
+      },
+      {
+        "id": "t5",
+        "value": "×",
+        "tileType": "operator"
+      },
+      {
+        "id": "t6",
+        "value": "(",
+        "tileType": "parenthesis"
+      },
+      {
+        "id": "t7",
+        "value": ")",
+        "tileType": "parenthesis"
+      }
     ]
   },
   {
@@ -28,15 +58,35 @@
     "answer": "42",
     "acceptedAnswers": ["42"],
     "media": null,
-    "explanation": "6 × 7 + 0 = 42. Placer les grands nombres en premier avec ×.",
+    "explanation": "6 × 7 + 0 = 42. Placer les grands nombres avec ×.",
     "tags": ["mathématiques", "calcul"],
     "baseTimer": 40,
     "tiles": [
-      { "id": "t1", "value": "6", "tileType": "number" },
-      { "id": "t2", "value": "7", "tileType": "number" },
-      { "id": "t3", "value": "0", "tileType": "number" },
-      { "id": "t4", "value": "+", "tileType": "operator" },
-      { "id": "t5", "value": "×", "tileType": "operator" }
+      {
+        "id": "t1",
+        "value": "6",
+        "tileType": "number"
+      },
+      {
+        "id": "t2",
+        "value": "7",
+        "tileType": "number"
+      },
+      {
+        "id": "t3",
+        "value": "0",
+        "tileType": "number"
+      },
+      {
+        "id": "t4",
+        "value": "+",
+        "tileType": "operator"
+      },
+      {
+        "id": "t5",
+        "value": "×",
+        "tileType": "operator"
+      }
     ]
   },
   {
@@ -44,19 +94,49 @@
     "type": "mathMax",
     "difficulty": "medium",
     "category": "mathématiques",
-    "label": "Maximisez le résultat en plaçant les tuiles dans le bon ordre !",
-    "answer": "54",
-    "acceptedAnswers": ["54"],
+    "label": "Maximisez le résultat avec ces tuiles et les parenthèses !",
+    "answer": "60",
+    "acceptedAnswers": ["60"],
     "media": null,
-    "explanation": "9 × 6 + 0 = 54. Les grands facteurs d'abord !",
+    "explanation": "(4 + 6) × 6 = 60 ou (6 + 4) × 6 = 60.",
     "tags": ["mathématiques", "calcul"],
     "baseTimer": 50,
     "tiles": [
-      { "id": "t1", "value": "9", "tileType": "number" },
-      { "id": "t2", "value": "6", "tileType": "number" },
-      { "id": "t3", "value": "4", "tileType": "number" },
-      { "id": "t4", "value": "+", "tileType": "operator" },
-      { "id": "t5", "value": "×", "tileType": "operator" }
+      {
+        "id": "t1",
+        "value": "4",
+        "tileType": "number"
+      },
+      {
+        "id": "t2",
+        "value": "6",
+        "tileType": "number"
+      },
+      {
+        "id": "t3",
+        "value": "6",
+        "tileType": "number"
+      },
+      {
+        "id": "t4",
+        "value": "+",
+        "tileType": "operator"
+      },
+      {
+        "id": "t5",
+        "value": "×",
+        "tileType": "operator"
+      },
+      {
+        "id": "t6",
+        "value": "(",
+        "tileType": "parenthesis"
+      },
+      {
+        "id": "t7",
+        "value": ")",
+        "tileType": "parenthesis"
+      }
     ]
   },
   {
@@ -64,41 +144,89 @@
     "type": "mathMax",
     "difficulty": "medium",
     "category": "mathématiques",
-    "label": "Trouvez l'arrangement optimal de ces nombres et opérateurs !",
-    "answer": "72",
+    "label": "Trouvez l'arrangement optimal !",
+    "answer": "73",
     "acceptedAnswers": ["72"],
     "media": null,
-    "explanation": "8 × 9 = 72 est le maximum absolu (pas besoin du +).",
+    "explanation": "9 × 8 + 1 = 73",
     "tags": ["mathématiques", "calcul"],
     "baseTimer": 50,
     "tiles": [
-      { "id": "t1", "value": "8", "tileType": "number" },
-      { "id": "t2", "value": "9", "tileType": "number" },
-      { "id": "t3", "value": "1", "tileType": "number" },
-      { "id": "t4", "value": "×", "tileType": "operator" },
-      { "id": "t5", "value": "+", "tileType": "operator" }
+      {
+        "id": "t1",
+        "value": "8",
+        "tileType": "number"
+      },
+      {
+        "id": "t2",
+        "value": "9",
+        "tileType": "number"
+      },
+      {
+        "id": "t3",
+        "value": "1",
+        "tileType": "number"
+      },
+      {
+        "id": "t4",
+        "value": "×",
+        "tileType": "operator"
+      },
+      {
+        "id": "t5",
+        "value": "+",
+        "tileType": "operator"
+      }
     ]
   },
   {
     "id": "math_max_005",
     "type": "mathMax",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "category": "mathématiques",
-    "label": "Défi extrême : trouvez le maximum avec 4 nombres !",
-    "answer": "168",
-    "acceptedAnswers": ["168"],
+    "label": "Utilisez les parenthèses pour maximiser !",
+    "answer": "56",
+    "acceptedAnswers": ["56"],
     "media": null,
-    "explanation": "7 × (8 + 8) × ... en fait 7 × 8 × 3 = 168 ou 8 × 7 × 3 = 168.",
+    "explanation": "(4 + 4) × 7 = 56. Sans parenthèses, 4 + 4 × 7 = 32.",
     "tags": ["mathématiques", "calcul"],
-    "baseTimer": 60,
+    "baseTimer": 50,
     "tiles": [
-      { "id": "t1", "value": "7", "tileType": "number" },
-      { "id": "t2", "value": "8", "tileType": "number" },
-      { "id": "t3", "value": "3", "tileType": "number" },
-      { "id": "t4", "value": "2", "tileType": "number" },
-      { "id": "t5", "value": "×", "tileType": "operator" },
-      { "id": "t6", "value": "×", "tileType": "operator" },
-      { "id": "t7", "value": "+", "tileType": "operator" }
+      {
+        "id": "t1",
+        "value": "4",
+        "tileType": "number"
+      },
+      {
+        "id": "t2",
+        "value": "7",
+        "tileType": "number"
+      },
+      {
+        "id": "t3",
+        "value": "4",
+        "tileType": "number"
+      },
+      {
+        "id": "t4",
+        "value": "+",
+        "tileType": "operator"
+      },
+      {
+        "id": "t5",
+        "value": "×",
+        "tileType": "operator"
+      },
+      {
+        "id": "t6",
+        "value": "(",
+        "tileType": "parenthesis"
+      },
+      {
+        "id": "t7",
+        "value": ")",
+        "tileType": "parenthesis"
+      }
     ]
   },
   {
@@ -106,7 +234,67 @@
     "type": "mathMax",
     "difficulty": "hard",
     "category": "mathématiques",
-    "label": "Organisez ces tuiles pour obtenir le score maximum !",
+    "label": "Défi extrême : utilisez les parenthèses stratégiquement !",
+    "answer": "135",
+    "acceptedAnswers": ["135"],
+    "media": null,
+    "explanation": "(5 + 4) × (9 + 6) = 135 ou 9 × (5 + 4 + 6) = 135.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 60,
+    "tiles": [
+      {
+        "id": "t1",
+        "value": "9",
+        "tileType": "number"
+      },
+      {
+        "id": "t2",
+        "value": "5",
+        "tileType": "number"
+      },
+      {
+        "id": "t3",
+        "value": "4",
+        "tileType": "number"
+      },
+      {
+        "id": "t4",
+        "value": "6",
+        "tileType": "number"
+      },
+      {
+        "id": "t5",
+        "value": "×",
+        "tileType": "operator"
+      },
+      {
+        "id": "t6",
+        "value": "+",
+        "tileType": "operator"
+      },
+      {
+        "id": "t7",
+        "value": "+",
+        "tileType": "operator"
+      },
+      {
+        "id": "t8",
+        "value": "(",
+        "tileType": "parenthesis"
+      },
+      {
+        "id": "t9",
+        "value": ")",
+        "tileType": "parenthesis"
+      }
+    ]
+  },
+  {
+    "id": "math_max_007",
+    "type": "mathMax",
+    "difficulty": "hard",
+    "category": "mathématiques",
+    "label": "Organisez pour le score maximum !",
     "answer": "100",
     "acceptedAnswers": ["100"],
     "media": null,
@@ -114,12 +302,186 @@
     "tags": ["mathématiques", "calcul"],
     "baseTimer": 60,
     "tiles": [
-      { "id": "t1", "value": "5", "tileType": "number" },
-      { "id": "t2", "value": "4", "tileType": "number" },
-      { "id": "t3", "value": "5", "tileType": "number" },
-      { "id": "t4", "value": "×", "tileType": "operator" },
-      { "id": "t5", "value": "×", "tileType": "operator" },
-      { "id": "t6", "value": "+", "tileType": "operator" }
+      {
+        "id": "t1",
+        "value": "5",
+        "tileType": "number"
+      },
+      {
+        "id": "t2",
+        "value": "4",
+        "tileType": "number"
+      },
+      {
+        "id": "t3",
+        "value": "5",
+        "tileType": "number"
+      },
+      {
+        "id": "t4",
+        "value": "×",
+        "tileType": "operator"
+      },
+      {
+        "id": "t5",
+        "value": "×",
+        "tileType": "operator"
+      },
+      {
+        "id": "t6",
+        "value": "+",
+        "tileType": "operator"
+      }
+    ]
+  },
+  {
+    "id": "math_max_008",
+    "type": "mathMax",
+    "difficulty": "easy",
+    "category": "mathématiques",
+    "label": "Simple calcul : trouvez le maximum !",
+    "answer": "23",
+    "acceptedAnswers": ["20"],
+    "media": null,
+    "explanation": "3 + 4 × 5 = 23 (la multiplication est prioritaire)",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 35,
+    "tiles": [
+      {
+        "id": "t1",
+        "value": "4",
+        "tileType": "number"
+      },
+      {
+        "id": "t2",
+        "value": "5",
+        "tileType": "number"
+      },
+      {
+        "id": "t3",
+        "value": "3",
+        "tileType": "number"
+      },
+      {
+        "id": "t4",
+        "value": "+",
+        "tileType": "operator"
+      },
+      {
+        "id": "t5",
+        "value": "×",
+        "tileType": "operator"
+      }
+    ]
+  },
+  {
+    "id": "math_max_009",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Placez les tuiles astucieusement !",
+    "answer": "65",
+    "acceptedAnswers": ["63"],
+    "media": null,
+    "explanation": "9 × 7 + 2 = 65",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 50,
+    "tiles": [
+      {
+        "id": "t1",
+        "value": "7",
+        "tileType": "number"
+      },
+      {
+        "id": "t2",
+        "value": "9",
+        "tileType": "number"
+      },
+      {
+        "id": "t3",
+        "value": "2",
+        "tileType": "number"
+      },
+      {
+        "id": "t4",
+        "value": "×",
+        "tileType": "operator"
+      },
+      {
+        "id": "t5",
+        "value": "+",
+        "tileType": "operator"
+      }
+    ]
+  },
+  {
+    "id": "math_max_010",
+    "type": "mathMax",
+    "difficulty": "hard",
+    "category": "mathématiques",
+    "label": "Double parenthèses : trouvez le maximum !",
+    "answer": "143",
+    "acceptedAnswers": ["143"],
+    "media": null,
+    "explanation": "(8 + 3) × (7 + 6) = 11 × 13 = 143.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 60,
+    "tiles": [
+      {
+        "id": "t1",
+        "value": "8",
+        "tileType": "number"
+      },
+      {
+        "id": "t2",
+        "value": "7",
+        "tileType": "number"
+      },
+      {
+        "id": "t3",
+        "value": "3",
+        "tileType": "number"
+      },
+      {
+        "id": "t4",
+        "value": "6",
+        "tileType": "number"
+      },
+      {
+        "id": "t5",
+        "value": "×",
+        "tileType": "operator"
+      },
+      {
+        "id": "t6",
+        "value": "+",
+        "tileType": "operator"
+      },
+      {
+        "id": "t7",
+        "value": "+",
+        "tileType": "operator"
+      },
+      {
+        "id": "t8",
+        "value": "(",
+        "tileType": "parenthesis"
+      },
+      {
+        "id": "t9",
+        "value": ")",
+        "tileType": "parenthesis"
+      },
+      {
+        "id": "t10",
+        "value": "(",
+        "tileType": "parenthesis"
+      },
+      {
+        "id": "t11",
+        "value": ")",
+        "tileType": "parenthesis"
+      }
     ]
   }
 ]

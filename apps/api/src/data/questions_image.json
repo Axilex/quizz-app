@@ -2,18 +2,261 @@
   {
     "id": "img_001",
     "type": "image",
-    "difficulty": "medium",
-    "category": "culture",
-    "label": "Quel monument est représenté sur cette image ?",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quel monument célèbre est représenté ?",
     "answer": "Colisée",
     "acceptedAnswers": ["Colisée", "colisée", "Le Colisée", "Colosseum"],
     "media": {
       "type": "image",
-      "url": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&q=80",
-      "alt": "Monument antique à Rome"
+      "url": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&q=80",
+      "alt": "Amphithéâtre antique à Rome"
     },
-    "explanation": "Le Colisée est un amphithéâtre construit à Rome entre 70 et 80 après J.-C.",
-    "tags": ["culture", "monuments", "italie"],
+    "explanation": "Le Colisée est un amphithéâtre construit à Rome entre 70 et 80 ap. J.-C.",
+    "tags": ["géographie", "monuments"],
     "baseTimer": 20
+  },
+  {
+    "id": "img_002",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quel monument voit-on sur cette image ?",
+    "answer": "Tour Eiffel",
+    "acceptedAnswers": ["Tour Eiffel", "tour eiffel", "La Tour Eiffel", "Eiffel Tower"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1511739001486-6bfe10ce65f4?w=600&q=80",
+      "alt": "Monument parisien en fer"
+    },
+    "explanation": "La Tour Eiffel a été construite pour l'Exposition universelle de 1889.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_003",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quel monument reconnaissez-vous ?",
+    "answer": "Statue de la Liberté",
+    "acceptedAnswers": ["Statue de la Liberté", "statue de la liberté", "Statue of Liberty"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=600&q=80",
+      "alt": "Statue tenant un flambeau à New York"
+    },
+    "explanation": "La Statue de la Liberté a été offerte par la France en 1886.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_004",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Dans quel pays se trouve ce monument ?",
+    "answer": "Inde",
+    "acceptedAnswers": ["Inde", "inde", "L'Inde", "India"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=600&q=80",
+      "alt": "Mausolée de marbre blanc"
+    },
+    "explanation": "Le Taj Mahal est situé à Agra, en Inde.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 25
+  },
+  {
+    "id": "img_005",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Quelle merveille du monde est représentée ?",
+    "answer": "Grande Muraille de Chine",
+    "acceptedAnswers": [
+      "Grande Muraille de Chine",
+      "grande muraille",
+      "Grande muraille de Chine",
+      "Muraille de Chine"
+    ],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=600&q=80",
+      "alt": "Long mur sinueux dans les montagnes"
+    },
+    "explanation": "La Grande Muraille s'étend sur plus de 20 000 km.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 25
+  },
+  {
+    "id": "img_006",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "sciences",
+    "label": "Quel animal voyez-vous sur cette image ?",
+    "answer": "Panda",
+    "acceptedAnswers": ["Panda", "panda", "Panda géant"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=600&q=80",
+      "alt": "Animal noir et blanc mangeant du bambou"
+    },
+    "explanation": "Le panda géant vit principalement en Chine centrale.",
+    "tags": ["sciences", "animaux"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_007",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "sciences",
+    "label": "Quel animal est photographié ici ?",
+    "answer": "Flamant rose",
+    "acceptedAnswers": ["Flamant rose", "flamant rose", "Flamingo", "Flamant"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1497206365907-f5e630693df0?w=600&q=80",
+      "alt": "Grand oiseau rose sur une patte"
+    },
+    "explanation": "Les flamants roses tirent leur couleur des crustacés qu'ils mangent.",
+    "tags": ["sciences", "animaux"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_008",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "gastronomie",
+    "label": "Quel plat voyez-vous ?",
+    "answer": "Ramen",
+    "acceptedAnswers": ["Ramen", "ramen", "Ramens"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&q=80",
+      "alt": "Soupe de nouilles japonaise avec œuf et porc"
+    },
+    "explanation": "Le ramen est un plat de nouilles japonais dans un bouillon savoureux.",
+    "tags": ["gastronomie", "Japon"],
+    "baseTimer": 25
+  },
+  {
+    "id": "img_009",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quelle ville est reconnue grâce à ce paysage ?",
+    "answer": "Sydney",
+    "acceptedAnswers": ["Sydney", "sydney"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&q=80",
+      "alt": "Opéra en forme de voiles blanches dans un port"
+    },
+    "explanation": "L'Opéra de Sydney est l'un des bâtiments les plus emblématiques du XXe siècle.",
+    "tags": ["géographie", "villes"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_010",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "sciences",
+    "label": "Quel phénomène naturel est représenté ?",
+    "answer": "Aurore boréale",
+    "acceptedAnswers": ["Aurore boréale", "aurore boréale", "Aurore polaire", "Northern Lights"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1483347756197-71ef80e95f73?w=600&q=80",
+      "alt": "Lumières vertes dans le ciel nocturne"
+    },
+    "explanation": "Les aurores boréales sont causées par l'interaction du vent solaire avec la magnétosphère.",
+    "tags": ["sciences", "nature"],
+    "baseTimer": 25
+  },
+  {
+    "id": "img_011",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "gastronomie",
+    "label": "Quel aliment est photographié ?",
+    "answer": "Croissant",
+    "acceptedAnswers": ["Croissant", "croissant", "Un croissant"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1555507036-ab1f4038024a?w=600&q=80",
+      "alt": "Viennoiserie dorée et feuilletée"
+    },
+    "explanation": "Le croissant est une viennoiserie emblématique de la France.",
+    "tags": ["gastronomie", "France"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_012",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Quel pays est célèbre pour ces rizières en terrasses ?",
+    "answer": "Bali",
+    "acceptedAnswers": ["Bali", "bali", "Indonésie", "indonésie"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80",
+      "alt": "Rizières en terrasses vertes"
+    },
+    "explanation": "Les rizières en terrasses de Bali sont classées au patrimoine mondial de l'UNESCO.",
+    "tags": ["géographie", "Asie"],
+    "baseTimer": 25
+  },
+  {
+    "id": "img_013",
+    "type": "image",
+    "difficulty": "hard",
+    "category": "géographie",
+    "label": "Quel désert est photographié ici ?",
+    "answer": "Sahara",
+    "acceptedAnswers": ["Sahara", "sahara", "Le Sahara"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=600&q=80",
+      "alt": "Vastes dunes de sable doré"
+    },
+    "explanation": "Le Sahara est le plus grand désert chaud du monde (9 millions de km²).",
+    "tags": ["géographie", "déserts"],
+    "baseTimer": 30
+  },
+  {
+    "id": "img_014",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "sciences",
+    "label": "Quel est cet animal marin ?",
+    "answer": "Méduse",
+    "acceptedAnswers": ["Méduse", "méduse", "Jellyfish"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1545671913-b89ac1b4ac10?w=600&q=80",
+      "alt": "Créature marine translucide avec tentacules"
+    },
+    "explanation": "Les méduses existent depuis plus de 500 millions d'années.",
+    "tags": ["sciences", "animaux"],
+    "baseTimer": 20
+  },
+  {
+    "id": "img_015",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Dans quel pays se trouve cette cathédrale colorée ?",
+    "answer": "Russie",
+    "acceptedAnswers": ["Russie", "russie", "La Russie"],
+    "media": {
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1513326738677-b964603b136d?w=600&q=80",
+      "alt": "Cathédrale aux dômes colorés en forme de bulbes"
+    },
+    "explanation": "La cathédrale Saint-Basile se trouve sur la Place Rouge à Moscou.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 25
   }
 ]

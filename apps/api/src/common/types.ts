@@ -65,7 +65,7 @@ export interface QuestionPublic {
   outlineSvg?: string | null;
   topHalf?: { imageUrl: string; alt: string };
   bottomHalf?: { imageUrl: string; alt: string };
-  tiles?: Array<{ id: string; value: string; tileType: 'number' | 'operator' }>;
+  tiles?: Array<{ id: string; value: string; tileType: 'number' | 'operator' | 'parenthesis' }>;
   expression?: string;
   // geoClickMap: only public region hint, never coordinates
   geoHint?: string;
