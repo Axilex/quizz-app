@@ -29,7 +29,6 @@
     game.submitAnswer(answer);
   }
 
-  // Clean up timer when leaving the page (e.g. clicking logo)
   onBeforeRouteLeave(() => {
     if (game.isPlaying) {
       timerStore.stop();
@@ -68,7 +67,7 @@
     </div>
 
     <div v-else-if="game.isSubmitting" class="play-page__submitting">
-      <div class="submitting-indicator">Vérification...</div>
+      <div class="submitting-indicator">Vérification…</div>
     </div>
 
     <div v-else class="play-page__input">
@@ -84,78 +83,89 @@
 <style scoped>
   .play-page {
     flex: 1;
-    max-width: 640px;
+    max-width: var(--max-content);
     width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
-    padding: 1.25rem 0;
+    gap: var(--space-md);
+    padding: var(--space-md) 0;
     justify-content: center;
     min-height: 0;
   }
+
   .play-page__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    gap: var(--space-md);
     flex-shrink: 0;
   }
+
   .play-page__score {
     font-family: var(--font-mono);
-    font-size: 0.88rem;
+    font-size: var(--text-sm);
     color: var(--text-secondary);
     white-space: nowrap;
     background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    padding: 0.35rem 0.8rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
   }
+
   .play-page__score strong {
     color: var(--accent);
     font-weight: 700;
   }
+
   .play-page__card {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
   }
+
   .play-page__feedback,
   .play-page__input,
   .play-page__submitting {
     min-height: 80px;
     flex-shrink: 0;
   }
+
   .submitting-indicator {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.6rem;
-    padding: 1rem;
-    font-size: 0.9rem;
+    padding: var(--space-md);
+    font-size: var(--text-sm);
     color: var(--text-muted);
     font-weight: 600;
   }
+
   .submitting-indicator::before {
     content: '';
     width: 16px;
     height: 16px;
-    border: 2px solid var(--border);
+    border: 2px solid var(--border-strong);
     border-top-color: var(--accent);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
   }
+
   @keyframes spin {
     to {
       transform: rotate(360deg);
     }
   }
+
   .card-swap-enter-active {
-    animation: card-in 0.3s ease;
+    animation: card-in 0.3s var(--ease-out-expo);
   }
   .card-swap-leave-active {
     animation: card-out 0.2s ease;
   }
+
   @keyframes card-in {
     from {
       opacity: 0;

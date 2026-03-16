@@ -19,7 +19,6 @@
   const view = ref<'choice' | 'join' | 'room'>('choice');
   const connectionState = ref<ConnectionState>(multiplayerGateway.connectionState);
 
-  // Track connection state changes for UI indicator
   const unsubState = multiplayerGateway.onStateChange((state) => {
     connectionState.value = state;
   });
@@ -30,10 +29,6 @@
     unsubState();
   });
 
-  /**
-   * If arrived via /join/:code, pre-fill the code and go straight to the join view.
-   * The player only needs to enter their pseudo.
-   */
   onMounted(() => {
     const codeFromUrl = route.params.code as string | undefined;
     if (codeFromUrl) {
@@ -68,7 +63,6 @@
     lobby.leaveRoom();
     view.value = 'choice';
   }
-
   function handleBack() {
     lobby.leaveRoom();
     unsubState();
@@ -91,20 +85,20 @@
         <h1 class="lobby-page__title">Multijoueur</h1>
       </div>
 
-      <!-- Reconnecting banner -->
+      <!-- Reconnecting -->
       <div v-if="isReconnecting" class="lobby-reconnecting">
         <div class="lobby-reconnecting__spinner" />
-        <span>Reconnexion en cours...</span>
+        <span>Reconnexion en cours…</span>
       </div>
 
-      <!-- Step 1: Choose name + create or join -->
+      <!-- Choice -->
       <div v-if="view === 'choice'" class="lobby-flow">
         <div class="name-field">
           <label class="name-field__label">Votre pseudo</label>
           <input
             v-model="playerName"
             class="name-field__input"
-            placeholder="Pseudo..."
+            placeholder="Pseudo…"
             @keydown.enter="handleCreate"
           />
         </div>
@@ -130,11 +124,10 @@
         </BaseButton>
       </div>
 
-      <!-- Step 1b: Join with code (also used for /join/:code direct links) -->
+      <!-- Join -->
       <div v-else-if="view === 'join'" class="lobby-flow">
         <BaseButton variant="ghost" size="sm" @click="view = 'choice'">← Retour</BaseButton>
 
-        <!-- If code comes from URL, show it prominently -->
         <div v-if="route.params.code" class="join-invite">
           <span class="join-invite__label">Tu as été invité à rejoindre</span>
           <span class="join-invite__code">{{ joinCode }}</span>
@@ -145,13 +138,12 @@
           <input
             v-model="playerName"
             class="name-field__input"
-            placeholder="Pseudo..."
+            placeholder="Pseudo…"
             autofocus
             @keydown.enter="handleJoin"
           />
         </div>
 
-        <!-- Only show code input if NOT from URL (manual join) -->
         <div v-if="!route.params.code" class="name-field">
           <label class="name-field__label">Code de la room</label>
           <input
@@ -174,7 +166,7 @@
         </BaseButton>
       </div>
 
-      <!-- Step 2: In the room -->
+      <!-- Room -->
       <div v-else-if="view === 'room' && lobby.room" class="lobby-flow">
         <RoomCodeCard :code="lobby.roomCode" />
 
@@ -186,19 +178,17 @@
 
         <LobbyPlayersList :players="lobby.players" />
 
-        <!-- Host sees game config + start -->
         <div v-if="lobby.isHost" class="lobby-host-panel">
           <h3 class="lobby-host-panel__title">Configuration de la partie</h3>
           <GameSettingsPanel @start="handleConfigAndStart" />
         </div>
 
-        <!-- Non-host waits -->
         <div v-else class="lobby-waiting">
           <div class="lobby-waiting__spinner" />
-          <p class="lobby-waiting__text">En attente du lancement par l'hôte...</p>
+          <p class="lobby-waiting__text">En attente du lancement par l'hôte…</p>
         </div>
 
-        <BaseButton variant="ghost" size="sm" @click="handleLeave"> Quitter la room </BaseButton>
+        <BaseButton variant="ghost" size="sm" @click="handleLeave">Quitter la room</BaseButton>
       </div>
 
       <p v-if="lobby.error" class="lobby-error">{{ lobby.error }}</p>
@@ -211,103 +201,100 @@
     flex: 1;
     display: flex;
     justify-content: center;
-    padding: 1rem 0;
+    padding: var(--space-lg) 0;
   }
   .lobby-page__container {
-    max-width: 460px;
+    max-width: 480px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--space-lg);
   }
   .lobby-page__header {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: var(--space-xs);
   }
   .lobby-page__title {
     font-family: var(--font-display);
-    font-size: 2rem;
+    font-size: var(--text-xl);
     font-weight: 800;
     color: var(--text-primary);
-    margin: 0.5rem 0 0;
+    margin: var(--space-xs) 0 0;
   }
   .lobby-flow {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--space-md);
   }
 
-  /* Reconnecting banner */
   .lobby-reconnecting {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.6rem;
-    padding: 0.65rem 1rem;
-    background: color-mix(in srgb, var(--warning) 12%, var(--bg-secondary));
-    border: 1px solid color-mix(in srgb, var(--warning) 30%, transparent);
-    border-radius: 10px;
-    font-size: 0.85rem;
+    padding: 0.7rem var(--space-md);
+    background: rgba(232, 178, 80, 0.08);
+    border: 1px solid rgba(232, 178, 80, 0.2);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
     font-weight: 600;
     color: var(--warning);
   }
   .lobby-reconnecting__spinner {
     width: 16px;
     height: 16px;
-    border: 2px solid color-mix(in srgb, var(--warning) 30%, transparent);
+    border: 2px solid rgba(232, 178, 80, 0.3);
     border-top-color: var(--warning);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
   }
 
-  /* Invite card (when joining via URL) */
   .join-invite {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.4rem;
-    padding: 1.25rem 1.5rem;
-    background: color-mix(in srgb, var(--accent) 6%, var(--bg-secondary));
-    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
-    border-radius: 14px;
+    gap: var(--space-xs);
+    padding: var(--space-lg);
+    background: var(--accent-soft);
+    border: 1px solid rgba(232, 178, 80, 0.18);
+    border-radius: var(--radius-lg);
   }
   .join-invite__label {
-    font-size: 0.82rem;
+    font-size: var(--text-sm);
     color: var(--text-muted);
     font-weight: 500;
   }
   .join-invite__code {
     font-family: var(--font-mono);
-    font-size: 2rem;
+    font-size: var(--text-xl);
     font-weight: 900;
     letter-spacing: 0.25em;
     color: var(--accent);
   }
 
-  /* Form fields */
   .name-field {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: var(--space-xs);
   }
   .name-field__label {
-    font-size: 0.82rem;
+    font-size: var(--text-sm);
     font-weight: 600;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
   .name-field__input {
-    padding: 0.8rem 1rem;
+    padding: var(--space-md) var(--space-md);
     background: var(--bg-secondary);
-    border: 2px solid var(--border);
-    border-radius: 10px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: var(--radius-md);
     color: var(--text-primary);
-    font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: var(--text-base);
     outline: none;
     transition: border-color 0.2s;
+    min-height: 52px;
   }
   .name-field__input:focus {
     border-color: var(--accent);
@@ -318,14 +305,13 @@
     letter-spacing: 0.25em;
     font-weight: 700;
     font-family: var(--font-mono);
-    font-size: 1.3rem;
+    font-size: var(--text-lg);
   }
 
-  /* Divider */
   .lobby-divider {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--space-sm);
   }
   .lobby-divider__line {
     flex: 1;
@@ -333,63 +319,59 @@
     background: var(--border);
   }
   .lobby-divider__text {
-    font-size: 0.8rem;
+    font-size: var(--text-xs);
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     font-weight: 600;
   }
 
-  /* Room info */
   .lobby-room-info {
     display: flex;
     justify-content: center;
   }
   .lobby-room-info__count {
-    font-size: 0.82rem;
+    font-size: var(--text-sm);
     color: var(--text-muted);
     font-weight: 500;
   }
 
-  /* Host panel */
   .lobby-host-panel {
     border-top: 1px solid var(--border);
-    padding-top: 1rem;
+    padding-top: var(--space-md);
   }
   .lobby-host-panel__title {
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: var(--text-base);
     font-weight: 700;
     color: var(--text-primary);
-    margin: 0 0 0.75rem;
+    margin: 0 0 var(--space-sm);
   }
 
-  /* Waiting */
   .lobby-waiting {
     text-align: center;
-    padding: 2rem 0;
+    padding: var(--space-xl) 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--space-sm);
   }
   .lobby-waiting__spinner {
     width: 24px;
     height: 24px;
-    border: 3px solid var(--border);
+    border: 3px solid var(--border-strong);
     border-top-color: var(--accent);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
   }
   .lobby-waiting__text {
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: var(--text-sm);
     margin: 0;
   }
-
   .lobby-error {
     color: var(--error);
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     text-align: center;
   }
 

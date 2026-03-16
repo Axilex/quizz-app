@@ -37,41 +37,42 @@
   .badge {
     display: inline-flex;
     align-items: center;
-    padding: 0.3rem 0.75rem;
-    font-size: 0.78rem;
+    padding: 0.28rem 0.7rem;
+    font-size: var(--text-xs);
     font-weight: 700;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    border-radius: 6px;
-    border: 2px solid transparent;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid transparent;
     transition: all 0.2s;
+    white-space: nowrap;
   }
 
   .badge--easy {
     color: var(--success);
-    background: color-mix(in srgb, var(--success) 12%, transparent);
-    border-color: color-mix(in srgb, var(--success) 25%, transparent);
+    background: var(--success-soft);
+    border-color: rgba(86, 214, 123, 0.18);
   }
 
   .badge--medium {
     color: var(--warning);
-    background: color-mix(in srgb, var(--warning) 12%, transparent);
-    border-color: color-mix(in srgb, var(--warning) 25%, transparent);
+    background: rgba(232, 178, 80, 0.1);
+    border-color: rgba(232, 178, 80, 0.18);
   }
 
   .badge--hard {
     color: var(--error);
-    background: color-mix(in srgb, var(--error) 12%, transparent);
-    border-color: color-mix(in srgb, var(--error) 25%, transparent);
+    background: var(--error-soft);
+    border-color: rgba(239, 107, 107, 0.18);
   }
 
   .badge--interactive {
     cursor: pointer;
-    opacity: 0.5;
+    opacity: 0.45;
   }
 
   .badge--interactive:hover {
-    opacity: 0.8;
+    opacity: 0.75;
   }
 
   .badge--interactive.badge--active {

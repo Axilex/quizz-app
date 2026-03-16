@@ -24,7 +24,7 @@
   <div class="review-page">
     <div class="review-page__container">
       <div class="review-page__header">
-        <BaseButton variant="ghost" size="sm" @click="handleBack"> ← Résultats </BaseButton>
+        <BaseButton variant="ghost" size="sm" @click="handleBack">← Résultats</BaseButton>
         <h1 class="review-page__title">Revue des erreurs</h1>
         <p class="review-page__desc">
           {{ wrongAnswers.length }} question{{ wrongAnswers.length > 1 ? 's' : '' }} à retravailler
@@ -40,7 +40,7 @@
         />
       </div>
 
-      <BaseButton size="lg" full-width @click="handleReplay"> Rejouer ces questions </BaseButton>
+      <BaseButton size="lg" full-width @click="handleReplay">Rejouer ces questions</BaseButton>
     </div>
   </div>
 </template>
@@ -50,39 +50,40 @@
     flex: 1;
     display: flex;
     justify-content: center;
-    padding: 1rem 0 3rem;
+    padding: var(--space-lg) 0 var(--space-2xl);
   }
 
   .review-page__container {
-    max-width: 540px;
+    max-width: 560px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: var(--space-lg);
   }
 
   .review-page__header {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: var(--space-xs);
   }
 
   .review-page__title {
     font-family: var(--font-display);
-    font-size: 2rem;
+    font-size: var(--text-xl);
     font-weight: 800;
     color: var(--text-primary);
-    margin: 0.5rem 0 0;
+    margin: var(--space-xs) 0 0;
   }
 
   .review-page__desc {
     color: var(--text-secondary);
+    font-size: var(--text-sm);
     margin: 0;
   }
 
   .review-page__cards {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--space-sm);
   }
 </style>

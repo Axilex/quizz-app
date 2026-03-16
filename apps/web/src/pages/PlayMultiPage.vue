@@ -31,8 +31,6 @@
   );
 
   const question = computed(() => lobby.currentQuestion as Question | null);
-
-  // Points earned on last answer
   const pointsEarned = ref<number | null>(null);
   const showPointsAnim = ref(false);
 
@@ -51,25 +49,20 @@
     };
   });
 
-  // Sorted players for live score display
   const sortedPlayers = computed(() => [...lobby.players].sort((a, b) => b.score - a.score));
 
-  // When a new question arrives, start the timer
   watch(
     () => lobby.questionIndex,
     () => {
       if (!question.value) return;
-
       hasAnswered.value = false;
       showFeedback.value = false;
       showPointsAnim.value = false;
       pointsEarned.value = null;
       startTime.value = Date.now();
-
       const duration = lobby.questionTimer || 30;
       timerTotal.value = duration;
       timerRemaining.value = duration;
-
       timerService.start(duration, {
         onTick: (remaining) => {
           timerRemaining.value = remaining;
@@ -82,14 +75,12 @@
     { immediate: true },
   );
 
-  // When we get a result from server
   watch(
     () => lobby.lastResult,
     (result) => {
       if (result) {
         timerService.stop();
         showFeedback.value = true;
-
         if (result.points > 0) {
           pointsEarned.value = result.points;
           showPointsAnim.value = true;
@@ -101,7 +92,6 @@
     },
   );
 
-  // When game finishes
   watch(
     () => lobby.finalScores,
     (scores) => {
@@ -112,7 +102,6 @@
     },
   );
 
-  // Handle reconnection — restore question timer if needed
   watch(
     () => lobby.wasReconnected,
     (reconnected) => {
@@ -155,11 +144,9 @@
   function handleMalus(targetPlayerId: string) {
     lobby.usePowerUp('malus_blur', targetPlayerId);
   }
-
   function handleBonus50() {
     lobby.usePowerUp('bonus_fifty50');
   }
-
   async function handleManualReconnect() {
     await lobby.manualReconnect();
   }
@@ -184,37 +171,30 @@
       </div>
     </Transition>
 
-    <!-- Reconnecting spinner -->
+    <!-- Reconnecting -->
     <Transition name="overlay">
       <div v-if="isReconnecting" class="reconnecting-bar">
         <div class="reconnecting-bar__spinner" />
-        <span>Reconnexion en cours...</span>
+        <span>Reconnexion en cours…</span>
       </div>
     </Transition>
 
     <div v-if="question" class="play-multi">
-      <!-- Header: progress + players count -->
       <div class="play-multi__top">
         <div class="play-multi__progress-info">
           <span class="play-multi__label">Question</span>
           <span class="play-multi__progress-num">
-            {{ lobby.questionIndex + 1 }}<span class="play-multi__progress-sep">/</span>
-            {{ lobby.totalQuestions || '?' }}
+            {{ lobby.questionIndex + 1 }}<span class="play-multi__progress-sep">/</span
+            >{{ lobby.totalQuestions || '?' }}
           </span>
         </div>
-
         <Transition name="flash-in">
           <div v-if="lobby.isFlashQuestion" class="play-multi__flash-pill">⚡ FLASH</div>
         </Transition>
-
         <div class="play-multi__player-count">👥 {{ lobby.playerCount }}</div>
       </div>
 
-      <TimerBar
-        :remaining="timerRemaining"
-        :total="timerTotal"
-        :class="{ 'timer--flash': lobby.isFlashQuestion }"
-      />
+      <TimerBar :remaining="timerRemaining" :total="timerTotal" />
 
       <div class="play-multi__card">
         <Transition name="card-swap" mode="out-in">
@@ -238,12 +218,10 @@
 
       <div class="play-multi__interaction">
         <AnswerFeedback v-if="showFeedback && feedbackResult" :result="feedbackResult" />
-
         <div v-else-if="hasAnswered" class="play-multi__waiting">
           <div class="waiting-spinner" />
-          <p>En attente des autres joueurs...</p>
+          <p>En attente des autres joueurs…</p>
         </div>
-
         <AnswerInput
           v-else-if="question.type !== 'geoClickMap'"
           :question="question"
@@ -291,7 +269,7 @@
 
     <div v-else class="play-multi__loading">
       <div class="loading-spinner" />
-      <p>En attente de la question...</p>
+      <p>En attente de la question…</p>
     </div>
   </section>
 </template>
@@ -299,13 +277,13 @@
 <style scoped>
   .play-multi {
     flex: 1;
-    max-width: 640px;
+    max-width: var(--max-content);
     width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    padding: 1rem 0;
+    gap: var(--space-md);
+    padding: var(--space-md) 0;
   }
 
   .play-multi-page {
@@ -314,112 +292,97 @@
     width: 100%;
   }
 
-  /* ─── Header ─────────────────────────────────── */
   .play-multi__top {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--space-sm);
     flex-shrink: 0;
   }
-
   .play-multi__progress-info {
     display: flex;
     align-items: baseline;
     gap: 0.3rem;
   }
-
   .play-multi__label {
-    font-size: 0.72rem;
+    font-size: var(--text-xs);
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-weight: 600;
   }
-
   .play-multi__progress-num {
     font-family: var(--font-mono);
-    font-size: 1rem;
+    font-size: var(--text-base);
     font-weight: 700;
     color: var(--text-primary);
   }
-
   .play-multi__progress-sep {
     color: var(--text-muted);
     margin: 0 0.1rem;
   }
-
   .play-multi__flash-pill {
     background: linear-gradient(135deg, #f59e0b, #d97706);
-    color: #1a1c20;
+    color: var(--bg-base);
     font-weight: 800;
-    font-size: 0.7rem;
+    font-size: var(--text-xs);
     letter-spacing: 0.1em;
-    padding: 0.25rem 0.65rem;
-    border-radius: 20px;
+    padding: 0.28rem 0.7rem;
+    border-radius: var(--radius-full);
     animation: flash-pulse 0.8s ease-in-out infinite alternate;
   }
-
   @keyframes flash-pulse {
     from {
       box-shadow: 0 0 6px rgba(245, 158, 11, 0.3);
     }
     to {
-      box-shadow: 0 0 14px rgba(245, 158, 11, 0.7);
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.6);
     }
   }
-
   .play-multi__player-count {
     margin-left: auto;
-    font-size: 0.8rem;
+    font-size: var(--text-sm);
     color: var(--text-muted);
   }
-
-  /* ─── Interaction area ───────────────────────── */
   .play-multi__card {
     flex-shrink: 0;
   }
-
   .play-multi__interaction {
     min-height: 80px;
     flex-shrink: 0;
     position: relative;
   }
-
   .play-multi__waiting {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
-    padding: 1.5rem 0;
+    gap: var(--space-sm);
+    padding: var(--space-lg) 0;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
   }
-
   .waiting-spinner {
     width: 18px;
     height: 18px;
-    border: 2px solid var(--border);
+    border: 2px solid var(--border-strong);
     border-top-color: var(--accent);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
     flex-shrink: 0;
   }
 
-  /* ─── Points animation ───────────────────────── */
   .points-pop {
     position: absolute;
     right: 0;
     text-align: right;
     font-family: var(--font-mono);
-    font-size: 1.4rem;
+    font-size: var(--text-lg);
     font-weight: 800;
     color: var(--success);
     pointer-events: none;
-    text-shadow: 0 0 20px rgba(110, 200, 122, 0.4);
+    text-shadow: 0 0 20px rgba(86, 214, 123, 0.35);
   }
-
   .pts-pop-enter-active {
-    animation: pts-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: pts-in 0.4s var(--ease-spring);
   }
   .pts-pop-leave-active {
     animation: pts-out 1.5s ease forwards;
@@ -449,50 +412,43 @@
     }
   }
 
-  /* ─── Scoreboard ─────────────────────────────── */
   .play-multi__scores {
     display: flex;
     gap: 0.35rem;
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 0.6rem;
+    padding-top: var(--space-sm);
     border-top: 1px solid var(--border);
     flex-shrink: 0;
   }
-
   .score-pill {
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    padding: 0.3rem 0.6rem;
+    padding: 0.3rem 0.65rem;
     background: var(--bg-secondary);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 0.76rem;
+    border-radius: var(--radius-sm);
+    font-size: var(--text-xs);
     transition: all 0.3s;
   }
-
   .score-pill--me {
     border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 8%, var(--bg-secondary));
+    background: var(--accent-soft);
   }
-
   .score-pill--answered {
-    opacity: 0.65;
+    opacity: 0.6;
   }
-
   .score-pill--disconnected {
-    opacity: 0.35;
+    opacity: 0.3;
     text-decoration: line-through;
   }
-
   .score-pill__rank {
     font-size: 0.65rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
     min-width: 1rem;
   }
-
   .score-pill__name {
     color: var(--text-secondary);
     font-weight: 500;
@@ -501,7 +457,6 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-
   .score-pill__score {
     font-family: var(--font-mono);
     font-weight: 700;
@@ -510,26 +465,24 @@
     text-align: right;
   }
 
-  /* ─── PowerUp toast ──────────────────────────── */
   .powerup-toast {
     position: fixed;
-    top: 1rem;
+    top: calc(var(--header-height) + var(--safe-top) + var(--space-md));
     left: 50%;
     transform: translateX(-50%);
     background: var(--bg-secondary);
     border: 1px solid var(--accent);
-    border-radius: 10px;
-    padding: 0.6rem 1.2rem;
-    font-size: 0.85rem;
+    border-radius: var(--radius-md);
+    padding: 0.65rem 1.3rem;
+    font-size: var(--text-sm);
     font-weight: 600;
     color: var(--text-primary);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-lg);
     z-index: 100;
     white-space: nowrap;
   }
-
   .toast-enter-active {
-    animation: toast-in 0.3s ease;
+    animation: toast-in 0.3s var(--ease-out-expo);
   }
   .toast-leave-active {
     animation: toast-in 0.3s ease reverse;
@@ -545,65 +498,59 @@
     }
   }
 
-  /* ─── Reconnect overlay ──────────────────────── */
   .reconnect-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 200;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(8px);
   }
-
   .reconnect-card {
     background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 2.5rem 2rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl) var(--space-xl);
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: var(--space-md);
     max-width: 340px;
     width: 90%;
+    box-shadow: var(--shadow-xl);
   }
-
   .reconnect-card__icon {
     font-size: 3rem;
   }
-
   .reconnect-card__title {
     font-family: var(--font-display);
-    font-size: 1.4rem;
+    font-size: var(--text-lg);
     font-weight: 700;
     color: var(--text-primary);
   }
-
   .reconnect-card__desc {
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     color: var(--text-muted);
     line-height: 1.5;
   }
-
   .reconnect-card__btn {
-    padding: 0.8rem 2rem;
-    background: var(--accent);
-    color: var(--bg-primary);
+    padding: var(--space-md) var(--space-xl);
+    background: linear-gradient(135deg, var(--accent), #d4a03a);
+    color: var(--bg-base);
     border: none;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: var(--text-base);
     cursor: pointer;
     transition: all 0.2s;
+    min-height: 48px;
   }
-
   .reconnect-card__btn:hover {
-    background: var(--accent-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px var(--accent-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--accent-glow);
   }
 
   .reconnecting-bar {
@@ -613,43 +560,40 @@
     right: 0;
     background: var(--bg-secondary);
     border-bottom: 1px solid var(--accent);
-    padding: 0.6rem 1rem;
+    padding: 0.65rem var(--space-md);
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--space-sm);
     justify-content: center;
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
     color: var(--accent);
     font-weight: 600;
     z-index: 150;
   }
-
   .reconnecting-bar__spinner {
     width: 16px;
     height: 16px;
-    border: 2px solid rgba(229, 166, 62, 0.3);
+    border: 2px solid rgba(232, 178, 80, 0.3);
     border-top-color: var(--accent);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
     flex-shrink: 0;
   }
 
-  /* ─── Loading ────────────────────────────────── */
   .play-multi__loading {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: var(--space-md);
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
   }
-
   .loading-spinner {
     width: 32px;
     height: 32px;
-    border: 3px solid var(--border);
+    border: 3px solid var(--border-strong);
     border-top-color: var(--accent);
     border-radius: 50%;
     animation: spin 0.9s linear infinite;
@@ -661,7 +605,6 @@
     }
   }
 
-  /* ─── Transitions ────────────────────────────── */
   .overlay-enter-active,
   .overlay-leave-active {
     transition: opacity 0.3s;
@@ -672,7 +615,7 @@
   }
 
   .flash-in-enter-active {
-    animation: flash-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: flash-in 0.4s var(--ease-spring);
   }
   .flash-in-leave-active {
     animation: flash-in 0.2s ease reverse;
@@ -689,7 +632,7 @@
   }
 
   .card-swap-enter-active {
-    animation: card-in 0.3s ease;
+    animation: card-in 0.3s var(--ease-out-expo);
   }
   .card-swap-leave-active {
     animation: card-out 0.2s ease;
@@ -717,12 +660,12 @@
 
   @media (max-width: 640px) {
     .play-multi {
-      padding: 0.75rem 0;
-      gap: 0.75rem;
+      padding: var(--space-sm) 0;
+      gap: var(--space-sm);
     }
     .powerup-toast {
-      font-size: 0.78rem;
-      padding: 0.5rem 1rem;
+      font-size: var(--text-xs);
+      padding: 0.5rem var(--space-md);
     }
   }
 </style>

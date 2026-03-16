@@ -31,12 +31,9 @@
   const isMathSimple = computed(() => props.question.type === 'mathSimple');
   const isGeoClick = computed(() => props.question.type === 'geoClickMap');
 
-  // Types that handle their own submit via interactive renderer
   const isInteractive = computed(
     () => isChronology.value || isIntruder.value || isMathMax.value || isGeoClick.value,
   );
-
-  // Types that use text input
   const isTextInput = computed(() => !isQcm.value && !isInteractive.value);
 
   const qcmOptions = computed(() => {
@@ -47,14 +44,14 @@
   });
 
   const placeholder = computed(() => {
-    if (isNumber.value || isMathSimple.value) return 'Entrez un nombre...';
+    if (isNumber.value || isMathSimple.value) return 'Entrez un nombre…';
     if (props.question.type === 'rebus') return 'Quel mot se cache dans ce rébus ?';
     if (props.question.type === 'fourImages') return 'Quel mot relie ces images ?';
     if (props.question.type === 'blindTest') return 'Que voyez-vous ?';
     if (props.question.type === 'geoMap') return 'Quel pays ou lieu ?';
     if (props.question.type === 'silhouette') return 'Que représente cette silhouette ?';
     if (props.question.type === 'splitImage') return 'Quelle est la réponse ?';
-    return 'Tapez votre réponse...';
+    return 'Tapez votre réponse…';
   });
 
   function handleSubmit() {
@@ -92,23 +89,18 @@
 
 <template>
   <div class="answer-input">
-    <!-- Chronology: drag & drop -->
     <ChronologyRenderer
       v-if="isChronology"
       :question="question as ChronologyQuestion"
       :disabled="disabled"
       @submit="handleInteractiveSubmit"
     />
-
-    <!-- Intruder: click to select -->
     <IntruderRenderer
       v-else-if="isIntruder"
       :question="question as IntruderQuestion"
       :disabled="disabled"
       @submit="handleInteractiveSubmit"
     />
-
-    <!-- MathMax: drag tiles (interactive) -->
     <MathMaxRenderer
       v-else-if="isMathMax"
       :question="question as MathMaxQuestion"
@@ -116,7 +108,7 @@
       @submit="handleInteractiveSubmit"
     />
 
-    <!-- QCM mode -->
+    <!-- QCM -->
     <div v-else-if="isQcm" class="qcm-grid">
       <button
         v-for="opt in qcmOptions"
@@ -130,7 +122,7 @@
       </button>
     </div>
 
-    <!-- Text/Number/Visual with text answer -->
+    <!-- Text/Number input -->
     <div v-else-if="isTextInput" class="text-input-wrapper">
       <input
         ref="inputRef"
@@ -144,7 +136,8 @@
         @keydown="handleKeydown"
       />
       <button class="submit-btn" :disabled="disabled || !textAnswer.trim()" @click="handleSubmit">
-        Valider
+        <span class="submit-btn__text">Valider</span>
+        <span class="submit-btn__arrow">→</span>
       </button>
     </div>
   </div>
@@ -154,116 +147,148 @@
   .answer-input {
     width: 100%;
   }
+
+  /* QCM Grid */
   .qcm-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.65rem;
+    gap: var(--space-sm);
   }
+
   .qcm-option {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.9rem 1.1rem;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-md);
     background: var(--bg-secondary);
-    border: 2px solid var(--border);
-    border-radius: 14px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: var(--radius-md);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s var(--ease-out-expo);
     text-align: left;
     font-family: var(--font-body);
-    font-size: 0.92rem;
+    font-size: var(--text-base);
     color: var(--text-primary);
+    min-height: 56px;
+    -webkit-tap-highlight-color: transparent;
   }
+
   .qcm-option:hover:not(:disabled) {
     border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 8%, var(--bg-secondary));
+    background: var(--accent-soft);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-md);
   }
+
   .qcm-option:active:not(:disabled) {
     transform: translateY(0);
     box-shadow: none;
   }
+
   .qcm-option:disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
   }
+
   .qcm-option__key {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 8px;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: var(--radius-sm);
     background: var(--bg-tertiary);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
     font-weight: 700;
-    font-size: 0.78rem;
+    font-size: var(--text-xs);
     color: var(--text-secondary);
     flex-shrink: 0;
     transition: all 0.2s;
   }
+
   .qcm-option:hover:not(:disabled) .qcm-option__key {
-    background: color-mix(in srgb, var(--accent) 20%, var(--bg-tertiary));
-    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+    background: var(--accent-soft);
+    border-color: rgba(232, 178, 80, 0.3);
     color: var(--accent);
   }
+
   .qcm-option__label {
     flex: 1;
     line-height: 1.35;
   }
+
+  /* Text input */
   .text-input-wrapper {
     display: flex;
-    gap: 0.6rem;
+    gap: var(--space-sm);
   }
+
   .text-input {
     flex: 1;
-    padding: 0.9rem 1.2rem;
+    padding: var(--space-md) var(--space-lg);
     background: var(--bg-secondary);
-    border: 2px solid var(--border);
-    border-radius: 14px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: var(--radius-md);
     color: var(--text-primary);
-    font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: var(--text-base);
     transition:
       border-color 0.2s,
       box-shadow 0.2s;
     outline: none;
+    min-height: 52px;
   }
+
   .text-input:focus {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px var(--accent-glow);
   }
+
   .text-input::placeholder {
     color: var(--text-muted);
   }
+
   .submit-btn {
-    padding: 0.9rem 1.8rem;
-    background: var(--accent);
-    color: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: var(--space-md) var(--space-xl);
+    background: linear-gradient(135deg, var(--accent), #d4a03a);
+    color: var(--bg-base);
     border: none;
-    border-radius: 14px;
+    border-radius: var(--radius-md);
     font-family: var(--font-body);
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: var(--text-base);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s var(--ease-out-expo);
     white-space: nowrap;
-    letter-spacing: 0.02em;
+    min-height: 52px;
   }
+
   .submit-btn:hover:not(:disabled) {
-    background: var(--accent-hover);
+    background: linear-gradient(135deg, #f0c060, var(--accent));
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px var(--accent-glow);
+    box-shadow: 0 6px 20px rgba(232, 178, 80, 0.3);
   }
+
   .submit-btn:active:not(:disabled) {
     transform: translateY(0);
-    box-shadow: 0 2px 6px var(--accent-glow);
   }
+
   .submit-btn:disabled {
-    opacity: 0.35;
+    opacity: 0.3;
     cursor: not-allowed;
   }
+
+  .submit-btn__arrow {
+    font-size: 1.1em;
+    transition: transform 0.2s;
+  }
+
+  .submit-btn:hover:not(:disabled) .submit-btn__arrow {
+    transform: translateX(3px);
+  }
+
   @media (max-width: 640px) {
     .qcm-grid {
       grid-template-columns: 1fr;
@@ -272,7 +297,22 @@
       flex-direction: column;
     }
     .submit-btn {
-      padding: 0.85rem 1.5rem;
+      justify-content: center;
+    }
+  }
+
+  @media (hover: none) {
+    .qcm-option:hover:not(:disabled) {
+      transform: none;
+    }
+    .qcm-option:active:not(:disabled) {
+      transform: scale(0.97);
+    }
+    .submit-btn:hover:not(:disabled) {
+      transform: none;
+    }
+    .submit-btn:active:not(:disabled) {
+      transform: scale(0.97);
     }
   }
 </style>

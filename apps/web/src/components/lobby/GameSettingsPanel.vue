@@ -40,7 +40,7 @@
 
 <template>
   <div class="settings-panel">
-    <!-- Error banner -->
+    <!-- Error -->
     <div v-if="loadError" class="settings-panel__error">
       <p>{{ loadError }}</p>
     </div>
@@ -78,7 +78,7 @@
       </div>
     </section>
 
-    <!-- Question count -->
+    <!-- Count -->
     <section class="settings-section">
       <h3 class="settings-section__title">Nombre de questions</h3>
       <div class="count-grid">
@@ -113,111 +113,131 @@
   .settings-panel {
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
+    gap: var(--space-xl);
   }
+
   .settings-panel__error {
-    padding: 0.75rem 1rem;
-    background: color-mix(in srgb, var(--error) 10%, var(--bg-secondary));
-    border: 1px solid var(--error);
-    border-radius: 10px;
+    padding: var(--space-md);
+    background: var(--error-soft);
+    border: 1px solid rgba(239, 107, 107, 0.2);
+    border-radius: var(--radius-md);
     color: var(--error);
-    font-size: 0.88rem;
+    font-size: var(--text-sm);
     text-align: center;
   }
   .settings-panel__error p {
     margin: 0;
   }
+
   .settings-section__title {
     font-family: var(--font-display);
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
     font-weight: 700;
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin: 0 0 0.35rem;
+    margin: 0 0 var(--space-xs);
   }
+
   .settings-section__hint {
-    font-size: 0.78rem;
+    font-size: var(--text-xs);
     color: var(--text-muted);
-    margin: 0 0 0.6rem;
+    margin: 0 0 var(--space-sm);
   }
+
   .settings-section__loading {
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
     color: var(--text-muted);
-    padding: 0.5rem 0;
+    padding: var(--space-sm) 0;
   }
+
   .category-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
+    gap: var(--space-xs);
   }
+
   .category-chip {
     display: flex;
     align-items: center;
     gap: 0.35rem;
-    padding: 0.45rem 0.75rem;
+    padding: 0.5rem 0.8rem;
     background: var(--bg-secondary);
-    border: 2px solid var(--border);
-    border-radius: 8px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: var(--radius-sm);
     cursor: pointer;
     transition: all 0.2s;
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: var(--text-sm);
     color: var(--text-primary);
+    -webkit-tap-highlight-color: transparent;
+    min-height: 42px;
   }
+
   .category-chip:hover {
     border-color: var(--accent);
   }
+
   .category-chip--active {
     border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 10%, var(--bg-secondary));
+    background: var(--accent-soft);
   }
+
   .category-chip--filtered {
-    opacity: 0.4;
+    opacity: 0.35;
     border-color: var(--border);
   }
+
   .category-chip__icon {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
   .category-chip__label {
     font-weight: 600;
   }
+
   .category-chip__count {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: var(--text-xs);
     color: var(--text-muted);
     background: var(--bg-tertiary);
-    padding: 0.1rem 0.35rem;
+    padding: 0.12rem 0.4rem;
     border-radius: 4px;
   }
+
   .count-grid {
     display: flex;
-    gap: 0.5rem;
+    gap: var(--space-sm);
   }
+
   .count-btn {
     flex: 1;
-    padding: 0.75rem;
+    padding: var(--space-md);
     background: var(--bg-secondary);
-    border: 2px solid var(--border);
-    border-radius: 10px;
+    border: 1.5px solid var(--border-strong);
+    border-radius: var(--radius-md);
     color: var(--text-primary);
     font-family: var(--font-mono);
-    font-size: 1.1rem;
+    font-size: var(--text-lg);
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s;
+    min-height: 56px;
+    -webkit-tap-highlight-color: transparent;
   }
+
   .count-btn:hover:not(:disabled) {
     border-color: var(--accent);
   }
+
   .count-btn--active {
     border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 12%, var(--bg-secondary));
+    background: var(--accent-soft);
     color: var(--accent);
   }
+
   .count-btn--disabled,
   .count-btn:disabled {
-    opacity: 0.3;
+    opacity: 0.25;
     cursor: not-allowed;
   }
 </style>

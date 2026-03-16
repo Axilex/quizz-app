@@ -3,10 +3,12 @@
 <template>
   <div class="app-shell">
     <header class="app-header">
-      <router-link to="/" class="logo-link">
-        <span class="logo-q">Q</span>
-        <span class="logo-text">uizzy</span>
-      </router-link>
+      <div class="app-header__inner">
+        <router-link to="/" class="logo-link">
+          <span class="logo-q">Q</span>
+          <span class="logo-text">uizzy</span>
+        </router-link>
+      </div>
     </header>
 
     <main class="app-main">
@@ -18,25 +20,39 @@
 <style scoped>
   .app-shell {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    background: var(--bg-primary);
   }
 
   .app-header {
-    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(12, 13, 16, 0.8);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border-bottom: 1px solid var(--border);
+    padding-top: var(--safe-top);
+  }
+
+  .app-header__inner {
+    height: var(--header-height);
     display: flex;
     align-items: center;
-    z-index: 10;
+    padding: 0 var(--space-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .logo-link {
     text-decoration: none;
     display: flex;
     align-items: baseline;
-    gap: 0;
     font-family: var(--font-display);
     transition: opacity 0.2s;
+    user-select: none;
   }
 
   .logo-link:hover {
@@ -44,49 +60,28 @@
   }
 
   .logo-q {
-    font-size: 2.2rem;
+    font-size: clamp(1.6rem, 1.4rem + 0.8vw, 2.2rem);
     font-weight: 900;
+    font-style: italic;
     color: var(--accent);
     line-height: 1;
+    filter: drop-shadow(0 0 12px var(--accent-glow));
   }
 
   .logo-text {
-    font-size: 1.5rem;
+    font-size: clamp(1.1rem, 0.9rem + 0.6vw, 1.5rem);
     font-weight: 300;
     color: var(--text-primary);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
   }
 
   .app-main {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 0 2rem 2rem;
-  }
-
-  /* Page transitions */
-  .page-enter-active,
-  .page-leave-active {
-    transition: all 0.25s ease;
-  }
-
-  .page-enter-from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-
-  .page-leave-to {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-
-  @media (max-width: 640px) {
-    .app-header {
-      padding: 0.75rem 1rem;
-    }
-
-    .app-main {
-      padding: 0 1rem 1rem;
-    }
+    padding: 0 var(--space-lg);
+    padding-bottom: max(var(--space-lg), var(--safe-bottom));
+    padding-left: max(var(--space-lg), var(--safe-left));
+    padding-right: max(var(--space-lg), var(--safe-right));
   }
 </style>

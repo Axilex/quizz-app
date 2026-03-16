@@ -2,8 +2,8 @@
   import { computed } from 'vue';
 
   interface Props {
-    remaining: number; // seconds
-    total: number; // seconds
+    remaining: number;
+    total: number;
   }
 
   const props = defineProps<Props>();
@@ -33,57 +33,64 @@
   .timer {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--space-sm);
     width: 100%;
   }
 
   .timer__bar-track {
     flex: 1;
-    height: 7px;
+    height: 6px;
     background: var(--bg-tertiary);
-    border-radius: 4px;
+    border-radius: 3px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    position: relative;
+  }
+
+  .timer__bar-track::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
   }
 
   .timer__bar-fill {
     height: 100%;
-    border-radius: 4px;
+    border-radius: 3px;
     transition: width 0.15s linear;
     will-change: width;
+    position: relative;
   }
 
   .timer--normal .timer__bar-fill {
-    background: linear-gradient(
-      90deg,
-      var(--accent),
-      color-mix(in srgb, var(--accent) 80%, #6ec87a)
-    );
+    background: linear-gradient(90deg, var(--accent), rgba(86, 214, 123, 0.8));
+    box-shadow: 0 0 12px rgba(232, 178, 80, 0.2);
   }
 
   .timer--warning .timer__bar-fill {
-    background: linear-gradient(90deg, var(--warning), #d4942c);
+    background: linear-gradient(90deg, var(--accent), #d4942c);
+    box-shadow: 0 0 12px rgba(232, 178, 80, 0.25);
   }
 
   .timer--critical .timer__bar-fill {
     background: var(--error);
+    box-shadow: 0 0 12px rgba(239, 107, 107, 0.3);
     animation: pulse-bar 0.6s ease-in-out infinite;
   }
 
   .timer__label {
     font-family: var(--font-mono);
-    font-size: 1rem;
+    font-size: var(--text-base);
     font-weight: 700;
-    min-width: 3.2ch;
+    min-width: 3.5ch;
     text-align: right;
     color: var(--text-primary);
     transition: color 0.3s;
   }
 
   .timer--warning .timer__label {
-    color: var(--warning);
+    color: var(--accent);
   }
-
   .timer--critical .timer__label {
     color: var(--error);
     animation: pulse-text 0.6s ease-in-out infinite;
@@ -95,17 +102,16 @@
       opacity: 1;
     }
     50% {
-      opacity: 0.55;
+      opacity: 0.5;
     }
   }
-
   @keyframes pulse-text {
     0%,
     100% {
       opacity: 1;
     }
     50% {
-      opacity: 0.6;
+      opacity: 0.55;
     }
   }
 </style>

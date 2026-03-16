@@ -61,8 +61,6 @@
 
   const isGeoClick = computed(() => props.question.type === 'geoClickMap');
 
-  // ─── Malus: blur only random words, not the entire label ───
-  // Simple hash from question ID to seed random word selection
   function simpleHash(str: string): number {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
@@ -71,7 +69,6 @@
     return Math.abs(hash);
   }
 
-  // Pick which word indices should be blurred (seeded by question id)
   const blurredWordIndices = ref<Set<number>>(new Set());
 
   watch(
@@ -84,11 +81,9 @@
       const words = props.question.label.split(/\s+/);
       const count = words.length;
       if (count <= 2) {
-        // Very short question: blur 1 word
         blurredWordIndices.value = new Set([simpleHash(qId) % count]);
         return;
       }
-      // Blur ~35-50% of words (at least 1, at most count-1 so it stays partly readable)
       const numToBlur = Math.max(1, Math.min(count - 1, Math.ceil(count * 0.4)));
       const seed = simpleHash(qId);
       const indices = new Set<number>();
@@ -114,10 +109,13 @@
       'quiz-card--malus': isMalusActive,
     }"
   >
-    <!-- Flash round badge -->
+    <!-- Accent line -->
+    <div class="quiz-card__accent-line" />
+
+    <!-- Flash badge -->
     <div v-if="isFlash" class="quiz-card__flash-badge">⚡ FLASH — Premier correct gagne !</div>
 
-    <!-- Malus banner (small notification, NOT a full overlay) -->
+    <!-- Malus banner -->
     <Transition name="malus">
       <div v-if="isMalusActive" class="quiz-card__malus-banner">
         <span class="quiz-card__malus-icon">🌫️</span>
@@ -131,12 +129,12 @@
       <span class="quiz-card__type">{{ typeIcon }} {{ typeLabel }}</span>
     </div>
 
-    <!-- Standard image media -->
+    <!-- Image media -->
     <div v-if="question.media" class="quiz-card__media">
-      <img :src="question.media.url" :alt="question.media.alt || 'Image'" />
+      <img :src="question.media.url" :alt="question.media.alt || 'Image'" loading="eager" />
     </div>
 
-    <!-- Question label with per-word blur when malus is active -->
+    <!-- Question label -->
     <h2 class="quiz-card__label">
       <template v-if="isMalusActive">
         <span
@@ -189,97 +187,95 @@
 <style scoped>
   .quiz-card {
     background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 1.75rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
     display: flex;
     flex-direction: column;
-    gap: 1.15rem;
+    gap: var(--space-md);
     position: relative;
     overflow: hidden;
     transition:
       border-color 0.3s,
       box-shadow 0.3s;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    box-shadow:
+      var(--shadow-md),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03);
   }
 
-  .quiz-card::before {
-    content: '';
+  /* Accent top line */
+  .quiz-card__accent-line {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
+    height: 2px;
     background: linear-gradient(
       90deg,
-      transparent 0%,
-      var(--accent) 20%,
-      color-mix(in srgb, var(--accent) 50%, transparent) 80%,
-      transparent 100%
+      transparent 5%,
+      var(--accent) 30%,
+      rgba(232, 178, 80, 0.3) 75%,
+      transparent 95%
     );
-    opacity: 0.5;
+    opacity: 0.6;
   }
 
-  /* ─── Flash variant ─── */
+  /* Flash variant */
   .quiz-card--flash {
-    border-color: #f59e0b;
+    border-color: rgba(245, 158, 11, 0.3);
     box-shadow:
-      0 0 0 1px rgba(245, 158, 11, 0.2),
-      0 4px 24px rgba(245, 158, 11, 0.12);
+      var(--shadow-md),
+      0 0 40px rgba(245, 158, 11, 0.08);
   }
-
-  .quiz-card--flash::before {
-    background: linear-gradient(90deg, transparent, #f59e0b, rgba(245, 158, 11, 0.3), transparent);
+  .quiz-card--flash .quiz-card__accent-line {
+    background: linear-gradient(90deg, transparent, #f59e0b, transparent);
     opacity: 1;
     height: 3px;
   }
 
   .quiz-card__flash-badge {
     background: linear-gradient(135deg, #f59e0b, #d97706);
-    color: #1a1c20;
+    color: var(--bg-base);
     font-weight: 800;
-    font-size: 0.78rem;
+    font-size: var(--text-xs);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 0.4rem 1rem;
-    border-radius: 8px;
+    padding: 0.45rem 1rem;
+    border-radius: var(--radius-sm);
     text-align: center;
     animation: flash-pulse 1s ease-in-out infinite alternate;
   }
 
   @keyframes flash-pulse {
     from {
-      box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+      box-shadow: 0 0 8px rgba(245, 158, 11, 0.3);
     }
     to {
-      box-shadow: 0 0 18px rgba(245, 158, 11, 0.8);
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
     }
   }
 
-  /* ─── Malus variant ─── */
+  /* Malus */
   .quiz-card--malus {
-    border-color: color-mix(in srgb, var(--error) 40%, var(--border));
+    border-color: rgba(239, 107, 107, 0.25);
   }
 
-  /* Malus banner: small inline notification, NOT a full overlay */
   .quiz-card__malus-banner {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.45rem 0.85rem;
-    background: color-mix(in srgb, var(--error) 12%, var(--bg-tertiary));
-    border: 1px solid color-mix(in srgb, var(--error) 25%, transparent);
-    border-radius: 10px;
+    padding: 0.5rem 0.9rem;
+    background: var(--error-soft);
+    border: 1px solid rgba(239, 107, 107, 0.2);
+    border-radius: var(--radius-md);
     animation: malus-shake 0.4s ease;
   }
-
   .quiz-card__malus-icon {
     font-size: 1rem;
     flex-shrink: 0;
   }
-
   .quiz-card__malus-text {
-    font-size: 0.8rem;
+    font-size: var(--text-sm);
     font-weight: 700;
     color: var(--error);
   }
@@ -301,9 +297,6 @@
     60% {
       transform: translateX(2px);
     }
-    75% {
-      transform: translateX(-1px);
-    }
   }
 
   .malus-enter-active {
@@ -323,16 +316,16 @@
     }
   }
 
-  /* ─── Meta row ─── */
+  /* Meta row */
   .quiz-card__meta {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: var(--space-sm);
     flex-wrap: wrap;
   }
 
   .quiz-card__category {
-    font-size: 0.72rem;
+    font-size: var(--text-xs);
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -340,22 +333,22 @@
   }
 
   .quiz-card__type {
-    font-size: 0.7rem;
+    font-size: var(--text-xs);
     color: var(--text-muted);
     background: var(--bg-tertiary);
-    padding: 0.2rem 0.6rem;
+    padding: 0.22rem 0.6rem;
     border-radius: 6px;
     font-weight: 500;
     margin-left: auto;
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
   }
 
-  /* ─── Media ─── */
+  /* Media */
   .quiz-card__media {
     width: 100%;
-    max-height: 280px;
+    max-height: min(280px, 40vh);
     overflow: hidden;
-    border-radius: 14px;
+    border-radius: var(--radius-md);
     background: var(--bg-tertiary);
     display: flex;
     align-items: center;
@@ -365,32 +358,29 @@
 
   .quiz-card__media img {
     max-width: 100%;
-    max-height: 280px;
+    max-height: min(280px, 40vh);
     object-fit: contain;
   }
 
-  /* ─── Question label ─── */
+  /* Label */
   .quiz-card__label {
     font-family: var(--font-display);
-    font-size: 1.4rem;
+    font-size: var(--text-lg);
     font-weight: 700;
     line-height: 1.4;
     color: var(--text-primary);
-    margin: 0.15rem 0;
+    margin: 0;
   }
 
-  /* Per-word rendering for malus mode */
   .quiz-card__word {
     display: inline;
     transition:
       filter 0.3s,
       opacity 0.3s;
   }
-
   .quiz-card__word + .quiz-card__word {
     margin-left: 0.3em;
   }
-
   .quiz-card__word--blurred {
     filter: blur(7px);
     user-select: none;
@@ -398,21 +388,20 @@
     opacity: 0.7;
   }
 
-  /* ─── Visual renderers ─── */
+  /* Visual renderers */
   .quiz-card__visual {
-    padding: 0.25rem 0;
+    padding: var(--space-xs) 0;
     display: flex;
     justify-content: center;
   }
 
-  /* ─── Responsive ─── */
   @media (max-width: 640px) {
     .quiz-card {
-      padding: 1.2rem;
-      border-radius: 16px;
+      padding: var(--space-lg);
+      border-radius: var(--radius-lg);
     }
     .quiz-card__label {
-      font-size: 1.2rem;
+      font-size: clamp(1.05rem, 0.9rem + 0.5vw, 1.25rem);
     }
   }
 </style>
