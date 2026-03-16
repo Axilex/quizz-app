@@ -23,7 +23,18 @@
   }
 
   /** Native share (mobile) if available, else fallback to copy */
-  function shareOrCopy() {
+  async function shareOrCopy() {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Rejoins ma partie Quizzy !',
+          url: joinUrl.value,
+        });
+        return;
+      } catch {
+        // User cancelled or share failed — fallback to copy
+      }
+    }
     copyUrl();
   }
 </script>

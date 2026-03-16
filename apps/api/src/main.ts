@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
+import { ThrottleGuard } from './common/guard/throttle.guard';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -9,6 +10,9 @@ async function bootstrap() {
   const allowedOrigins = process.env['CORS_ORIGINS']
     ? process.env['CORS_ORIGINS'].split(',').map((o) => o.trim())
     : ['http://localhost:5173', 'http://localhost:4173'];
+
+  const throttleGuard = app.get(ThrottleGuard);
+  app.useGlobalGuards(throttleGuard);
 
   app.enableCors({
     origin: allowedOrigins,

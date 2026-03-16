@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import { watch } from 'vue';
-  import { useRouter } from 'vue-router';
-  import { useGameStore } from '@/stores';
+  import { watch, onUnmounted } from 'vue';
+  import { useRouter, onBeforeRouteLeave } from 'vue-router';
+  import { useGameStore, useTimerStore } from '@/stores';
   import QuizCard from '@/components/game/QuizCard.vue';
   import TimerBar from '@/components/game/TimerBar.vue';
   import QuestionProgress from '@/components/game/QuestionProgress.vue';
@@ -10,6 +10,7 @@
 
   const router = useRouter();
   const game = useGameStore();
+  const timerStore = useTimerStore();
 
   if (!game.session || !game.isPlaying) {
     router.replace('/setup');
@@ -27,6 +28,17 @@
   function handleAnswer(answer: string) {
     game.submitAnswer(answer);
   }
+
+  // Clean up timer when leaving the page (e.g. clicking logo)
+  onBeforeRouteLeave(() => {
+    if (game.isPlaying) {
+      timerStore.stop();
+    }
+  });
+
+  onUnmounted(() => {
+    timerStore.stop();
+  });
 </script>
 
 <template>
@@ -77,8 +89,8 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    padding: 1rem 0;
+    gap: 1.1rem;
+    padding: 1.25rem 0;
     justify-content: center;
     min-height: 0;
   }
@@ -91,12 +103,17 @@
   }
   .play-page__score {
     font-family: var(--font-mono);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--text-secondary);
     white-space: nowrap;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.3rem 0.7rem;
   }
   .play-page__score strong {
     color: var(--accent);
+    font-weight: 700;
   }
   .play-page__card {
     display: flex;
@@ -113,19 +130,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 0.6rem;
     padding: 1rem;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
     font-weight: 600;
-    animation: pulse 1s ease-in-out infinite;
   }
-  @keyframes pulse {
-    0%,
-    100% {
-      opacity: 0.5;
-    }
-    50% {
-      opacity: 1;
+  .submitting-indicator::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
     }
   }
   .card-swap-enter-active {

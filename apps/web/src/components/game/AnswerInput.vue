@@ -157,27 +157,32 @@
   .qcm-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
+    gap: 0.65rem;
   }
   .qcm-option {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 1rem 1.2rem;
+    padding: 0.9rem 1.1rem;
     background: var(--bg-secondary);
     border: 2px solid var(--border);
-    border-radius: 12px;
+    border-radius: 14px;
     cursor: pointer;
     transition: all 0.2s;
     text-align: left;
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     color: var(--text-primary);
   }
   .qcm-option:hover:not(:disabled) {
     border-color: var(--accent);
     background: color-mix(in srgb, var(--accent) 8%, var(--bg-secondary));
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  .qcm-option:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: none;
   }
   .qcm-option:disabled {
     opacity: 0.5;
@@ -189,58 +194,74 @@
     justify-content: center;
     width: 2rem;
     height: 2rem;
-    border-radius: 6px;
+    border-radius: 8px;
     background: var(--bg-tertiary);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--text-secondary);
     flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .qcm-option:hover:not(:disabled) .qcm-option__key {
+    background: color-mix(in srgb, var(--accent) 20%, var(--bg-tertiary));
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+    color: var(--accent);
   }
   .qcm-option__label {
     flex: 1;
+    line-height: 1.35;
   }
   .text-input-wrapper {
     display: flex;
-    gap: 0.75rem;
+    gap: 0.6rem;
   }
   .text-input {
     flex: 1;
-    padding: 0.85rem 1.2rem;
+    padding: 0.9rem 1.2rem;
     background: var(--bg-secondary);
     border: 2px solid var(--border);
-    border-radius: 12px;
+    border-radius: 14px;
     color: var(--text-primary);
     font-family: var(--font-body);
     font-size: 1rem;
-    transition: border-color 0.2s;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
     outline: none;
   }
   .text-input:focus {
     border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
   }
   .text-input::placeholder {
     color: var(--text-muted);
   }
   .submit-btn {
-    padding: 0.85rem 1.8rem;
+    padding: 0.9rem 1.8rem;
     background: var(--accent);
     color: var(--bg-primary);
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     font-family: var(--font-body);
     font-weight: 700;
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.2s;
     white-space: nowrap;
+    letter-spacing: 0.02em;
   }
   .submit-btn:hover:not(:disabled) {
     background: var(--accent-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px var(--accent-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px var(--accent-glow);
+  }
+  .submit-btn:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px var(--accent-glow);
   }
   .submit-btn:disabled {
-    opacity: 0.4;
+    opacity: 0.35;
     cursor: not-allowed;
   }
   @media (max-width: 640px) {
@@ -249,6 +270,9 @@
     }
     .text-input-wrapper {
       flex-direction: column;
+    }
+    .submit-btn {
+      padding: 0.85rem 1.5rem;
     }
   }
 </style>

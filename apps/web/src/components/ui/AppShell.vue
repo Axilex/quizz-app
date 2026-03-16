@@ -1,6 +1,4 @@
-<script setup lang="ts">
-  import { RouterView } from 'vue-router';
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="app-shell">
@@ -12,11 +10,7 @@
     </header>
 
     <main class="app-main">
-      <RouterView v-slot="{ Component }">
-        <Transition name="page" mode="out-in">
-          <component :is="Component" />
-        </Transition>
-      </RouterView>
+      <slot />
     </main>
   </div>
 </template>

@@ -1,3 +1,4 @@
+// src/stores/lobby.store.ts
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import type {
@@ -7,8 +8,11 @@ import type {
   Question,
   QuestionReviewData,
   ReviewViewMode,
+  GameConfig,
 } from '@/types';
 import { multiplayerGateway } from '@/services';
+import { useFeedbackStore } from './feedbackStore';
+import { useTimerStore } from './timerStore';
 
 export const useLobbyStore = defineStore('lobby', () => {
   const room = ref<Room | null>(null);
@@ -21,16 +25,9 @@ export const useLobbyStore = defineStore('lobby', () => {
   // In-game state
   const currentQuestion = ref<Question | null>(null);
   const questionIndex = ref(0);
-  const questionTimer = ref(0);
   const totalQuestions = ref(0);
   const isFlashQuestion = ref(false);
-  const lastResult = ref<{
-    isCorrect: boolean;
-    correctAnswer: string;
-    explanation?: string;
-    points: number;
-    flashLate?: boolean;
-  } | null>(null);
+  const questionTimer = ref(30);
 
   // PowerUp state
   const myPowerUpsLeft = ref(3);
@@ -50,6 +47,10 @@ export const useLobbyStore = defineStore('lobby', () => {
   const isReconnecting = ref(false);
   const wasReconnected = ref(false);
 
+  // Sous-stores
+  const timer = useTimerStore();
+  const feedback = useFeedbackStore();
+
   let unsubscribe: (() => void) | null = null;
 
   const isHost = computed(() => {
@@ -67,7 +68,7 @@ export const useLobbyStore = defineStore('lobby', () => {
 
   const myPlayer = computed(() => players.value.find((p) => p.id === playerId.value) ?? null);
 
-  // ─── Event handler ─────────────────────────────────────
+  // ─── Event handler ───────────────────────────────
 
   function handleEvent(event: MultiplayerEvent) {
     switch (event.type) {
@@ -88,14 +89,12 @@ export const useLobbyStore = defineStore('lobby', () => {
       }
 
       case 'room:reconnected': {
-        // Restore full game state after reconnection
         room.value = event.room;
         players.value = [...event.room.players];
         playerId.value = event.playerId;
         wasReconnected.value = true;
         isReconnecting.value = false;
 
-        // Update live scores
         for (const [id, scoreData] of Object.entries(event.scores)) {
           const p = players.value.find((p) => p.id === id);
           if (p) p.score = (scoreData as { score: number }).score;
@@ -105,9 +104,11 @@ export const useLobbyStore = defineStore('lobby', () => {
           isGameStarted.value = true;
           totalQuestions.value = event.totalQuestions;
           questionIndex.value = event.questionIndex;
-          questionTimer.value = event.timer;
           isFlashQuestion.value = event.isFlash;
           currentQuestion.value = (event.currentQuestion as Question) ?? null;
+
+          // timer backend → timer store
+          timer.start(event.timer ?? 30);
         }
         break;
       }
@@ -116,58 +117,67 @@ export const useLobbyStore = defineStore('lobby', () => {
         isGameStarted.value = true;
         questionIndex.value = -1;
         currentQuestion.value = null;
-        lastResult.value = null;
+        feedback.reset();
         totalQuestions.value = event.totalQuestions ?? 0;
         isFlashQuestion.value = event.isFlash ?? false;
         reviewData.value = [];
         reviewViewMode.value = 'podium';
         reviewQuestionIdx.value = 0;
         removedOptionIds.value = [];
+        timer.reset();
+        break;
+
+      case 'game:timeout':
+        feedback.setResult({
+          questionId: event.questionId,
+          question: currentQuestion.value!,
+          userAnswer: '',
+          isCorrect: false,
+          correctAnswer: 'Timeout !', // Pas d'answer en public
+          explanation: undefined, // Pas d'explanation en public
+          points: 0,
+          timeSpent: 0,
+          timedOut: true,
+        });
+        feedback.show();
+        break;
+
+      case 'game:answerResult':
+        feedback.setResult({
+          questionId: event.questionId,
+          question: currentQuestion.value!,
+          userAnswer: '', // En multi, tu peux décider si tu veux garder la réponse utilisateur
+          isCorrect: event.isCorrect,
+          correctAnswer: event.correctAnswer, // ✅ C'est dans l'event
+          explanation: event.explanation, // ✅ C'est dans l'event
+          points: event.points,
+          timeSpent: 0, // Pas stocké côté client en multi
+          timedOut: !!event.timedOut,
+        });
+        feedback.show();
         break;
 
       case 'game:question':
         currentQuestion.value = (event.question as Question) ?? null;
         questionIndex.value = event.index;
-        questionTimer.value = event.timer ?? 30;
         isFlashQuestion.value = event.isFlash ?? false;
+        questionTimer.value = event.timer ?? 30;
         if (event.totalQuestions) totalQuestions.value = event.totalQuestions;
-        lastResult.value = null;
+        feedback.reset(); // Reset feedback à chaque nouvelle question
         removedOptionIds.value = [];
-        // Auto-update totalQuestions from server
+
+        // Timer du serveur
+        timer.start(event.timer ?? 30);
         totalQuestions.value = Math.max(totalQuestions.value, event.index + 1);
         break;
 
-      case 'game:answerResult':
-        lastResult.value = {
-          isCorrect: event.isCorrect,
-          correctAnswer: event.correctAnswer,
-          explanation: event.explanation,
-          points: event.points,
-          flashLate: event.flashLate,
-        };
-        break;
-
-      case 'player:answered': {
-        const answeredPlayer = players.value.find((p) => p.id === event.playerId);
-        if (answeredPlayer) answeredPlayer.status = 'waiting';
-        // Update live scores
-        if (event.scores) {
-          for (const [id, scoreData] of Object.entries(event.scores)) {
-            const p = players.value.find((p) => p.id === id);
-            if (p) p.score = (scoreData as { score: number }).score;
-          }
-        }
-        break;
-      }
-
       case 'game:finished':
-        finalScores.value = event.scores as Record<string, { name: string; score: number }>;
         isGameStarted.value = false;
-        if (event.review && event.review.length > 0) {
-          reviewData.value = event.review;
-        }
+        finalScores.value = event.scores as Record<string, { name: string; score: number }>;
+        reviewData.value = event.review ?? [];
         reviewViewMode.value = 'podium';
         reviewQuestionIdx.value = 0;
+        timer.reset();
         break;
 
       case 'game:reviewUpdated':
@@ -181,7 +191,6 @@ export const useLobbyStore = defineStore('lobby', () => {
         break;
 
       case 'game:malus':
-        // We received a blur malus from another player
         isMalusActive.value = true;
         malusFromName.value = event.fromPlayerName;
         if (malusTimer.value) clearTimeout(malusTimer.value);
@@ -204,9 +213,9 @@ export const useLobbyStore = defineStore('lobby', () => {
         const fromName = event.fromName;
         const targetName = event.targetName;
         if (event.powerUpType === 'malus_blur') {
-          powerUpNotification.value = `⚡ ${fromName} a flou la question de ${targetName ?? '?'} !`;
+          powerUpNotification.value = `${fromName} a flouté la question de ${targetName ?? '?'} !`;
         } else if (event.powerUpType === 'bonus_fifty50') {
-          powerUpNotification.value = `🎯 ${fromName} a utilisé le 50/50 !`;
+          powerUpNotification.value = `${fromName} a utilisé le 50/50 !`;
         }
         setTimeout(() => {
           powerUpNotification.value = null;
@@ -222,14 +231,18 @@ export const useLobbyStore = defineStore('lobby', () => {
           isReconnecting.value = true;
         }
         break;
+
+      default:
+        break;
     }
   }
 
-  // ─── Room lifecycle ────────────────────────────────────
+  // ─── Actions API vers gateway ─────────────────────────
 
   async function createRoom(playerName: string) {
     isConnecting.value = true;
     error.value = null;
+
     try {
       await multiplayerGateway.connect();
       const r = await multiplayerGateway.createRoom(playerName);
@@ -248,6 +261,7 @@ export const useLobbyStore = defineStore('lobby', () => {
   async function joinRoom(code: string, playerName: string) {
     isConnecting.value = true;
     error.value = null;
+
     try {
       await multiplayerGateway.connect();
       const r = await multiplayerGateway.joinRoom(code, playerName);
@@ -276,19 +290,22 @@ export const useLobbyStore = defineStore('lobby', () => {
     }
   }
 
-  function configureGame(config: {
-    questionCount: number;
-    difficulties: string[];
-    categories?: string[];
-  }) {
-    multiplayerGateway.configureGame(config);
+  function configureGame(config: Omit<GameConfig, 'typeRatios'>) {
+    multiplayerGateway.configureGame({
+      questionCount: config.questionCount,
+      difficulties: config.difficulties,
+      categories: config.categories,
+    });
   }
 
   function startGame() {
     multiplayerGateway.startGame();
   }
 
-  function submitAnswer(questionId: string, answer: string, timeSpent: number) {
+  function submitAnswer(questionId: string, answer: string, callerTimeSpent?: number) {
+    // Use caller's timeSpent if provided, otherwise fallback to timer store
+    const timeSpent = callerTimeSpent ?? timer.getElapsed();
+    timer.stop();
     multiplayerGateway.submitAnswer(questionId, answer, timeSpent);
   }
 
@@ -311,14 +328,15 @@ export const useLobbyStore = defineStore('lobby', () => {
     multiplayerGateway.leaveRoom();
     multiplayerGateway.disconnect();
     unsubscribe?.();
-    _resetAll();
+    resetAll();
   }
 
   function resetMultiGame() {
     isGameStarted.value = false;
     currentQuestion.value = null;
     questionIndex.value = 0;
-    lastResult.value = null;
+    questionTimer.value = 30;
+    feedback.reset();
     finalScores.value = null;
     reviewData.value = [];
     totalQuestions.value = 0;
@@ -327,14 +345,16 @@ export const useLobbyStore = defineStore('lobby', () => {
     isFlashQuestion.value = false;
     removedOptionIds.value = [];
     wasReconnected.value = false;
+    timer.reset();
   }
 
-  function _resetAll() {
+  function resetAll() {
     room.value = null;
     players.value = [];
     playerId.value = null;
     isGameStarted.value = false;
     currentQuestion.value = null;
+    questionTimer.value = 30;
     finalScores.value = null;
     reviewData.value = [];
     totalQuestions.value = 0;
@@ -347,40 +367,51 @@ export const useLobbyStore = defineStore('lobby', () => {
     myPowerUpsLeft.value = 3;
     wasReconnected.value = false;
     isReconnecting.value = false;
+    feedback.reset();
+    timer.reset();
   }
 
   return {
+    // state
     room,
     players,
     playerId,
     isConnecting,
     error,
-    isHost,
-    roomCode,
-    playerCount,
     isGameStarted,
     currentQuestion,
     questionIndex,
-    questionTimer,
-    totalQuestions: totalQuestionsDisplay,
-    totalQuestionsRaw: totalQuestions,
+    totalQuestions,
     isFlashQuestion,
-    lastResult,
-    finalScores,
-    reviewData,
-    reviewViewMode,
-    reviewQuestionIdx,
-    // PowerUps
+    questionTimer,
     myPowerUpsLeft,
     isMalusActive,
     malusFromName,
     removedOptionIds,
     powerUpNotification,
-    // Reconnection
+    finalScores,
+    reviewData,
+    reviewViewMode,
+    reviewQuestionIdx,
     isReconnecting,
     wasReconnected,
+
+    // dérivés
+    isHost,
+    roomCode,
+    playerCount,
+    totalQuestionsDisplay,
     myPlayer,
-    // Actions
+
+    // feedback + timer exposés pour les composants multi
+    timerRemaining: computed(() => timer.remaining),
+    timerTotal: computed(() => timer.total),
+    timerPercentage: computed(() => timer.percentage),
+    isTimerRunning: computed(() => timer.isRunning),
+    lastResult: computed(() => feedback.lastResult),
+    showFeedback: computed(() => feedback.isVisible),
+
+    // actions
     createRoom,
     joinRoom,
     manualReconnect,
