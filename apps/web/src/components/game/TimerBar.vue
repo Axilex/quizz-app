@@ -39,24 +39,30 @@
 
   .timer__bar-track {
     flex: 1;
-    height: 8px;
+    height: 7px;
     background: var(--bg-tertiary);
     border-radius: 4px;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.03);
   }
 
   .timer__bar-fill {
     height: 100%;
     border-radius: 4px;
     transition: width 0.15s linear;
+    will-change: width;
   }
 
   .timer--normal .timer__bar-fill {
-    background: var(--accent);
+    background: linear-gradient(
+      90deg,
+      var(--accent),
+      color-mix(in srgb, var(--accent) 80%, #6ec87a)
+    );
   }
 
   .timer--warning .timer__bar-fill {
-    background: var(--warning);
+    background: linear-gradient(90deg, var(--warning), #d4942c);
   }
 
   .timer--critical .timer__bar-fill {
@@ -66,19 +72,34 @@
 
   .timer__label {
     font-family: var(--font-mono);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
-    min-width: 3ch;
+    min-width: 3.2ch;
     text-align: right;
     color: var(--text-primary);
     transition: color 0.3s;
   }
 
+  .timer--warning .timer__label {
+    color: var(--warning);
+  }
+
   .timer--critical .timer__label {
     color: var(--error);
+    animation: pulse-text 0.6s ease-in-out infinite;
   }
 
   @keyframes pulse-bar {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.55;
+    }
+  }
+
+  @keyframes pulse-text {
     0%,
     100% {
       opacity: 1;

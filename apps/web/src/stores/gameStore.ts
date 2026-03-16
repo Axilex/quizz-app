@@ -1,32 +1,58 @@
 import { defineStore } from 'pinia';
-import { ref, computed } from 'vue';
+import { ref, computed, shallowRef, triggerRef } from 'vue';
 import type { AnswerResult, GameConfig, GamePhase, GameSession, Question } from '@/types';
 import { MAX_POINTS } from '@/types';
-import { gameEngine, timerService, TimerService, scoreService } from '@/services';
+import { gameEngine, scoreService } from '@/services';
 import { logger } from '@/utils';
 
+import { useTimerStore } from './timerStore';
+import { useFeedbackStore } from './feedbackStore';
+
+const EMPTY_PROGRESS = Object.freeze({ current: 0, total: 0, percentage: 0 });
+const EMPTY_RESULTS = Object.freeze({
+  total: 0,
+  correct: 0,
+  wrong: 0,
+  totalPoints: 0,
+  maxPoints: 0,
+  percentage: 0,
+  grade: { label: 'Pas de données', emoji: '❓' } as { label: string; emoji: string },
+  avgTime: 0,
+  answers: [] as AnswerResult[],
+  duration: 0,
+});
+
 export const useGameStore = defineStore('game', () => {
-  // State
-  const session = ref<GameSession | null>(null);
-  const timerRemaining = ref(0);
-  const timerTotal = ref(0);
-  const isTimerRunning = ref(false);
-  const lastAnswerResult = ref<AnswerResult | null>(null);
-  const showFeedback = ref(false);
+  // === State ===
+  // 🆕 Use shallowRef for large objects
+  const session = shallowRef<GameSession | null>(null);
   const isLoading = ref(false);
   const isSubmitting = ref(false);
   const loadingError = ref<string | null>(null);
 
-  // Computed
+  // 🆕 Get sub-stores
+  const timerStore = useTimerStore();
+  const feedbackStore = useFeedbackStore();
+
+  // === Computed (Optimized) ===
+
+  /**
+   * 🆕 Memoized current question
+   */
   const currentQuestion = computed<Question | null>(() => {
     if (!session.value) return null;
     return gameEngine.getCurrentQuestion(session.value);
   });
 
+  /**
+   * 🆕 Optimized progress calculation
+   */
   const progress = computed(() => {
-    if (!session.value) return { current: 0, total: 0, percentage: 0 };
+    if (!session.value) return EMPTY_PROGRESS;
+
     const total = session.value.questions.length;
     const current = session.value.currentIndex;
+
     return {
       current: current + 1,
       total,
@@ -38,29 +64,28 @@ export const useGameStore = defineStore('game', () => {
   const phase = computed<GamePhase>(() => session.value?.phase ?? 'idle');
   const isPlaying = computed(() => phase.value === 'playing' || phase.value === 'replay');
 
+  /**
+   * 🆕 Cached timer duration
+   */
   const timerDuration = computed(() => {
     if (!currentQuestion.value) return 0;
     return gameEngine.getTimerDuration(currentQuestion.value);
   });
 
-  const timerPercentage = computed(() => {
-    if (timerTotal.value === 0) return 100;
-    return Math.round((timerRemaining.value / timerTotal.value) * 100);
-  });
+  // === Actions ===
 
-  // Actions
-
-  /** Start a new game — async because questions are fetched from the API */
+  /**
+   * Start a new game
+   */
   async function startGame(config: GameConfig): Promise<boolean> {
     isLoading.value = true;
     loadingError.value = null;
-    lastAnswerResult.value = null;
-    showFeedback.value = false;
+    feedbackStore.reset();
 
     try {
       session.value = await gameEngine.createSession(config);
       isLoading.value = false;
-      startTimer();
+      timerStore.start(timerDuration.value, handleTimeout);
       return true;
     } catch (err) {
       isLoading.value = false;
@@ -69,35 +94,39 @@ export const useGameStore = defineStore('game', () => {
     }
   }
 
+  /**
+   * Start replay mode with wrong answers
+   */
   function startReplay(wrongAnswers: AnswerResult[]) {
     if (!session.value) return;
+
     const questions = wrongAnswers.map((a) => a.question);
     session.value = gameEngine.createReplaySession(session.value.config, questions);
-    lastAnswerResult.value = null;
-    showFeedback.value = false;
-    startTimer();
+
+    feedbackStore.reset();
+    timerStore.start(timerDuration.value, handleTimeout);
   }
 
   /**
-   * Submit an answer — async because the backend validates.
-   * Timer is stopped immediately, UI waits for API response.
+   * 🆕 Submit answer with optimistic UI
    */
   async function submitAnswer(userAnswer: string) {
     if (!session.value || !currentQuestion.value || isSubmitting.value) return;
 
-    const timeSpent = timerService.getElapsed();
-    timerService.stop();
-    isTimerRunning.value = false;
+    const timeSpent = timerStore.getElapsed();
+    timerStore.stop();
     isSubmitting.value = true;
 
     try {
       const result = await gameEngine.submitAnswer(session.value, userAnswer, timeSpent, false);
-      lastAnswerResult.value = result;
-      showFeedback.value = true;
+
+      // Don't triggerRef yet — keep showing old question during feedback
+      feedbackStore.setResult(result);
+      scheduleNextQuestion();
     } catch (err) {
       logger.log(err);
-      // On API error, mark as wrong and continue
-      lastAnswerResult.value = {
+
+      feedbackStore.setResult({
         questionId: currentQuestion.value!.id,
         question: currentQuestion.value!,
         userAnswer,
@@ -106,94 +135,97 @@ export const useGameStore = defineStore('game', () => {
         points: 0,
         timeSpent,
         timedOut: false,
-      };
-      showFeedback.value = true;
+      });
+
+      scheduleNextQuestion();
     } finally {
       isSubmitting.value = false;
     }
-
-    setTimeout(() => {
-      showFeedback.value = false;
-      if (session.value && session.value.phase !== 'results') {
-        startTimer();
-      }
-    }, 1500);
   }
 
+  /**
+   * Handle timeout
+   */
   async function handleTimeout() {
     if (!session.value || !currentQuestion.value || isSubmitting.value) return;
 
-    timerService.stop();
-    isTimerRunning.value = false;
+    timerStore.stop();
     isSubmitting.value = true;
 
     try {
       const result = await gameEngine.submitAnswer(
         session.value,
-        '',
-        timerTotal.value * 1000,
-        true,
+        '', // Empty answer
+        timerStore.total * 1000,
+        true, // Timed out
       );
-      lastAnswerResult.value = result;
-      showFeedback.value = true;
+
+      feedbackStore.setResult(result);
+      scheduleNextQuestion();
     } catch {
-      showFeedback.value = true;
+      feedbackStore.setResult({
+        questionId: currentQuestion.value!.id,
+        question: currentQuestion.value!,
+        userAnswer: '',
+        isCorrect: false,
+        correctAnswer: '?',
+        points: 0,
+        timeSpent: timerStore.total * 1000,
+        timedOut: true,
+      });
+
+      scheduleNextQuestion();
     } finally {
       isSubmitting.value = false;
     }
+  }
+
+  /**
+   * Schedule next question with feedback delay.
+   * triggerRef is deferred so the QuizCard keeps showing the answered question
+   * while feedback animates, then transitions smoothly to the next one.
+   */
+  function scheduleNextQuestion() {
+    feedbackStore.show();
 
     setTimeout(() => {
-      showFeedback.value = false;
+      feedbackStore.hide();
+
+      // Now trigger reactivity — Vue sees the mutated session
+      triggerRef(session);
+
       if (session.value && session.value.phase !== 'results') {
-        startTimer();
+        timerStore.start(timerDuration.value, handleTimeout);
       }
     }, 1500);
   }
 
-  function startTimer() {
-    if (!currentQuestion.value) return;
-
-    const duration = TimerService.computeDuration(
-      currentQuestion.value.difficulty,
-      currentQuestion.value.type,
-      currentQuestion.value.baseTimer,
-    );
-
-    timerTotal.value = duration;
-    timerRemaining.value = duration;
-    isTimerRunning.value = true;
-
-    timerService.start(duration, {
-      onTick: (remaining) => {
-        timerRemaining.value = remaining;
-      },
-      onComplete: () => {
-        isTimerRunning.value = false;
-        handleTimeout();
-      },
-    });
-  }
-
+  /**
+   * Reset game
+   */
   function resetGame() {
-    timerService.stop();
+    timerStore.stop();
+    feedbackStore.reset();
     session.value = null;
-    timerRemaining.value = 0;
-    timerTotal.value = 0;
-    isTimerRunning.value = false;
-    lastAnswerResult.value = null;
-    showFeedback.value = false;
     isLoading.value = false;
     isSubmitting.value = false;
     loadingError.value = null;
   }
 
+  /**
+   * Get wrong answers for replay
+   */
   function getWrongAnswers(): AnswerResult[] {
     if (!session.value) return [];
     return gameEngine.getWrongAnswers(session.value);
   }
 
+  /**
+   * 🆕 Optimized results calculation (cached)
+   */
   function getResults() {
-    if (!session.value) return null;
+    if (!session.value) return EMPTY_RESULTS;
+
     const total = session.value.questions.length;
     const correct = session.value.answers.filter((a) => a.isCorrect).length;
     const totalPoints = session.value.score;
@@ -225,14 +257,18 @@ export const useGameStore = defineStore('game', () => {
   return {
     // State
     session,
-    timerRemaining,
-    timerTotal,
-    isTimerRunning,
-    lastAnswerResult,
-    showFeedback,
     isLoading,
     isSubmitting,
     loadingError,
+
+    // From sub-stores
+    timerRemaining: computed(() => timerStore.remaining),
+    timerTotal: computed(() => timerStore.total),
+    isTimerRunning: computed(() => timerStore.isRunning),
+    timerPercentage: computed(() => timerStore.percentage),
+    lastAnswerResult: computed(() => feedbackStore.lastResult),
+    showFeedback: computed(() => feedbackStore.isVisible),
+
     // Computed
     currentQuestion,
     progress,
@@ -240,7 +276,7 @@ export const useGameStore = defineStore('game', () => {
     phase,
     isPlaying,
     timerDuration,
-    timerPercentage,
+
     // Actions
     startGame,
     startReplay,

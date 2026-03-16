@@ -44,8 +44,13 @@ export class RoomsService {
   private codeToRoom = new Map<string, string>();
   private socketToRoom = new Map<string, string>();
 
+  // ─────────────────────────────────────────────
+  // Création / join / mapping socket ↔ room
+  // ─────────────────────────────────────────────
+
   createRoom(socketId: string, playerName: string): Room {
     const playerId = `player_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
+
     let code = generateCode();
     while (this.codeToRoom.has(code)) {
       code = generateCode();
@@ -97,6 +102,7 @@ export class RoomsService {
     if (room.players.size >= 8) return null;
 
     const playerId = `player_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
+
     const player: Player = {
       id: playerId,
       socketId,
@@ -127,6 +133,10 @@ export class RoomsService {
     return null;
   }
 
+  // ─────────────────────────────────────────────
+  // Démarrage & progression de la partie
+  // ─────────────────────────────────────────────
+
   startGame(room: Room, config: GameConfig, questions: Question[]): void {
     room.config = config;
     room.questions = questions;
@@ -135,15 +145,17 @@ export class RoomsService {
     room.flashWinner = null;
     room.isFlashQuestion = false;
 
-    // Randomly assign ~20% of questions as flash rounds (min 1 if >= 5 questions)
+    // ~20 % de questions en flash (min 1 si >= 5 questions)
     room.flashIndices = new Set<number>();
     if (questions.length >= 5) {
       const flashCount = Math.max(1, Math.floor(questions.length * 0.2));
       const indices = [...Array(questions.length).keys()];
+
       for (let i = indices.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [indices[i], indices[j]] = [indices[j]!, indices[i]!];
       }
+
       for (let i = 0; i < flashCount; i++) {
         room.flashIndices.add(indices[i]!);
       }
@@ -182,6 +194,10 @@ export class RoomsService {
     return room.flashIndices.has(room.currentQuestionIndex);
   }
 
+  // ─────────────────────────────────────────────
+  // Réponses, score, power-ups
+  // ─────────────────────────────────────────────
+
   recordAnswer(
     room: Room,
     playerId: string,
@@ -195,7 +211,15 @@ export class RoomsService {
     const player = room.players.get(playerId);
     if (!player) return;
 
-    player.answers.push({ questionId, answer, isCorrect, timeSpent, timedOut, points });
+    player.answers.push({
+      questionId,
+      answer,
+      isCorrect,
+      timeSpent,
+      timedOut,
+      points,
+    });
+
     player.score += points;
     player.status = 'waiting';
   }
@@ -215,15 +239,21 @@ export class RoomsService {
     return true;
   }
 
+  // ─────────────────────────────────────────────
+  // Déconnexion / reconnection / suppression
+  // ─────────────────────────────────────────────
+
   removePlayer(socketId: string): { room: Room; player: Player; isEmpty: boolean } | null {
     const result = this.getPlayerBySocket(socketId);
     if (!result) return null;
 
     const { room, player } = result;
+
     room.players.delete(player.id);
     this.socketToRoom.delete(socketId);
 
     const isEmpty = room.players.size === 0;
+
     if (isEmpty) {
       this.rooms.delete(room.id);
       this.codeToRoom.delete(room.code);
@@ -250,6 +280,10 @@ export class RoomsService {
     return null;
   }
 
+  // ─────────────────────────────────────────────
+  // Serialisation & scores
+  // ─────────────────────────────────────────────
+
   serializeRoom(room: Room) {
     return {
       id: room.id,
@@ -271,6 +305,7 @@ export class RoomsService {
 
   getScores(room: Room): Record<string, { name: string; score: number; answers: number }> {
     const scores: Record<string, { name: string; score: number; answers: number }> = {};
+
     for (const player of room.players.values()) {
       scores[player.id] = {
         name: player.name,
@@ -278,8 +313,13 @@ export class RoomsService {
         answers: player.answers.length,
       };
     }
+
     return scores;
   }
+
+  // ─────────────────────────────────────────────
+  // Review / override
+  // ─────────────────────────────────────────────
 
   overrideAnswer(room: Room, playerId: string, questionId: string, isCorrect: boolean): boolean {
     const player = room.players.get(playerId);
@@ -291,12 +331,11 @@ export class RoomsService {
     const wasCorrect = answerRecord.isCorrect;
     answerRecord.isCorrect = isCorrect;
 
-    // Recompute score delta
+    // Recalcule simple du delta de score
     if (wasCorrect && !isCorrect) {
       player.score = Math.max(0, player.score - answerRecord.points);
       answerRecord.points = 0;
     } else if (!wasCorrect && isCorrect) {
-      // Grant fixed points for manual override
       const bonus = 300;
       answerRecord.points = bonus;
       player.score += bonus;
@@ -336,6 +375,10 @@ export class RoomsService {
       };
     });
   }
+
+  // ─────────────────────────────────────────────
+  // Nettoyage des rooms
+  // ─────────────────────────────────────────────
 
   getStaleRoomIds(maxIdleAge: number): string[] {
     const now = Date.now();

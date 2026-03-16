@@ -42,30 +42,30 @@
   .feedback {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
-    padding: 1.25rem 1.5rem;
-    border-radius: 14px;
+    gap: 0.85rem;
+    padding: 1.15rem 1.35rem;
+    border-radius: 16px;
     animation: slide-up 0.3s ease;
   }
 
   .feedback--correct {
-    background: color-mix(in srgb, var(--success) 12%, var(--bg-secondary));
-    border: 1px solid color-mix(in srgb, var(--success) 30%, transparent);
+    background: color-mix(in srgb, var(--success) 10%, var(--bg-secondary));
+    border: 1px solid color-mix(in srgb, var(--success) 25%, transparent);
   }
 
   .feedback--wrong {
-    background: color-mix(in srgb, var(--error) 12%, var(--bg-secondary));
-    border: 1px solid color-mix(in srgb, var(--error) 30%, transparent);
+    background: color-mix(in srgb, var(--error) 10%, var(--bg-secondary));
+    border: 1px solid color-mix(in srgb, var(--error) 25%, transparent);
   }
 
   .feedback__icon {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.25rem;
+    height: 2.25rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     font-weight: 900;
     flex-shrink: 0;
   }
@@ -73,11 +73,13 @@
   .feedback--correct .feedback__icon {
     background: var(--success);
     color: white;
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--success) 30%, transparent);
   }
 
   .feedback--wrong .feedback__icon {
     background: var(--error);
     color: white;
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--error) 30%, transparent);
   }
 
   .feedback__text {
@@ -87,8 +89,8 @@
 
   .feedback__status {
     font-weight: 700;
-    font-size: 1rem;
-    margin: 0 0 0.25rem;
+    font-size: 0.95rem;
+    margin: 0 0 0.2rem;
     color: var(--text-primary);
     display: flex;
     align-items: center;
@@ -97,18 +99,18 @@
 
   .feedback__points {
     font-family: var(--font-mono);
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     font-weight: 700;
     color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 15%, transparent);
-    padding: 0.1rem 0.4rem;
-    border-radius: 4px;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    padding: 0.12rem 0.45rem;
+    border-radius: 5px;
   }
 
   .feedback__answer {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--text-secondary);
-    margin: 0 0 0.25rem;
+    margin: 0 0 0.2rem;
   }
 
   .feedback__answer strong {
@@ -116,10 +118,11 @@
   }
 
   .feedback__explanation {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--text-muted);
     margin: 0;
     line-height: 1.5;
+    font-style: italic;
   }
 
   @keyframes slide-up {

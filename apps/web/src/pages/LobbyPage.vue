@@ -56,6 +56,7 @@
 
   function handleConfigAndStart() {
     lobby.configureGame({
+      mode: 'multi',
       questionCount: session.questionCount,
       difficulties: ['easy', 'medium', 'hard'],
       categories: session.selectedCategories.length ? session.selectedCategories : undefined,

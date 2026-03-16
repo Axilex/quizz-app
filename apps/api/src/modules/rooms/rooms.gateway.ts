@@ -6,13 +6,17 @@ import {
   OnGatewayDisconnect,
   MessageBody,
   ConnectedSocket,
+  WsException,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { Logger } from '@nestjs/common';
+import { Logger, UsePipes, ValidationPipe } from '@nestjs/common';
+
 import { RoomsService } from './rooms.service';
 import { QuestionsService } from '../questions/questions.service';
 import { GameScoringService } from '../game/game-scoring.service';
-import type { GameConfig, Room, PowerUpType, Question } from '../../common/types';
+
+import type { GameConfig, Room, Question } from '../../common/types';
+import { CreateRoomDto, JoinRoomDto, SubmitAnswerDto, UsePowerUpDto } from '../game/dto';
 
 const WS_CORS_ORIGINS = process.env['CORS_ORIGINS']
   ? process.env['CORS_ORIGINS'].split(',').map((o) => o.trim())
@@ -27,14 +31,19 @@ const ROOM_MAX_IDLE_AGE = 2 * 60 * 60 * 1000;
   namespace: '/game',
   pingInterval: 25_000,
   pingTimeout: 20_000,
-  connectionStateRecovery: {
-    maxDisconnectionDuration: DISCONNECT_GRACE_PERIOD,
-    skipMiddlewares: true,
-  },
 })
+@UsePipes(
+  new ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+  }),
+)
 export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   server!: Server;
+
+  private readonly logger = new Logger(RoomsGateway.name);
 
   private roomTimers = new Map<string, ReturnType<typeof setTimeout>>();
   private disconnectTimers = new Map<string, ReturnType<typeof setTimeout>>();
@@ -47,12 +56,16 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     setInterval(() => this.cleanupStaleRooms(), ROOM_CLEANUP_INTERVAL);
   }
 
+  // ─────────────────────────────────────────────
+  // Connexion / déconnexion
+  // ─────────────────────────────────────────────
+
   handleConnection(client: Socket): void {
-    Logger.log(`[WS] Client connected: ${client.id}`);
+    this.logger.log(`[WS] Client connected: ${client.id}`);
   }
 
   handleDisconnect(client: Socket): void {
-    Logger.log(`[WS] Client disconnected: ${client.id}`);
+    this.logger.log(`[WS] Client disconnected: ${client.id}`);
 
     const result = this.roomsService.getPlayerBySocket(client.id);
     if (!result) return;
@@ -68,7 +81,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
       if (player.status !== 'disconnected') return;
 
-      Logger.log(`[WS] Grace period expired for ${player.name} (${player.id}), removing`);
+      this.logger.log(`[WS] Grace period expired for ${player.name} (${player.id}), removing`);
 
       const removal = this.roomsService.removePlayer(client.id);
       if (!removal) return;
@@ -91,14 +104,15 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     this.disconnectTimers.set(player.id, timer);
   }
 
-  @SubscribeMessage('room:create')
-  handleCreateRoom(
-    @ConnectedSocket() client: Socket,
-    @MessageBody() data: { playerName: string },
-  ): void {
-    Logger.log(`[WS] room:create from ${client.id}, name: ${data.playerName}`);
+  // ─────────────────────────────────────────────
+  // Room lifecycle
+  // ─────────────────────────────────────────────
 
-    const room = this.roomsService.createRoom(client.id, data.playerName);
+  @SubscribeMessage('room:create')
+  handleCreateRoom(@ConnectedSocket() client: Socket, @MessageBody() dto: CreateRoomDto): void {
+    this.logger.log(`[WS] room:create from ${client.id}, name: ${dto.playerName}`);
+
+    const room = this.roomsService.createRoom(client.id, dto.playerName);
     client.join(room.id);
 
     const host = room.players.values().next().value!;
@@ -109,15 +123,15 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   @SubscribeMessage('room:join')
-  handleJoinRoom(
-    @ConnectedSocket() client: Socket,
-    @MessageBody() data: { code: string; playerName: string },
-  ): void {
-    Logger.log(`[WS] room:join from ${client.id}, code: ${data.code}`);
+  handleJoinRoom(@ConnectedSocket() client: Socket, @MessageBody() dto: JoinRoomDto): void {
+    this.logger.log(`[WS] room:join from ${client.id}, code: ${dto.code}`);
 
-    const result = this.roomsService.joinRoom(data.code, client.id, data.playerName);
+    const result = this.roomsService.joinRoom(dto.code, client.id, dto.playerName);
+
     if (!result) {
-      client.emit('error', { message: 'Room introuvable ou partie déjà lancée' });
+      client.emit('error', {
+        message: 'Room introuvable, pleine ou partie déjà lancée',
+      });
       return;
     }
 
@@ -136,7 +150,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
         score: 0,
         status: 'connected',
         isHost: false,
-        powerUpsLeft: 3,
+        powerUpsLeft: player.powerUpsLeft,
       },
       room: this.roomsService.serializeRoom(room),
     });
@@ -158,9 +172,11 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const { room, player } = result;
     client.join(room.id);
 
-    Logger.log(`[WS] Player ${player.name} reconnected to room ${room.code}`);
+    this.logger.log(`[WS] Player ${player.name} reconnected to room ${room.code}`);
 
-    this.server.to(room.id).emit('player:reconnected', { playerId: player.id });
+    this.server.to(room.id).emit('player:reconnected', {
+      playerId: player.id,
+    });
 
     const currentQuestion = room.isStarted ? room.questions[room.currentQuestionIndex] : null;
     const isFlash = room.isStarted ? this.roomsService.isCurrentFlash(room) : false;
@@ -207,10 +223,13 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     }
   }
 
+  // ─────────────────────────────────────────────
+  // Config & démarrage de partie
+  // ─────────────────────────────────────────────
+
   @SubscribeMessage('game:configure')
   handleConfigure(@ConnectedSocket() client: Socket, @MessageBody() config: GameConfig): void {
     const result = this.roomsService.getPlayerBySocket(client.id);
-
     if (!result || !result.player.isHost) {
       client.emit('error', { message: "Seul l'hôte peut configurer" });
       return;
@@ -223,7 +242,6 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @SubscribeMessage('game:start')
   handleStartGame(@ConnectedSocket() client: Socket): void {
     const result = this.roomsService.getPlayerBySocket(client.id);
-
     if (!result || !result.player.isHost) {
       client.emit('error', { message: "Seul l'hôte peut lancer" });
       return;
@@ -254,7 +272,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       ? this.scoringService.getFlashTimer()
       : this.scoringService.computeTimer(firstQuestion);
 
-    Logger.log(`[WS] Game started in room ${room.code}, ${questions.length} questions`);
+    this.logger.log(`[WS] Game started in room ${room.code}, ${questions.length} questions`);
 
     this.server.to(room.id).emit('game:started', {
       totalQuestions: questions.length,
@@ -267,11 +285,12 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     this.startQuestionTimer(room);
   }
 
+  // ─────────────────────────────────────────────
+  // Réponses & scoring
+  // ─────────────────────────────────────────────
+
   @SubscribeMessage('game:answer')
-  handleAnswer(
-    @ConnectedSocket() client: Socket,
-    @MessageBody() data: { questionId: string; answer: string; timeSpent: number },
-  ): void {
+  handleAnswer(@ConnectedSocket() client: Socket, @MessageBody() dto: SubmitAnswerDto): void {
     const result = this.roomsService.getPlayerBySocket(client.id);
     if (!result) return;
 
@@ -280,63 +299,40 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     if (!room.isStarted || player.status !== 'answering') return;
 
     const currentQuestion = room.questions[room.currentQuestionIndex];
-    if (!currentQuestion || currentQuestion.id !== data.questionId) return;
+    if (!currentQuestion || currentQuestion.id !== dto.questionId) return;
 
     const isFlash = this.roomsService.isCurrentFlash(room);
-
-    if (isFlash && room.flashWinner !== null) {
-      const isCorrect = this.scoringService.validateAnswer(currentQuestion, data.answer);
-
-      this.roomsService.recordAnswer(
-        room,
-        player.id,
-        data.questionId,
-        data.answer,
-        isCorrect,
-        data.timeSpent,
-        false,
-        0,
-      );
-
-      client.emit('game:answerResult', {
-        questionId: data.questionId,
-        isCorrect,
-        correctAnswer: currentQuestion.answer,
-        explanation: currentQuestion.explanation,
-        points: 0,
-        flashLate: true,
-      });
-
-      if (this.roomsService.allPlayersAnswered(room)) {
-        this.clearQuestionTimer(room.id);
-        this.advanceToNextQuestion(room);
-      }
-
-      return;
-    }
-
-    const isCorrect = this.scoringService.validateAnswer(currentQuestion, data.answer);
     const totalTimerMs =
       (isFlash
         ? this.scoringService.getFlashTimer()
         : this.scoringService.computeTimer(currentQuestion)) * 1000;
 
+    // Pour l’instant : on reste sur la méthode simple du GameScoringService
+    const isCorrect = this.scoringService.validateAnswer(currentQuestion, dto.answer);
+
     let points = 0;
+    let flashLate = false;
 
     if (isCorrect) {
       if (isFlash) {
-        room.flashWinner = player.id;
-        points = this.scoringService.computePoints(
-          true,
-          data.timeSpent,
-          totalTimerMs,
-          currentQuestion.difficulty,
-          true,
-        );
+        if (room.flashWinner === null) {
+          room.flashWinner = player.id;
+          points = this.scoringService.computePoints(
+            true,
+            dto.timeSpent,
+            totalTimerMs,
+            currentQuestion.difficulty,
+            true,
+          );
+        } else {
+          // Bonne réponse mais trop tard
+          points = 0;
+          flashLate = true;
+        }
       } else {
         points = this.scoringService.computePoints(
           true,
-          data.timeSpent,
+          dto.timeSpent,
           totalTimerMs,
           currentQuestion.difficulty,
           false,
@@ -347,20 +343,21 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     this.roomsService.recordAnswer(
       room,
       player.id,
-      data.questionId,
-      data.answer,
+      dto.questionId,
+      dto.answer,
       isCorrect,
-      data.timeSpent,
+      dto.timeSpent,
       false,
       points,
     );
 
     client.emit('game:answerResult', {
-      questionId: data.questionId,
+      questionId: dto.questionId,
       isCorrect,
       correctAnswer: currentQuestion.answer,
       explanation: currentQuestion.explanation,
       points,
+      flashLate,
     });
 
     this.server.to(room.id).emit('player:answered', {
@@ -369,13 +366,14 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       scores: this.roomsService.getScores(room),
     });
 
-    if (isFlash && isCorrect) {
+    if (isFlash && isCorrect && room.flashWinner === player.id) {
+      // Premier bon répondant en flash → on arrête la question
       for (const p of room.players.values()) {
-        if (p.status === 'answering') {
+        if (p.status === 'answering' && p.id !== player.id) {
           this.roomsService.recordAnswer(
             room,
             p.id,
-            data.questionId,
+            dto.questionId,
             '',
             false,
             totalTimerMs,
@@ -396,11 +394,16 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     }
   }
 
+  // ─────────────────────────────────────────────
+  // Power-ups
+  // ─────────────────────────────────────────────
+
   @SubscribeMessage('game:powerup')
-  handlePowerUp(
-    @ConnectedSocket() client: Socket,
-    @MessageBody() data: { type: PowerUpType; targetPlayerId?: string },
-  ): void {
+  handlePowerUp(@ConnectedSocket() client: Socket, @MessageBody() dto: UsePowerUpDto): void {
+    if (dto.type === 'malus_blur' && !dto.targetPlayerId) {
+      throw new WsException('targetPlayerId requis pour malus_blur');
+    }
+
     const result = this.roomsService.getPlayerBySocket(client.id);
     if (!result) return;
 
@@ -413,9 +416,9 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       return;
     }
 
-    if (data.type === 'malus_blur') {
-      const targetId = data.targetPlayerId;
-      const targetPlayer = targetId ? room.players.get(targetId) : null;
+    if (dto.type === 'malus_blur') {
+      const targetId = dto.targetPlayerId!;
+      const targetPlayer = room.players.get(targetId);
 
       if (!targetPlayer || targetPlayer.status === 'disconnected') {
         player.powerUpsLeft++;
@@ -429,7 +432,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       });
 
       client.emit('game:powerupUsed', {
-        type: data.type,
+        type: dto.type,
         powerUpsLeft: player.powerUpsLeft,
         targetName: targetPlayer.name,
       });
@@ -443,14 +446,16 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       return;
     }
 
-    if (data.type === 'bonus_fifty50') {
+    if (dto.type === 'bonus_fifty50') {
       const currentQuestion = room.questions[room.currentQuestionIndex] as Question & {
         options?: Array<{ id: string; label: string }>;
       };
 
       if (!currentQuestion || currentQuestion.type !== 'qcm') {
         player.powerUpsLeft++;
-        client.emit('error', { message: 'Le 50/50 ne fonctionne que sur les QCM' });
+        client.emit('error', {
+          message: 'Le 50/50 ne fonctionne que sur les QCM',
+        });
         return;
       }
 
@@ -470,21 +475,28 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       });
 
       client.emit('game:powerupUsed', {
-        type: data.type,
+        type: dto.type,
         powerUpsLeft: player.powerUpsLeft,
       });
     }
   }
 
+  // ─────────────────────────────────────────────
+  // Host override & review
+  // ─────────────────────────────────────────────
+
   @SubscribeMessage('game:hostOverride')
   handleHostOverride(
     @ConnectedSocket() client: Socket,
-    @MessageBody() data: { playerId: string; questionId: string; isCorrect: boolean },
+    @MessageBody()
+    data: { playerId: string; questionId: string; isCorrect: boolean },
   ): void {
     const result = this.roomsService.getPlayerBySocket(client.id);
 
     if (!result || !result.player.isHost) {
-      client.emit('error', { message: "Seul l'hôte peut modifier les résultats" });
+      client.emit('error', {
+        message: "Seul l'hôte peut modifier les résultats",
+      });
       return;
     }
 
@@ -513,7 +525,8 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @SubscribeMessage('review:navigate')
   handleReviewNavigate(
     @ConnectedSocket() client: Socket,
-    @MessageBody() data: { view: 'podium' | 'review'; questionIdx: number },
+    @MessageBody()
+    data: { view: 'podium' | 'review'; questionIdx: number },
   ): void {
     const result = this.roomsService.getPlayerBySocket(client.id);
     if (!result || !result.player.isHost) return;
@@ -523,6 +536,10 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       questionIdx: data.questionIdx,
     });
   }
+
+  // ─────────────────────────────────────────────
+  // Timers & cleanup
+  // ─────────────────────────────────────────────
 
   private startQuestionTimer(room: Room): void {
     this.clearQuestionTimer(room.id);
@@ -534,7 +551,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const timerSec = isFlash
       ? this.scoringService.getFlashTimer()
       : this.scoringService.computeTimer(question);
-    const timerMs = timerSec * 1000 + 2000;
+    const timerMs = timerSec * 1000 + 2000; // petite marge
 
     const timerId = setTimeout(() => {
       this.roomTimers.delete(room.id);
@@ -630,7 +647,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     const staleRoomIds = this.roomsService.getStaleRoomIds(ROOM_MAX_IDLE_AGE);
 
     for (const roomId of staleRoomIds) {
-      Logger.log(`[WS] Cleaning up stale room: ${roomId}`);
+      this.logger.log(`[WS] Cleaning up stale room: ${roomId}`);
       this.clearQuestionTimer(roomId);
       this.roomsService.deleteRoom(roomId);
     }
