@@ -180,7 +180,11 @@ export const useLobbyStore = defineStore('lobby', () => {
         removedOptionIds.value = [];
 
         // Activate pending malus only on text-based questions
-        if (pendingMalus.value && currentQuestion.value && TEXT_BLURRABLE_TYPES.has(currentQuestion.value.type)) {
+        if (
+          pendingMalus.value &&
+          currentQuestion.value &&
+          TEXT_BLURRABLE_TYPES.has(currentQuestion.value.type)
+        ) {
           isMalusActive.value = true;
           malusFromName.value = pendingMalus.value.fromPlayerName;
           if (malusTimer.value) clearTimeout(malusTimer.value);
