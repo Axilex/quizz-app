@@ -14,6 +14,7 @@ export interface GameConfig {
   difficulties: Difficulty[];
   categories?: string[];
   typeRatios?: TypeRatio[];
+  debug?: boolean;
 }
 
 export interface AnswerResult {

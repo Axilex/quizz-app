@@ -81,7 +81,7 @@ export class QuestionsController {
     return {
       questionId,
       isCorrect,
-      correctAnswer: question.answer,
+      correctAnswer: this.questionsService.getReadableAnswer(question),
       explanation: question.explanation,
     };
   }

@@ -179,6 +179,27 @@ export class QuestionsService {
     return this.shuffle(selected).slice(0, Math.min(count, selected.length));
   }
 
+  getOnePerType(): Question[] {
+    const byType = new Map<string, Question[]>();
+    for (const q of this.questions) {
+      const group = byType.get(q.type) ?? [];
+      group.push(q);
+      byType.set(q.type, group);
+    }
+
+    const selected: Question[] = [];
+    for (const [, questions] of byType) {
+      const idx = Math.floor(Math.random() * questions.length);
+      selected.push(questions[idx]!);
+    }
+
+    // Add one mathSimple
+    const mathSimple = generateMathSimpleQuestions(1);
+    selected.push(...mathSimple);
+
+    return this.shuffle(selected);
+  }
+
   getCategories(): Array<{ id: string; count: number }> {
     const map = new Map<string, number>();
     for (const q of this.questions) {
@@ -238,6 +259,21 @@ export class QuestionsService {
     if (question.acceptedAnswers.some((a) => normalize(a) === normalizedUser)) return true;
 
     return false;
+  }
+
+  getReadableAnswer(question: Question): string {
+    if (question.type === 'chronology') {
+      const items = (question as Record<string, unknown>)['items'] as
+        | { id: string; label: string }[]
+        | undefined;
+      if (items) {
+        const orderedIds = question.answer.split(',').map((s) => s.trim());
+        return orderedIds
+          .map((id) => items.find((item) => item.id === id)?.label ?? id)
+          .join(' → ');
+      }
+    }
+    return question.answer;
   }
 
   /**

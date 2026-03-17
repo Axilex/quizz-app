@@ -23,6 +23,7 @@ const WS_CORS_ORIGINS = process.env['CORS_ORIGINS']
   : ['http://localhost:5173', 'http://localhost:4173'];
 
 const DISCONNECT_GRACE_PERIOD = parseInt(process.env['DISCONNECT_GRACE_MS'] ?? '30000', 10);
+const DEBUG_MODE = process.env['DEBUG_MODE'] === 'true';
 const ROOM_CLEANUP_INTERVAL = 60_000;
 const ROOM_MAX_IDLE_AGE = 2 * 60 * 60 * 1000;
 
@@ -254,10 +255,13 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       return;
     }
 
-    const questions = this.questionsService.getRandom(room.config.questionCount, {
-      difficulties: room.config.difficulties,
-      categories: room.config.categories,
-    });
+    const isDebug = DEBUG_MODE || room.config.debug;
+    const questions = isDebug
+      ? this.questionsService.getOnePerType()
+      : this.questionsService.getRandom(room.config.questionCount, {
+          difficulties: room.config.difficulties,
+          categories: room.config.categories,
+        });
 
     if (questions.length === 0) {
       client.emit('error', { message: 'Pas assez de questions' });
@@ -354,7 +358,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     client.emit('game:answerResult', {
       questionId: dto.questionId,
       isCorrect,
-      correctAnswer: currentQuestion.answer,
+      correctAnswer: this.questionsService.getReadableAnswer(currentQuestion),
       explanation: currentQuestion.explanation,
       points,
       flashLate,
@@ -568,7 +572,7 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
           this.server.to(player.socketId).emit('game:answerResult', {
             questionId: question.id,
             isCorrect: false,
-            correctAnswer: question.answer,
+            correctAnswer: this.questionsService.getReadableAnswer(question),
             explanation: question.explanation,
             timedOut: true,
             points: 0,

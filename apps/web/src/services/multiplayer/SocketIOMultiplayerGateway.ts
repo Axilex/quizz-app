@@ -150,6 +150,7 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
     questionCount: number;
     difficulties: string[];
     categories?: string[];
+    debug?: boolean;
   }): void {
     this.socket?.emit('game:configure', config);
   }

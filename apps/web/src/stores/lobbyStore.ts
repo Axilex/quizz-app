@@ -6,6 +6,7 @@ import type {
   Room,
   MultiplayerEvent,
   Question,
+  QuestionType,
   QuestionReviewData,
   ReviewViewMode,
   GameConfig,
@@ -13,6 +14,17 @@ import type {
 import { multiplayerGateway } from '@/services';
 import { useFeedbackStore } from './feedbackStore';
 import { useTimerStore } from './timerStore';
+
+/** Question types where blurring the label text is effective */
+const TEXT_BLURRABLE_TYPES: ReadonlySet<QuestionType> = new Set<QuestionType>([
+  'text',
+  'number',
+  'qcm',
+  'mathMax',
+  'mathSimple',
+  'intruder',
+  'chronology',
+]);
 
 export const useLobbyStore = defineStore('lobby', () => {
   const room = ref<Room | null>(null);
@@ -34,6 +46,7 @@ export const useLobbyStore = defineStore('lobby', () => {
   const isMalusActive = ref(false);
   const malusFromName = ref('');
   const malusTimer = ref<ReturnType<typeof setTimeout> | null>(null);
+  const pendingMalus = ref<{ fromPlayerName: string; duration: number } | null>(null);
   const removedOptionIds = ref<string[]>([]);
   const powerUpNotification = ref<string | null>(null);
 
@@ -166,6 +179,22 @@ export const useLobbyStore = defineStore('lobby', () => {
         feedback.reset(); // Reset feedback à chaque nouvelle question
         removedOptionIds.value = [];
 
+        // Activate pending malus only on text-based questions
+        if (pendingMalus.value && currentQuestion.value && TEXT_BLURRABLE_TYPES.has(currentQuestion.value.type)) {
+          isMalusActive.value = true;
+          malusFromName.value = pendingMalus.value.fromPlayerName;
+          if (malusTimer.value) clearTimeout(malusTimer.value);
+          malusTimer.value = setTimeout(() => {
+            isMalusActive.value = false;
+            malusFromName.value = '';
+          }, pendingMalus.value.duration);
+          pendingMalus.value = null;
+        } else if (!pendingMalus.value) {
+          isMalusActive.value = false;
+          malusFromName.value = '';
+        }
+        // If pendingMalus exists but question is image-based, keep it pending
+
         // Timer du serveur
         timer.start(event.timer ?? 30);
         totalQuestions.value = Math.max(totalQuestions.value, event.index + 1);
@@ -191,13 +220,11 @@ export const useLobbyStore = defineStore('lobby', () => {
         break;
 
       case 'game:malus':
-        isMalusActive.value = true;
-        malusFromName.value = event.fromPlayerName;
-        if (malusTimer.value) clearTimeout(malusTimer.value);
-        malusTimer.value = setTimeout(() => {
-          isMalusActive.value = false;
-          malusFromName.value = '';
-        }, event.duration);
+        // Store malus as pending — it will activate on the next question
+        pendingMalus.value = {
+          fromPlayerName: event.fromPlayerName,
+          duration: event.duration,
+        };
         break;
 
       case 'game:bonus5050':
@@ -295,6 +322,7 @@ export const useLobbyStore = defineStore('lobby', () => {
       questionCount: config.questionCount,
       difficulties: config.difficulties,
       categories: config.categories,
+      debug: config.debug,
     });
   }
 

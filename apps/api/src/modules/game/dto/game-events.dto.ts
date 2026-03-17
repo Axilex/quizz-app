@@ -66,6 +66,10 @@ export class GameConfigDto {
   @IsString({ each: true })
   @ArrayMaxSize(20)
   categories?: string[];
+
+  @IsOptional()
+  @IsBoolean()
+  debug?: boolean;
 }
 
 /**

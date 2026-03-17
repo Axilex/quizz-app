@@ -115,6 +115,7 @@ export interface GameConfig {
   questionCount: number;
   difficulties: Difficulty[];
   categories?: string[];
+  debug?: boolean;
 }
 
 export type PowerUpType = 'malus_blur' | 'bonus_fifty50';

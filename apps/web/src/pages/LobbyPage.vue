@@ -17,6 +17,7 @@
   const playerName = ref('Joueur');
   const joinCode = ref('');
   const view = ref<'choice' | 'join' | 'room'>('choice');
+  const debugMode = ref(false);
   const connectionState = ref<ConnectionState>(multiplayerGateway.connectionState);
 
   const unsubState = multiplayerGateway.onStateChange((state) => {
@@ -55,6 +56,7 @@
       questionCount: session.questionCount,
       difficulties: ['easy', 'medium', 'hard'],
       categories: session.selectedCategories.length ? session.selectedCategories : undefined,
+      debug: debugMode.value || undefined,
     });
     setTimeout(() => lobby.startGame(), 200);
   }
@@ -181,6 +183,11 @@
         <div v-if="lobby.isHost" class="lobby-host-panel">
           <h3 class="lobby-host-panel__title">Configuration de la partie</h3>
           <GameSettingsPanel @start="handleConfigAndStart" />
+
+          <label class="lobby-debug-toggle">
+            <input v-model="debugMode" type="checkbox" />
+            Mode debug (1 question par type)
+          </label>
         </div>
 
         <div v-else class="lobby-waiting">
@@ -369,6 +376,16 @@
     font-size: var(--text-sm);
     margin: 0;
   }
+  .lobby-debug-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    cursor: pointer;
+    margin-top: var(--space-xs);
+  }
+
   .lobby-error {
     color: var(--error);
     font-size: var(--text-sm);
