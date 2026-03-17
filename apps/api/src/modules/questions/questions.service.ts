@@ -8,7 +8,6 @@ import rebusQuestions from '../../data/questions_rebus.json';
 import fourImagesQuestions from '../../data/questions_four_images.json';
 import chronologyQuestions from '../../data/questions_chronology.json';
 import blindTestQuestions from '../../data/questions_blind_test.json';
-import geoQuestions from '../../data/questions_geo.json';
 import intruderQuestions from '../../data/questions_intruder.json';
 import silhouetteQuestions from '../../data/questions_silhouette.json';
 import imagesQuestions from '../../data/questions_image.json';
@@ -91,7 +90,6 @@ export class QuestionsService {
       ...(fourImagesQuestions as Question[]),
       ...(chronologyQuestions as Question[]),
       ...(blindTestQuestions as Question[]),
-      ...(geoQuestions as Question[]),
       ...(intruderQuestions as Question[]),
       ...(silhouetteQuestions as Question[]),
       ...(imagesQuestions as Question[]),

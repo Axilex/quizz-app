@@ -4,20 +4,21 @@
     "type": "qcm",
     "difficulty": "easy",
     "category": "cinéma",
-    "label": "Quel studio a produit Toy Story ?",
+    "label": "Quel studio a produit Toy Story (1995) ?",
     "answer": "Pixar",
     "acceptedAnswers": ["Pixar"],
-    "media": null,
+    "explanation": "Pixar a produit Toy Story en 1995, le premier film d'animation entièrement en images de synthèse.",
     "tags": ["cinéma", "animation"],
     "baseTimer": 15,
+    "media": null,
     "options": [
       {
         "id": "a",
-        "label": "Pixar"
+        "label": "DreamWorks"
       },
       {
         "id": "b",
-        "label": "DreamWorks"
+        "label": "Pixar"
       },
       {
         "id": "c",
@@ -33,13 +34,14 @@
     "id": "qcm_002",
     "type": "qcm",
     "difficulty": "easy",
-    "category": "sciences",
+    "category": "géographie",
     "label": "Quel est le plus grand océan du monde ?",
     "answer": "Océan Pacifique",
-    "acceptedAnswers": ["Océan Pacifique"],
-    "media": null,
-    "tags": ["sciences", "géographie"],
+    "acceptedAnswers": ["Océan Pacifique", "Pacifique"],
+    "explanation": "L'Océan Pacifique couvre 165 millions de km², plus de 46% de la surface océanique.",
+    "tags": ["géographie", "océans"],
     "baseTimer": 15,
+    "media": null,
     "options": [
       {
         "id": "a",
@@ -62,843 +64,93 @@
   {
     "id": "qcm_003",
     "type": "qcm",
-    "difficulty": "easy",
-    "category": "culture",
-    "label": "Quel pays a offert la Statue de la Liberté aux États-Unis ?",
-    "answer": "France",
-    "acceptedAnswers": ["France"],
+    "difficulty": "medium",
+    "category": "histoire",
+    "label": "En quelle année la Bastille a-t-elle été prise ?",
+    "answer": "1789",
+    "acceptedAnswers": ["1789"],
+    "explanation": "La prise de la Bastille le 14 juillet 1789 marque le début de la Révolution française.",
+    "tags": ["histoire", "france"],
+    "baseTimer": 25,
     "media": null,
-    "tags": ["culture", "monuments"],
-    "baseTimer": 15,
     "options": [
       {
         "id": "a",
-        "label": "Angleterre"
+        "label": "1776"
       },
       {
         "id": "b",
-        "label": "France"
+        "label": "1789"
       },
       {
         "id": "c",
-        "label": "Allemagne"
+        "label": "1804"
       },
       {
         "id": "d",
-        "label": "Espagne"
+        "label": "1815"
       }
     ]
   },
   {
     "id": "qcm_004",
     "type": "qcm",
-    "difficulty": "easy",
-    "category": "sport",
-    "label": "Quel sport se joue à Wimbledon ?",
-    "answer": "Tennis",
-    "acceptedAnswers": ["Tennis"],
+    "difficulty": "hard",
+    "category": "sciences",
+    "label": "Quel élément chimique a le numéro atomique 79 ?",
+    "answer": "Or",
+    "acceptedAnswers": ["Or", "or", "Or (Au)"],
+    "explanation": "L'or (Au) a le numéro atomique 79. C'est un métal précieux très convoité.",
+    "tags": ["sciences", "chimie"],
+    "baseTimer": 35,
     "media": null,
-    "tags": ["sport", "tennis"],
-    "baseTimer": 15,
     "options": [
       {
         "id": "a",
-        "label": "Cricket"
+        "label": "Argent (Ag)"
       },
       {
         "id": "b",
-        "label": "Golf"
+        "label": "Or (Au)"
       },
       {
         "id": "c",
-        "label": "Tennis"
+        "label": "Cuivre (Cu)"
       },
       {
         "id": "d",
-        "label": "Rugby"
+        "label": "Plomb (Pb)"
       }
     ]
   },
   {
     "id": "qcm_005",
     "type": "qcm",
-    "difficulty": "easy",
-    "category": "musique",
-    "label": "Quel instrument a 6 cordes en standard ?",
-    "answer": "Guitare",
-    "acceptedAnswers": ["Guitare"],
-    "media": null,
-    "tags": ["musique", "instruments"],
-    "baseTimer": 15,
-    "options": [
-      {
-        "id": "a",
-        "label": "Violon"
-      },
-      {
-        "id": "b",
-        "label": "Guitare"
-      },
-      {
-        "id": "c",
-        "label": "Ukulélé"
-      },
-      {
-        "id": "d",
-        "label": "Banjo"
-      }
-    ]
-  },
-  {
-    "id": "qcm_006",
-    "type": "qcm",
-    "difficulty": "easy",
-    "category": "gastronomie",
-    "label": "Quel ingrédient principal trouve-t-on dans une omelette ?",
-    "answer": "Œufs",
-    "acceptedAnswers": ["Œufs"],
-    "media": null,
-    "tags": ["gastronomie"],
-    "baseTimer": 15,
-    "options": [
-      {
-        "id": "a",
-        "label": "Œufs"
-      },
-      {
-        "id": "b",
-        "label": "Farine"
-      },
-      {
-        "id": "c",
-        "label": "Lait"
-      },
-      {
-        "id": "d",
-        "label": "Beurre"
-      }
-    ]
-  },
-  {
-    "id": "qcm_007",
-    "type": "qcm",
-    "difficulty": "easy",
-    "category": "sciences",
-    "label": "Quel gaz respirons-nous principalement ?",
-    "answer": "Azote",
-    "acceptedAnswers": ["Azote"],
-    "media": null,
-    "explanation": "L'air contient 78% d'azote et 21% d'oxygène.",
-    "tags": ["sciences"],
-    "baseTimer": 15,
-    "options": [
-      {
-        "id": "a",
-        "label": "Oxygène"
-      },
-      {
-        "id": "b",
-        "label": "Azote"
-      },
-      {
-        "id": "c",
-        "label": "CO2"
-      },
-      {
-        "id": "d",
-        "label": "Hélium"
-      }
-    ]
-  },
-  {
-    "id": "qcm_008",
-    "type": "qcm",
-    "difficulty": "easy",
-    "category": "géographie",
-    "label": "Quel fleuve traverse Paris ?",
-    "answer": "La Seine",
-    "acceptedAnswers": ["La Seine"],
-    "media": null,
-    "tags": ["géographie", "France"],
-    "baseTimer": 15,
-    "options": [
-      {
-        "id": "a",
-        "label": "La Loire"
-      },
-      {
-        "id": "b",
-        "label": "Le Rhône"
-      },
-      {
-        "id": "c",
-        "label": "La Seine"
-      },
-      {
-        "id": "d",
-        "label": "La Garonne"
-      }
-    ]
-  },
-  {
-    "id": "qcm_009",
-    "type": "qcm",
-    "difficulty": "easy",
-    "category": "jeux vidéo",
-    "label": "Quelle console a été créée par Nintendo en 2017 ?",
-    "answer": "Switch",
-    "acceptedAnswers": ["Switch"],
-    "media": null,
-    "tags": ["jeux vidéo", "Nintendo"],
-    "baseTimer": 15,
-    "options": [
-      {
-        "id": "a",
-        "label": "Wii U"
-      },
-      {
-        "id": "b",
-        "label": "Switch"
-      },
-      {
-        "id": "c",
-        "label": "3DS"
-      },
-      {
-        "id": "d",
-        "label": "GameCube"
-      }
-    ]
-  },
-  {
-    "id": "qcm_010",
-    "type": "qcm",
-    "difficulty": "easy",
-    "category": "culture",
-    "label": "Quel animal représente le signe du zodiaque Lion ?",
-    "answer": "Un lion",
-    "acceptedAnswers": ["Un lion"],
-    "media": null,
-    "tags": ["culture"],
-    "baseTimer": 15,
-    "options": [
-      {
-        "id": "a",
-        "label": "Un lion"
-      },
-      {
-        "id": "b",
-        "label": "Un tigre"
-      },
-      {
-        "id": "c",
-        "label": "Un léopard"
-      },
-      {
-        "id": "d",
-        "label": "Un lynx"
-      }
-    ]
-  },
-  {
-    "id": "qcm_011",
-    "type": "qcm",
     "difficulty": "medium",
-    "category": "histoire",
-    "label": "Quel traité a partagé le monde entre l'Espagne et le Portugal en 1494 ?",
-    "answer": "Traité de Tordesillas",
-    "acceptedAnswers": ["Traité de Tordesillas"],
-    "media": null,
-    "tags": ["histoire"],
+    "category": "sports",
+    "label": "Combien de fois Serena Williams a-t-elle remporté l'Open d'Australie ?",
+    "answer": "7",
+    "acceptedAnswers": ["7"],
+    "explanation": "Serena Williams a remporté l'Open d'Australie 7 fois (2003, 2005, 2007, 2009, 2010, 2015, 2016).",
+    "tags": ["sports", "tennis"],
     "baseTimer": 25,
-    "options": [
-      {
-        "id": "a",
-        "label": "Traité de Tordesillas"
-      },
-      {
-        "id": "b",
-        "label": "Traité de Verdun"
-      },
-      {
-        "id": "c",
-        "label": "Traité de Saragosse"
-      },
-      {
-        "id": "d",
-        "label": "Traité d'Utrecht"
-      }
-    ]
-  },
-  {
-    "id": "qcm_012",
-    "type": "qcm",
-    "difficulty": "medium",
-    "category": "cinéma",
-    "label": "Quel acteur joue Tony Stark dans le MCU ?",
-    "answer": "Robert Downey Jr.",
-    "acceptedAnswers": ["Robert Downey Jr."],
     "media": null,
-    "tags": ["cinéma", "Marvel"],
-    "baseTimer": 25,
     "options": [
       {
         "id": "a",
-        "label": "Chris Evans"
+        "label": "5"
       },
       {
         "id": "b",
-        "label": "Robert Downey Jr."
+        "label": "6"
       },
       {
         "id": "c",
-        "label": "Chris Hemsworth"
+        "label": "7"
       },
       {
         "id": "d",
-        "label": "Mark Ruffalo"
-      }
-    ]
-  },
-  {
-    "id": "qcm_013",
-    "type": "qcm",
-    "difficulty": "medium",
-    "category": "sciences",
-    "label": "Quel est le plus petit os du corps humain ?",
-    "answer": "L'étrier",
-    "acceptedAnswers": ["L'étrier"],
-    "media": null,
-    "explanation": "L'étrier est un os de l'oreille moyenne mesurant 3mm.",
-    "tags": ["sciences", "corps humain"],
-    "baseTimer": 25,
-    "options": [
-      {
-        "id": "a",
-        "label": "L'étrier"
-      },
-      {
-        "id": "b",
-        "label": "Le marteau"
-      },
-      {
-        "id": "c",
-        "label": "Le péroné"
-      },
-      {
-        "id": "d",
-        "label": "La phalange"
-      }
-    ]
-  },
-  {
-    "id": "qcm_014",
-    "type": "qcm",
-    "difficulty": "medium",
-    "category": "géographie",
-    "label": "Quel pays possède le plus de lacs au monde ?",
-    "answer": "Canada",
-    "acceptedAnswers": ["Canada"],
-    "media": null,
-    "tags": ["géographie"],
-    "baseTimer": 25,
-    "options": [
-      {
-        "id": "a",
-        "label": "Finlande"
-      },
-      {
-        "id": "b",
-        "label": "Suède"
-      },
-      {
-        "id": "c",
-        "label": "Canada"
-      },
-      {
-        "id": "d",
-        "label": "Russie"
-      }
-    ]
-  },
-  {
-    "id": "qcm_015",
-    "type": "qcm",
-    "difficulty": "medium",
-    "category": "musique",
-    "label": "Quel rappeur a sorti l'album « To Pimp a Butterfly » ?",
-    "answer": "Kendrick Lamar",
-    "acceptedAnswers": ["Kendrick Lamar"],
-    "media": null,
-    "tags": ["musique", "rap"],
-    "baseTimer": 25,
-    "options": [
-      {
-        "id": "a",
-        "label": "Drake"
-      },
-      {
-        "id": "b",
-        "label": "Kendrick Lamar"
-      },
-      {
-        "id": "c",
-        "label": "J. Cole"
-      },
-      {
-        "id": "d",
-        "label": "Travis Scott"
-      }
-    ]
-  },
-  {
-    "id": "qcm_016",
-    "type": "qcm",
-    "difficulty": "medium",
-    "category": "sport",
-    "label": "Quel pays a remporté le plus de Coupes du monde de football ?",
-    "answer": "Brésil",
-    "acceptedAnswers": ["Brésil"],
-    "media": null,
-    "tags": ["sport", "football"],
-    "baseTimer": 25,
-    "options": [
-      {
-        "id": "a",
-        "label": "Allemagne"
-      },
-      {
-        "id": "b",
-        "label": "Italie"
-      },
-      {
-        "id": "c",
-        "label": "Brésil"
-      },
-      {
-        "id": "d",
-        "label": "Argentine"
-      }
-    ]
-  },
-  {
-    "id": "qcm_017",
-    "type": "qcm",
-    "difficulty": "medium",
-    "category": "technologie",
-    "label": "Quel langage de programmation est le plus utilisé pour le web front-end ?",
-    "answer": "JavaScript",
-    "acceptedAnswers": ["JavaScript"],
-    "media": null,
-    "tags": ["technologie", "programmation"],
-    "baseTimer": 25,
-    "options": [
-      {
-        "id": "a",
-        "label": "Python"
-      },
-      {
-        "id": "b",
-        "label": "JavaScript"
-      },
-      {
-        "id": "c",
-        "label": "Java"
-      },
-      {
-        "id": "d",
-        "label": "C++"
-      }
-    ]
-  },
-  {
-    "id": "qcm_018",
-    "type": "qcm",
-    "difficulty": "medium",
-    "category": "culture",
-    "label": "Quel artiste a peint « La Joconde » ?",
-    "answer": "Léonard de Vinci",
-    "acceptedAnswers": ["Léonard de Vinci"],
-    "media": null,
-    "tags": ["culture", "art"],
-    "baseTimer": 25,
-    "options": [
-      {
-        "id": "a",
-        "label": "Michel-Ange"
-      },
-      {
-        "id": "b",
-        "label": "Léonard de Vinci"
-      },
-      {
-        "id": "c",
-        "label": "Raphaël"
-      },
-      {
-        "id": "d",
-        "label": "Botticelli"
-      }
-    ]
-  },
-  {
-    "id": "qcm_019",
-    "type": "qcm",
-    "difficulty": "medium",
-    "category": "séries",
-    "label": "Dans quelle ville se déroule Peaky Blinders ?",
-    "answer": "Birmingham",
-    "acceptedAnswers": ["Birmingham"],
-    "media": null,
-    "tags": ["séries"],
-    "baseTimer": 25,
-    "options": [
-      {
-        "id": "a",
-        "label": "Londres"
-      },
-      {
-        "id": "b",
-        "label": "Manchester"
-      },
-      {
-        "id": "c",
-        "label": "Birmingham"
-      },
-      {
-        "id": "d",
-        "label": "Liverpool"
-      }
-    ]
-  },
-  {
-    "id": "qcm_020",
-    "type": "qcm",
-    "difficulty": "medium",
-    "category": "gastronomie",
-    "label": "Quel pays est le plus grand producteur de café au monde ?",
-    "answer": "Brésil",
-    "acceptedAnswers": ["Brésil"],
-    "media": null,
-    "tags": ["gastronomie"],
-    "baseTimer": 25,
-    "options": [
-      {
-        "id": "a",
-        "label": "Colombie"
-      },
-      {
-        "id": "b",
-        "label": "Éthiopie"
-      },
-      {
-        "id": "c",
-        "label": "Brésil"
-      },
-      {
-        "id": "d",
-        "label": "Vietnam"
-      }
-    ]
-  },
-  {
-    "id": "qcm_021",
-    "type": "qcm",
-    "difficulty": "hard",
-    "category": "sciences",
-    "label": "Quel est le symbole chimique du tungstène ?",
-    "answer": "W",
-    "acceptedAnswers": ["W"],
-    "media": null,
-    "explanation": "W vient de l'allemand Wolfram.",
-    "tags": ["sciences", "chimie"],
-    "baseTimer": 35,
-    "options": [
-      {
-        "id": "a",
-        "label": "Tu"
-      },
-      {
-        "id": "b",
-        "label": "Tg"
-      },
-      {
-        "id": "c",
-        "label": "W"
-      },
-      {
-        "id": "d",
-        "label": "Tn"
-      }
-    ]
-  },
-  {
-    "id": "qcm_022",
-    "type": "qcm",
-    "difficulty": "hard",
-    "category": "histoire",
-    "label": "Quelle bataille de 1815 a mis fin au règne de Napoléon ?",
-    "answer": "Waterloo",
-    "acceptedAnswers": ["Waterloo"],
-    "media": null,
-    "tags": ["histoire"],
-    "baseTimer": 35,
-    "options": [
-      {
-        "id": "a",
-        "label": "Austerlitz"
-      },
-      {
-        "id": "b",
-        "label": "Waterloo"
-      },
-      {
-        "id": "c",
-        "label": "Trafalgar"
-      },
-      {
-        "id": "d",
-        "label": "Iéna"
-      }
-    ]
-  },
-  {
-    "id": "qcm_023",
-    "type": "qcm",
-    "difficulty": "hard",
-    "category": "géographie",
-    "label": "Quel est le plus long mur du monde ?",
-    "answer": "La Grande Muraille de Chine",
-    "acceptedAnswers": ["La Grande Muraille de Chine"],
-    "media": null,
-    "tags": ["géographie"],
-    "baseTimer": 35,
-    "options": [
-      {
-        "id": "a",
-        "label": "Le Mur d'Hadrien"
-      },
-      {
-        "id": "b",
-        "label": "La Grande Muraille de Chine"
-      },
-      {
-        "id": "c",
-        "label": "Le Mur de Berlin"
-      },
-      {
-        "id": "d",
-        "label": "Le Mur des Lamentations"
-      }
-    ]
-  },
-  {
-    "id": "qcm_024",
-    "type": "qcm",
-    "difficulty": "hard",
-    "category": "culture",
-    "label": "Quel écrivain français a écrit « Les Misérables » ?",
-    "answer": "Victor Hugo",
-    "acceptedAnswers": ["Victor Hugo"],
-    "media": null,
-    "tags": ["culture", "littérature"],
-    "baseTimer": 35,
-    "options": [
-      {
-        "id": "a",
-        "label": "Émile Zola"
-      },
-      {
-        "id": "b",
-        "label": "Victor Hugo"
-      },
-      {
-        "id": "c",
-        "label": "Alexandre Dumas"
-      },
-      {
-        "id": "d",
-        "label": "Gustave Flaubert"
-      }
-    ]
-  },
-  {
-    "id": "qcm_025",
-    "type": "qcm",
-    "difficulty": "hard",
-    "category": "cinéma",
-    "label": "Quel film a remporté l'Oscar du meilleur film en 2020 ?",
-    "answer": "Parasite",
-    "acceptedAnswers": ["Parasite"],
-    "media": null,
-    "tags": ["cinéma"],
-    "baseTimer": 35,
-    "options": [
-      {
-        "id": "a",
-        "label": "1917"
-      },
-      {
-        "id": "b",
-        "label": "Joker"
-      },
-      {
-        "id": "c",
-        "label": "Parasite"
-      },
-      {
-        "id": "d",
-        "label": "Once Upon a Time in Hollywood"
-      }
-    ]
-  },
-  {
-    "id": "qcm_026",
-    "type": "qcm",
-    "difficulty": "easy",
-    "category": "sciences",
-    "label": "Quel est le plus gros mammifère marin ?",
-    "answer": "Baleine bleue",
-    "acceptedAnswers": ["Baleine bleue"],
-    "media": null,
-    "tags": ["sciences", "animaux"],
-    "baseTimer": 15,
-    "options": [
-      {
-        "id": "a",
-        "label": "Requin-baleine"
-      },
-      {
-        "id": "b",
-        "label": "Baleine bleue"
-      },
-      {
-        "id": "c",
-        "label": "Orque"
-      },
-      {
-        "id": "d",
-        "label": "Cachalot"
-      }
-    ]
-  },
-  {
-    "id": "qcm_027",
-    "type": "qcm",
-    "difficulty": "easy",
-    "category": "culture",
-    "label": "Quelle est la monnaie utilisée au Japon ?",
-    "answer": "Yen",
-    "acceptedAnswers": ["Yen"],
-    "media": null,
-    "tags": ["culture", "monnaie"],
-    "baseTimer": 15,
-    "options": [
-      {
-        "id": "a",
-        "label": "Won"
-      },
-      {
-        "id": "b",
-        "label": "Yuan"
-      },
-      {
-        "id": "c",
-        "label": "Yen"
-      },
-      {
-        "id": "d",
-        "label": "Ringgit"
-      }
-    ]
-  },
-  {
-    "id": "qcm_028",
-    "type": "qcm",
-    "difficulty": "medium",
-    "category": "jeux vidéo",
-    "label": "Quel jeu de Riot Games est un MOBA avec des champions ?",
-    "answer": "League of Legends",
-    "acceptedAnswers": ["League of Legends"],
-    "media": null,
-    "tags": ["jeux vidéo"],
-    "baseTimer": 25,
-    "options": [
-      {
-        "id": "a",
-        "label": "Dota 2"
-      },
-      {
-        "id": "b",
-        "label": "League of Legends"
-      },
-      {
-        "id": "c",
-        "label": "Smite"
-      },
-      {
-        "id": "d",
-        "label": "Heroes of the Storm"
-      }
-    ]
-  },
-  {
-    "id": "qcm_029",
-    "type": "qcm",
-    "difficulty": "medium",
-    "category": "sciences",
-    "label": "Quelle planète est connue pour ses anneaux spectaculaires ?",
-    "answer": "Saturne",
-    "acceptedAnswers": ["Saturne"],
-    "media": null,
-    "tags": ["sciences", "espace"],
-    "baseTimer": 25,
-    "options": [
-      {
-        "id": "a",
-        "label": "Jupiter"
-      },
-      {
-        "id": "b",
-        "label": "Saturne"
-      },
-      {
-        "id": "c",
-        "label": "Uranus"
-      },
-      {
-        "id": "d",
-        "label": "Neptune"
-      }
-    ]
-  },
-  {
-    "id": "qcm_030",
-    "type": "qcm",
-    "difficulty": "hard",
-    "category": "musique",
-    "label": "Quel compositeur a écrit les « Quatre Saisons » ?",
-    "answer": "Vivaldi",
-    "acceptedAnswers": ["Vivaldi"],
-    "media": null,
-    "tags": ["musique", "classique"],
-    "baseTimer": 35,
-    "options": [
-      {
-        "id": "a",
-        "label": "Bach"
-      },
-      {
-        "id": "b",
-        "label": "Mozart"
-      },
-      {
-        "id": "c",
-        "label": "Vivaldi"
-      },
-      {
-        "id": "d",
-        "label": "Haendel"
+        "label": "8"
       }
     ]
   }

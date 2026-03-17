@@ -11,7 +11,6 @@
     "explanation": "La Tour Eiffel, construite en 1889 pour l'Exposition universelle.",
     "tags": ["culture", "monuments"],
     "baseTimer": 30,
-    "svg": "eiffel_tower",
-    "revealSteps": 4
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/960px-Tour_Eiffel_Wikimedia_Commons.jpg"
   }
 ]

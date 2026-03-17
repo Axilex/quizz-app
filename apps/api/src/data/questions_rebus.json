@@ -3,18 +3,86 @@
     "id": "reb_001",
     "type": "rebus",
     "difficulty": "easy",
-    "category": "culture",
-    "label": "Déchiffrez ce rébus :",
-    "answer": "Tournesol",
-    "acceptedAnswers": ["Tournesol", "tournesol"],
-    "media": null,
-    "explanation": "Tour + Nez + Sol = Tournesol",
-    "tags": ["culture", "jeux de mots"],
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Photosynthèse",
+    "acceptedAnswers": ["Photosynthèse", "photosynthèse"],
+    "explanation": "PHOTO + SAINT + THÈSE = PHOTOSYNTHÈSE. Le processus biologique d'assimilation du CO2.",
+    "tags": ["jeux de mots", "rébus"],
     "baseTimer": 25,
+    "media": null,
     "clues": [
-      { "svg": "tower", "alt": "Tour" },
-      { "svg": "nose", "alt": "Nez" },
-      { "svg": "ground", "alt": "Sol" }
+      {
+        "imageUrl": "https://www.monfairepart.com/images/satellite/243/Bannierequaliteetresolution.jpg",
+        "alt": "PHOTO"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/21/Saint_Patrick_Catholic_Church_%28Junction_City%2C_Ohio%29_-_stained_glass%2C_Saint_Patrick_-_detail.jpg",
+        "alt": "SAINT"
+      },
+      {
+        "imageUrl": "https://doctorat.univ-grenoble-alpes.fr/medias/photo/doctorat-shutterstock-643638364_1616777010318-png?ID_FICHE=1083712",
+        "alt": "THÈSE"
+      }
+    ]
+  },
+  {
+    "id": "reb_002",
+    "type": "rebus",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Génocide",
+    "acceptedAnswers": ["Génocide", "génocide", "genocide", "Genocide"],
+    "explanation": "GÉNOCIDE = GÉ + NO + SI + 2 (littéralement: meurtre d'un peuple)",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 35,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://www.oiseaux.net/photos/ghislain.riou/images/id/geai.des.chenes.ghri.4p.jpg",
+        "alt": "GÉ"
+      },
+      {
+        "imageUrl": "https://images.unsplash.com/photo-1693168058063-f8e3474ce214?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "alt": "NO"
+      },
+
+      {
+        "imageUrl": "https://thumbs.dreamstime.com/b/symbole-de-musique-noire-note-b-ou-si-sur-les-lignes-du-personnel-illustration-vectorielle-221015599.jpg",
+        "alt": "SI"
+      },
+      {
+        "imageUrl": "https://images.unsplash.com/photo-1579172342894-e6d751ec390c?q=80&w=750&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "alt": "DE"
+      }
+    ]
+  },
+  {
+    "id": "reb_003",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Sodomie",
+    "acceptedAnswers": ["Sodomie", "sodomie"],
+    "explanation": "Sodomie = SEAU + DOS + MIE",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 20,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://images.unsplash.com/photo-1596028921064-f82860b67f28?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "alt": "SEAU"
+      },
+      {
+        "imageUrl": "https://images.unsplash.com/photo-1639520721459-c75c788483e2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "alt": "DOS"
+      },
+      {
+        "imageUrl": "https://images.unsplash.com/photo-1639407503825-f8e665c49b00?q=80&w=1473&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "alt": "MIE"
+      }
     ]
   }
 ]
