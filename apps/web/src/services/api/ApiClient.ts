@@ -14,6 +14,10 @@ export interface ValidateAnswerResponse {
   isCorrect: boolean;
   correctAnswer: string;
   explanation?: string;
+  /** GeoClickMap only: distance-based points */
+  geoPoints?: number;
+  /** GeoClickMap only: distance in km from target */
+  distanceKm?: number;
 }
 
 export interface CategoryInfo {

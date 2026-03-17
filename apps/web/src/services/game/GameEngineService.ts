@@ -82,6 +82,7 @@ export class GameEngineService {
     let isCorrect = false;
     let correctAnswer = '';
     let explanation: string | undefined;
+    let geoPoints: number | undefined;
 
     if (timedOut) {
       // On timeout, ask the API for the correct answer
@@ -98,6 +99,7 @@ export class GameEngineService {
       isCorrect = validation.isCorrect;
       correctAnswer = validation.correctAnswer;
       explanation = validation.explanation;
+      geoPoints = validation.geoPoints;
     }
 
     const totalTimer = TimerService.computeDuration(
@@ -105,9 +107,16 @@ export class GameEngineService {
       question.type,
       question.baseTimer,
     );
-    const points = isCorrect
-      ? computeSpeedPoints(question.difficulty, timeSpent, totalTimer * 1000)
-      : 0;
+
+    // GeoClickMap: use distance-based points from the API
+    let points: number;
+    if (question.type === 'geoClickMap' && geoPoints !== undefined) {
+      points = geoPoints;
+    } else {
+      points = isCorrect
+        ? computeSpeedPoints(question.difficulty, timeSpent, totalTimer * 1000)
+        : 0;
+    }
 
     const result: AnswerResult = {
       questionId: question.id,

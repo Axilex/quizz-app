@@ -101,14 +101,28 @@ export class GameScoringService {
     // 4. Validate answer correctness
     const isCorrect = this.validateAnswer(question, sanitized);
 
-    // 5. Compute points using SERVER time only
-    const points = this.computePoints(
-      isCorrect,
-      timeValidation.serverTimeMs,
-      this.computeTimer(question) * 1000, // Convert to ms
-      question.difficulty,
-      false,
-    );
+    // 5. Compute points — distance-based for geoClickMap, speed-based otherwise
+    let points: number;
+    if (question.type === 'geoClickMap' && isCorrect) {
+      const [userLat, userLng] = sanitized.split(',').map(Number);
+      const targetLat = question['targetLat'] as number;
+      const targetLng = question['targetLng'] as number;
+      points = this.computeGeoScore(
+        userLat!,
+        userLng!,
+        targetLat,
+        targetLng,
+        question.difficulty,
+      ).points;
+    } else {
+      points = this.computePoints(
+        isCorrect,
+        timeValidation.serverTimeMs,
+        this.computeTimer(question) * 1000, // Convert to ms
+        question.difficulty,
+        false,
+      );
+    }
 
     return {
       isCorrect,
@@ -176,24 +190,11 @@ export class GameScoringService {
       if (intruderOption && normalize(intruderOption.label) === normalizedUser) return true;
     }
 
-    // GeoClickMap: answer is "lat,lng" — compare distance
+    // GeoClickMap: distance-based scoring — always "correct" (points depend on distance)
     if (question.type === 'geoClickMap') {
       const [userLat, userLng] = userAnswer.split(',').map(Number);
-      const targetLat = question['targetLat'] as number;
-      const targetLng = question['targetLng'] as number;
-      const toleranceKm = this.getGeoToleranceKm(
-        question.difficulty,
-        question['targetType'] as string,
-      );
-
       if (!Number.isNaN(userLat) && !Number.isNaN(userLng)) {
-        const dist = haversineKm(
-          userLat as unknown as number,
-          userLng as unknown as number,
-          targetLat,
-          targetLng,
-        );
-        return dist <= toleranceKm;
+        return true;
       }
       return false;
     }
@@ -203,21 +204,6 @@ export class GameScoringService {
     if (question.acceptedAnswers?.some((a) => normalize(a) === normalizedUser)) return true;
 
     return false;
-  }
-
-  /**
-   * 🆕 Dynamic geo tolerance based on difficulty and target type
-   */
-  private getGeoToleranceKm(difficulty: Difficulty, targetType?: string): number {
-    const BASE_TOLERANCE = {
-      city: { easy: 100, medium: 50, hard: 25 },
-      country: { easy: 500, medium: 300, hard: 150 },
-      landmark: { easy: 50, medium: 25, hard: 10 },
-      default: { easy: 200, medium: 100, hard: 50 },
-    };
-
-    const type = (targetType as keyof typeof BASE_TOLERANCE) || 'default';
-    return BASE_TOLERANCE[type]?.[difficulty] ?? BASE_TOLERANCE.default[difficulty];
   }
 
   /**
@@ -243,20 +229,21 @@ export class GameScoringService {
   }
 
   /**
-   * For geoClickMap: compute distance-based points
+   * For geoClickMap: compute distance-based points.
+   * Points scale linearly: 0 km = maxPoints, >= maxDist km = 0 points.
    */
-  computeGeoPoints(
+  computeGeoScore(
     userLat: number,
     userLng: number,
     targetLat: number,
     targetLng: number,
     difficulty: Difficulty,
-  ): number {
-    const dist = haversineKm(userLat, userLng, targetLat, targetLng);
+  ): { points: number; distanceKm: number } {
+    const distanceKm = haversineKm(userLat, userLng, targetLat, targetLng);
     const maxPts = MAX_POINTS[difficulty];
     const maxDist = 5000;
-    const ratio = Math.max(0, 1 - dist / maxDist);
-    return Math.round(maxPts * ratio);
+    const ratio = Math.max(0, 1 - distanceKm / maxDist);
+    return { points: Math.round(maxPts * ratio), distanceKm: Math.round(distanceKm) };
   }
 
   /**

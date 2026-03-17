@@ -318,7 +318,19 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     let flashLate = false;
 
     if (isCorrect) {
-      if (isFlash) {
+      if (currentQuestion.type === 'geoClickMap') {
+        // Distance-based scoring for geoClickMap
+        const [userLat, userLng] = dto.answer.split(',').map(Number);
+        const targetLat = currentQuestion['targetLat'] as number;
+        const targetLng = currentQuestion['targetLng'] as number;
+        points = this.scoringService.computeGeoScore(
+          userLat!,
+          userLng!,
+          targetLat,
+          targetLng,
+          currentQuestion.difficulty,
+        ).points;
+      } else if (isFlash) {
         if (room.flashWinner === null) {
           room.flashWinner = player.id;
           points = this.scoringService.computePoints(

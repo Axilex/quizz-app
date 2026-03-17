@@ -1,10 +1,14 @@
 import { Controller, Get, Post, Query, Body, BadRequestException } from '@nestjs/common';
 import { QuestionsService } from './questions.service';
+import { GameScoringService } from '../game/game-scoring.service';
 import type { Difficulty } from '../../common/types';
 
 @Controller('questions')
 export class QuestionsController {
-  constructor(private readonly questionsService: QuestionsService) {}
+  constructor(
+    private readonly questionsService: QuestionsService,
+    private readonly scoringService: GameScoringService,
+  ) {}
 
   @Get()
   getQuestions(
@@ -74,6 +78,41 @@ export class QuestionsController {
     const question = this.questionsService.getById(questionId);
     if (!question) {
       throw new BadRequestException('Question not found');
+    }
+
+    // GeoClickMap: distance-based scoring, always "correct"
+    if (question.type === 'geoClickMap') {
+      const [userLat, userLng] = answer.split(',').map(Number);
+      const targetLat = question['targetLat'] as number;
+      const targetLng = question['targetLng'] as number;
+
+      if (Number.isNaN(userLat) || Number.isNaN(userLng)) {
+        return {
+          questionId,
+          isCorrect: true,
+          correctAnswer: question['targetName'] as string,
+          explanation: question.explanation,
+          geoPoints: 0,
+          distanceKm: 99999,
+        };
+      }
+
+      const { points, distanceKm } = this.scoringService.computeGeoScore(
+        userLat!,
+        userLng!,
+        targetLat,
+        targetLng,
+        question.difficulty,
+      );
+
+      return {
+        questionId,
+        isCorrect: true,
+        correctAnswer: question['targetName'] as string,
+        explanation: question.explanation,
+        geoPoints: points,
+        distanceKm,
+      };
     }
 
     const isCorrect = this.questionsService.validateAnswer(question, answer);

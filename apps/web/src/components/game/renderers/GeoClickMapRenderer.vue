@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { ref, onMounted, onUnmounted } from 'vue';
   import type { GeoClickMapQuestion } from '@/types';
+  import worldMapImg from '@/assets/img/world-map.png';
 
   interface Props {
     question: GeoClickMapQuestion;
@@ -57,12 +58,7 @@
       @click="handleMapClick"
     >
       <!-- Equirectangular world map (public domain) -->
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png"
-        alt="Carte du monde"
-        class="geo-click__img"
-        draggable="false"
-      />
+      <img :src="worldMapImg" alt="Carte du monde" class="geo-click__img" draggable="false" />
 
       <!-- Pin marker -->
       <div v-if="pin" class="geo-click__pin" :style="{ left: `${pin.x}px`, top: `${pin.y}px` }">
