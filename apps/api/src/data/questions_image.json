@@ -6,13 +6,13 @@
     "category": "géographie",
     "label": "Quel monument célèbre est représenté sur cette image ?",
     "answer": "Colisée",
-    "acceptedAnswers": ["Colisée", "Colosseum", "Colosseo"],
-    "explanation": "Le Colisée (Colosseum) est un amphithéâtre construit à Rome entre 72 et 80 après J.C.",
+    "acceptedAnswers": ["Colisée", "Colosseum", "Colosseo", "Coliseum"],
+    "explanation": "Le Colisée est un amphithéâtre construit à Rome entre 72 et 80 après J.-C. C'est le plus grand amphithéâtre jamais construit.",
     "tags": ["géographie", "monuments"],
     "baseTimer": 20,
     "media": {
       "type": "image",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/1280px-Colosseo_2020.jpg"
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/800px-Colosseo_2020.jpg"
     }
   },
   {
@@ -23,44 +23,48 @@
     "label": "Quel monument voit-on sur cette image ?",
     "answer": "Tour Eiffel",
     "acceptedAnswers": ["Tour Eiffel", "Eiffel Tower", "La Tour Eiffel"],
-    "explanation": "La Tour Eiffel a été construite pour l'Exposition universelle de 1889 à Paris.",
+    "explanation": "La Tour Eiffel a été construite par Gustave Eiffel pour l'Exposition universelle de 1889 à Paris.",
     "tags": ["géographie", "monuments"],
     "baseTimer": 20,
     "media": {
       "type": "image",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/960px-Tour_Eiffel_Wikimedia_Commons.jpg"
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/800px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg"
     }
   },
   {
     "id": "img_003",
     "type": "image",
-    "difficulty": "medium",
-    "category": "art",
-    "label": "Quel tableau de Vincent van Gogh est représenté ?",
-    "answer": "Starry Night",
-    "acceptedAnswers": ["Starry Night", "La Nuit étoilée", "The Starry Night"],
-    "explanation": "'La Nuit étoilée' a été peinte par Vincent van Gogh en juin 1889 à Saint-Rémy-de-Provence.",
-    "tags": ["art", "peinture"],
-    "baseTimer": 25,
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quel est ce célèbre mausolée indien ?",
+    "answer": "Taj Mahal",
+    "acceptedAnswers": ["Taj Mahal", "Le Taj Mahal"],
+    "explanation": "Le Taj Mahal est un mausolée de marbre blanc situé à Agra, en Inde, construit par l'empereur moghol Shah Jahan en mémoire de son épouse Mumtaz Mahal.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 20,
     "media": {
       "type": "image",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Taj_Mahal_%28Edited%29.jpeg/800px-Taj_Mahal_%28Edited%29.jpeg"
     }
   },
   {
     "id": "img_004",
     "type": "image",
-    "difficulty": "hard",
-    "category": "nature",
-    "label": "Quel animal rare est présenté sur cette photo ?",
-    "answer": "Panda géant",
-    "acceptedAnswers": ["Panda géant", "Panda", "Giant Panda"],
-    "explanation": "Le panda géant est originaire de Chine et est classé parmi les espèces vulnérables.",
-    "tags": ["nature", "animaux"],
-    "baseTimer": 30,
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quelle célèbre statue américaine est représentée ici ?",
+    "answer": "Statue de la Liberté",
+    "acceptedAnswers": [
+      "Statue de la Liberté",
+      "Statue of Liberty",
+      "La Liberté éclairant le monde"
+    ],
+    "explanation": "La Statue de la Liberté, offerte par la France aux États-Unis en 1886, se dresse sur Liberty Island dans le port de New York.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 20,
     "media": {
       "type": "image",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Grosser_Panda.JPG"
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Statue_of_Liberty_7.jpg/800px-Statue_of_Liberty_7.jpg"
     }
   },
   {
@@ -68,15 +72,778 @@
     "type": "image",
     "difficulty": "easy",
     "category": "géographie",
-    "label": "Quel est ce célèbre monument égyptien ?",
-    "answer": "Grande Pyramide de Giza",
-    "acceptedAnswers": ["Grande Pyramide", "Pyramide de Giza", "Great Pyramid"],
-    "explanation": "La Grande Pyramide de Giza a été construite vers 2560 avant J.C. pour le pharaon Khéops.",
+    "label": "Quel est ce célèbre site archéologique du Pérou ?",
+    "answer": "Machu Picchu",
+    "acceptedAnswers": ["Machu Picchu", "Le Machu Picchu"],
+    "explanation": "Le Machu Picchu est une ancienne cité inca du XVe siècle située dans les Andes péruviennes, à 2 430 mètres d'altitude.",
     "tags": ["géographie", "monuments"],
     "baseTimer": 20,
     "media": {
       "type": "image",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Great_Pyramid_of_Giza_-_Pyramid_of_Khufu.jpg/1280px-Great_Pyramid_of_Giza_-_Pyramid_of_Khufu.jpg"
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu%2C_Peru.jpg/800px-Machu_Picchu%2C_Peru.jpg"
+    }
+  },
+  {
+    "id": "img_006",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quelle construction monumentale chinoise est visible sur cette image ?",
+    "answer": "Grande Muraille de Chine",
+    "acceptedAnswers": [
+      "Grande Muraille de Chine",
+      "Grande Muraille",
+      "Muraille de Chine",
+      "Great Wall of China"
+    ],
+    "explanation": "La Grande Muraille de Chine est une fortification militaire s'étendant sur plus de 20 000 km, construite entre le IIIe siècle av. J.-C. et le XVIIe siècle.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/The_Great_Wall_of_China_at_Jinshanling-edit.jpg/800px-The_Great_Wall_of_China_at_Jinshanling-edit.jpg"
+    }
+  },
+  {
+    "id": "img_007",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quelle célèbre tour horloge londonienne est représentée ?",
+    "answer": "Big Ben",
+    "acceptedAnswers": ["Big Ben", "Elizabeth Tower", "Tour Elizabeth"],
+    "explanation": "Big Ben est le surnom de la grande cloche de la tour Elizabeth du palais de Westminster à Londres, achevée en 1859.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Clock_Tower_-_Palace_of_Westminster%2C_London_-_May_2007.jpg/800px-Clock_Tower_-_Palace_of_Westminster%2C_London_-_May_2007.jpg"
+    }
+  },
+  {
+    "id": "img_008",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quel est ce célèbre monument égyptien ?",
+    "answer": "Pyramide de Khéops",
+    "acceptedAnswers": [
+      "Pyramide de Khéops",
+      "Grande Pyramide de Gizeh",
+      "Pyramide de Giza",
+      "Grande Pyramide"
+    ],
+    "explanation": "La pyramide de Khéops, construite vers 2560 av. J.-C., est la plus grande des pyramides de Gizeh et l'une des Sept Merveilles du monde antique.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Kheops-Pyramid.jpg/800px-Kheops-Pyramid.jpg"
+    }
+  },
+  {
+    "id": "img_009",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quel célèbre opéra est visible sur cette image ?",
+    "answer": "Opéra de Sydney",
+    "acceptedAnswers": ["Opéra de Sydney", "Sydney Opera House", "Opera de Sydney"],
+    "explanation": "L'Opéra de Sydney, conçu par l'architecte danois Jørn Utzon, a été inauguré en 1973 et est classé au patrimoine mondial de l'UNESCO.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Sydney_Australia._%2821339175489%29.jpg/800px-Sydney_Australia._%2821339175489%29.jpg"
+    }
+  },
+  {
+    "id": "img_010",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quelle statue monumentale domine la ville de Rio de Janeiro ?",
+    "answer": "Christ Rédempteur",
+    "acceptedAnswers": [
+      "Christ Rédempteur",
+      "Cristo Redentor",
+      "Christ the Redeemer",
+      "Le Christ Rédempteur"
+    ],
+    "explanation": "Le Christ Rédempteur est une statue de 30 mètres de haut inaugurée en 1931 au sommet du mont Corcovado à Rio de Janeiro.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Christ_the_Redeemer_-_Cristo_Redentor.jpg/800px-Christ_the_Redeemer_-_Cristo_Redentor.jpg"
+    }
+  },
+  {
+    "id": "img_011",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Quelle basilique inachevée d'Antoni Gaudí est représentée ?",
+    "answer": "Sagrada Família",
+    "acceptedAnswers": [
+      "Sagrada Família",
+      "Sagrada Familia",
+      "La Sagrada Familia",
+      "Sainte Famille"
+    ],
+    "explanation": "La Sagrada Família est une basilique de Barcelone dont la construction a commencé en 1882 sous la direction de l'architecte Antoni Gaudí.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Sagrada_Familia_nave_roof_detail.jpg/800px-Sagrada_Familia_nave_roof_detail.jpg"
+    }
+  },
+  {
+    "id": "img_012",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Quel temple grec antique est visible sur cette image ?",
+    "answer": "Parthénon",
+    "acceptedAnswers": ["Parthénon", "Parthenon", "Le Parthénon"],
+    "explanation": "Le Parthénon est un temple dorique situé sur l'Acropole d'Athènes, construit au Ve siècle av. J.-C. en l'honneur de la déesse Athéna.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/The_Parthenon_in_Athens.jpg/800px-The_Parthenon_in_Athens.jpg"
+    }
+  },
+  {
+    "id": "img_013",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Quelle abbaye française sur un îlot rocheux est représentée ?",
+    "answer": "Mont-Saint-Michel",
+    "acceptedAnswers": [
+      "Mont-Saint-Michel",
+      "Mont Saint-Michel",
+      "Le Mont-Saint-Michel",
+      "Mont Saint Michel"
+    ],
+    "explanation": "Le Mont-Saint-Michel est une commune insulaire de Normandie, célèbre pour son abbaye médiévale et ses marées spectaculaires.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Mont_St_Michel_3%2C_Brittany%2C_France_-_July_2011.jpg/800px-Mont_St_Michel_3%2C_Brittany%2C_France_-_July_2011.jpg"
+    }
+  },
+  {
+    "id": "img_014",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Quel site archéologique jordanien est représenté sur cette image ?",
+    "answer": "Pétra",
+    "acceptedAnswers": ["Pétra", "Petra", "Al-Khazneh", "Le Khazneh"],
+    "explanation": "Pétra est une cité nabatéenne creusée dans la roche en Jordanie, célèbre pour sa façade du Khazneh (le Trésor).",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Petra_Jordan_BW_21.JPG/800px-Petra_Jordan_BW_21.JPG"
+    }
+  },
+  {
+    "id": "img_015",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Quel temple cambodgien est représenté sur cette image ?",
+    "answer": "Angkor Vat",
+    "acceptedAnswers": ["Angkor Vat", "Angkor Wat", "Angkor"],
+    "explanation": "Angkor Vat est le plus grand monument religieux du monde, construit au XIIe siècle au Cambodge par le roi Suryavarman II.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Ankor_Wat_temple.jpg/800px-Ankor_Wat_temple.jpg"
+    }
+  },
+  {
+    "id": "img_016",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "art",
+    "label": "Quel célèbre tableau de Léonard de Vinci est représenté ?",
+    "answer": "La Joconde",
+    "acceptedAnswers": ["La Joconde", "Mona Lisa", "Joconde"],
+    "explanation": "La Joconde, peinte par Léonard de Vinci entre 1503 et 1519, est exposée au musée du Louvre à Paris. C'est le tableau le plus célèbre au monde.",
+    "tags": ["art", "peinture"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/VanGogh-starry_night_ballance1.jpg/800px-VanGogh-starry_night_ballance1.jpg"
+    }
+  },
+  {
+    "id": "img_017",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "art",
+    "label": "Quel tableau de Vincent van Gogh est représenté ?",
+    "answer": "La Nuit étoilée",
+    "acceptedAnswers": ["La Nuit étoilée", "Starry Night", "The Starry Night", "Nuit étoilée"],
+    "explanation": "La Nuit étoilée a été peinte par Vincent van Gogh en juin 1889 alors qu'il séjournait à l'asile de Saint-Rémy-de-Provence.",
+    "tags": ["art", "peinture"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/800px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg"
+    }
+  },
+  {
+    "id": "img_018",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "art",
+    "label": "Quel tableau de Hokusai est représenté sur cette image ?",
+    "answer": "La Grande Vague de Kanagawa",
+    "acceptedAnswers": [
+      "La Grande Vague de Kanagawa",
+      "La Grande Vague",
+      "Grande Vague de Kanagawa",
+      "The Great Wave"
+    ],
+    "explanation": "La Grande Vague de Kanagawa est une estampe ukiyo-e réalisée par Hokusai vers 1831, faisant partie de la série Trente-six vues du mont Fuji.",
+    "tags": ["art", "peinture"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tsunami_by_hokusai_19th_century.jpg/800px-Tsunami_by_hokusai_19th_century.jpg"
+    }
+  },
+  {
+    "id": "img_019",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "art",
+    "label": "Quel tableau de Johannes Vermeer est représenté ?",
+    "answer": "La Jeune Fille à la perle",
+    "acceptedAnswers": [
+      "La Jeune Fille à la perle",
+      "Jeune Fille à la perle",
+      "Girl with a Pearl Earring"
+    ],
+    "explanation": "La Jeune Fille à la perle est un tableau de Johannes Vermeer peint vers 1665, souvent surnommé la « Joconde du Nord ».",
+    "tags": ["art", "peinture"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/800px-1665_Girl_with_a_Pearl_Earring.jpg"
+    }
+  },
+  {
+    "id": "img_020",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "art",
+    "label": "Quel tableau de Sandro Botticelli est représenté sur cette image ?",
+    "answer": "La Naissance de Vénus",
+    "acceptedAnswers": ["La Naissance de Vénus", "Naissance de Vénus", "Birth of Venus"],
+    "explanation": "La Naissance de Vénus a été peinte par Sandro Botticelli vers 1485. Elle est conservée à la Galerie des Offices à Florence.",
+    "tags": ["art", "peinture"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/800px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg"
+    }
+  },
+  {
+    "id": "img_021",
+    "type": "image",
+    "difficulty": "hard",
+    "category": "art",
+    "label": "Quel tableau d'Edvard Munch est représenté ?",
+    "answer": "Le Cri",
+    "acceptedAnswers": ["Le Cri", "The Scream", "Skrik"],
+    "explanation": "Le Cri est une œuvre expressionniste d'Edvard Munch créée en 1893, représentant une figure angoissée sur un pont.",
+    "tags": ["art", "peinture"],
+    "baseTimer": 30,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/800px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg"
+    }
+  },
+  {
+    "id": "img_022",
+    "type": "image",
+    "difficulty": "hard",
+    "category": "art",
+    "label": "Quel tableau de Salvador Dalí est représenté sur cette image ?",
+    "answer": "La Persistance de la mémoire",
+    "acceptedAnswers": [
+      "La Persistance de la mémoire",
+      "Persistance de la mémoire",
+      "The Persistence of Memory",
+      "Les Montres molles"
+    ],
+    "explanation": "La Persistance de la mémoire est un tableau surréaliste de Salvador Dalí peint en 1931, célèbre pour ses montres molles.",
+    "tags": ["art", "peinture"],
+    "baseTimer": 30,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/en/thumb/d/dd/The_Persistence_of_Memory.jpg/800px-The_Persistence_of_Memory.jpg"
+    }
+  },
+  {
+    "id": "img_023",
+    "type": "image",
+    "difficulty": "hard",
+    "category": "art",
+    "label": "Quel tableau de Gustave Klimt est représenté ?",
+    "answer": "Le Baiser",
+    "acceptedAnswers": ["Le Baiser", "The Kiss", "Der Kuss"],
+    "explanation": "Le Baiser est un tableau de Gustav Klimt peint entre 1907 et 1908, caractéristique de sa période dorée. Il est conservé au Belvédère à Vienne.",
+    "tags": ["art", "peinture"],
+    "baseTimer": 30,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg/800px-The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg"
+    }
+  },
+  {
+    "id": "img_024",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "art",
+    "label": "Quel tableau d'Eugène Delacroix est représenté sur cette image ?",
+    "answer": "La Liberté guidant le peuple",
+    "acceptedAnswers": [
+      "La Liberté guidant le peuple",
+      "Liberté guidant le peuple",
+      "Liberty Leading the People"
+    ],
+    "explanation": "La Liberté guidant le peuple a été peinte par Eugène Delacroix en 1830 pour commémorer la révolution de Juillet. Elle est exposée au Louvre.",
+    "tags": ["art", "peinture"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg/800px-Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg"
+    }
+  },
+  {
+    "id": "img_025",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "art",
+    "label": "Quelle fresque de Michel-Ange est représentée ?",
+    "answer": "La Création d'Adam",
+    "acceptedAnswers": ["La Création d'Adam", "Création d'Adam", "The Creation of Adam"],
+    "explanation": "La Création d'Adam est une fresque peinte par Michel-Ange vers 1512 sur le plafond de la chapelle Sixtine au Vatican.",
+    "tags": ["art", "peinture"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg/800px-Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg"
+    }
+  },
+  {
+    "id": "img_026",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel animal est représenté sur cette image ?",
+    "answer": "Lion",
+    "acceptedAnswers": ["Lion", "Le lion"],
+    "explanation": "Le lion est un grand félin vivant principalement en Afrique subsaharienne. Le mâle est reconnaissable à sa crinière.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/800px-Lion_waiting_in_Namibia.jpg"
+    }
+  },
+  {
+    "id": "img_027",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel animal marin est visible sur cette image ?",
+    "answer": "Dauphin",
+    "acceptedAnswers": ["Dauphin", "Dauphins", "Grand dauphin"],
+    "explanation": "Le dauphin est un mammifère marin connu pour son intelligence et sa sociabilité. Le grand dauphin est l'espèce la plus connue.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Tursiops_truncatus_01.jpg/800px-Tursiops_truncatus_01.jpg"
+    }
+  },
+  {
+    "id": "img_028",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel oiseau coloré est représenté sur cette image ?",
+    "answer": "Perroquet",
+    "acceptedAnswers": ["Perroquet", "Ara", "Perroquet ara", "Ara rouge"],
+    "explanation": "Les aras sont de grands perroquets colorés originaires d'Amérique tropicale, reconnaissables à leur plumage vif.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Ara_macao_-_two_at_Lowry_Park_Zoo.jpg/800px-Ara_macao_-_two_at_Lowry_Park_Zoo.jpg"
+    }
+  },
+  {
+    "id": "img_029",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel animal noir et blanc est représenté sur cette image ?",
+    "answer": "Panda géant",
+    "acceptedAnswers": ["Panda géant", "Panda", "Giant Panda"],
+    "explanation": "Le panda géant est un mammifère originaire de Chine centrale, célèbre pour son pelage noir et blanc et son régime à base de bambou.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Grosser_Panda.JPG/800px-Grosser_Panda.JPG"
+    }
+  },
+  {
+    "id": "img_030",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "nature",
+    "label": "Quel animal australien est représenté sur cette image ?",
+    "answer": "Koala",
+    "acceptedAnswers": ["Koala", "Le koala"],
+    "explanation": "Le koala est un marsupial arboricole endémique d'Australie qui se nourrit principalement de feuilles d'eucalyptus.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Koala_climbing_tree.jpg/800px-Koala_climbing_tree.jpg"
+    }
+  },
+  {
+    "id": "img_031",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "nature",
+    "label": "Quel félin tacheté est visible sur cette image ?",
+    "answer": "Léopard",
+    "acceptedAnswers": ["Léopard", "Panthère", "Leopard"],
+    "explanation": "Le léopard est un félin présent en Afrique et en Asie, reconnaissable à ses rosettes noires sur un pelage fauve.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Leopard_africa.jpg/800px-Leopard_africa.jpg"
+    }
+  },
+  {
+    "id": "img_032",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "nature",
+    "label": "Quel grand mammifère marin est visible sur cette image ?",
+    "answer": "Baleine à bosse",
+    "acceptedAnswers": ["Baleine à bosse", "Baleine", "Mégaptère", "Humpback whale"],
+    "explanation": "La baleine à bosse est un cétacé pouvant mesurer jusqu'à 16 mètres, connue pour ses sauts spectaculaires hors de l'eau.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Humpback_stellwagen_edit.jpg/800px-Humpback_stellwagen_edit.jpg"
+    }
+  },
+  {
+    "id": "img_033",
+    "type": "image",
+    "difficulty": "hard",
+    "category": "nature",
+    "label": "Quel reptile est représenté sur cette image ?",
+    "answer": "Caméléon",
+    "acceptedAnswers": ["Caméléon", "Chameleon"],
+    "explanation": "Le caméléon est un reptile capable de changer de couleur, doté d'yeux indépendants et d'une langue projectile pour capturer ses proies.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 30,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Chamaeleo_calyptratus_-_female_-_white_background.jpg/800px-Chamaeleo_calyptratus_-_female_-_white_background.jpg"
+    }
+  },
+  {
+    "id": "img_034",
+    "type": "image",
+    "difficulty": "hard",
+    "category": "nature",
+    "label": "Quel oiseau de proie est représenté sur cette image ?",
+    "answer": "Aigle royal",
+    "acceptedAnswers": ["Aigle royal", "Aigle", "Golden Eagle"],
+    "explanation": "L'aigle royal est l'un des plus grands rapaces d'Europe et d'Amérique du Nord, avec une envergure pouvant atteindre 2,3 mètres.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 30,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Golden_Eagle_in_flight_-_5.jpg/800px-Golden_Eagle_in_flight_-_5.jpg"
+    }
+  },
+  {
+    "id": "img_035",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "drapeaux",
+    "label": "À quel pays appartient ce drapeau ?",
+    "answer": "Japon",
+    "acceptedAnswers": ["Japon", "Japan", "Le Japon"],
+    "explanation": "Le drapeau du Japon, appelé Hinomaru, représente un disque rouge symbolisant le soleil sur fond blanc.",
+    "tags": ["drapeaux", "géographie"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/800px-Flag_of_Japan.svg.png"
+    }
+  },
+  {
+    "id": "img_036",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "drapeaux",
+    "label": "À quel pays appartient ce drapeau ?",
+    "answer": "Brésil",
+    "acceptedAnswers": ["Brésil", "Brazil", "Le Brésil"],
+    "explanation": "Le drapeau du Brésil est vert avec un losange jaune contenant un globe bleu étoilé et la devise « Ordem e Progresso ».",
+    "tags": ["drapeaux", "géographie"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/800px-Flag_of_Brazil.svg.png"
+    }
+  },
+  {
+    "id": "img_037",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "drapeaux",
+    "label": "À quel pays appartient ce drapeau ?",
+    "answer": "Afrique du Sud",
+    "acceptedAnswers": ["Afrique du Sud", "South Africa", "L'Afrique du Sud"],
+    "explanation": "Le drapeau de l'Afrique du Sud, adopté en 1994, comporte six couleurs et un motif en Y symbolisant la convergence des peuples.",
+    "tags": ["drapeaux", "géographie"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Flag_of_South_Africa.svg/800px-Flag_of_South_Africa.svg.png"
+    }
+  },
+  {
+    "id": "img_038",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "drapeaux",
+    "label": "À quel pays appartient ce drapeau ?",
+    "answer": "Corée du Sud",
+    "acceptedAnswers": ["Corée du Sud", "South Korea", "La Corée du Sud"],
+    "explanation": "Le drapeau de la Corée du Sud, le Taegeukgi, comporte un symbole yin-yang rouge et bleu entouré de quatre trigrammes noirs.",
+    "tags": ["drapeaux", "géographie"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_South_Korea.svg/800px-Flag_of_South_Korea.svg.png"
+    }
+  },
+  {
+    "id": "img_039",
+    "type": "image",
+    "difficulty": "hard",
+    "category": "drapeaux",
+    "label": "À quel pays appartient ce drapeau ?",
+    "answer": "Népal",
+    "acceptedAnswers": ["Népal", "Nepal", "Le Népal"],
+    "explanation": "Le drapeau du Népal est le seul drapeau national non rectangulaire au monde. Il est composé de deux triangles superposés.",
+    "tags": ["drapeaux", "géographie"],
+    "baseTimer": 30,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Flag_of_Nepal.svg/800px-Flag_of_Nepal.svg.png"
+    }
+  },
+  {
+    "id": "img_040",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "gastronomie",
+    "label": "Quel plat japonais est représenté sur cette image ?",
+    "answer": "Sushi",
+    "acceptedAnswers": ["Sushi", "Sushis", "Des sushis"],
+    "explanation": "Le sushi est un plat japonais composé de riz vinaigré accompagné de poisson cru, de fruits de mer ou de légumes.",
+    "tags": ["gastronomie", "cuisine"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Sushi_platter.jpg/800px-Sushi_platter.jpg"
+    }
+  },
+  {
+    "id": "img_041",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "gastronomie",
+    "label": "Quel plat italien est représenté sur cette image ?",
+    "answer": "Pizza",
+    "acceptedAnswers": ["Pizza", "Une pizza", "Pizza margherita"],
+    "explanation": "La pizza est un plat d'origine italienne, composé d'une pâte à pain garnie de sauce tomate, de fromage et de divers ingrédients.",
+    "tags": ["gastronomie", "cuisine"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/800px-Eq_it-na_pizza-margherita_sep2005_sml.jpg"
+    }
+  },
+  {
+    "id": "img_042",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "gastronomie",
+    "label": "Quel plat espagnol est représenté sur cette image ?",
+    "answer": "Paella",
+    "acceptedAnswers": ["Paella", "Une paella", "Paella valenciana"],
+    "explanation": "La paella est un plat espagnol originaire de Valence, à base de riz safrané, de viandes ou de fruits de mer et de légumes.",
+    "tags": ["gastronomie", "cuisine"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Paella_de_marisco_01.jpg/800px-Paella_de_marisco_01.jpg"
+    }
+  },
+  {
+    "id": "img_043",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "gastronomie",
+    "label": "Quel dessert français est représenté sur cette image ?",
+    "answer": "Macaron",
+    "acceptedAnswers": ["Macaron", "Macarons", "Des macarons"],
+    "explanation": "Le macaron est une pâtisserie française composée de deux coques à base de meringue et de poudre d'amande, reliées par une ganache.",
+    "tags": ["gastronomie", "cuisine"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Macarons%2C_p%C3%A2tisserie_Ladur%C3%A9e.jpg/800px-Macarons%2C_p%C3%A2tisserie_Ladur%C3%A9e.jpg"
+    }
+  },
+  {
+    "id": "img_044",
+    "type": "image",
+    "difficulty": "hard",
+    "category": "gastronomie",
+    "label": "Quel plat marocain est représenté sur cette image ?",
+    "answer": "Tajine",
+    "acceptedAnswers": ["Tajine", "Tagine", "Un tajine"],
+    "explanation": "Le tajine est un plat traditionnel du Maghreb, cuit dans un récipient en terre cuite avec un couvercle conique. Il associe viande, légumes et épices.",
+    "tags": ["gastronomie", "cuisine"],
+    "baseTimer": 30,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Tajine_in_Fes.jpg/800px-Tajine_in_Fes.jpg"
+    }
+  },
+  {
+    "id": "img_045",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quelle tour italienne est célèbre pour son inclinaison ?",
+    "answer": "Tour de Pise",
+    "acceptedAnswers": ["Tour de Pise", "Tour penchée de Pise", "Leaning Tower of Pisa"],
+    "explanation": "La tour de Pise est le campanile de la cathédrale de Pise en Italie. Son inclinaison est due à un affaissement du sol survenu lors de sa construction au XIIe siècle.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/The_Leaning_Tower_of_Pisa_SB.jpeg/800px-The_Leaning_Tower_of_Pisa_SB.jpeg"
+    }
+  },
+  {
+    "id": "img_046",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Quel château bavarois est représenté sur cette image ?",
+    "answer": "Château de Neuschwanstein",
+    "acceptedAnswers": ["Château de Neuschwanstein", "Neuschwanstein", "Schloss Neuschwanstein"],
+    "explanation": "Le château de Neuschwanstein a été construit à partir de 1869 pour le roi Louis II de Bavière. Il a inspiré le château de la Belle au bois dormant de Disney.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Schloss_Neuschwanstein_2013.jpg/800px-Schloss_Neuschwanstein_2013.jpg"
+    }
+  },
+  {
+    "id": "img_047",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Quel monument mégalithique britannique est représenté ?",
+    "answer": "Stonehenge",
+    "acceptedAnswers": ["Stonehenge"],
+    "explanation": "Stonehenge est un monument mégalithique situé dans le Wiltshire en Angleterre, érigé entre 3000 et 2000 av. J.-C.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Stonehenge2007_07_30.jpg/800px-Stonehenge2007_07_30.jpg"
+    }
+  },
+  {
+    "id": "img_048",
+    "type": "image",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quel célèbre pont américain est représenté sur cette image ?",
+    "answer": "Golden Gate",
+    "acceptedAnswers": ["Golden Gate", "Pont du Golden Gate", "Golden Gate Bridge"],
+    "explanation": "Le Golden Gate Bridge est un pont suspendu de San Francisco, achevé en 1937. Sa couleur orange internationale est devenue emblématique.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 20,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/800px-GoldenGateBridge-001.jpg"
+    }
+  },
+  {
+    "id": "img_049",
+    "type": "image",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Quelle pyramide maya est représentée sur cette image ?",
+    "answer": "Chichén Itzá",
+    "acceptedAnswers": ["Chichén Itzá", "Chichen Itza", "Kukulcán", "El Castillo"],
+    "explanation": "La pyramide de Kukulcán à Chichén Itzá au Mexique est l'une des nouvelles Sept Merveilles du monde, construite par la civilisation maya.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 25,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Chichen_Itza_3.jpg/800px-Chichen_Itza_3.jpg"
+    }
+  },
+  {
+    "id": "img_050",
+    "type": "image",
+    "difficulty": "hard",
+    "category": "nature",
+    "label": "Quel animal marin à tentacules est représenté sur cette image ?",
+    "answer": "Pieuvre",
+    "acceptedAnswers": ["Pieuvre", "Poulpe", "Octopus"],
+    "explanation": "La pieuvre (ou poulpe) est un mollusque céphalopode doté de huit tentacules, capable de changer de couleur et de texture pour se camoufler.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 30,
+    "media": {
+      "type": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Octopus2.jpg/800px-Octopus2.jpg"
     }
   }
 ]

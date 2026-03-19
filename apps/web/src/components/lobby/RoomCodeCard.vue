@@ -20,22 +20,10 @@
       setTimeout(() => (copied.value = false), 2500);
     });
   }
-
-  async function shareOrCopy() {
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: 'Rejoins ma partie Quizzy !', url: joinUrl.value });
-        return;
-      } catch {
-        /* fallback */
-      }
-    }
-    copyUrl();
-  }
 </script>
 
 <template>
-  <div class="room-code-card" @click="shareOrCopy">
+  <div class="room-code-card" @click="copyUrl">
     <span class="room-code-card__label">Invite tes amis</span>
     <span class="room-code-card__code">{{ code }}</span>
     <span class="room-code-card__url">{{ joinUrl }}</span>

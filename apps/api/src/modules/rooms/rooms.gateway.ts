@@ -356,6 +356,12 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       }
     }
 
+    // Apply bonus_double if active
+    if (points > 0 && player.doubleNextAnswer) {
+      points *= 2;
+    }
+    player.doubleNextAnswer = false;
+
     this.roomsService.recordAnswer(
       room,
       player.id,
@@ -416,8 +422,9 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @SubscribeMessage('game:powerup')
   handlePowerUp(@ConnectedSocket() client: Socket, @MessageBody() dto: UsePowerUpDto): void {
-    if (dto.type === 'malus_blur' && !dto.targetPlayerId) {
-      throw new WsException('targetPlayerId requis pour malus_blur');
+    const isMalus = dto.type.startsWith('malus_');
+    if (isMalus && !dto.targetPlayerId) {
+      throw new WsException('targetPlayerId requis pour un malus');
     }
 
     const result = this.roomsService.getPlayerBySocket(client.id);
@@ -432,7 +439,9 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       return;
     }
 
-    if (dto.type === 'malus_blur') {
+    // ── Malus (targeted) ──────────────────────────
+
+    if (isMalus) {
       const targetId = dto.targetPlayerId!;
       const targetPlayer = room.players.get(targetId);
 
@@ -442,10 +451,23 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
         return;
       }
 
-      this.server.to(targetPlayer.socketId).emit('game:malus', {
-        fromPlayerName: player.name,
-        duration: 6000,
-      });
+      if (dto.type === 'malus_blur') {
+        this.server.to(targetPlayer.socketId).emit('game:malus', {
+          fromPlayerName: player.name,
+          duration: 6000,
+        });
+      } else if (dto.type === 'malus_freeze') {
+        this.server.to(targetPlayer.socketId).emit('game:freeze', {
+          fromPlayerName: player.name,
+          duration: 4000,
+        });
+      } else if (dto.type === 'malus_speed') {
+        this.server.to(targetPlayer.socketId).emit('game:speed', {
+          fromPlayerName: player.name,
+          duration: 8000,
+          multiplier: 3,
+        });
+      }
 
       client.emit('game:powerupUsed', {
         type: dto.type,
@@ -456,11 +478,13 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       this.server.to(room.id).emit('game:powerupEvent', {
         fromName: player.name,
         targetName: targetPlayer.name,
-        type: 'malus_blur',
+        type: dto.type,
       });
 
       return;
     }
+
+    // ── Bonus (self) ──────────────────────────────
 
     if (dto.type === 'bonus_fifty50') {
       const currentQuestion = room.questions[room.currentQuestionIndex] as Question & {
@@ -489,12 +513,27 @@ export class RoomsGateway implements OnGatewayConnection, OnGatewayDisconnect {
         removeOptionIds: toRemove,
         powerUpsLeft: player.powerUpsLeft,
       });
-
-      client.emit('game:powerupUsed', {
-        type: dto.type,
+    } else if (dto.type === 'bonus_double') {
+      player.doubleNextAnswer = true;
+      client.emit('game:bonusDouble', {
+        powerUpsLeft: player.powerUpsLeft,
+      });
+    } else if (dto.type === 'bonus_time') {
+      client.emit('game:bonusTime', {
+        extraSeconds: 10,
         powerUpsLeft: player.powerUpsLeft,
       });
     }
+
+    client.emit('game:powerupUsed', {
+      type: dto.type,
+      powerUpsLeft: player.powerUpsLeft,
+    });
+
+    this.server.to(room.id).emit('game:powerupEvent', {
+      fromName: player.name,
+      type: dto.type,
+    });
   }
 
   // ─────────────────────────────────────────────

@@ -75,6 +75,31 @@
     { immediate: true },
   );
 
+  // Speed malus: tick timer faster (3x) while active
+  let speedIntervalId: ReturnType<typeof setInterval> | null = null;
+  watch(
+    () => lobby.isSpeedActive,
+    (active) => {
+      if (active) {
+        // Subtract extra time every 100ms to simulate 3x speed
+        // Normal timer removes ~0.1s per 100ms, we add 0.2s more drain
+        const extraDrain = (lobby.speedMultiplier - 1) * 0.1; // 0.2s per tick
+        speedIntervalId = setInterval(() => {
+          timerRemaining.value = Math.max(0, timerRemaining.value - extraDrain);
+          if (timerRemaining.value <= 0) {
+            if (speedIntervalId) clearInterval(speedIntervalId);
+            speedIntervalId = null;
+          }
+        }, 100);
+      } else {
+        if (speedIntervalId) {
+          clearInterval(speedIntervalId);
+          speedIntervalId = null;
+        }
+      }
+    },
+  );
+
   watch(
     () => lobby.lastResult,
     (result) => {
@@ -124,7 +149,7 @@
   );
 
   function handleAnswer(answer: string) {
-    if (hasAnswered.value || !question.value) return;
+    if (hasAnswered.value || !question.value || lobby.isFreezeActive) return;
     hasAnswered.value = true;
     timerService.stop();
     const timeSpent = Date.now() - startTime.value;
@@ -144,8 +169,20 @@
   function handleMalus(targetPlayerId: string) {
     lobby.usePowerUp('malus_blur', targetPlayerId);
   }
+  function handleFreeze(targetPlayerId: string) {
+    lobby.usePowerUp('malus_freeze', targetPlayerId);
+  }
+  function handleSpeed(targetPlayerId: string) {
+    lobby.usePowerUp('malus_speed', targetPlayerId);
+  }
   function handleBonus50() {
     lobby.usePowerUp('bonus_fifty50');
+  }
+  function handleDouble() {
+    lobby.usePowerUp('bonus_double');
+  }
+  function handleTime() {
+    lobby.usePowerUp('bonus_time');
   }
   async function handleManualReconnect() {
     await lobby.manualReconnect();
@@ -154,6 +191,7 @@
   onUnmounted(() => {
     timerService.stop();
     unsubState();
+    if (speedIntervalId) clearInterval(speedIntervalId);
   });
 </script>
 
@@ -206,6 +244,10 @@
             :is-flash="lobby.isFlashQuestion"
             :is-malus-active="lobby.isMalusActive"
             :malus-from-name="lobby.malusFromName"
+            :is-freeze-active="lobby.isFreezeActive"
+            :freeze-from-name="lobby.freezeFromName"
+            :is-speed-active="lobby.isSpeedActive"
+            :speed-from-name="lobby.speedFromName"
             :disabled="hasAnswered"
             @submit="handleGeoSubmit"
           />
@@ -225,7 +267,7 @@
         <AnswerInput
           v-else-if="question.type !== 'geoClickMap'"
           :question="question"
-          :disabled="hasAnswered"
+          :disabled="hasAnswered || lobby.isFreezeActive"
           :removed-option-ids="lobby.removedOptionIds"
           @submit="handleAnswer"
         />
@@ -239,8 +281,13 @@
         :current-question-type="question.type"
         :disabled="hasAnswered"
         :is-flash="lobby.isFlashQuestion"
+        :is-double-active="lobby.isDoubleActive"
         @malus="handleMalus"
+        @freeze="handleFreeze"
+        @speed="handleSpeed"
         @bonus50="handleBonus50"
+        @double="handleDouble"
+        @time="handleTime"
       />
 
       <Transition name="toast">

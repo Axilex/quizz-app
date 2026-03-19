@@ -1,0 +1,731 @@
+[
+  {
+    "id": "q_001",
+    "type": "text",
+    "difficulty": "easy",
+    "category": "geography",
+    "label": "Quelle est la capitale de la France ?",
+    "answer": "Paris",
+    "acceptedAnswers": ["Paris", "paris"],
+    "media": null,
+    "explanation": "Paris est indiquée comme capitale de la France dans les listes de capitales européennes.",
+
+    "tags": ["geographie", "capitales"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_002",
+    "type": "text",
+    "difficulty": "easy",
+    "category": "geography",
+    "label": "Quelle est la capitale de l'Italie ?",
+    "answer": "Rome",
+    "acceptedAnswers": ["Rome", "rome"],
+    "media": null,
+    "explanation": "Rome est répertoriée comme capitale de l'Italie dans les tableaux des capitales d'Europe.",
+
+    "tags": ["geographie", "capitales"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_003",
+    "type": "text",
+    "difficulty": "easy",
+    "category": "geography",
+    "label": "Quelle est la capitale de l'Espagne ?",
+    "answer": "Madrid",
+    "acceptedAnswers": ["Madrid", "madrid"],
+    "media": null,
+    "explanation": "Les listes de capitales européennes indiquent Madrid comme capitale officielle de l'Espagne.",
+
+    "tags": ["geographie", "capitales"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_004",
+    "type": "text",
+    "difficulty": "easy",
+    "category": "geography",
+    "label": "Quelle est la capitale de l'Allemagne ?",
+    "answer": "Berlin",
+    "acceptedAnswers": ["Berlin", "berlin"],
+    "media": null,
+    "explanation": "Berlin est mentionnée comme capitale de l'Allemagne dans les listes de capitales d'Europe.",
+
+    "tags": ["geographie", "capitales"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_005",
+    "type": "text",
+    "difficulty": "easy",
+    "category": "geography",
+    "label": "Quelle est la capitale du Japon ?",
+    "answer": "Tokyo",
+    "acceptedAnswers": ["Tokyo", "tokyo"],
+    "media": null,
+    "explanation": "Tokyo est décrite comme la capitale du Japon dans plusieurs articles de référence.",
+
+    "tags": ["geographie", "capitales"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_006",
+    "type": "number",
+    "difficulty": "easy",
+    "category": "science",
+    "label": "Combien de planètes sont officiellement reconnues dans le Système solaire ?",
+    "answer": "8",
+    "acceptedAnswers": ["8", "huit"],
+    "media": null,
+    "explanation": "Les sources astronomiques indiquent que le Système solaire compte huit planètes, de Mercure à Neptune.",
+
+    "tags": ["science", "espace"],
+    "baseTimer": 20
+  },
+  {
+    "id": "q_007",
+    "type": "text",
+    "difficulty": "easy",
+    "category": "science",
+    "label": "Comment s'appelle la troisième planète à partir du Soleil, celle sur laquelle nous vivons ?",
+    "answer": "Terre",
+    "acceptedAnswers": ["Terre", "la Terre", "terre"],
+    "media": null,
+    "explanation": "Dans l'ordre des planètes à partir du Soleil, la Terre arrive en troisième position après Mercure et Vénus.",
+
+    "tags": ["science", "planetes"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_008",
+    "type": "text",
+    "difficulty": "easy",
+    "category": "science",
+    "label": "Quelle planète du Système solaire est célèbre pour ses grands anneaux visibles ?",
+    "answer": "Saturne",
+    "acceptedAnswers": ["Saturne", "saturne"],
+    "media": null,
+    "explanation": "Les descriptions du Système solaire citent Saturne comme planète géante gazeuse entourée d'anneaux spectaculaires.",
+
+    "tags": ["science", "astronomie"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_009",
+    "type": "text",
+    "difficulty": "easy",
+    "category": "sports",
+    "label": "Quel sprinteur détient le record du monde du 100 m en 9,58 secondes établi à Berlin en 2009 ?",
+    "answer": "Usain Bolt",
+    "acceptedAnswers": ["Usain Bolt", "usain bolt", "Bolt", "bolt"],
+    "media": null,
+    "explanation": "Le Jamaïcain Usain Bolt a établi un record du monde du 100 m en 9,58 s lors des Mondiaux de Berlin en 2009.",
+
+    "tags": ["sport", "athletisme"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_010",
+    "type": "number",
+    "difficulty": "easy",
+    "category": "sports",
+    "label": "À combien de secondes, au centième près, est chronométré le record du monde du 100 m d'Usain Bolt ?",
+    "answer": "9.58",
+    "acceptedAnswers": ["9.58", "9,58"],
+    "media": null,
+    "explanation": "Le record du monde du 100 m d'Usain Bolt a été homologué en 9,58 secondes.",
+
+    "tags": ["sport", "record"],
+    "baseTimer": 20
+  },
+  {
+    "id": "q_011",
+    "type": "text",
+    "difficulty": "easy",
+    "category": "history",
+    "label": "En quelle année commence officiellement la Révolution française ?",
+    "answer": "1789",
+    "acceptedAnswers": ["1789"],
+    "media": null,
+    "explanation": "Les grandes dates de l'histoire de France situent le début de la Révolution française en 1789.",
+
+    "tags": ["histoire", "france"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_012",
+    "type": "text",
+    "difficulty": "easy",
+    "category": "history",
+    "label": "Quel grand événement français est commémoré chaque 14 juillet ?",
+    "answer": "Prise de la Bastille",
+    "acceptedAnswers": ["Prise de la Bastille", "prise de la Bastille", "Bastille"],
+    "media": null,
+    "explanation": "La fête nationale du 14 juillet commémore la prise de la Bastille en 1789, épisode emblématique de la Révolution française.",
+
+    "tags": ["histoire", "france"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_013",
+    "type": "text",
+    "difficulty": "easy",
+    "category": "cinema",
+    "label": "Quel film de 1977 a lancé la saga « Star Wars » au cinéma ?",
+    "answer": "Star Wars: Un nouvel espoir",
+    "acceptedAnswers": [
+      "Star Wars: Un nouvel espoir",
+      "Un nouvel espoir",
+      "Star Wars",
+      "La Guerre des étoiles"
+    ],
+    "media": null,
+    "explanation": "Les listes de films cultes mentionnent « Star Wars: Un nouvel espoir », sorti en 1977, comme le premier film de la saga.",
+
+    "tags": ["cinema", "saga"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_014",
+    "type": "text",
+    "difficulty": "easy",
+    "category": "cinema",
+    "label": "Quel acteur incarne Forrest Gump dans le film du même nom ?",
+    "answer": "Tom Hanks",
+    "acceptedAnswers": ["Tom Hanks", "tom hanks", "Hanks"],
+    "media": null,
+    "explanation": "« Forrest Gump » apparaît régulièrement dans les listes de films à voir, avec Tom Hanks dans le rôle-titre.",
+
+    "tags": ["cinema", "acteurs"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_015",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "cinema",
+    "label": "Quel est le titre du premier film de la saga Harry Potter sorti en 2001 ?",
+    "answer": "Harry Potter à l'école des sorciers",
+    "acceptedAnswers": [
+      "Harry Potter à l'école des sorciers",
+      "harry potter à l'école des sorciers"
+    ],
+    "media": null,
+    "options": [
+      "Harry Potter à l'école des sorciers",
+      "Harry Potter et la Chambre des secrets",
+      "Harry Potter et le Prisonnier d'Azkaban",
+      "Harry Potter et la Coupe de feu"
+    ],
+    "explanation": "Les sélections de films cultes citent « Harry Potter à l'école des sorciers » comme premier opus de la saga, sorti en 2001.",
+
+    "tags": ["cinema", "fantasy"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_016",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "general",
+    "label": "Quel est le plus grand océan du globe par sa superficie ?",
+    "answer": "Océan Pacifique",
+    "acceptedAnswers": ["Océan Pacifique", "Pacifique", "ocean pacifique", "océan pacifique"],
+    "media": null,
+    "options": ["Océan Atlantique", "Océan Indien", "Océan Pacifique", "Océan Arctique"],
+    "explanation": "L'océan Pacifique est décrit comme le plus vaste des océans, couvrant plus de 160 millions de km².",
+
+    "tags": ["geographie", "oceans"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_017",
+    "type": "text",
+    "difficulty": "medium",
+    "category": "geography",
+    "label": "Quelle est la capitale du Portugal ?",
+    "answer": "Lisbonne",
+    "acceptedAnswers": ["Lisbonne", "lisbonne"],
+    "media": null,
+    "explanation": "Les listes de capitales d'Europe indiquent Lisbonne comme capitale du Portugal.",
+
+    "tags": ["geographie", "capitales"],
+    "baseTimer": 25
+  },
+  {
+    "id": "q_018",
+    "type": "text",
+    "difficulty": "medium",
+    "category": "geography",
+    "label": "Quelle ville est la capitale des Pays-Bas ?",
+    "answer": "Amsterdam",
+    "acceptedAnswers": ["Amsterdam", "amsterdam"],
+    "media": null,
+    "explanation": "Amsterdam est donnée comme capitale des Pays-Bas dans les tableaux de capitales européennes.",
+
+    "tags": ["geographie", "capitales"],
+    "baseTimer": 25
+  },
+  {
+    "id": "q_019",
+    "type": "text",
+    "difficulty": "medium",
+    "category": "geography",
+    "label": "Quelle est la capitale de la Norvège ?",
+    "answer": "Oslo",
+    "acceptedAnswers": ["Oslo", "oslo"],
+    "media": null,
+    "explanation": "Oslo apparaît comme capitale de la Norvège dans les listes de capitales d'Europe.",
+
+    "tags": ["geographie", "capitales"],
+    "baseTimer": 25
+  },
+  {
+    "id": "q_020",
+    "type": "number",
+    "difficulty": "medium",
+    "category": "science",
+    "label": "Combien de planètes telluriques (rocheuses) compte le Système solaire parmi ses huit planètes ?",
+    "answer": "4",
+    "acceptedAnswers": ["4", "quatre"],
+    "media": null,
+    "explanation": "Mercure, Vénus, la Terre et Mars forment les quatre planètes telluriques proches du Soleil.",
+
+    "tags": ["science", "astronomie"],
+    "baseTimer": 30
+  },
+  {
+    "id": "q_021",
+    "type": "text",
+    "difficulty": "medium",
+    "category": "science",
+    "label": "Quelle planète est la plus éloignée du Soleil parmi les huit planètes officielles ?",
+    "answer": "Neptune",
+    "acceptedAnswers": ["Neptune", "neptune"],
+    "media": null,
+    "explanation": "Dans l'ordre des planètes à partir du Soleil, Neptune est la plus éloignée parmi les huit reconnues.",
+
+    "tags": ["science", "planetes"],
+    "baseTimer": 25
+  },
+  {
+    "id": "q_022",
+    "type": "number",
+    "difficulty": "medium",
+    "category": "sports",
+    "label": "En quelle année Usain Bolt établit-il son record du monde du 100 m à Berlin ?",
+    "answer": "2009",
+    "acceptedAnswers": ["2009"],
+    "media": null,
+    "explanation": "Les articles sportifs indiquent que le record du monde du 100 m de Bolt a été réalisé en 2009 aux championnats du monde de Berlin.",
+
+    "tags": ["sport", "athletisme"],
+    "baseTimer": 30
+  },
+  {
+    "id": "q_023",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "history",
+    "label": "Quel événement français majeur a lieu en 1905 ?",
+    "answer": "Loi de séparation de l'Église et de l'État",
+    "acceptedAnswers": [
+      "Loi de séparation de l'Église et de l'État",
+      "séparation de l'Église et de l'État"
+    ],
+    "media": null,
+    "options": [
+      "Loi de séparation de l'Église et de l'État",
+      "Proclamation de la IIe République",
+      "Défaite de Waterloo",
+      "Victoire de Marignan"
+    ],
+    "explanation": "Les grandes dates de l'histoire de France mentionnent la loi de séparation de l'Église et de l'État en 1905 comme moment clé de la laïcité.",
+
+    "tags": ["histoire", "france"],
+    "baseTimer": 25
+  },
+  {
+    "id": "q_024",
+    "type": "number",
+    "difficulty": "medium",
+    "category": "history",
+    "label": "En quelle année Napoléon Bonaparte est-il sacré empereur des Français ?",
+    "answer": "1804",
+    "acceptedAnswers": ["1804"],
+    "media": null,
+    "explanation": "Les chronologies françaises rappellent le sacre de Napoléon comme empereur en 1804.",
+
+    "tags": ["histoire", "napoleon"],
+    "baseTimer": 30
+  },
+  {
+    "id": "q_025",
+    "type": "number",
+    "difficulty": "medium",
+    "category": "history",
+    "label": "En quelle année la bataille de Waterloo met-elle fin au règne de Napoléon ?",
+    "answer": "1815",
+    "acceptedAnswers": ["1815"],
+    "media": null,
+    "explanation": "Les grands événements historiques situent la défaite de Napoléon à Waterloo en 1815.",
+
+    "tags": ["histoire", "napoleon"],
+    "baseTimer": 30
+  },
+  {
+    "id": "q_026",
+    "type": "text",
+    "difficulty": "medium",
+    "category": "history",
+    "label": "Quelle guerre opposant la France et l'Angleterre se déroule de 1337 à 1453 ?",
+    "answer": "Guerre de Cent Ans",
+    "acceptedAnswers": ["Guerre de Cent Ans", "guerre de cent ans"],
+    "media": null,
+    "explanation": "La période 1337-1453 correspond à la Guerre de Cent Ans entre royaumes de France et d'Angleterre.",
+
+    "tags": ["histoire", "moyen-age"],
+    "baseTimer": 25
+  },
+  {
+    "id": "q_027",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "cinema",
+    "label": "Quel réalisateur a mis en scène le film culte « Indiana Jones et la Dernière Croisade » ?",
+    "answer": "Steven Spielberg",
+    "acceptedAnswers": ["Steven Spielberg", "steven spielberg", "Spielberg"],
+    "media": null,
+    "options": ["Steven Spielberg", "George Lucas", "James Cameron", "Ridley Scott"],
+    "explanation": "« Indiana Jones et la Dernière Croisade » est cité parmi les films d'aventure cultes réalisés par Steven Spielberg.",
+
+    "tags": ["cinema", "aventure"],
+    "baseTimer": 25
+  },
+  {
+    "id": "q_028",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "cinema",
+    "label": "Quel film de Peter Jackson, sorti en 2003, conclut la trilogie « Le Seigneur des Anneaux » ?",
+    "answer": "Le Retour du Roi",
+    "acceptedAnswers": ["Le Retour du Roi", "le retour du roi"],
+    "media": null,
+    "options": ["La Communauté de l'Anneau", "Les Deux Tours", "Le Retour du Roi", "Le Hobbit"],
+    "explanation": "« Le Seigneur des Anneaux : Le Retour du Roi », sorti en 2003, figure dans de nombreuses listes de films cultes.",
+
+    "tags": ["cinema", "fantasy"],
+    "baseTimer": 25
+  },
+  {
+    "id": "q_029",
+    "type": "text",
+    "difficulty": "medium",
+    "category": "cinema",
+    "label": "Quel film réalisé par Robert Zemeckis avec Tom Hanks est souvent classé parmi les films à voir au moins une fois dans sa vie ?",
+    "answer": "Forrest Gump",
+    "acceptedAnswers": ["Forrest Gump", "forrest gump"],
+    "media": null,
+    "explanation": "Les sélections de grands classiques citent « Forrest Gump » comme un film incontournable.",
+
+    "tags": ["cinema", "classiques"],
+    "baseTimer": 25
+  },
+  {
+    "id": "q_030",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "geography",
+    "label": "Dans quel pays se situe la ville de Tokyo, mégalopole de plus de 14 millions d'habitants ?",
+    "answer": "Japon",
+    "acceptedAnswers": ["Japon", "japon", "Le Japon"],
+    "media": null,
+    "options": ["Chine", "Corée du Sud", "Japon", "Thaïlande"],
+    "explanation": "Tokyo est décrite comme la capitale et la plus grande ville du Japon.",
+
+    "tags": ["geographie", "villes"],
+    "baseTimer": 25
+  },
+  {
+    "id": "q_031",
+    "type": "text",
+    "difficulty": "hard",
+    "category": "geography",
+    "label": "Quelle est la capitale de la Croatie ?",
+    "answer": "Zagreb",
+    "acceptedAnswers": ["Zagreb", "zagreb"],
+    "media": null,
+    "explanation": "Les listes de capitales européennes indiquent Zagreb comme capitale de la Croatie.",
+
+    "tags": ["geographie", "capitales"],
+    "baseTimer": 35
+  },
+  {
+    "id": "q_032",
+    "type": "text",
+    "difficulty": "hard",
+    "category": "geography",
+    "label": "Quelle est la capitale de la Lituanie ?",
+    "answer": "Vilnius",
+    "acceptedAnswers": ["Vilnius", "vilnius"],
+    "media": null,
+    "explanation": "Vilnius apparaît comme capitale de la Lituanie dans les tableaux de capitales d'Europe.",
+
+    "tags": ["geographie", "capitales"],
+    "baseTimer": 35
+  },
+  {
+    "id": "q_033",
+    "type": "number",
+    "difficulty": "hard",
+    "category": "history",
+    "label": "En quelle année débute la Guerre de Cent Ans entre la France et l'Angleterre ?",
+    "answer": "1337",
+    "acceptedAnswers": ["1337"],
+    "media": null,
+    "explanation": "Les repères chronologiques situent le début de la Guerre de Cent Ans en 1337.",
+
+    "tags": ["histoire", "moyen-age"],
+    "baseTimer": 40
+  },
+  {
+    "id": "q_034",
+    "type": "number",
+    "difficulty": "hard",
+    "category": "history",
+    "label": "En quelle année François Ier remporte-t-il la bataille de Marignan, souvent apprise avec la date « 1515 » ?",
+    "answer": "1515",
+    "acceptedAnswers": ["1515"],
+    "media": null,
+    "explanation": "Les grandes dates de l'époque moderne rappellent la victoire de François Ier à Marignan en 1515.",
+    "tags": ["histoire", "batailles"],
+    "baseTimer": 40
+  },
+  {
+    "id": "q_035",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "cinema",
+    "label": "Quel film de Quentin Tarantino, sorti en 1994, est régulièrement cité parmi les films cultes du cinéma moderne ?",
+    "answer": "Pulp Fiction",
+    "acceptedAnswers": ["Pulp Fiction", "pulp fiction"],
+    "media": null,
+    "options": ["Reservoir Dogs", "Pulp Fiction", "Kill Bill", "Jackie Brown"],
+    "explanation": "Les classements de films cultes mentionnent fréquemment « Pulp Fiction » de Quentin Tarantino, sorti en 1994.",
+
+    "tags": ["cinema", "culte"],
+    "baseTimer": 35
+  },
+  {
+    "id": "q_036",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "cinema",
+    "label": "Quel film de Christopher Nolan explorant les rêves dans les rêves figure souvent dans les listes de films incontournables ?",
+    "answer": "Inception",
+    "acceptedAnswers": ["Inception", "inception"],
+    "media": null,
+    "options": ["Interstellar", "Inception", "Memento", "Tenet"],
+    "explanation": "« Inception » de Christopher Nolan, sorti en 2010, est régulièrement classé parmi les films marquants de la science-fiction moderne.",
+
+    "tags": ["cinema", "science-fiction"],
+    "baseTimer": 35
+  },
+  {
+    "id": "q_037",
+    "type": "text",
+    "difficulty": "hard",
+    "category": "science",
+    "label": "Quelle planète du Système solaire est la plus proche du Soleil ?",
+    "answer": "Mercure",
+    "acceptedAnswers": ["Mercure", "mercure"],
+    "media": null,
+    "explanation": "Les descriptions de l'ordre des planètes indiquent que Mercure est la planète la plus rapprochée du Soleil.",
+
+    "tags": ["science", "astronomie"],
+    "baseTimer": 35
+  },
+  {
+    "id": "q_038",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "science",
+    "label": "Laquelle de ces planètes n'est PAS une planète géante gazeuse ?",
+    "answer": "Mars",
+    "acceptedAnswers": ["Mars", "mars"],
+    "media": null,
+    "options": ["Jupiter", "Saturne", "Uranus", "Mars"],
+    "explanation": "Jupiter, Saturne et Uranus sont des géantes gazeuses, alors que Mars est une petite planète rocheuse.",
+
+    "tags": ["science", "planetes"],
+    "baseTimer": 35
+  },
+  {
+    "id": "q_039",
+    "type": "text",
+    "difficulty": "hard",
+    "category": "general",
+    "label": "Quels cinq continents sont traditionnellement associés aux anneaux olympiques : Afrique, Amérique, Asie, Europe et quel autre ?",
+    "answer": "Océanie",
+    "acceptedAnswers": ["Océanie", "oceanie", "l'Océanie", "l oceanie"],
+    "media": null,
+    "explanation": "Une interprétation classique associe les cinq anneaux olympiques à l'Afrique, l'Amérique, l'Asie, l'Europe et l'Océanie.",
+
+    "tags": ["geographie", "jeux-olympiques"],
+    "baseTimer": 35
+  },
+  {
+    "id": "q_040",
+    "type": "text",
+    "difficulty": "easy",
+    "category": "geography",
+    "label": "Dans quel pays se trouve la Tour Eiffel ?",
+    "answer": "France",
+    "acceptedAnswers": ["France", "france", "La France"],
+    "media": null,
+    "explanation": "La Tour Eiffel, construite pour l'Exposition universelle de 1889 à Paris, est devenue un symbole de la France.",
+
+    "tags": ["geographie", "monuments"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_041",
+    "type": "number",
+    "difficulty": "medium",
+    "category": "history",
+    "label": "En quelle année la Tour Eiffel est-elle inaugurée à Paris pour l'Exposition universelle ?",
+    "answer": "1889",
+    "acceptedAnswers": ["1889"],
+    "media": null,
+    "explanation": "La Tour Eiffel est inaugurée le 31 mars 1889 à l'occasion de l'Exposition universelle de Paris.",
+
+    "tags": ["histoire", "paris"],
+    "baseTimer": 30
+  },
+  {
+    "id": "q_042",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "science",
+    "label": "Quel océan borde la baie de Tokyo au Japon ?",
+    "answer": "Océan Pacifique",
+    "acceptedAnswers": ["Océan Pacifique", "Pacifique", "océan pacifique"],
+    "media": null,
+    "options": ["Océan Atlantique", "Océan Indien", "Océan Pacifique", "Océan Arctique"],
+    "explanation": "Tokyo se situe sur l'île de Honshu et s'ouvre sur la baie de Tokyo, tournée vers l'océan Pacifique.",
+
+    "tags": ["geographie", "oceans"],
+    "baseTimer": 25
+  },
+  {
+    "id": "q_043",
+    "type": "text",
+    "difficulty": "easy",
+    "category": "music",
+    "label": "Quel groupe de rock britannique a chanté « Bohemian Rhapsody », souvent cité parmi les chansons cultes ?",
+    "answer": "Queen",
+    "acceptedAnswers": ["Queen", "queen"],
+    "media": null,
+    "explanation": "« Bohemian Rhapsody » du groupe Queen figure régulièrement dans les classements de chansons emblématiques.",
+
+    "tags": ["musique", "rock"],
+    "baseTimer": 15
+  },
+  {
+    "id": "q_044",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "music",
+    "label": "Quel artiste est surnommé « King of Pop » et apparaît souvent dans les listes d'albums incontournables ?",
+    "answer": "Michael Jackson",
+    "acceptedAnswers": ["Michael Jackson", "michael jackson", "Jackson"],
+    "media": null,
+    "options": ["Prince", "Elvis Presley", "Michael Jackson", "Stevie Wonder"],
+    "explanation": "Michael Jackson est surnommé le « King of Pop » et ses albums figurent parmi les plus cités dans les classements.",
+
+    "tags": ["musique", "pop"],
+    "baseTimer": 25
+  },
+  {
+    "id": "q_045",
+    "type": "number",
+    "difficulty": "medium",
+    "category": "sports",
+    "label": "Combien de joueurs une équipe aligne-t-elle en même temps sur le terrain au football (hors remplaçants) ?",
+    "answer": "11",
+    "acceptedAnswers": ["11", "onze"],
+    "media": null,
+    "explanation": "Une équipe de football aligne 11 joueurs sur le terrain, gardien compris.",
+    "tags": ["sport", "football"],
+    "baseTimer": 30
+  },
+  {
+    "id": "q_046",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "sports",
+    "label": "Quelle compétition mondiale de football voit la France sacrée championne en 2018 ?",
+    "answer": "Coupe du monde",
+    "acceptedAnswers": ["Coupe du monde", "coupe du monde", "Mondial"],
+    "media": null,
+    "options": ["Coupe du monde", "Euro", "Copa América", "Ligue des champions"],
+    "explanation": "La France remporte la Coupe du monde 2018 en battant la Croatie 4-2 en finale.",
+    "tags": ["sport", "football"],
+    "baseTimer": 35
+  },
+  {
+    "id": "q_047",
+    "type": "text",
+    "difficulty": "hard",
+    "category": "tech",
+    "label": "Quel réseau social lancé en 2004 est souvent considéré comme le premier grand succès des réseaux sociaux modernes ?",
+    "answer": "Facebook",
+    "acceptedAnswers": ["Facebook", "facebook"],
+    "media": null,
+    "explanation": "Les chronologies des réseaux sociaux placent le lancement de Facebook en 2004 comme un tournant majeur.",
+    "tags": ["tech", "reseaux-sociaux"],
+    "baseTimer": 35
+  },
+  {
+    "id": "q_048",
+    "type": "number",
+    "difficulty": "hard",
+    "category": "tech",
+    "label": "En quelle année le premier iPhone, souvent cité parmi les inventions marquantes du XXIe siècle, est-il sorti ?",
+    "answer": "2007",
+    "acceptedAnswers": ["2007"],
+    "media": null,
+    "explanation": "Les repères technologiques indiquent la sortie du premier iPhone en 2007.",
+    "tags": ["tech", "smartphones"],
+    "baseTimer": 40
+  },
+  {
+    "id": "q_049",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "general",
+    "label": "Laquelle de ces dates correspond au début de la Première Guerre mondiale ?",
+    "answer": "1914",
+    "acceptedAnswers": ["1914"],
+    "media": null,
+    "options": ["1789", "1914", "1939", "1968"],
+    "explanation": "Les grandes chronologies situent le début de la Première Guerre mondiale en 1914.",
+
+    "tags": ["histoire", "xxe-siecle"],
+    "baseTimer": 25
+  },
+  {
+    "id": "q_050",
+    "type": "text",
+    "difficulty": "easy",
+    "category": "general",
+    "label": "Quel événement sportif international regroupe tous les quatre ans des athlètes du monde entier autour de cinq anneaux colorés ?",
+    "answer": "Jeux olympiques",
+    "acceptedAnswers": ["Jeux olympiques", "jeux olympiques", "JO"],
+    "media": null,
+    "explanation": "Les Jeux olympiques modernes, symbolisés par cinq anneaux représentant les continents, rassemblent des athlètes du monde entier.",
+
+    "tags": ["sport", "JO"],
+    "baseTimer": 15
+  }
+]

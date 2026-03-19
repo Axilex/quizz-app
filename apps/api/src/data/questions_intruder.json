@@ -8,30 +8,1794 @@
     "answer": "Manchot",
     "acceptedAnswers": ["Manchot", "manchot", "Pingouin"],
     "media": null,
-    "explanation": "Le manchot ne vole pas, contrairement aux autres oiseaux.",
+    "explanation": "Le manchot ne vole pas, contrairement aux trois autres oiseaux.",
     "tags": ["nature", "animaux"],
     "baseTimer": 20,
     "intruderId": "int_001_b",
     "options": [
       {
         "id": "int_001_a",
-        "imageUrl": "https://images.unsplash.com/photo-1611689342806-0863700ce1e4?w=400&q=80",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Bald_Eagle_Portrait.jpg/400px-Bald_Eagle_Portrait.jpg",
         "label": "Aigle"
       },
       {
         "id": "int_001_b",
-        "imageUrl": "https://images.unsplash.com/photo-1551986782-d0169b3f8fa7?w=400&q=80",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Emperor_Penguin_Manchot_empereur.jpg/400px-Emperor_Penguin_Manchot_empereur.jpg",
         "label": "Manchot"
       },
       {
         "id": "int_001_c",
-        "imageUrl": "https://images.unsplash.com/photo-1552728089-57bdde30beb3?w=400&q=80",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Mew_Gull.jpg/400px-Mew_Gull.jpg",
         "label": "Mouette"
       },
       {
         "id": "int_001_d",
-        "imageUrl": "https://images.unsplash.com/photo-1534695941753-73cf13435eb4?w=400&q=80",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Pigeon_portrait_4861.jpg/400px-Pigeon_portrait_4861.jpg",
         "label": "Pigeon"
+      }
+    ]
+  },
+  {
+    "id": "int_002",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Trouvez l'intrus parmi ces animaux :",
+    "answer": "Dauphin",
+    "acceptedAnswers": ["Dauphin", "dauphin"],
+    "media": null,
+    "explanation": "Le dauphin est un mammifère marin, alors que les trois autres sont des poissons.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20,
+    "intruderId": "int_002_c",
+    "options": [
+      {
+        "id": "int_002_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Salmo_salar_GLERL_1.jpg/400px-Salmo_salar_GLERL_1.jpg",
+        "label": "Saumon"
+      },
+      {
+        "id": "int_002_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Thunnus_orientalis_%28Osaka_Kaiyukan_Aquarium%29.jpg/400px-Thunnus_orientalis_%28Osaka_Kaiyukan_Aquarium%29.jpg",
+        "label": "Thon"
+      },
+      {
+        "id": "int_002_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Tursiops_truncatus_01.jpg/400px-Tursiops_truncatus_01.jpg",
+        "label": "Dauphin"
+      },
+      {
+        "id": "int_002_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Carpe_miroir.jpg/400px-Carpe_miroir.jpg",
+        "label": "Carpe"
+      }
+    ]
+  },
+  {
+    "id": "int_003",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Trouvez l'intrus parmi ces animaux :",
+    "answer": "Serpent",
+    "acceptedAnswers": ["Serpent", "serpent"],
+    "media": null,
+    "explanation": "Le serpent est un reptile sans pattes, alors que les trois autres sont des mammifères à quatre pattes.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20,
+    "intruderId": "int_003_d",
+    "options": [
+      {
+        "id": "int_003_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/400px-Cat03.jpg",
+        "label": "Chat"
+      },
+      {
+        "id": "int_003_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/YellowLabradorLooking_new.jpg/400px-YellowLabradorLooking_new.jpg",
+        "label": "Chien"
+      },
+      {
+        "id": "int_003_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Nokota_Horses_croance.jpg/400px-Nokota_Horses_croance.jpg",
+        "label": "Cheval"
+      },
+      {
+        "id": "int_003_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Python_natalensis_%28South_African_python%29.jpg/400px-Python_natalensis_%28South_African_python%29.jpg",
+        "label": "Serpent"
+      }
+    ]
+  },
+  {
+    "id": "int_004",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Trouvez l'intrus parmi ces fruits :",
+    "answer": "Tomate",
+    "acceptedAnswers": ["Tomate", "tomate"],
+    "media": null,
+    "explanation": "La tomate est un fruit-légume utilisé en cuisine salée, contrairement aux trois autres qui sont des fruits sucrés.",
+    "tags": ["nature", "fruits"],
+    "baseTimer": 20,
+    "intruderId": "int_004_a",
+    "options": [
+      {
+        "id": "int_004_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tomato_je.jpg/400px-Tomato_je.jpg",
+        "label": "Tomate"
+      },
+      {
+        "id": "int_004_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Red_Apple.jpg/400px-Red_Apple.jpg",
+        "label": "Pomme"
+      },
+      {
+        "id": "int_004_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Bananas_white_background_DS.jpg/400px-Bananas_white_background_DS.jpg",
+        "label": "Banane"
+      },
+      {
+        "id": "int_004_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/400px-Hapus_Mango.jpg",
+        "label": "Mangue"
+      }
+    ]
+  },
+  {
+    "id": "int_005",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Trouvez l'intrus parmi ces animaux :",
+    "answer": "Baleine",
+    "acceptedAnswers": ["Baleine", "baleine"],
+    "media": null,
+    "explanation": "La baleine est un mammifère marin, alors que les trois autres sont des animaux terrestres.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20,
+    "intruderId": "int_005_b",
+    "options": [
+      {
+        "id": "int_005_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/400px-Lion_waiting_in_Namibia.jpg",
+        "label": "Lion"
+      },
+      {
+        "id": "int_005_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Humpback_stellwagen_edit.jpg/400px-Humpback_stellwagen_edit.jpg",
+        "label": "Baleine"
+      },
+      {
+        "id": "int_005_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/400px-African_Bush_Elephant.jpg",
+        "label": "Éléphant"
+      },
+      {
+        "id": "int_005_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/2010-kodiak-bear-1.jpg/400px-2010-kodiak-bear-1.jpg",
+        "label": "Ours"
+      }
+    ]
+  },
+  {
+    "id": "int_006",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Trouvez l'intrus parmi ces insectes :",
+    "answer": "Araignée",
+    "acceptedAnswers": ["Araignée", "araignée", "Araignee", "araignee"],
+    "media": null,
+    "explanation": "L'araignée est un arachnide (8 pattes), pas un insecte (6 pattes).",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20,
+    "intruderId": "int_006_c",
+    "options": [
+      {
+        "id": "int_006_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Abeille_butinant_une_fleur_de_lavande.jpg/400px-Abeille_butinant_une_fleur_de_lavande.jpg",
+        "label": "Abeille"
+      },
+      {
+        "id": "int_006_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Cerambyx_cerdo_couple.jpg/400px-Cerambyx_cerdo_couple.jpg",
+        "label": "Scarabée"
+      },
+      {
+        "id": "int_006_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Araneus_diadematus_MHNT_Femelle.jpg/400px-Araneus_diadematus_MHNT_Femelle.jpg",
+        "label": "Araignée"
+      },
+      {
+        "id": "int_006_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Coccinella_septempunctata_Tartu.jpg/400px-Coccinella_septempunctata_Tartu.jpg",
+        "label": "Coccinelle"
+      }
+    ]
+  },
+  {
+    "id": "int_007",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Trouvez l'intrus parmi ces fleurs :",
+    "answer": "Cactus",
+    "acceptedAnswers": ["Cactus", "cactus"],
+    "media": null,
+    "explanation": "Le cactus est une plante grasse, pas une fleur à proprement parler comme les trois autres.",
+    "tags": ["nature", "fleurs"],
+    "baseTimer": 20,
+    "intruderId": "int_007_d",
+    "options": [
+      {
+        "id": "int_007_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Sunflower_from_Silesia2.jpg/400px-Sunflower_from_Silesia2.jpg",
+        "label": "Tournesol"
+      },
+      {
+        "id": "int_007_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Dahlia_x_hybrida.jpg/400px-Dahlia_x_hybrida.jpg",
+        "label": "Dahlia"
+      },
+      {
+        "id": "int_007_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Tulip_-_floriade_canberra.jpg/400px-Tulip_-_floriade_canberra.jpg",
+        "label": "Tulipe"
+      },
+      {
+        "id": "int_007_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Notocactus_scopa_ssp._succineus_3.jpg/400px-Notocactus_scopa_ssp._succineus_3.jpg",
+        "label": "Cactus"
+      }
+    ]
+  },
+  {
+    "id": "int_008",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Trouvez l'intrus parmi ces arbres :",
+    "answer": "Palmier",
+    "acceptedAnswers": ["Palmier", "palmier"],
+    "media": null,
+    "explanation": "Le palmier est un monocotylédone tropical, contrairement aux trois autres qui sont des arbres à feuilles caduques européens.",
+    "tags": ["nature", "arbres"],
+    "baseTimer": 20,
+    "intruderId": "int_008_a",
+    "options": [
+      {
+        "id": "int_008_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Coconut_palm_%28Cocos_nucifera%29_-_20051009.jpg/400px-Coconut_palm_%28Cocos_nucifera%29_-_20051009.jpg",
+        "label": "Palmier"
+      },
+      {
+        "id": "int_008_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Quercus_robur.jpg/400px-Quercus_robur.jpg",
+        "label": "Chêne"
+      },
+      {
+        "id": "int_008_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/24_Acer_platanoides.jpg/400px-24_Acer_platanoides.jpg",
+        "label": "Érable"
+      },
+      {
+        "id": "int_008_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Betula_pendula_001.jpg/400px-Betula_pendula_001.jpg",
+        "label": "Bouleau"
+      }
+    ]
+  },
+  {
+    "id": "int_009",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Trouvez l'intrus parmi ces animaux :",
+    "answer": "Tortue",
+    "acceptedAnswers": ["Tortue", "tortue"],
+    "media": null,
+    "explanation": "La tortue est un reptile, alors que les trois autres sont des mammifères.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20,
+    "intruderId": "int_009_c",
+    "options": [
+      {
+        "id": "int_009_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/400px-Cat03.jpg",
+        "label": "Chat"
+      },
+      {
+        "id": "int_009_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/YellowLabradorLooking_new.jpg/400px-YellowLabradorLooking_new.jpg",
+        "label": "Chien"
+      },
+      {
+        "id": "int_009_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Florida_Box_Turtle_Digon3_re-edited.jpg/400px-Florida_Box_Turtle_Digon3_re-edited.jpg",
+        "label": "Tortue"
+      },
+      {
+        "id": "int_009_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Dog_park_in_San_Jose.jpg/400px-Dog_park_in_San_Jose.jpg",
+        "label": "Lapin"
+      }
+    ]
+  },
+  {
+    "id": "int_010",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Trouvez l'intrus parmi ces animaux marins :",
+    "answer": "Crocodile",
+    "acceptedAnswers": ["Crocodile", "crocodile"],
+    "media": null,
+    "explanation": "Le crocodile est un reptile d'eau douce, alors que les trois autres vivent en mer.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20,
+    "intruderId": "int_010_b",
+    "options": [
+      {
+        "id": "int_010_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Haeckel_Actiniae.jpg/400px-Haeckel_Actiniae.jpg",
+        "label": "Méduse"
+      },
+      {
+        "id": "int_010_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nile_crocodile_head.jpg/400px-Nile_crocodile_head.jpg",
+        "label": "Crocodile"
+      },
+      {
+        "id": "int_010_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/400px-White_shark.jpg",
+        "label": "Requin"
+      },
+      {
+        "id": "int_010_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Tursiops_truncatus_01.jpg/400px-Tursiops_truncatus_01.jpg",
+        "label": "Dauphin"
+      }
+    ]
+  },
+  {
+    "id": "int_011",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Trouvez l'intrus parmi ces animaux :",
+    "answer": "Grenouille",
+    "acceptedAnswers": ["Grenouille", "grenouille"],
+    "media": null,
+    "explanation": "La grenouille est un amphibien, alors que les trois autres sont des mammifères.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20,
+    "intruderId": "int_011_d",
+    "options": [
+      {
+        "id": "int_011_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/400px-Lion_waiting_in_Namibia.jpg",
+        "label": "Lion"
+      },
+      {
+        "id": "int_011_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Standing_jaguar.jpg/400px-Standing_jaguar.jpg",
+        "label": "Jaguar"
+      },
+      {
+        "id": "int_011_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Cheetah_at_Whipsnade_Zoo%2C_Dunstable.jpg/400px-Cheetah_at_Whipsnade_Zoo%2C_Dunstable.jpg",
+        "label": "Guépard"
+      },
+      {
+        "id": "int_011_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Frog_in_maryland.jpg/400px-Frog_in_maryland.jpg",
+        "label": "Grenouille"
+      }
+    ]
+  },
+  {
+    "id": "int_012",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Trouvez l'intrus parmi ces légumes :",
+    "answer": "Fraise",
+    "acceptedAnswers": ["Fraise", "fraise"],
+    "media": null,
+    "explanation": "La fraise est un fruit, alors que les trois autres sont des légumes.",
+    "tags": ["nature", "fruits"],
+    "baseTimer": 20,
+    "intruderId": "int_012_a",
+    "options": [
+      {
+        "id": "int_012_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/PerfectStrawberry.jpg/400px-PerfectStrawberry.jpg",
+        "label": "Fraise"
+      },
+      {
+        "id": "int_012_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Carrot-fb.jpg/400px-Carrot-fb.jpg",
+        "label": "Carotte"
+      },
+      {
+        "id": "int_012_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Broccoli_and_cross_section_edit.jpg/400px-Broccoli_and_cross_section_edit.jpg",
+        "label": "Brocoli"
+      },
+      {
+        "id": "int_012_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Aubergine.jpg/400px-Aubergine.jpg",
+        "label": "Aubergine"
+      }
+    ]
+  },
+  {
+    "id": "int_013",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Trouvez l'intrus parmi ces animaux de la ferme :",
+    "answer": "Loup",
+    "acceptedAnswers": ["Loup", "loup"],
+    "media": null,
+    "explanation": "Le loup est un animal sauvage, contrairement aux trois autres qui sont des animaux de la ferme.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20,
+    "intruderId": "int_013_c",
+    "options": [
+      {
+        "id": "int_013_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Haushuhn_01.jpg/400px-Haushuhn_01.jpg",
+        "label": "Poule"
+      },
+      {
+        "id": "int_013_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Lait_vache.jpg/400px-Lait_vache.jpg",
+        "label": "Vache"
+      },
+      {
+        "id": "int_013_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Eurasian_wolf_2.jpg/400px-Eurasian_wolf_2.jpg",
+        "label": "Loup"
+      },
+      {
+        "id": "int_013_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flock_of_sheep.jpg/400px-Flock_of_sheep.jpg",
+        "label": "Mouton"
+      }
+    ]
+  },
+  {
+    "id": "int_014",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Trouvez l'intrus parmi ces oiseaux :",
+    "answer": "Chauve-souris",
+    "acceptedAnswers": ["Chauve-souris", "chauve-souris", "Chauve souris"],
+    "media": null,
+    "explanation": "La chauve-souris est un mammifère volant, pas un oiseau.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20,
+    "intruderId": "int_014_b",
+    "options": [
+      {
+        "id": "int_014_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Pelikan_Walvis_Bay.jpg/400px-Pelikan_Walvis_Bay.jpg",
+        "label": "Pélican"
+      },
+      {
+        "id": "int_014_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Big-eared-townsend-fledermaus.jpg/400px-Big-eared-townsend-fledermaus.jpg",
+        "label": "Chauve-souris"
+      },
+      {
+        "id": "int_014_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Storch_im_Flug.jpg/400px-Storch_im_Flug.jpg",
+        "label": "Cigogne"
+      },
+      {
+        "id": "int_014_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Eopsaltria_australis_-_Mogo_Campground.jpg/400px-Eopsaltria_australis_-_Mogo_Campground.jpg",
+        "label": "Moineau"
+      }
+    ]
+  },
+  {
+    "id": "int_015",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Trouvez l'intrus parmi ces animaux :",
+    "answer": "Pingouin",
+    "acceptedAnswers": ["Pingouin", "pingouin"],
+    "media": null,
+    "explanation": "Le pingouin vit dans l'hémisphère nord, alors que les trois autres vivent en Afrique.",
+    "tags": ["nature", "animaux"],
+    "baseTimer": 20,
+    "intruderId": "int_015_d",
+    "options": [
+      {
+        "id": "int_015_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Giraffe_Mikumi_National_Park.jpg/400px-Giraffe_Mikumi_National_Park.jpg",
+        "label": "Girafe"
+      },
+      {
+        "id": "int_015_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Hippo_at_dawn.jpg/400px-Hippo_at_dawn.jpg",
+        "label": "Hippopotame"
+      },
+      {
+        "id": "int_015_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Zebra_running_Ngorongoro.jpg/400px-Zebra_running_Ngorongoro.jpg",
+        "label": "Zèbre"
+      },
+      {
+        "id": "int_015_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Emperor_Penguin_Manchot_empereur.jpg/400px-Emperor_Penguin_Manchot_empereur.jpg",
+        "label": "Pingouin"
+      }
+    ]
+  },
+  {
+    "id": "int_016",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "gastronomie",
+    "label": "Trouvez l'intrus parmi ces fromages :",
+    "answer": "Mozzarella",
+    "acceptedAnswers": ["Mozzarella", "mozzarella"],
+    "media": null,
+    "explanation": "La mozzarella est un fromage italien, alors que les trois autres sont des fromages français.",
+    "tags": ["gastronomie", "fromage"],
+    "baseTimer": 20,
+    "intruderId": "int_016_c",
+    "options": [
+      {
+        "id": "int_016_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Camembert_de_Normandie_%28AOP%29_08.jpg/400px-Camembert_de_Normandie_%28AOP%29_08.jpg",
+        "label": "Camembert"
+      },
+      {
+        "id": "int_016_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Roquefort_cheese.jpg/400px-Roquefort_cheese.jpg",
+        "label": "Roquefort"
+      },
+      {
+        "id": "int_016_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Mozzarella_cheese.jpg/400px-Mozzarella_cheese.jpg",
+        "label": "Mozzarella"
+      },
+      {
+        "id": "int_016_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Brie_de_Meaux_01.jpg/400px-Brie_de_Meaux_01.jpg",
+        "label": "Brie"
+      }
+    ]
+  },
+  {
+    "id": "int_017",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "gastronomie",
+    "label": "Trouvez l'intrus parmi ces pâtisseries :",
+    "answer": "Sushi",
+    "acceptedAnswers": ["Sushi", "sushi", "Sushis"],
+    "media": null,
+    "explanation": "Le sushi est un plat salé japonais, alors que les trois autres sont des pâtisseries sucrées françaises.",
+    "tags": ["gastronomie", "pâtisserie"],
+    "baseTimer": 20,
+    "intruderId": "int_017_b",
+    "options": [
+      {
+        "id": "int_017_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Croissant%2C_October_2010.jpg/400px-Croissant%2C_October_2010.jpg",
+        "label": "Croissant"
+      },
+      {
+        "id": "int_017_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Salmon_nigiri.jpg/400px-Salmon_nigiri.jpg",
+        "label": "Sushi"
+      },
+      {
+        "id": "int_017_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tarte_Tatin.jpg/400px-Tarte_Tatin.jpg",
+        "label": "Tarte Tatin"
+      },
+      {
+        "id": "int_017_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Madeleines.jpg/400px-Madeleines.jpg",
+        "label": "Madeleine"
+      }
+    ]
+  },
+  {
+    "id": "int_018",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "gastronomie",
+    "label": "Trouvez l'intrus parmi ces boissons :",
+    "answer": "Lait",
+    "acceptedAnswers": ["Lait", "lait"],
+    "media": null,
+    "explanation": "Le lait n'est pas une boisson alcoolisée, contrairement aux trois autres.",
+    "tags": ["gastronomie", "boissons"],
+    "baseTimer": 20,
+    "intruderId": "int_018_d",
+    "options": [
+      {
+        "id": "int_018_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Rouge_verre.jpg/400px-Rouge_verre.jpg",
+        "label": "Vin rouge"
+      },
+      {
+        "id": "int_018_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Champagne_Glasses.jpg/400px-Champagne_Glasses.jpg",
+        "label": "Champagne"
+      },
+      {
+        "id": "int_018_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Glass_of_beer_-_Biere.jpg/400px-Glass_of_beer_-_Biere.jpg",
+        "label": "Bière"
+      },
+      {
+        "id": "int_018_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Milk_glass.jpg/400px-Milk_glass.jpg",
+        "label": "Lait"
+      }
+    ]
+  },
+  {
+    "id": "int_019",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "gastronomie",
+    "label": "Trouvez l'intrus parmi ces plats :",
+    "answer": "Paella",
+    "acceptedAnswers": ["Paella", "paella"],
+    "media": null,
+    "explanation": "La paella est un plat espagnol, alors que les trois autres sont des plats typiquement français.",
+    "tags": ["gastronomie", "plats"],
+    "baseTimer": 20,
+    "intruderId": "int_019_a",
+    "options": [
+      {
+        "id": "int_019_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Paella_mixta.jpg/400px-Paella_mixta.jpg",
+        "label": "Paella"
+      },
+      {
+        "id": "int_019_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Pot-au-feu.jpg/400px-Pot-au-feu.jpg",
+        "label": "Pot-au-feu"
+      },
+      {
+        "id": "int_019_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Ratatouille-Dish.jpg/400px-Ratatouille-Dish.jpg",
+        "label": "Ratatouille"
+      },
+      {
+        "id": "int_019_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Crêpe_opened_up.jpg/400px-Crêpe_opened_up.jpg",
+        "label": "Crêpe"
+      }
+    ]
+  },
+  {
+    "id": "int_020",
+    "type": "intruder",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Trouvez l'intrus parmi ces capitales européennes :",
+    "answer": "Tokyo",
+    "acceptedAnswers": ["Tokyo", "tokyo"],
+    "media": null,
+    "explanation": "Tokyo est la capitale du Japon, en Asie, alors que les trois autres sont des capitales européennes.",
+    "tags": ["géographie", "capitales"],
+    "baseTimer": 20,
+    "intruderId": "int_020_c",
+    "options": [
+      {
+        "id": "int_020_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/400px-Tour_Eiffel_Wikimedia_Commons.jpg",
+        "label": "Paris"
+      },
+      {
+        "id": "int_020_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Buckingham_Palace_from_gardens%2C_London%2C_UK_-_Diliff.jpg/400px-Buckingham_Palace_from_gardens%2C_London%2C_UK_-_Diliff.jpg",
+        "label": "Londres"
+      },
+      {
+        "id": "int_020_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg/400px-Skyscrapers_of_Shinjuku_2009_January.jpg",
+        "label": "Tokyo"
+      },
+      {
+        "id": "int_020_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Colosseum_in_Rome-April_2007-1-_copie_2B.jpg/400px-Colosseum_in_Rome-April_2007-1-_copie_2B.jpg",
+        "label": "Rome"
+      }
+    ]
+  },
+  {
+    "id": "int_021",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Trouvez l'intrus parmi ces monuments :",
+    "answer": "Statue de la Liberté",
+    "acceptedAnswers": ["Statue de la Liberté", "statue de la liberté", "Statue de la Liberte"],
+    "media": null,
+    "explanation": "La Statue de la Liberté est à New York (Amérique), alors que les trois autres monuments sont en Europe.",
+    "tags": ["géographie", "monuments"],
+    "baseTimer": 25,
+    "intruderId": "int_021_d",
+    "options": [
+      {
+        "id": "int_021_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/400px-Tour_Eiffel_Wikimedia_Commons.jpg",
+        "label": "Tour Eiffel"
+      },
+      {
+        "id": "int_021_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Colosseum_in_Rome-April_2007-1-_copie_2B.jpg/400px-Colosseum_in_Rome-April_2007-1-_copie_2B.jpg",
+        "label": "Colisée"
+      },
+      {
+        "id": "int_021_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Big_Ben_Clock_Face.jpg/400px-Big_Ben_Clock_Face.jpg",
+        "label": "Big Ben"
+      },
+      {
+        "id": "int_021_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Statue_of_Liberty_7.jpg/400px-Statue_of_Liberty_7.jpg",
+        "label": "Statue de la Liberté"
+      }
+    ]
+  },
+  {
+    "id": "int_022",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Trouvez l'intrus parmi ces drapeaux :",
+    "answer": "Brésil",
+    "acceptedAnswers": ["Brésil", "brésil", "Bresil", "bresil"],
+    "media": null,
+    "explanation": "Le drapeau du Brésil est vert et jaune, tandis que les trois autres drapeaux sont tricolores bleu-blanc-rouge.",
+    "tags": ["géographie", "drapeaux"],
+    "baseTimer": 25,
+    "intruderId": "int_022_b",
+    "options": [
+      {
+        "id": "int_022_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/400px-Flag_of_France.svg.png",
+        "label": "France"
+      },
+      {
+        "id": "int_022_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/400px-Flag_of_Brazil.svg.png",
+        "label": "Brésil"
+      },
+      {
+        "id": "int_022_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_the_Netherlands.svg/400px-Flag_of_the_Netherlands.svg.png",
+        "label": "Pays-Bas"
+      },
+      {
+        "id": "int_022_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Flag_of_Luxembourg.svg/400px-Flag_of_Luxembourg.svg.png",
+        "label": "Luxembourg"
+      }
+    ]
+  },
+  {
+    "id": "int_023",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Trouvez l'intrus parmi ces pays :",
+    "answer": "Australie",
+    "acceptedAnswers": ["Australie", "australie"],
+    "media": null,
+    "explanation": "L'Australie est un continent-pays de l'hémisphère sud, alors que les trois autres sont des pays d'Europe de l'Ouest.",
+    "tags": ["géographie", "pays"],
+    "baseTimer": 25,
+    "intruderId": "int_023_a",
+    "options": [
+      {
+        "id": "int_023_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Flag_of_Australia.svg/400px-Flag_of_Australia.svg.png",
+        "label": "Australie"
+      },
+      {
+        "id": "int_023_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/400px-Flag_of_Germany.svg.png",
+        "label": "Allemagne"
+      },
+      {
+        "id": "int_023_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_Austria.svg/400px-Flag_of_Austria.svg.png",
+        "label": "Autriche"
+      },
+      {
+        "id": "int_023_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/400px-Flag_of_the_Netherlands.svg.png",
+        "label": "Belgique"
+      }
+    ]
+  },
+  {
+    "id": "int_024",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Trouvez l'intrus parmi ces villes françaises :",
+    "answer": "Genève",
+    "acceptedAnswers": ["Genève", "genève", "Geneve", "geneve"],
+    "media": null,
+    "explanation": "Genève est une ville suisse, pas française, même si elle est proche de la frontière.",
+    "tags": ["géographie", "villes"],
+    "baseTimer": 25,
+    "intruderId": "int_024_c",
+    "options": [
+      {
+        "id": "int_024_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Lyon_vue_depuis_fourviere.jpg/400px-Lyon_vue_depuis_fourviere.jpg",
+        "label": "Lyon"
+      },
+      {
+        "id": "int_024_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Marseille-la-nuit-by-F.Mignard.jpg/400px-Marseille-la-nuit-by-F.Mignard.jpg",
+        "label": "Marseille"
+      },
+      {
+        "id": "int_024_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Geneva-aerial-view.JPG/400px-Geneva-aerial-view.JPG",
+        "label": "Genève"
+      },
+      {
+        "id": "int_024_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Bordeaux_place_de_la_bourse_with_tram.JPG/400px-Bordeaux_place_de_la_bourse_with_tram.JPG",
+        "label": "Bordeaux"
+      }
+    ]
+  },
+  {
+    "id": "int_025",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Trouvez l'intrus parmi ces îles :",
+    "answer": "Madagascar",
+    "acceptedAnswers": ["Madagascar", "madagascar"],
+    "media": null,
+    "explanation": "Madagascar est une île africaine dans l'océan Indien, alors que les trois autres sont des îles méditerranéennes européennes.",
+    "tags": ["géographie", "îles"],
+    "baseTimer": 25,
+    "intruderId": "int_025_d",
+    "options": [
+      {
+        "id": "int_025_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Corse_carte.png/400px-Corse_carte.png",
+        "label": "Corse"
+      },
+      {
+        "id": "int_025_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Sardinia_satellite.jpg/400px-Sardinia_satellite.jpg",
+        "label": "Sardaigne"
+      },
+      {
+        "id": "int_025_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Mallorca_Cala_Llombards.JPG/400px-Mallorca_Cala_Llombards.JPG",
+        "label": "Majorque"
+      },
+      {
+        "id": "int_025_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Madagascar_satellite_photo.jpg/400px-Madagascar_satellite_photo.jpg",
+        "label": "Madagascar"
+      }
+    ]
+  },
+  {
+    "id": "int_026",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Trouvez l'intrus parmi ces fleuves :",
+    "answer": "Nil",
+    "acceptedAnswers": ["Nil", "nil", "Le Nil"],
+    "media": null,
+    "explanation": "Le Nil est un fleuve africain, alors que les trois autres sont des fleuves français.",
+    "tags": ["géographie", "fleuves"],
+    "baseTimer": 25,
+    "intruderId": "int_026_b",
+    "options": [
+      {
+        "id": "int_026_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Seine_and_Eiffel_Tower_from_Tour_Saint_Jacques_2007-03-31.jpg/400px-Seine_and_Eiffel_Tower_from_Tour_Saint_Jacques_2007-03-31.jpg",
+        "label": "Seine"
+      },
+      {
+        "id": "int_026_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Nile_River_and_delta_from_orbit.jpg/400px-Nile_River_and_delta_from_orbit.jpg",
+        "label": "Nil"
+      },
+      {
+        "id": "int_026_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Loire_Indre.jpg/400px-Loire_Indre.jpg",
+        "label": "Loire"
+      },
+      {
+        "id": "int_026_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Garonne_Bordeaux.jpg/400px-Garonne_Bordeaux.jpg",
+        "label": "Garonne"
+      }
+    ]
+  },
+  {
+    "id": "int_027",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Trouvez l'intrus parmi ces montagnes :",
+    "answer": "Kilimandjaro",
+    "acceptedAnswers": ["Kilimandjaro", "kilimandjaro", "Kilimanjaro"],
+    "media": null,
+    "explanation": "Le Kilimandjaro est en Afrique (Tanzanie), alors que les trois autres sommets sont dans les Alpes européennes.",
+    "tags": ["géographie", "montagnes"],
+    "baseTimer": 25,
+    "intruderId": "int_027_a",
+    "options": [
+      {
+        "id": "int_027_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Mt._Kilimanjaro_12.2006.JPG/400px-Mt._Kilimanjaro_12.2006.JPG",
+        "label": "Kilimandjaro"
+      },
+      {
+        "id": "int_027_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Mont_Blanc_oct_2004.JPG/400px-Mont_Blanc_oct_2004.JPG",
+        "label": "Mont Blanc"
+      },
+      {
+        "id": "int_027_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Matterhorn_from_Domhütte_-_2.jpg/400px-Matterhorn_from_Domhütte_-_2.jpg",
+        "label": "Cervin"
+      },
+      {
+        "id": "int_027_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Eiger3970.jpg/400px-Eiger3970.jpg",
+        "label": "Eiger"
+      }
+    ]
+  },
+  {
+    "id": "int_028",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "musique",
+    "label": "Trouvez l'intrus parmi ces instruments :",
+    "answer": "Batterie",
+    "acceptedAnswers": ["Batterie", "batterie"],
+    "media": null,
+    "explanation": "La batterie est un instrument à percussion, alors que les trois autres sont des instruments à cordes.",
+    "tags": ["musique", "instruments"],
+    "baseTimer": 25,
+    "intruderId": "int_028_c",
+    "options": [
+      {
+        "id": "int_028_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/GuitareClassique5.png/400px-GuitareClassique5.png",
+        "label": "Guitare"
+      },
+      {
+        "id": "int_028_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Stradivarius_violin_in_Palacio_Real%2C_Madrid.jpg/400px-Stradivarius_violin_in_Palacio_Real%2C_Madrid.jpg",
+        "label": "Violon"
+      },
+      {
+        "id": "int_028_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Drum_set.jpg/400px-Drum_set.jpg",
+        "label": "Batterie"
+      },
+      {
+        "id": "int_028_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Italian_Double_Bass.jpg/400px-Italian_Double_Bass.jpg",
+        "label": "Contrebasse"
+      }
+    ]
+  },
+  {
+    "id": "int_029",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "musique",
+    "label": "Trouvez l'intrus parmi ces instruments :",
+    "answer": "Harpe",
+    "acceptedAnswers": ["Harpe", "harpe"],
+    "media": null,
+    "explanation": "La harpe est un instrument à cordes pincées, alors que les trois autres sont des instruments à vent.",
+    "tags": ["musique", "instruments"],
+    "baseTimer": 25,
+    "intruderId": "int_029_d",
+    "options": [
+      {
+        "id": "int_029_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Yamaha_Saxophone_YAS-62.jpg/400px-Yamaha_Saxophone_YAS-62.jpg",
+        "label": "Saxophone"
+      },
+      {
+        "id": "int_029_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Trumpet_1.jpg/400px-Trumpet_1.jpg",
+        "label": "Trompette"
+      },
+      {
+        "id": "int_029_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Yamaha_Flute_YFL-281.jpg/400px-Yamaha_Flute_YFL-281.jpg",
+        "label": "Flûte"
+      },
+      {
+        "id": "int_029_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Harp.png/400px-Harp.png",
+        "label": "Harpe"
+      }
+    ]
+  },
+  {
+    "id": "int_030",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "musique",
+    "label": "Trouvez l'intrus parmi ces instruments :",
+    "answer": "Piano",
+    "acceptedAnswers": ["Piano", "piano"],
+    "media": null,
+    "explanation": "Le piano est un instrument à clavier, alors que les trois autres sont des instruments à percussion frappés avec des baguettes.",
+    "tags": ["musique", "instruments"],
+    "baseTimer": 25,
+    "intruderId": "int_030_b",
+    "options": [
+      {
+        "id": "int_030_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Xylophone_-_mallets.jpg/400px-Xylophone_-_mallets.jpg",
+        "label": "Xylophone"
+      },
+      {
+        "id": "int_030_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Grand_piano_and_upright_piano.jpg/400px-Grand_piano_and_upright_piano.jpg",
+        "label": "Piano"
+      },
+      {
+        "id": "int_030_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Djembe.jpg/400px-Djembe.jpg",
+        "label": "Djembé"
+      },
+      {
+        "id": "int_030_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Tambourine.jpg/400px-Tambourine.jpg",
+        "label": "Tambourin"
+      }
+    ]
+  },
+  {
+    "id": "int_031",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "musique",
+    "label": "Trouvez l'intrus parmi ces genres musicaux :",
+    "answer": "Opéra",
+    "acceptedAnswers": ["Opéra", "opéra", "Opera", "opera"],
+    "media": null,
+    "explanation": "L'opéra est un genre de musique classique, alors que les trois autres sont des genres de musique moderne/populaire.",
+    "tags": ["musique", "genres"],
+    "baseTimer": 25,
+    "intruderId": "int_031_a",
+    "options": [
+      {
+        "id": "int_031_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Opera_Garnier_Grand_Escalier.jpg/400px-Opera_Garnier_Grand_Escalier.jpg",
+        "label": "Opéra"
+      },
+      {
+        "id": "int_031_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rock_concert_in_Ávila.jpg/400px-Rock_concert_in_Ávila.jpg",
+        "label": "Rock"
+      },
+      {
+        "id": "int_031_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Louis_Armstrong_restored.jpg/400px-Louis_Armstrong_restored.jpg",
+        "label": "Jazz"
+      },
+      {
+        "id": "int_031_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_former_Disc_Jockey.jpg/400px-A_former_Disc_Jockey.jpg",
+        "label": "Hip-hop"
+      }
+    ]
+  },
+  {
+    "id": "int_032",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "musique",
+    "label": "Trouvez l'intrus parmi ces instruments :",
+    "answer": "Accordéon",
+    "acceptedAnswers": ["Accordéon", "accordéon", "Accordeon", "accordeon"],
+    "media": null,
+    "explanation": "L'accordéon utilise un soufflet, alors que les trois autres sont des instruments à cordes frottées jouées avec un archet.",
+    "tags": ["musique", "instruments"],
+    "baseTimer": 25,
+    "intruderId": "int_032_c",
+    "options": [
+      {
+        "id": "int_032_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Stradivarius_violin_in_Palacio_Real%2C_Madrid.jpg/400px-Stradivarius_violin_in_Palacio_Real%2C_Madrid.jpg",
+        "label": "Violon"
+      },
+      {
+        "id": "int_032_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/AGK_grossridge1.jpg/400px-AGK_grossridge1.jpg",
+        "label": "Violoncelle"
+      },
+      {
+        "id": "int_032_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/PiermariaMori_plays_a_Scandalli_accordion.jpg/400px-PiermariaMori_plays_a_Scandalli_accordion.jpg",
+        "label": "Accordéon"
+      },
+      {
+        "id": "int_032_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Viola_d%27amore.jpg/400px-Viola_d%27amore.jpg",
+        "label": "Alto"
+      }
+    ]
+  },
+  {
+    "id": "int_033",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "sport",
+    "label": "Trouvez l'intrus parmi ces sports :",
+    "answer": "Natation",
+    "acceptedAnswers": ["Natation", "natation"],
+    "media": null,
+    "explanation": "La natation est un sport aquatique, alors que les trois autres sont des sports de ballon collectifs.",
+    "tags": ["sport", "disciplines"],
+    "baseTimer": 25,
+    "intruderId": "int_033_d",
+    "options": [
+      {
+        "id": "int_033_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Football_in_Bloomington%2C_Indiana%2C_2014.jpg/400px-Football_in_Bloomington%2C_Indiana%2C_2014.jpg",
+        "label": "Football"
+      },
+      {
+        "id": "int_033_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Basketball_through_hoop.jpg/400px-Basketball_through_hoop.jpg",
+        "label": "Basketball"
+      },
+      {
+        "id": "int_033_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Handball_02.jpg/400px-Handball_02.jpg",
+        "label": "Handball"
+      },
+      {
+        "id": "int_033_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Swimming_in_Tbilisi.jpg/400px-Swimming_in_Tbilisi.jpg",
+        "label": "Natation"
+      }
+    ]
+  },
+  {
+    "id": "int_034",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "sport",
+    "label": "Trouvez l'intrus parmi ces sports :",
+    "answer": "Escrime",
+    "acceptedAnswers": ["Escrime", "escrime"],
+    "media": null,
+    "explanation": "L'escrime est un sport individuel de combat, alors que les trois autres sont des sports de raquette.",
+    "tags": ["sport", "disciplines"],
+    "baseTimer": 25,
+    "intruderId": "int_034_a",
+    "options": [
+      {
+        "id": "int_034_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Fencing_at_the_2012_Summer_Olympics_-_Erinn_Smart_3.jpg/400px-Fencing_at_the_2012_Summer_Olympics_-_Erinn_Smart_3.jpg",
+        "label": "Escrime"
+      },
+      {
+        "id": "int_034_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Tennis_Racket_and_Balls.jpg/400px-Tennis_Racket_and_Balls.jpg",
+        "label": "Tennis"
+      },
+      {
+        "id": "int_034_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Badminton_Peter_Gade.jpg/400px-Badminton_Peter_Gade.jpg",
+        "label": "Badminton"
+      },
+      {
+        "id": "int_034_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Table_tennis.jpg/400px-Table_tennis.jpg",
+        "label": "Ping-pong"
+      }
+    ]
+  },
+  {
+    "id": "int_035",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "sport",
+    "label": "Trouvez l'intrus parmi ces sports d'hiver :",
+    "answer": "Surf",
+    "acceptedAnswers": ["Surf", "surf"],
+    "media": null,
+    "explanation": "Le surf est un sport nautique d'été, alors que les trois autres sont des sports d'hiver pratiqués sur la neige ou la glace.",
+    "tags": ["sport", "disciplines"],
+    "baseTimer": 25,
+    "intruderId": "int_035_c",
+    "options": [
+      {
+        "id": "int_035_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ski_Famille_-_Family_Ski_%28Gourette%29.jpg/400px-Ski_Famille_-_Family_Ski_%28Gourette%29.jpg",
+        "label": "Ski"
+      },
+      {
+        "id": "int_035_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Ice_hockey_McGill_University_1884.jpg/400px-Ice_hockey_McGill_University_1884.jpg",
+        "label": "Hockey sur glace"
+      },
+      {
+        "id": "int_035_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Surfer_at_the_Cayucos_Pier%2C_Cayucos%2C_CA.jpg/400px-Surfer_at_the_Cayucos_Pier%2C_Cayucos%2C_CA.jpg",
+        "label": "Surf"
+      },
+      {
+        "id": "int_035_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Biathlon_Schalke.jpg/400px-Biathlon_Schalke.jpg",
+        "label": "Biathlon"
+      }
+    ]
+  },
+  {
+    "id": "int_036",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "sport",
+    "label": "Trouvez l'intrus parmi ces arts martiaux :",
+    "answer": "Boxe",
+    "acceptedAnswers": ["Boxe", "boxe"],
+    "media": null,
+    "explanation": "La boxe est un sport de combat occidental, alors que les trois autres sont des arts martiaux asiatiques.",
+    "tags": ["sport", "arts martiaux"],
+    "baseTimer": 25,
+    "intruderId": "int_036_b",
+    "options": [
+      {
+        "id": "int_036_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Judo_throw.jpg/400px-Judo_throw.jpg",
+        "label": "Judo"
+      },
+      {
+        "id": "int_036_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Boxing_at_the_2018_Summer_Youth_Olympics_–_Girls%27_flyweight_semifinal_1.jpg/400px-Boxing_at_the_2018_Summer_Youth_Olympics_–_Girls%27_flyweight_semifinal_1.jpg",
+        "label": "Boxe"
+      },
+      {
+        "id": "int_036_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Karate_WM_2014_361.jpg/400px-Karate_WM_2014_361.jpg",
+        "label": "Karaté"
+      },
+      {
+        "id": "int_036_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Taekwondo_Fight_01.jpg/400px-Taekwondo_Fight_01.jpg",
+        "label": "Taekwondo"
+      }
+    ]
+  },
+  {
+    "id": "int_037",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "sport",
+    "label": "Trouvez l'intrus parmi ces sports :",
+    "answer": "Golf",
+    "acceptedAnswers": ["Golf", "golf"],
+    "media": null,
+    "explanation": "Le golf est un sport individuel sans contact, alors que les trois autres sont des sports d'équipe avec contact physique.",
+    "tags": ["sport", "disciplines"],
+    "baseTimer": 25,
+    "intruderId": "int_037_d",
+    "options": [
+      {
+        "id": "int_037_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Rugby_union_scrummage.jpg/400px-Rugby_union_scrummage.jpg",
+        "label": "Rugby"
+      },
+      {
+        "id": "int_037_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Football_in_Bloomington%2C_Indiana%2C_2014.jpg/400px-Football_in_Bloomington%2C_Indiana%2C_2014.jpg",
+        "label": "Football"
+      },
+      {
+        "id": "int_037_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Handball_02.jpg/400px-Handball_02.jpg",
+        "label": "Handball"
+      },
+      {
+        "id": "int_037_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Golf_swing.jpg/400px-Golf_swing.jpg",
+        "label": "Golf"
+      }
+    ]
+  },
+  {
+    "id": "int_038",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "sciences",
+    "label": "Trouvez l'intrus parmi ces planètes :",
+    "answer": "Pluton",
+    "acceptedAnswers": ["Pluton", "pluton"],
+    "media": null,
+    "explanation": "Pluton n'est plus considérée comme une planète depuis 2006, c'est une planète naine.",
+    "tags": ["sciences", "astronomie"],
+    "baseTimer": 25,
+    "intruderId": "int_038_c",
+    "options": [
+      {
+        "id": "int_038_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Mars_-_August_2016.jpg/400px-Mars_-_August_2016.jpg",
+        "label": "Mars"
+      },
+      {
+        "id": "int_038_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Jupiter_by_Cassini-Huygens.jpg/400px-Jupiter_by_Cassini-Huygens.jpg",
+        "label": "Jupiter"
+      },
+      {
+        "id": "int_038_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Pluto_in_True_Color_-_High-Res.jpg/400px-Pluto_in_True_Color_-_High-Res.jpg",
+        "label": "Pluton"
+      },
+      {
+        "id": "int_038_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Saturn_from_Hubble.jpg/400px-Saturn_from_Hubble.jpg",
+        "label": "Saturne"
+      }
+    ]
+  },
+  {
+    "id": "int_039",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "sciences",
+    "label": "Trouvez l'intrus parmi ces éléments :",
+    "answer": "Bois",
+    "acceptedAnswers": ["Bois", "bois"],
+    "media": null,
+    "explanation": "Le bois est un matériau organique, alors que les trois autres sont des métaux.",
+    "tags": ["sciences", "matériaux"],
+    "baseTimer": 25,
+    "intruderId": "int_039_d",
+    "options": [
+      {
+        "id": "int_039_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Gold_-_image1.jpg/400px-Gold_-_image1.jpg",
+        "label": "Or"
+      },
+      {
+        "id": "int_039_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Argent_natif_%28Kongsberg%2C_Norvège%29.jpg/400px-Argent_natif_%28Kongsberg%2C_Norvège%29.jpg",
+        "label": "Argent"
+      },
+      {
+        "id": "int_039_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Copper_-_native.jpg/400px-Copper_-_native.jpg",
+        "label": "Cuivre"
+      },
+      {
+        "id": "int_039_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Wood_grain.jpg/400px-Wood_grain.jpg",
+        "label": "Bois"
+      }
+    ]
+  },
+  {
+    "id": "int_040",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "sciences",
+    "label": "Trouvez l'intrus parmi ces inventions :",
+    "answer": "Boussole",
+    "acceptedAnswers": ["Boussole", "boussole"],
+    "media": null,
+    "explanation": "La boussole a été inventée en Chine, alors que les trois autres sont des inventions européennes.",
+    "tags": ["sciences", "inventions"],
+    "baseTimer": 25,
+    "intruderId": "int_040_a",
+    "options": [
+      {
+        "id": "int_040_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Compass_align.jpg/400px-Compass_align.jpg",
+        "label": "Boussole"
+      },
+      {
+        "id": "int_040_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Above_Gotthardpass.jpg/400px-Above_Gotthardpass.jpg",
+        "label": "Machine à vapeur"
+      },
+      {
+        "id": "int_040_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Lightbulb.jpg/400px-Lightbulb.jpg",
+        "label": "Ampoule"
+      },
+      {
+        "id": "int_040_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Telefon_BW_2012-02-18_13-44-32.JPG/400px-Telefon_BW_2012-02-18_13-44-32.JPG",
+        "label": "Téléphone"
+      }
+    ]
+  },
+  {
+    "id": "int_041",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "gastronomie",
+    "label": "Trouvez l'intrus parmi ces viennoiseries :",
+    "answer": "Baguette",
+    "acceptedAnswers": ["Baguette", "baguette"],
+    "media": null,
+    "explanation": "La baguette est un pain, pas une viennoiserie. Les trois autres sont des viennoiseries sucrées.",
+    "tags": ["gastronomie", "boulangerie"],
+    "baseTimer": 25,
+    "intruderId": "int_041_b",
+    "options": [
+      {
+        "id": "int_041_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Croissant%2C_October_2010.jpg/400px-Croissant%2C_October_2010.jpg",
+        "label": "Croissant"
+      },
+      {
+        "id": "int_041_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Baguette_de_pain%2C_boulangerie.jpg/400px-Baguette_de_pain%2C_boulangerie.jpg",
+        "label": "Baguette"
+      },
+      {
+        "id": "int_041_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Pain_au_chocolat_Luc_Viatour.jpg/400px-Pain_au_chocolat_Luc_Viatour.jpg",
+        "label": "Pain au chocolat"
+      },
+      {
+        "id": "int_041_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Brioche.jpg/400px-Brioche.jpg",
+        "label": "Brioche"
+      }
+    ]
+  },
+  {
+    "id": "int_042",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "gastronomie",
+    "label": "Trouvez l'intrus parmi ces desserts :",
+    "answer": "Tiramisu",
+    "acceptedAnswers": ["Tiramisu", "tiramisu"],
+    "media": null,
+    "explanation": "Le tiramisu est un dessert italien, alors que les trois autres sont des desserts typiquement français.",
+    "tags": ["gastronomie", "desserts"],
+    "baseTimer": 25,
+    "intruderId": "int_042_c",
+    "options": [
+      {
+        "id": "int_042_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Crème_brûlée_Le_petit_zinc.jpg/400px-Crème_brûlée_Le_petit_zinc.jpg",
+        "label": "Crème brûlée"
+      },
+      {
+        "id": "int_042_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Mousse_au_chocolat.jpg/400px-Mousse_au_chocolat.jpg",
+        "label": "Mousse au chocolat"
+      },
+      {
+        "id": "int_042_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Tiramisu_with_blueberries_and_raspberries.jpg/400px-Tiramisu_with_blueberries_and_raspberries.jpg",
+        "label": "Tiramisu"
+      },
+      {
+        "id": "int_042_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tarte_Tatin.jpg/400px-Tarte_Tatin.jpg",
+        "label": "Tarte Tatin"
+      }
+    ]
+  },
+  {
+    "id": "int_043",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "gastronomie",
+    "label": "Trouvez l'intrus parmi ces épices :",
+    "answer": "Moutarde",
+    "acceptedAnswers": ["Moutarde", "moutarde"],
+    "media": null,
+    "explanation": "La moutarde est un condiment préparé, alors que les trois autres sont des épices en poudre ou en grains.",
+    "tags": ["gastronomie", "épices"],
+    "baseTimer": 25,
+    "intruderId": "int_043_d",
+    "options": [
+      {
+        "id": "int_043_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Curcuma_longa_roots.jpg/400px-Curcuma_longa_roots.jpg",
+        "label": "Curcuma"
+      },
+      {
+        "id": "int_043_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cinnamomum_verum_spices.jpg/400px-Cinnamomum_verum_spices.jpg",
+        "label": "Cannelle"
+      },
+      {
+        "id": "int_043_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Black_Pepper_%28Piper_nigrum%29.jpg/400px-Black_Pepper_%28Piper_nigrum%29.jpg",
+        "label": "Poivre"
+      },
+      {
+        "id": "int_043_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Moutarde_de_Dijon.jpg/400px-Moutarde_de_Dijon.jpg",
+        "label": "Moutarde"
+      }
+    ]
+  },
+  {
+    "id": "int_044",
+    "type": "intruder",
+    "difficulty": "medium",
+    "category": "gastronomie",
+    "label": "Trouvez l'intrus parmi ces boissons chaudes :",
+    "answer": "Limonade",
+    "acceptedAnswers": ["Limonade", "limonade"],
+    "media": null,
+    "explanation": "La limonade est une boisson froide et gazeuse, alors que les trois autres se boivent chaudes.",
+    "tags": ["gastronomie", "boissons"],
+    "baseTimer": 25,
+    "intruderId": "int_044_b",
+    "options": [
+      {
+        "id": "int_044_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/400px-A_small_cup_of_coffee.JPG",
+        "label": "Café"
+      },
+      {
+        "id": "int_044_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Lemonade_%2815370741082%29.jpg/400px-Lemonade_%2815370741082%29.jpg",
+        "label": "Limonade"
+      },
+      {
+        "id": "int_044_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Green_tea_3_appearances.jpg/400px-Green_tea_3_appearances.jpg",
+        "label": "Thé"
+      },
+      {
+        "id": "int_044_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Hot_chocolate.jpg/400px-Hot_chocolate.jpg",
+        "label": "Chocolat chaud"
+      }
+    ]
+  },
+  {
+    "id": "int_045",
+    "type": "intruder",
+    "difficulty": "hard",
+    "category": "sciences",
+    "label": "Trouvez l'intrus parmi ces scientifiques :",
+    "answer": "Mozart",
+    "acceptedAnswers": ["Mozart", "mozart"],
+    "media": null,
+    "explanation": "Mozart était un compositeur de musique, pas un scientifique comme les trois autres.",
+    "tags": ["sciences", "personnalités"],
+    "baseTimer": 30,
+    "intruderId": "int_045_d",
+    "options": [
+      {
+        "id": "int_045_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg/400px-Einstein_1921_by_F_Schmutzer_-_restoration.jpg",
+        "label": "Einstein"
+      },
+      {
+        "id": "int_045_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Galileo_Galilei01.jpg/400px-Galileo_Galilei01.jpg",
+        "label": "Galilée"
+      },
+      {
+        "id": "int_045_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Marie_Curie_c._1920s.jpg/400px-Marie_Curie_c._1920s.jpg",
+        "label": "Marie Curie"
+      },
+      {
+        "id": "int_045_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Wolfgang-amadeus-mozart_1.jpg/400px-Wolfgang-amadeus-mozart_1.jpg",
+        "label": "Mozart"
+      }
+    ]
+  },
+  {
+    "id": "int_046",
+    "type": "intruder",
+    "difficulty": "hard",
+    "category": "sciences",
+    "label": "Trouvez l'intrus parmi ces organes :",
+    "answer": "Biceps",
+    "acceptedAnswers": ["Biceps", "biceps"],
+    "media": null,
+    "explanation": "Le biceps est un muscle, pas un organe vital comme les trois autres.",
+    "tags": ["sciences", "anatomie"],
+    "baseTimer": 30,
+    "intruderId": "int_046_a",
+    "options": [
+      {
+        "id": "int_046_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Biceps_brachii_muscle06.png/400px-Biceps_brachii_muscle06.png",
+        "label": "Biceps"
+      },
+      {
+        "id": "int_046_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Diagram_of_the_human_heart.svg/400px-Diagram_of_the_human_heart.svg.png",
+        "label": "Cœur"
+      },
+      {
+        "id": "int_046_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Liver_1.jpg/400px-Liver_1.jpg",
+        "label": "Foie"
+      },
+      {
+        "id": "int_046_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Gray1224.png/400px-Gray1224.png",
+        "label": "Cerveau"
+      }
+    ]
+  },
+  {
+    "id": "int_047",
+    "type": "intruder",
+    "difficulty": "hard",
+    "category": "cinéma",
+    "label": "Trouvez l'intrus parmi ces films d'animation :",
+    "answer": "Titanic",
+    "acceptedAnswers": ["Titanic", "titanic"],
+    "media": null,
+    "explanation": "Titanic est un film en prises de vues réelles, alors que les trois autres sont des films d'animation.",
+    "tags": ["cinéma", "films"],
+    "baseTimer": 30,
+    "intruderId": "int_047_b",
+    "options": [
+      {
+        "id": "int_047_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Toy_Story_Midway_Mania%21.jpg/400px-Toy_Story_Midway_Mania%21.jpg",
+        "label": "Toy Story"
+      },
+      {
+        "id": "int_047_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/RMS_Titanic_3.jpg/400px-RMS_Titanic_3.jpg",
+        "label": "Titanic"
+      },
+      {
+        "id": "int_047_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Frozen_-_Uma_Aventura_Congelante.jpg/400px-Frozen_-_Uma_Aventura_Congelante.jpg",
+        "label": "La Reine des Neiges"
+      },
+      {
+        "id": "int_047_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Le_Roi_Lion_-_Comédie_musicale.jpg/400px-Le_Roi_Lion_-_Comédie_musicale.jpg",
+        "label": "Le Roi Lion"
+      }
+    ]
+  },
+  {
+    "id": "int_048",
+    "type": "intruder",
+    "difficulty": "hard",
+    "category": "cinéma",
+    "label": "Trouvez l'intrus parmi ces acteurs français :",
+    "answer": "Brad Pitt",
+    "acceptedAnswers": ["Brad Pitt", "brad pitt"],
+    "media": null,
+    "explanation": "Brad Pitt est un acteur américain, alors que les trois autres sont des acteurs français.",
+    "tags": ["cinéma", "acteurs"],
+    "baseTimer": 30,
+    "intruderId": "int_048_c",
+    "options": [
+      {
+        "id": "int_048_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Jean_Dujardin_Cabourg_2012.jpg/400px-Jean_Dujardin_Cabourg_2012.jpg",
+        "label": "Jean Dujardin"
+      },
+      {
+        "id": "int_048_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Omar_Sy_Cabourg_2012.jpg/400px-Omar_Sy_Cabourg_2012.jpg",
+        "label": "Omar Sy"
+      },
+      {
+        "id": "int_048_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Brad_Pitt_2019_by_Glenn_Francis.jpg/400px-Brad_Pitt_2019_by_Glenn_Francis.jpg",
+        "label": "Brad Pitt"
+      },
+      {
+        "id": "int_048_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Marion_Cotillard_%28July_2009%29_1.jpg/400px-Marion_Cotillard_%28July_2009%29_1.jpg",
+        "label": "Marion Cotillard"
+      }
+    ]
+  },
+  {
+    "id": "int_049",
+    "type": "intruder",
+    "difficulty": "hard",
+    "category": "cinéma",
+    "label": "Trouvez l'intrus parmi ces réalisateurs :",
+    "answer": "Picasso",
+    "acceptedAnswers": ["Picasso", "picasso"],
+    "media": null,
+    "explanation": "Picasso était un peintre, pas un réalisateur de cinéma comme les trois autres.",
+    "tags": ["cinéma", "réalisateurs"],
+    "baseTimer": 30,
+    "intruderId": "int_049_d",
+    "options": [
+      {
+        "id": "int_049_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Steven_Spielberg_Masterclass_Cinémathèque_Française.jpg/400px-Steven_Spielberg_Masterclass_Cinémathèque_Française.jpg",
+        "label": "Steven Spielberg"
+      },
+      {
+        "id": "int_049_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Christopher_Nolan_Cannes_2018.jpg/400px-Christopher_Nolan_Cannes_2018.jpg",
+        "label": "Christopher Nolan"
+      },
+      {
+        "id": "int_049_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Luc_Besson_Deauville_2014.jpg/400px-Luc_Besson_Deauville_2014.jpg",
+        "label": "Luc Besson"
+      },
+      {
+        "id": "int_049_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Pablo_picasso_1.jpg/400px-Pablo_picasso_1.jpg",
+        "label": "Picasso"
+      }
+    ]
+  },
+  {
+    "id": "int_050",
+    "type": "intruder",
+    "difficulty": "hard",
+    "category": "cinéma",
+    "label": "Trouvez l'intrus parmi ces sagas cinématographiques :",
+    "answer": "Game of Thrones",
+    "acceptedAnswers": ["Game of Thrones", "game of thrones", "GOT"],
+    "media": null,
+    "explanation": "Game of Thrones est une série télévisée, alors que les trois autres sont des sagas cinématographiques.",
+    "tags": ["cinéma", "sagas"],
+    "baseTimer": 30,
+    "intruderId": "int_050_a",
+    "options": [
+      {
+        "id": "int_050_a",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Game_of_Thrones_2011_logo.svg/400px-Game_of_Thrones_2011_logo.svg.png",
+        "label": "Game of Thrones"
+      },
+      {
+        "id": "int_050_b",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Harry_Potter_wordmark.svg/400px-Harry_Potter_wordmark.svg.png",
+        "label": "Harry Potter"
+      },
+      {
+        "id": "int_050_c",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/400px-Star_Wars_Logo.svg.png",
+        "label": "Star Wars"
+      },
+      {
+        "id": "int_050_d",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/The_Lord_of_the_Rings_Logo.png/400px-The_Lord_of_the_Rings_Logo.png",
+        "label": "Le Seigneur des Anneaux"
       }
     ]
   }

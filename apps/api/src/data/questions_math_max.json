@@ -5,48 +5,16 @@
     "difficulty": "easy",
     "category": "mathématiques",
     "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
-    "answer": "25",
-    "acceptedAnswers": ["25"],
+    "answer": "12",
+    "acceptedAnswers": ["12"],
     "media": null,
-    "explanation": "(3 + 2) × 5 = 25. Les parenthèses permettent d'additionner d'abord.",
+    "explanation": "3 × 4 = 12.",
     "tags": ["mathématiques", "calcul"],
     "baseTimer": 45,
     "tiles": [
-      {
-        "id": "t1",
-        "value": "3",
-        "tileType": "number"
-      },
-      {
-        "id": "t2",
-        "value": "5",
-        "tileType": "number"
-      },
-      {
-        "id": "t3",
-        "value": "2",
-        "tileType": "number"
-      },
-      {
-        "id": "t4",
-        "value": "+",
-        "tileType": "operator"
-      },
-      {
-        "id": "t5",
-        "value": "×",
-        "tileType": "operator"
-      },
-      {
-        "id": "t6",
-        "value": "(",
-        "tileType": "parenthesis"
-      },
-      {
-        "id": "t7",
-        "value": ")",
-        "tileType": "parenthesis"
-      }
+      { "id": "t1", "value": "3", "tileType": "number" },
+      { "id": "t2", "value": "4", "tileType": "number" },
+      { "id": "t3", "value": "×", "tileType": "operator" }
     ]
   },
   {
@@ -54,284 +22,111 @@
     "type": "mathMax",
     "difficulty": "easy",
     "category": "mathématiques",
-    "label": "Quel arrangement donne le résultat le plus grand ?",
-    "answer": "42",
-    "acceptedAnswers": ["42"],
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "13",
+    "acceptedAnswers": ["13"],
     "media": null,
-    "explanation": "6 × 7 + 0 = 42. Placer les grands nombres avec ×.",
+    "explanation": "6 + 7 = 13.",
     "tags": ["mathématiques", "calcul"],
-    "baseTimer": 40,
+    "baseTimer": 45,
     "tiles": [
-      {
-        "id": "t1",
-        "value": "6",
-        "tileType": "number"
-      },
-      {
-        "id": "t2",
-        "value": "7",
-        "tileType": "number"
-      },
-      {
-        "id": "t3",
-        "value": "0",
-        "tileType": "number"
-      },
-      {
-        "id": "t4",
-        "value": "+",
-        "tileType": "operator"
-      },
-      {
-        "id": "t5",
-        "value": "×",
-        "tileType": "operator"
-      }
+      { "id": "t1", "value": "6", "tileType": "number" },
+      { "id": "t2", "value": "7", "tileType": "number" },
+      { "id": "t3", "value": "+", "tileType": "operator" }
     ]
   },
   {
     "id": "math_max_003",
     "type": "mathMax",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "category": "mathématiques",
-    "label": "Maximisez le résultat avec ces tuiles et les parenthèses !",
-    "answer": "60",
-    "acceptedAnswers": ["60"],
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "45",
+    "acceptedAnswers": ["45"],
     "media": null,
-    "explanation": "(4 + 6) × 6 = 60 ou (6 + 4) × 6 = 60.",
+    "explanation": "5 × 9 = 45.",
     "tags": ["mathématiques", "calcul"],
-    "baseTimer": 50,
+    "baseTimer": 45,
     "tiles": [
-      {
-        "id": "t1",
-        "value": "4",
-        "tileType": "number"
-      },
-      {
-        "id": "t2",
-        "value": "6",
-        "tileType": "number"
-      },
-      {
-        "id": "t3",
-        "value": "6",
-        "tileType": "number"
-      },
-      {
-        "id": "t4",
-        "value": "+",
-        "tileType": "operator"
-      },
-      {
-        "id": "t5",
-        "value": "×",
-        "tileType": "operator"
-      },
-      {
-        "id": "t6",
-        "value": "(",
-        "tileType": "parenthesis"
-      },
-      {
-        "id": "t7",
-        "value": ")",
-        "tileType": "parenthesis"
-      }
+      { "id": "t1", "value": "5", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "×", "tileType": "operator" }
     ]
   },
   {
     "id": "math_max_004",
     "type": "mathMax",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "category": "mathématiques",
-    "label": "Trouvez l'arrangement optimal !",
-    "answer": "73",
-    "acceptedAnswers": ["72"],
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "56",
+    "acceptedAnswers": ["56"],
     "media": null,
-    "explanation": "9 × 8 + 1 = 73",
+    "explanation": "7 × 8 = 56.",
     "tags": ["mathématiques", "calcul"],
-    "baseTimer": 50,
+    "baseTimer": 45,
     "tiles": [
-      {
-        "id": "t1",
-        "value": "8",
-        "tileType": "number"
-      },
-      {
-        "id": "t2",
-        "value": "9",
-        "tileType": "number"
-      },
-      {
-        "id": "t3",
-        "value": "1",
-        "tileType": "number"
-      },
-      {
-        "id": "t4",
-        "value": "×",
-        "tileType": "operator"
-      },
-      {
-        "id": "t5",
-        "value": "+",
-        "tileType": "operator"
-      }
+      { "id": "t1", "value": "7", "tileType": "number" },
+      { "id": "t2", "value": "8", "tileType": "number" },
+      { "id": "t3", "value": "×", "tileType": "operator" }
     ]
   },
   {
     "id": "math_max_005",
     "type": "mathMax",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "category": "mathématiques",
-    "label": "Utilisez les parenthèses pour maximiser !",
-    "answer": "56",
-    "acceptedAnswers": ["56"],
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "17",
+    "acceptedAnswers": ["17"],
     "media": null,
-    "explanation": "(4 + 4) × 7 = 56. Sans parenthèses, 4 + 4 × 7 = 32.",
+    "explanation": "9 + 8 = 17.",
     "tags": ["mathématiques", "calcul"],
-    "baseTimer": 50,
+    "baseTimer": 45,
     "tiles": [
-      {
-        "id": "t1",
-        "value": "4",
-        "tileType": "number"
-      },
-      {
-        "id": "t2",
-        "value": "7",
-        "tileType": "number"
-      },
-      {
-        "id": "t3",
-        "value": "4",
-        "tileType": "number"
-      },
-      {
-        "id": "t4",
-        "value": "+",
-        "tileType": "operator"
-      },
-      {
-        "id": "t5",
-        "value": "×",
-        "tileType": "operator"
-      },
-      {
-        "id": "t6",
-        "value": "(",
-        "tileType": "parenthesis"
-      },
-      {
-        "id": "t7",
-        "value": ")",
-        "tileType": "parenthesis"
-      }
+      { "id": "t1", "value": "9", "tileType": "number" },
+      { "id": "t2", "value": "8", "tileType": "number" },
+      { "id": "t3", "value": "+", "tileType": "operator" }
     ]
   },
   {
     "id": "math_max_006",
     "type": "mathMax",
-    "difficulty": "hard",
+    "difficulty": "easy",
     "category": "mathématiques",
-    "label": "Défi extrême : utilisez les parenthèses stratégiquement !",
-    "answer": "135",
-    "acceptedAnswers": ["135"],
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "23",
+    "acceptedAnswers": ["23"],
     "media": null,
-    "explanation": "(5 + 4) × (9 + 6) = 135 ou 9 × (5 + 4 + 6) = 135.",
+    "explanation": "3 + 4 × 5 = 23. La multiplication est prioritaire.",
     "tags": ["mathématiques", "calcul"],
-    "baseTimer": 60,
+    "baseTimer": 45,
     "tiles": [
-      {
-        "id": "t1",
-        "value": "9",
-        "tileType": "number"
-      },
-      {
-        "id": "t2",
-        "value": "5",
-        "tileType": "number"
-      },
-      {
-        "id": "t3",
-        "value": "4",
-        "tileType": "number"
-      },
-      {
-        "id": "t4",
-        "value": "6",
-        "tileType": "number"
-      },
-      {
-        "id": "t5",
-        "value": "×",
-        "tileType": "operator"
-      },
-      {
-        "id": "t6",
-        "value": "+",
-        "tileType": "operator"
-      },
-      {
-        "id": "t7",
-        "value": "+",
-        "tileType": "operator"
-      },
-      {
-        "id": "t8",
-        "value": "(",
-        "tileType": "parenthesis"
-      },
-      {
-        "id": "t9",
-        "value": ")",
-        "tileType": "parenthesis"
-      }
+      { "id": "t1", "value": "4", "tileType": "number" },
+      { "id": "t2", "value": "5", "tileType": "number" },
+      { "id": "t3", "value": "3", "tileType": "number" },
+      { "id": "t4", "value": "+", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" }
     ]
   },
   {
     "id": "math_max_007",
     "type": "mathMax",
-    "difficulty": "hard",
+    "difficulty": "easy",
     "category": "mathématiques",
-    "label": "Organisez pour le score maximum !",
-    "answer": "100",
-    "acceptedAnswers": ["100"],
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "42",
+    "acceptedAnswers": ["42"],
     "media": null,
-    "explanation": "5 × 4 × 5 = 100. Tout multiplier est ici la meilleure stratégie.",
+    "explanation": "6 × 7 = 42. Le 0 n'ajoute rien : 6 × 7 + 0 = 42.",
     "tags": ["mathématiques", "calcul"],
-    "baseTimer": 60,
+    "baseTimer": 45,
     "tiles": [
-      {
-        "id": "t1",
-        "value": "5",
-        "tileType": "number"
-      },
-      {
-        "id": "t2",
-        "value": "4",
-        "tileType": "number"
-      },
-      {
-        "id": "t3",
-        "value": "5",
-        "tileType": "number"
-      },
-      {
-        "id": "t4",
-        "value": "×",
-        "tileType": "operator"
-      },
-      {
-        "id": "t5",
-        "value": "×",
-        "tileType": "operator"
-      },
-      {
-        "id": "t6",
-        "value": "+",
-        "tileType": "operator"
-      }
+      { "id": "t1", "value": "6", "tileType": "number" },
+      { "id": "t2", "value": "7", "tileType": "number" },
+      { "id": "t3", "value": "0", "tileType": "number" },
+      { "id": "t4", "value": "+", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" }
     ]
   },
   {
@@ -339,149 +134,907 @@
     "type": "mathMax",
     "difficulty": "easy",
     "category": "mathématiques",
-    "label": "Simple calcul : trouvez le maximum !",
-    "answer": "23",
-    "acceptedAnswers": ["20"],
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "27",
+    "acceptedAnswers": ["27"],
     "media": null,
-    "explanation": "3 + 4 × 5 = 23 (la multiplication est prioritaire)",
+    "explanation": "3 × 9 = 27.",
     "tags": ["mathématiques", "calcul"],
-    "baseTimer": 35,
+    "baseTimer": 45,
     "tiles": [
-      {
-        "id": "t1",
-        "value": "4",
-        "tileType": "number"
-      },
-      {
-        "id": "t2",
-        "value": "5",
-        "tileType": "number"
-      },
-      {
-        "id": "t3",
-        "value": "3",
-        "tileType": "number"
-      },
-      {
-        "id": "t4",
-        "value": "+",
-        "tileType": "operator"
-      },
-      {
-        "id": "t5",
-        "value": "×",
-        "tileType": "operator"
-      }
+      { "id": "t1", "value": "3", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "×", "tileType": "operator" }
     ]
   },
   {
     "id": "math_max_009",
     "type": "mathMax",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "category": "mathématiques",
-    "label": "Placez les tuiles astucieusement !",
-    "answer": "65",
-    "acceptedAnswers": ["63"],
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "29",
+    "acceptedAnswers": ["29"],
     "media": null,
-    "explanation": "9 × 7 + 2 = 65",
+    "explanation": "2 + 3 × 9 = 29. La multiplication est prioritaire.",
     "tags": ["mathématiques", "calcul"],
-    "baseTimer": 50,
+    "baseTimer": 45,
     "tiles": [
-      {
-        "id": "t1",
-        "value": "7",
-        "tileType": "number"
-      },
-      {
-        "id": "t2",
-        "value": "9",
-        "tileType": "number"
-      },
-      {
-        "id": "t3",
-        "value": "2",
-        "tileType": "number"
-      },
-      {
-        "id": "t4",
-        "value": "×",
-        "tileType": "operator"
-      },
-      {
-        "id": "t5",
-        "value": "+",
-        "tileType": "operator"
-      }
+      { "id": "t1", "value": "3", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "2", "tileType": "number" },
+      { "id": "t4", "value": "×", "tileType": "operator" },
+      { "id": "t5", "value": "+", "tileType": "operator" }
     ]
   },
   {
     "id": "math_max_010",
     "type": "mathMax",
+    "difficulty": "easy",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "54",
+    "acceptedAnswers": ["54"],
+    "media": null,
+    "explanation": "6 × 9 = 54.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "6", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "×", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_011",
+    "type": "mathMax",
+    "difficulty": "easy",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "48",
+    "acceptedAnswers": ["48"],
+    "media": null,
+    "explanation": "6 × 8 = 48.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "6", "tileType": "number" },
+      { "id": "t2", "value": "8", "tileType": "number" },
+      { "id": "t3", "value": "×", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_012",
+    "type": "mathMax",
+    "difficulty": "easy",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "38",
+    "acceptedAnswers": ["38"],
+    "media": null,
+    "explanation": "2 + 4 × 9 = 2 + 36 = 38. La multiplication est prioritaire.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "4", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "2", "tileType": "number" },
+      { "id": "t4", "value": "×", "tileType": "operator" },
+      { "id": "t5", "value": "+", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_013",
+    "type": "mathMax",
+    "difficulty": "easy",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "72",
+    "acceptedAnswers": ["72"],
+    "media": null,
+    "explanation": "8 × 9 = 72.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "8", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "×", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_014",
+    "type": "mathMax",
+    "difficulty": "easy",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "37",
+    "acceptedAnswers": ["37"],
+    "media": null,
+    "explanation": "2 + 5 × 7 = 2 + 35 = 37. La multiplication est prioritaire.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "2", "tileType": "number" },
+      { "id": "t2", "value": "7", "tileType": "number" },
+      { "id": "t3", "value": "5", "tileType": "number" },
+      { "id": "t4", "value": "×", "tileType": "operator" },
+      { "id": "t5", "value": "+", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_015",
+    "type": "mathMax",
+    "difficulty": "easy",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "35",
+    "acceptedAnswers": ["35"],
+    "media": null,
+    "explanation": "5 × 7 = 35.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "5", "tileType": "number" },
+      { "id": "t2", "value": "7", "tileType": "number" },
+      { "id": "t3", "value": "×", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_016",
+    "type": "mathMax",
+    "difficulty": "easy",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "15",
+    "acceptedAnswers": ["15"],
+    "media": null,
+    "explanation": "3 × 5 = 15.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "3", "tileType": "number" },
+      { "id": "t2", "value": "5", "tileType": "number" },
+      { "id": "t3", "value": "×", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_017",
+    "type": "mathMax",
+    "difficulty": "easy",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "46",
+    "acceptedAnswers": ["46"],
+    "media": null,
+    "explanation": "1 + 5 × 9 = 1 + 45 = 46.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "5", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "1", "tileType": "number" },
+      { "id": "t4", "value": "×", "tileType": "operator" },
+      { "id": "t5", "value": "+", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_018",
+    "type": "mathMax",
+    "difficulty": "easy",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "11",
+    "acceptedAnswers": ["11"],
+    "media": null,
+    "explanation": "4 + 7 = 11 ou 7 + 4 = 11.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "4", "tileType": "number" },
+      { "id": "t2", "value": "7", "tileType": "number" },
+      { "id": "t3", "value": "+", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_019",
+    "type": "mathMax",
+    "difficulty": "easy",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "63",
+    "acceptedAnswers": ["63"],
+    "media": null,
+    "explanation": "7 × 9 = 63.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "7", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "×", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_020",
+    "type": "mathMax",
+    "difficulty": "easy",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "58",
+    "acceptedAnswers": ["58"],
+    "media": null,
+    "explanation": "2 + 7 × 8 = 2 + 56 = 58.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "7", "tileType": "number" },
+      { "id": "t2", "value": "8", "tileType": "number" },
+      { "id": "t3", "value": "2", "tileType": "number" },
+      { "id": "t4", "value": "×", "tileType": "operator" },
+      { "id": "t5", "value": "+", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_021",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "60",
+    "acceptedAnswers": ["60"],
+    "media": null,
+    "explanation": "(4 + 6) × 6 = 10 × 6 = 60. Les parenthèses permettent de maximiser.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "4", "tileType": "number" },
+      { "id": "t2", "value": "6", "tileType": "number" },
+      { "id": "t3", "value": "6", "tileType": "number" },
+      { "id": "t4", "value": "+", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "(", "tileType": "parenthesis" },
+      { "id": "t7", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_022",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "73",
+    "acceptedAnswers": ["73"],
+    "media": null,
+    "explanation": "9 × 8 + 1 = 72 + 1 = 73.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "8", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "1", "tileType": "number" },
+      { "id": "t4", "value": "×", "tileType": "operator" },
+      { "id": "t5", "value": "+", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_023",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "56",
+    "acceptedAnswers": ["56"],
+    "media": null,
+    "explanation": "(4 + 4) × 7 = 8 × 7 = 56. Sans parenthèses, 4 × 7 + 4 = 32.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "4", "tileType": "number" },
+      { "id": "t2", "value": "7", "tileType": "number" },
+      { "id": "t3", "value": "4", "tileType": "number" },
+      { "id": "t4", "value": "+", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "(", "tileType": "parenthesis" },
+      { "id": "t7", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_024",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "65",
+    "acceptedAnswers": ["65"],
+    "media": null,
+    "explanation": "9 × 7 + 2 = 63 + 2 = 65.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "7", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "2", "tileType": "number" },
+      { "id": "t4", "value": "×", "tileType": "operator" },
+      { "id": "t5", "value": "+", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_025",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "88",
+    "acceptedAnswers": ["88"],
+    "media": null,
+    "explanation": "(3 + 8) × 8 = 11 × 8 = 88.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "3", "tileType": "number" },
+      { "id": "t2", "value": "8", "tileType": "number" },
+      { "id": "t3", "value": "8", "tileType": "number" },
+      { "id": "t4", "value": "+", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "(", "tileType": "parenthesis" },
+      { "id": "t7", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_026",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "150",
+    "acceptedAnswers": ["150"],
+    "media": null,
+    "explanation": "10 × 15 = 150. Ou 15 × 10 = 150.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "10", "tileType": "number" },
+      { "id": "t2", "value": "15", "tileType": "number" },
+      { "id": "t3", "value": "×", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_027",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "99",
+    "acceptedAnswers": ["99"],
+    "media": null,
+    "explanation": "(2 + 9) × 9 = 11 × 9 = 99.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "2", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "9", "tileType": "number" },
+      { "id": "t4", "value": "+", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "(", "tileType": "parenthesis" },
+      { "id": "t7", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_028",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "90",
+    "acceptedAnswers": ["90"],
+    "media": null,
+    "explanation": "(5 + 4) × 10 = 9 × 10 = 90.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "5", "tileType": "number" },
+      { "id": "t2", "value": "4", "tileType": "number" },
+      { "id": "t3", "value": "10", "tileType": "number" },
+      { "id": "t4", "value": "+", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "(", "tileType": "parenthesis" },
+      { "id": "t7", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_029",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "108",
+    "acceptedAnswers": ["108"],
+    "media": null,
+    "explanation": "12 × 9 = 108.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "12", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "×", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_030",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "77",
+    "acceptedAnswers": ["77"],
+    "media": null,
+    "explanation": "(4 + 7) × 7 = 11 × 7 = 77.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "4", "tileType": "number" },
+      { "id": "t2", "value": "7", "tileType": "number" },
+      { "id": "t3", "value": "7", "tileType": "number" },
+      { "id": "t4", "value": "+", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "(", "tileType": "parenthesis" },
+      { "id": "t7", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_031",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "78",
+    "acceptedAnswers": ["78"],
+    "media": null,
+    "explanation": "(7 + 6) × 6 = 13 × 6 = 78.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "7", "tileType": "number" },
+      { "id": "t2", "value": "6", "tileType": "number" },
+      { "id": "t3", "value": "6", "tileType": "number" },
+      { "id": "t4", "value": "+", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "(", "tileType": "parenthesis" },
+      { "id": "t7", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_032",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "100",
+    "acceptedAnswers": ["100"],
+    "media": null,
+    "explanation": "5 × 4 × 5 = 100. Tout multiplier est la meilleure stratégie.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "5", "tileType": "number" },
+      { "id": "t2", "value": "4", "tileType": "number" },
+      { "id": "t3", "value": "5", "tileType": "number" },
+      { "id": "t4", "value": "×", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_033",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "84",
+    "acceptedAnswers": ["84"],
+    "media": null,
+    "explanation": "(5 + 7) × 7 = 12 × 7 = 84.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "5", "tileType": "number" },
+      { "id": "t2", "value": "7", "tileType": "number" },
+      { "id": "t3", "value": "7", "tileType": "number" },
+      { "id": "t4", "value": "+", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "(", "tileType": "parenthesis" },
+      { "id": "t7", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_034",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "135",
+    "acceptedAnswers": ["135"],
+    "media": null,
+    "explanation": "15 × 9 = 135.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "15", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "×", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_035",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "70",
+    "acceptedAnswers": ["70"],
+    "media": null,
+    "explanation": "(3 + 7) × 7 = 10 × 7 = 70.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "3", "tileType": "number" },
+      { "id": "t2", "value": "7", "tileType": "number" },
+      { "id": "t3", "value": "7", "tileType": "number" },
+      { "id": "t4", "value": "+", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "(", "tileType": "parenthesis" },
+      { "id": "t7", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_036",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "162",
+    "acceptedAnswers": ["162"],
+    "media": null,
+    "explanation": "2 × 9 × 9 = 162. Tout multiplier donne le maximum.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "2", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "9", "tileType": "number" },
+      { "id": "t4", "value": "×", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_037",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "120",
+    "acceptedAnswers": ["120"],
+    "media": null,
+    "explanation": "(2 + 10) × 10 = 12 × 10 = 120.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "2", "tileType": "number" },
+      { "id": "t2", "value": "10", "tileType": "number" },
+      { "id": "t3", "value": "10", "tileType": "number" },
+      { "id": "t4", "value": "+", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "(", "tileType": "parenthesis" },
+      { "id": "t7", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_038",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "96",
+    "acceptedAnswers": ["96"],
+    "media": null,
+    "explanation": "(4 + 8) × 8 = 12 × 8 = 96.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "4", "tileType": "number" },
+      { "id": "t2", "value": "8", "tileType": "number" },
+      { "id": "t3", "value": "8", "tileType": "number" },
+      { "id": "t4", "value": "+", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "(", "tileType": "parenthesis" },
+      { "id": "t7", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_039",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "117",
+    "acceptedAnswers": ["117"],
+    "media": null,
+    "explanation": "(4 + 9) × 9 = 13 × 9 = 117.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "4", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "9", "tileType": "number" },
+      { "id": "t4", "value": "+", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "(", "tileType": "parenthesis" },
+      { "id": "t7", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_040",
+    "type": "mathMax",
+    "difficulty": "medium",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "180",
+    "acceptedAnswers": ["180"],
+    "media": null,
+    "explanation": "12 × 15 = 180.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "12", "tileType": "number" },
+      { "id": "t2", "value": "15", "tileType": "number" },
+      { "id": "t3", "value": "×", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_041",
+    "type": "mathMax",
     "difficulty": "hard",
     "category": "mathématiques",
-    "label": "Double parenthèses : trouvez le maximum !",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "135",
+    "acceptedAnswers": ["135"],
+    "media": null,
+    "explanation": "9 × (5 + 4 + 6) = 9 × 15 = 135. Ou (5 + 4) × (9 + 6) = 9 × 15 = 135.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "9", "tileType": "number" },
+      { "id": "t2", "value": "5", "tileType": "number" },
+      { "id": "t3", "value": "4", "tileType": "number" },
+      { "id": "t4", "value": "6", "tileType": "number" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "+", "tileType": "operator" },
+      { "id": "t7", "value": "+", "tileType": "operator" },
+      { "id": "t8", "value": "(", "tileType": "parenthesis" },
+      { "id": "t9", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_042",
+    "type": "mathMax",
+    "difficulty": "hard",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
     "answer": "143",
     "acceptedAnswers": ["143"],
     "media": null,
     "explanation": "(8 + 3) × (7 + 6) = 11 × 13 = 143.",
     "tags": ["mathématiques", "calcul"],
-    "baseTimer": 60,
+    "baseTimer": 45,
     "tiles": [
-      {
-        "id": "t1",
-        "value": "8",
-        "tileType": "number"
-      },
-      {
-        "id": "t2",
-        "value": "7",
-        "tileType": "number"
-      },
-      {
-        "id": "t3",
-        "value": "3",
-        "tileType": "number"
-      },
-      {
-        "id": "t4",
-        "value": "6",
-        "tileType": "number"
-      },
-      {
-        "id": "t5",
-        "value": "×",
-        "tileType": "operator"
-      },
-      {
-        "id": "t6",
-        "value": "+",
-        "tileType": "operator"
-      },
-      {
-        "id": "t7",
-        "value": "+",
-        "tileType": "operator"
-      },
-      {
-        "id": "t8",
-        "value": "(",
-        "tileType": "parenthesis"
-      },
-      {
-        "id": "t9",
-        "value": ")",
-        "tileType": "parenthesis"
-      },
-      {
-        "id": "t10",
-        "value": "(",
-        "tileType": "parenthesis"
-      },
-      {
-        "id": "t11",
-        "value": ")",
-        "tileType": "parenthesis"
-      }
+      { "id": "t1", "value": "8", "tileType": "number" },
+      { "id": "t2", "value": "7", "tileType": "number" },
+      { "id": "t3", "value": "3", "tileType": "number" },
+      { "id": "t4", "value": "6", "tileType": "number" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "+", "tileType": "operator" },
+      { "id": "t7", "value": "+", "tileType": "operator" },
+      { "id": "t8", "value": "(", "tileType": "parenthesis" },
+      { "id": "t9", "value": ")", "tileType": "parenthesis" },
+      { "id": "t10", "value": "(", "tileType": "parenthesis" },
+      { "id": "t11", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_043",
+    "type": "mathMax",
+    "difficulty": "hard",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "156",
+    "acceptedAnswers": ["156"],
+    "media": null,
+    "explanation": "(9 + 3) × (8 + 5) = 12 × 13 = 156.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "9", "tileType": "number" },
+      { "id": "t2", "value": "8", "tileType": "number" },
+      { "id": "t3", "value": "3", "tileType": "number" },
+      { "id": "t4", "value": "5", "tileType": "number" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "+", "tileType": "operator" },
+      { "id": "t7", "value": "+", "tileType": "operator" },
+      { "id": "t8", "value": "(", "tileType": "parenthesis" },
+      { "id": "t9", "value": ")", "tileType": "parenthesis" },
+      { "id": "t10", "value": "(", "tileType": "parenthesis" },
+      { "id": "t11", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_044",
+    "type": "mathMax",
+    "difficulty": "hard",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "196",
+    "acceptedAnswers": ["196"],
+    "media": null,
+    "explanation": "(7 + 7) × (6 + 8) = 14 × 14 = 196.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "7", "tileType": "number" },
+      { "id": "t2", "value": "7", "tileType": "number" },
+      { "id": "t3", "value": "6", "tileType": "number" },
+      { "id": "t4", "value": "8", "tileType": "number" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "+", "tileType": "operator" },
+      { "id": "t7", "value": "+", "tileType": "operator" },
+      { "id": "t8", "value": "(", "tileType": "parenthesis" },
+      { "id": "t9", "value": ")", "tileType": "parenthesis" },
+      { "id": "t10", "value": "(", "tileType": "parenthesis" },
+      { "id": "t11", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_045",
+    "type": "mathMax",
+    "difficulty": "hard",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "216",
+    "acceptedAnswers": ["216"],
+    "media": null,
+    "explanation": "6 × 6 × 6 = 216. Tout multiplier est optimal ici.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "6", "tileType": "number" },
+      { "id": "t2", "value": "6", "tileType": "number" },
+      { "id": "t3", "value": "6", "tileType": "number" },
+      { "id": "t4", "value": "×", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "+", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_046",
+    "type": "mathMax",
+    "difficulty": "hard",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "182",
+    "acceptedAnswers": ["182"],
+    "media": null,
+    "explanation": "(5 + 9) × (4 + 9) = 14 × 13 = 182.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "9", "tileType": "number" },
+      { "id": "t2", "value": "5", "tileType": "number" },
+      { "id": "t3", "value": "4", "tileType": "number" },
+      { "id": "t4", "value": "9", "tileType": "number" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "+", "tileType": "operator" },
+      { "id": "t7", "value": "+", "tileType": "operator" },
+      { "id": "t8", "value": "(", "tileType": "parenthesis" },
+      { "id": "t9", "value": ")", "tileType": "parenthesis" },
+      { "id": "t10", "value": "(", "tileType": "parenthesis" },
+      { "id": "t11", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_047",
+    "type": "mathMax",
+    "difficulty": "hard",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "240",
+    "acceptedAnswers": ["240"],
+    "media": null,
+    "explanation": "(7 + 8) × (6 + 10) = 15 × 16 = 240.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "7", "tileType": "number" },
+      { "id": "t2", "value": "8", "tileType": "number" },
+      { "id": "t3", "value": "6", "tileType": "number" },
+      { "id": "t4", "value": "10", "tileType": "number" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "+", "tileType": "operator" },
+      { "id": "t7", "value": "+", "tileType": "operator" },
+      { "id": "t8", "value": "(", "tileType": "parenthesis" },
+      { "id": "t9", "value": ")", "tileType": "parenthesis" },
+      { "id": "t10", "value": "(", "tileType": "parenthesis" },
+      { "id": "t11", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_048",
+    "type": "mathMax",
+    "difficulty": "hard",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "504",
+    "acceptedAnswers": ["504"],
+    "media": null,
+    "explanation": "7 × 8 × 9 = 504. Multiplier les trois nombres donne le maximum.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "7", "tileType": "number" },
+      { "id": "t2", "value": "8", "tileType": "number" },
+      { "id": "t3", "value": "9", "tileType": "number" },
+      { "id": "t4", "value": "×", "tileType": "operator" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "+", "tileType": "operator" }
+    ]
+  },
+  {
+    "id": "math_max_049",
+    "type": "mathMax",
+    "difficulty": "hard",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "169",
+    "acceptedAnswers": ["169"],
+    "media": null,
+    "explanation": "(6 + 7) × (4 + 9) = 13 × 13 = 169.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "6", "tileType": "number" },
+      { "id": "t2", "value": "7", "tileType": "number" },
+      { "id": "t3", "value": "4", "tileType": "number" },
+      { "id": "t4", "value": "9", "tileType": "number" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "+", "tileType": "operator" },
+      { "id": "t7", "value": "+", "tileType": "operator" },
+      { "id": "t8", "value": "(", "tileType": "parenthesis" },
+      { "id": "t9", "value": ")", "tileType": "parenthesis" },
+      { "id": "t10", "value": "(", "tileType": "parenthesis" },
+      { "id": "t11", "value": ")", "tileType": "parenthesis" }
+    ]
+  },
+  {
+    "id": "math_max_050",
+    "type": "mathMax",
+    "difficulty": "hard",
+    "category": "mathématiques",
+    "label": "Arrangez ces tuiles pour obtenir le plus grand résultat !",
+    "answer": "225",
+    "acceptedAnswers": ["225"],
+    "media": null,
+    "explanation": "(6 + 9) × (7 + 8) = 15 × 15 = 225.",
+    "tags": ["mathématiques", "calcul"],
+    "baseTimer": 45,
+    "tiles": [
+      { "id": "t1", "value": "6", "tileType": "number" },
+      { "id": "t2", "value": "9", "tileType": "number" },
+      { "id": "t3", "value": "7", "tileType": "number" },
+      { "id": "t4", "value": "8", "tileType": "number" },
+      { "id": "t5", "value": "×", "tileType": "operator" },
+      { "id": "t6", "value": "+", "tileType": "operator" },
+      { "id": "t7", "value": "+", "tileType": "operator" },
+      { "id": "t8", "value": "(", "tileType": "parenthesis" },
+      { "id": "t9", "value": ")", "tileType": "parenthesis" },
+      { "id": "t10", "value": "(", "tileType": "parenthesis" },
+      { "id": "t11", "value": ")", "tileType": "parenthesis" }
     ]
   }
 ]

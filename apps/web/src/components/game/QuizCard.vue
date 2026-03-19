@@ -29,6 +29,10 @@
     isFlash?: boolean;
     isMalusActive?: boolean;
     malusFromName?: string;
+    isFreezeActive?: boolean;
+    freezeFromName?: string;
+    isSpeedActive?: boolean;
+    speedFromName?: string;
     disabled?: boolean;
   }
 
@@ -38,6 +42,10 @@
     isFlash: false,
     isMalusActive: false,
     malusFromName: '',
+    isFreezeActive: false,
+    freezeFromName: '',
+    isSpeedActive: false,
+    speedFromName: '',
     disabled: false,
   });
 
@@ -107,6 +115,8 @@
     :class="{
       'quiz-card--flash': isFlash,
       'quiz-card--malus': isMalusActive,
+      'quiz-card--freeze': isFreezeActive,
+      'quiz-card--speed': isSpeedActive,
     }"
   >
     <!-- Accent line -->
@@ -120,6 +130,23 @@
       <div v-if="isMalusActive" class="quiz-card__malus-banner">
         <span class="quiz-card__malus-icon">🌫️</span>
         <span class="quiz-card__malus-text">{{ malusFromName }} vous a brouillé !</span>
+      </div>
+    </Transition>
+
+    <!-- Freeze banner + overlay -->
+    <Transition name="malus">
+      <div v-if="isFreezeActive" class="quiz-card__freeze-banner">
+        <span class="quiz-card__malus-icon">❄️</span>
+        <span class="quiz-card__freeze-text">{{ freezeFromName }} vous a gelé !</span>
+      </div>
+    </Transition>
+    <div v-if="isFreezeActive" class="quiz-card__freeze-overlay" />
+
+    <!-- Speed banner -->
+    <Transition name="malus">
+      <div v-if="isSpeedActive" class="quiz-card__speed-banner">
+        <span class="quiz-card__malus-icon">⚡</span>
+        <span class="quiz-card__speed-text">{{ speedFromName }} a accéléré votre timer !</span>
       </div>
     </Transition>
 
@@ -258,6 +285,74 @@
   /* Malus */
   .quiz-card--malus {
     border-color: rgba(239, 107, 107, 0.25);
+  }
+
+  /* Freeze */
+  .quiz-card--freeze {
+    border-color: rgba(96, 165, 250, 0.35);
+    box-shadow:
+      var(--shadow-md),
+      0 0 30px rgba(96, 165, 250, 0.1);
+  }
+
+  .quiz-card__freeze-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    background: rgba(96, 165, 250, 0.1);
+    border: 1px solid rgba(96, 165, 250, 0.25);
+    border-radius: var(--radius-md);
+    animation: malus-shake 0.4s ease;
+  }
+  .quiz-card__freeze-text {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: #60a5fa;
+  }
+
+  .quiz-card__freeze-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(96, 165, 250, 0.08);
+    backdrop-filter: blur(1px);
+    border-radius: var(--radius-xl);
+    z-index: 10;
+    pointer-events: all;
+    animation: freeze-pulse 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes freeze-pulse {
+    from {
+      background: rgba(96, 165, 250, 0.06);
+    }
+    to {
+      background: rgba(96, 165, 250, 0.12);
+    }
+  }
+
+  /* Speed */
+  .quiz-card--speed {
+    border-color: rgba(251, 191, 36, 0.35);
+    box-shadow:
+      var(--shadow-md),
+      0 0 30px rgba(251, 191, 36, 0.1);
+  }
+
+  .quiz-card__speed-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid rgba(251, 191, 36, 0.25);
+    border-radius: var(--radius-md);
+    animation: malus-shake 0.4s ease;
+  }
+  .quiz-card__speed-text {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: #fbbf24;
   }
 
   .quiz-card__malus-banner {

@@ -65,6 +65,7 @@ export class RoomsService {
       isHost: true,
       answers: [],
       powerUpsLeft: POWERUPS_PER_GAME,
+      doubleNextAnswer: false,
     };
 
     const room: Room = {
@@ -112,6 +113,7 @@ export class RoomsService {
       isHost: false,
       answers: [],
       powerUpsLeft: POWERUPS_PER_GAME,
+      doubleNextAnswer: false,
     };
 
     room.players.set(playerId, player);
@@ -166,6 +168,7 @@ export class RoomsService {
       player.answers = [];
       player.status = 'answering';
       player.powerUpsLeft = POWERUPS_PER_GAME;
+      player.doubleNextAnswer = false;
     }
   }
 

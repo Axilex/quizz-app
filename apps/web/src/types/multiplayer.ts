@@ -43,7 +43,13 @@ export interface QuestionReviewData {
 
 export type ReviewViewMode = 'podium' | 'review';
 
-export type PowerUpType = 'malus_blur' | 'bonus_fifty50';
+export type PowerUpType =
+  | 'malus_blur'
+  | 'malus_freeze'
+  | 'malus_speed'
+  | 'bonus_fifty50'
+  | 'bonus_double'
+  | 'bonus_time';
 
 export type MultiplayerEvent =
   | { type: 'player:joined'; player: Player }
@@ -92,7 +98,11 @@ export type MultiplayerEvent =
   | { type: 'game:reviewUpdated'; review: QuestionReviewData[]; scores: Record<string, unknown> }
   | { type: 'review:navigated'; view: ReviewViewMode; questionIdx: number }
   | { type: 'game:malus'; fromPlayerName: string; duration: number }
+  | { type: 'game:freeze'; fromPlayerName: string; duration: number }
+  | { type: 'game:speed'; fromPlayerName: string; duration: number; multiplier: number }
   | { type: 'game:bonus5050'; removeOptionIds: string[]; powerUpsLeft: number }
+  | { type: 'game:bonusDouble'; powerUpsLeft: number }
+  | { type: 'game:bonusTime'; extraSeconds: number; powerUpsLeft: number }
   | {
       type: 'game:powerupUsed';
       powerUpType: PowerUpType;

@@ -12,22 +12,10 @@
     "baseTimer": 15,
     "media": null,
     "options": [
-      {
-        "id": "a",
-        "label": "DreamWorks"
-      },
-      {
-        "id": "b",
-        "label": "Pixar"
-      },
-      {
-        "id": "c",
-        "label": "Illumination"
-      },
-      {
-        "id": "d",
-        "label": "Blue Sky"
-      }
+      { "id": "a", "label": "DreamWorks" },
+      { "id": "b", "label": "Pixar" },
+      { "id": "c", "label": "Illumination" },
+      { "id": "d", "label": "Blue Sky" }
     ]
   },
   {
@@ -38,27 +26,15 @@
     "label": "Quel est le plus grand océan du monde ?",
     "answer": "Océan Pacifique",
     "acceptedAnswers": ["Océan Pacifique", "Pacifique"],
-    "explanation": "L'Océan Pacifique couvre 165 millions de km², plus de 46% de la surface océanique.",
+    "explanation": "L'océan Pacifique couvre environ 165 millions de km², soit plus de 46 % de la surface océanique totale.",
     "tags": ["géographie", "océans"],
     "baseTimer": 15,
     "media": null,
     "options": [
-      {
-        "id": "a",
-        "label": "Océan Atlantique"
-      },
-      {
-        "id": "b",
-        "label": "Océan Pacifique"
-      },
-      {
-        "id": "c",
-        "label": "Océan Indien"
-      },
-      {
-        "id": "d",
-        "label": "Océan Arctique"
-      }
+      { "id": "a", "label": "Océan Atlantique" },
+      { "id": "b", "label": "Océan Pacifique" },
+      { "id": "c", "label": "Océan Indien" },
+      { "id": "d", "label": "Océan Arctique" }
     ]
   },
   {
@@ -69,89 +45,908 @@
     "label": "En quelle année la Bastille a-t-elle été prise ?",
     "answer": "1789",
     "acceptedAnswers": ["1789"],
-    "explanation": "La prise de la Bastille le 14 juillet 1789 marque le début de la Révolution française.",
+    "explanation": "La prise de la Bastille le 14 juillet 1789 marque le début symbolique de la Révolution française.",
     "tags": ["histoire", "france"],
     "baseTimer": 25,
     "media": null,
     "options": [
-      {
-        "id": "a",
-        "label": "1776"
-      },
-      {
-        "id": "b",
-        "label": "1789"
-      },
-      {
-        "id": "c",
-        "label": "1804"
-      },
-      {
-        "id": "d",
-        "label": "1815"
-      }
+      { "id": "a", "label": "1776" },
+      { "id": "b", "label": "1812" },
+      { "id": "c", "label": "1789" },
+      { "id": "d", "label": "1804" }
     ]
   },
   {
     "id": "qcm_004",
     "type": "qcm",
-    "difficulty": "hard",
+    "difficulty": "easy",
     "category": "sciences",
-    "label": "Quel élément chimique a le numéro atomique 79 ?",
-    "answer": "Or",
-    "acceptedAnswers": ["Or", "or", "Or (Au)"],
-    "explanation": "L'or (Au) a le numéro atomique 79. C'est un métal précieux très convoité.",
-    "tags": ["sciences", "chimie"],
-    "baseTimer": 35,
+    "label": "Quelle planète est surnommée la « planète rouge » ?",
+    "answer": "Mars",
+    "acceptedAnswers": ["Mars"],
+    "explanation": "Mars doit sa couleur rouge à l'oxyde de fer présent en abondance à sa surface.",
+    "tags": ["sciences", "astronomie"],
+    "baseTimer": 15,
     "media": null,
     "options": [
-      {
-        "id": "a",
-        "label": "Argent (Ag)"
-      },
-      {
-        "id": "b",
-        "label": "Or (Au)"
-      },
-      {
-        "id": "c",
-        "label": "Cuivre (Cu)"
-      },
-      {
-        "id": "d",
-        "label": "Plomb (Pb)"
-      }
+      { "id": "a", "label": "Vénus" },
+      { "id": "b", "label": "Jupiter" },
+      { "id": "c", "label": "Mars" },
+      { "id": "d", "label": "Saturne" }
     ]
   },
   {
     "id": "qcm_005",
     "type": "qcm",
+    "difficulty": "easy",
+    "category": "musique",
+    "label": "Quel groupe a chanté « Bohemian Rhapsody » ?",
+    "answer": "Queen",
+    "acceptedAnswers": ["Queen"],
+    "explanation": "Bohemian Rhapsody est une chanson emblématique du groupe Queen, sortie en 1975 sur l'album A Night at the Opera.",
+    "tags": ["musique", "rock"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "The Beatles" },
+      { "id": "b", "label": "Queen" },
+      { "id": "c", "label": "Led Zeppelin" },
+      { "id": "d", "label": "Pink Floyd" }
+    ]
+  },
+  {
+    "id": "qcm_006",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "sport",
+    "label": "Dans quel sport utilise-t-on un volant ?",
+    "answer": "Badminton",
+    "acceptedAnswers": ["Badminton"],
+    "explanation": "Le badminton se joue avec un volant (ou shuttlecock) composé de plumes ou de plastique.",
+    "tags": ["sport", "badminton"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Tennis" },
+      { "id": "b", "label": "Squash" },
+      { "id": "c", "label": "Badminton" },
+      { "id": "d", "label": "Ping-pong" }
+    ]
+  },
+  {
+    "id": "qcm_007",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "gastronomie",
+    "label": "Quel fromage français est originaire de Normandie et a une croûte fleurie blanche ?",
+    "answer": "Camembert",
+    "acceptedAnswers": ["Camembert"],
+    "explanation": "Le camembert de Normandie est un fromage à pâte molle et croûte fleurie, créé à la fin du XVIIIe siècle.",
+    "tags": ["gastronomie", "fromage"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Roquefort" },
+      { "id": "b", "label": "Comté" },
+      { "id": "c", "label": "Camembert" },
+      { "id": "d", "label": "Reblochon" }
+    ]
+  },
+  {
+    "id": "qcm_008",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "littérature",
+    "label": "Qui a écrit « Les Misérables » ?",
+    "answer": "Victor Hugo",
+    "acceptedAnswers": ["Victor Hugo"],
+    "explanation": "Victor Hugo a publié Les Misérables en 1862, un roman majeur de la littérature française.",
+    "tags": ["littérature", "classique"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Victor Hugo" },
+      { "id": "b", "label": "Émile Zola" },
+      { "id": "c", "label": "Gustave Flaubert" },
+      { "id": "d", "label": "Alexandre Dumas" }
+    ]
+  },
+  {
+    "id": "qcm_009",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quelle est la capitale de l'Australie ?",
+    "answer": "Canberra",
+    "acceptedAnswers": ["Canberra"],
+    "explanation": "Canberra est la capitale de l'Australie depuis 1913, choisie comme compromis entre Sydney et Melbourne.",
+    "tags": ["géographie", "capitales"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Sydney" },
+      { "id": "b", "label": "Melbourne" },
+      { "id": "c", "label": "Canberra" },
+      { "id": "d", "label": "Brisbane" }
+    ]
+  },
+  {
+    "id": "qcm_010",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "sciences",
+    "label": "Quel gaz les plantes absorbent-elles lors de la photosynthèse ?",
+    "answer": "Dioxyde de carbone",
+    "acceptedAnswers": ["Dioxyde de carbone", "CO2"],
+    "explanation": "Lors de la photosynthèse, les plantes absorbent le CO₂ et libèrent de l'oxygène.",
+    "tags": ["sciences", "biologie"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Oxygène" },
+      { "id": "b", "label": "Dioxyde de carbone" },
+      { "id": "c", "label": "Azote" },
+      { "id": "d", "label": "Hydrogène" }
+    ]
+  },
+  {
+    "id": "qcm_011",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "cinéma",
+    "label": "Quel acteur incarne Jack Sparrow dans « Pirates des Caraïbes » ?",
+    "answer": "Johnny Depp",
+    "acceptedAnswers": ["Johnny Depp"],
+    "explanation": "Johnny Depp interprète le capitaine Jack Sparrow depuis le premier film de la saga en 2003.",
+    "tags": ["cinéma", "acteurs"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Orlando Bloom" },
+      { "id": "b", "label": "Johnny Depp" },
+      { "id": "c", "label": "Brad Pitt" },
+      { "id": "d", "label": "Robert Downey Jr." }
+    ]
+  },
+  {
+    "id": "qcm_012",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "jeux vidéo",
+    "label": "Dans quel jeu vidéo incarne-t-on un plombier nommé Mario ?",
+    "answer": "Super Mario Bros.",
+    "acceptedAnswers": ["Super Mario Bros.", "Super Mario Bros"],
+    "explanation": "Super Mario Bros., sorti en 1985 sur NES, est le jeu qui a popularisé le personnage de Mario dans le monde entier.",
+    "tags": ["jeux vidéo", "nintendo"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Sonic the Hedgehog" },
+      { "id": "b", "label": "Donkey Kong" },
+      { "id": "c", "label": "Super Mario Bros." },
+      { "id": "d", "label": "Pac-Man" }
+    ]
+  },
+  {
+    "id": "qcm_013",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "technologie",
+    "label": "Quelle entreprise a créé l'iPhone ?",
+    "answer": "Apple",
+    "acceptedAnswers": ["Apple"],
+    "explanation": "Apple a lancé le premier iPhone en 2007 sous la direction de Steve Jobs.",
+    "tags": ["technologie", "smartphones"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Samsung" },
+      { "id": "b", "label": "Apple" },
+      { "id": "c", "label": "Google" },
+      { "id": "d", "label": "Microsoft" }
+    ]
+  },
+  {
+    "id": "qcm_014",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "art",
+    "label": "Qui a peint « La Joconde » ?",
+    "answer": "Léonard de Vinci",
+    "acceptedAnswers": ["Léonard de Vinci", "Leonard de Vinci"],
+    "explanation": "La Joconde a été peinte par Léonard de Vinci entre 1503 et 1519. Elle est exposée au musée du Louvre.",
+    "tags": ["art", "peinture"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Michel-Ange" },
+      { "id": "b", "label": "Raphaël" },
+      { "id": "c", "label": "Léonard de Vinci" },
+      { "id": "d", "label": "Botticelli" }
+    ]
+  },
+  {
+    "id": "qcm_015",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "sport",
+    "label": "Combien de joueurs composent une équipe de football sur le terrain ?",
+    "answer": "11",
+    "acceptedAnswers": ["11"],
+    "explanation": "Une équipe de football est composée de 11 joueurs sur le terrain, gardien de but inclus.",
+    "tags": ["sport", "football"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "9" },
+      { "id": "b", "label": "10" },
+      { "id": "c", "label": "11" },
+      { "id": "d", "label": "12" }
+    ]
+  },
+  {
+    "id": "qcm_016",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "histoire",
+    "label": "Quel pharaon est associé au masque funéraire en or découvert en 1922 ?",
+    "answer": "Toutânkhamon",
+    "acceptedAnswers": ["Toutânkhamon", "Toutankhamon"],
+    "explanation": "Le masque funéraire de Toutânkhamon a été découvert par Howard Carter dans la Vallée des Rois en 1922.",
+    "tags": ["histoire", "égypte"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Ramsès II" },
+      { "id": "b", "label": "Toutânkhamon" },
+      { "id": "c", "label": "Cléopâtre" },
+      { "id": "d", "label": "Khéops" }
+    ]
+  },
+  {
+    "id": "qcm_017",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "musique",
+    "label": "Quel instrument Beethoven jouait-il principalement ?",
+    "answer": "Piano",
+    "acceptedAnswers": ["Piano"],
+    "explanation": "Ludwig van Beethoven était avant tout un pianiste virtuose et compositeur, même après être devenu sourd.",
+    "tags": ["musique", "classique"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Violon" },
+      { "id": "b", "label": "Piano" },
+      { "id": "c", "label": "Flûte" },
+      { "id": "d", "label": "Orgue" }
+    ]
+  },
+  {
+    "id": "qcm_018",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "géographie",
+    "label": "Quel est le plus long fleuve de France ?",
+    "answer": "La Loire",
+    "acceptedAnswers": ["La Loire", "Loire"],
+    "explanation": "La Loire mesure environ 1 012 km, ce qui en fait le plus long fleuve entièrement français.",
+    "tags": ["géographie", "france"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "La Seine" },
+      { "id": "b", "label": "Le Rhône" },
+      { "id": "c", "label": "La Garonne" },
+      { "id": "d", "label": "La Loire" }
+    ]
+  },
+  {
+    "id": "qcm_019",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "sciences",
+    "label": "Quel est le symbole chimique de l'or ?",
+    "answer": "Au",
+    "acceptedAnswers": ["Au"],
+    "explanation": "Le symbole chimique de l'or est Au, du latin « aurum ».",
+    "tags": ["sciences", "chimie"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Or" },
+      { "id": "b", "label": "Au" },
+      { "id": "c", "label": "Ag" },
+      { "id": "d", "label": "Fe" }
+    ]
+  },
+  {
+    "id": "qcm_020",
+    "type": "qcm",
+    "difficulty": "easy",
+    "category": "cinéma",
+    "label": "Quel film d'animation met en scène un poisson-clown nommé Nemo ?",
+    "answer": "Le Monde de Nemo",
+    "acceptedAnswers": ["Le Monde de Nemo"],
+    "explanation": "Le Monde de Nemo (Finding Nemo) est un film Pixar sorti en 2003.",
+    "tags": ["cinéma", "animation"],
+    "baseTimer": 15,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Le Monde de Nemo" },
+      { "id": "b", "label": "L'Âge de glace" },
+      { "id": "c", "label": "Shrek" },
+      { "id": "d", "label": "Madagascar" }
+    ]
+  },
+  {
+    "id": "qcm_021",
+    "type": "qcm",
     "difficulty": "medium",
-    "category": "sports",
-    "label": "Combien de fois Serena Williams a-t-elle remporté l'Open d'Australie ?",
-    "answer": "7",
-    "acceptedAnswers": ["7"],
-    "explanation": "Serena Williams a remporté l'Open d'Australie 7 fois (2003, 2005, 2007, 2009, 2010, 2015, 2016).",
-    "tags": ["sports", "tennis"],
+    "category": "histoire",
+    "label": "Quel traité a mis fin à la Première Guerre mondiale ?",
+    "answer": "Le traité de Versailles",
+    "acceptedAnswers": ["Le traité de Versailles", "Traité de Versailles"],
+    "explanation": "Le traité de Versailles, signé le 28 juin 1919, a officiellement mis fin à la Première Guerre mondiale.",
+    "tags": ["histoire", "guerre"],
     "baseTimer": 25,
     "media": null,
     "options": [
-      {
-        "id": "a",
-        "label": "5"
-      },
-      {
-        "id": "b",
-        "label": "6"
-      },
-      {
-        "id": "c",
-        "label": "7"
-      },
-      {
-        "id": "d",
-        "label": "8"
-      }
+      { "id": "a", "label": "Le traité de Versailles" },
+      { "id": "b", "label": "Le traité de Westphalie" },
+      { "id": "c", "label": "Le traité de Paris" },
+      { "id": "d", "label": "Le traité de Vienne" }
+    ]
+  },
+  {
+    "id": "qcm_022",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "sciences",
+    "label": "Combien d'os le corps humain adulte possède-t-il environ ?",
+    "answer": "206",
+    "acceptedAnswers": ["206"],
+    "explanation": "Le squelette humain adulte est composé de 206 os. Les bébés naissent avec environ 270 os qui fusionnent en grandissant.",
+    "tags": ["sciences", "anatomie"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "186" },
+      { "id": "b", "label": "206" },
+      { "id": "c", "label": "256" },
+      { "id": "d", "label": "312" }
+    ]
+  },
+  {
+    "id": "qcm_023",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Quel est le plus petit pays du monde en superficie ?",
+    "answer": "Le Vatican",
+    "acceptedAnswers": ["Le Vatican", "Vatican", "Cité du Vatican"],
+    "explanation": "Le Vatican, avec ses 0,44 km², est le plus petit État indépendant au monde.",
+    "tags": ["géographie", "pays"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Monaco" },
+      { "id": "b", "label": "Le Vatican" },
+      { "id": "c", "label": "Saint-Marin" },
+      { "id": "d", "label": "Le Liechtenstein" }
+    ]
+  },
+  {
+    "id": "qcm_024",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "musique",
+    "label": "Quel chanteur français est surnommé « l'Aznavour de la chanson française » et a chanté « La Bohème » ?",
+    "answer": "Charles Aznavour",
+    "acceptedAnswers": ["Charles Aznavour", "Aznavour"],
+    "explanation": "Charles Aznavour a interprété « La Bohème » en 1965, l'un de ses plus grands succès.",
+    "tags": ["musique", "chanson française"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Jacques Brel" },
+      { "id": "b", "label": "Charles Aznavour" },
+      { "id": "c", "label": "Georges Brassens" },
+      { "id": "d", "label": "Serge Gainsbourg" }
+    ]
+  },
+  {
+    "id": "qcm_025",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "littérature",
+    "label": "Quel auteur a écrit « Le Petit Prince » ?",
+    "answer": "Antoine de Saint-Exupéry",
+    "acceptedAnswers": ["Antoine de Saint-Exupéry", "Saint-Exupéry"],
+    "explanation": "Antoine de Saint-Exupéry a publié Le Petit Prince en 1943 à New York. C'est le livre français le plus traduit au monde.",
+    "tags": ["littérature", "classique"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Albert Camus" },
+      { "id": "b", "label": "Antoine de Saint-Exupéry" },
+      { "id": "c", "label": "Marcel Proust" },
+      { "id": "d", "label": "Jules Verne" }
+    ]
+  },
+  {
+    "id": "qcm_026",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "cinéma",
+    "label": "Quel réalisateur a dirigé « Inception » et « Interstellar » ?",
+    "answer": "Christopher Nolan",
+    "acceptedAnswers": ["Christopher Nolan", "Nolan"],
+    "explanation": "Christopher Nolan est le réalisateur d'Inception (2010) et d'Interstellar (2014), connus pour leurs scénarios complexes.",
+    "tags": ["cinéma", "réalisateurs"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Steven Spielberg" },
+      { "id": "b", "label": "Denis Villeneuve" },
+      { "id": "c", "label": "Christopher Nolan" },
+      { "id": "d", "label": "Ridley Scott" }
+    ]
+  },
+  {
+    "id": "qcm_027",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "sport",
+    "label": "Quel pays a remporté la Coupe du monde de football en 2018 ?",
+    "answer": "La France",
+    "acceptedAnswers": ["La France", "France"],
+    "explanation": "La France a remporté la Coupe du monde 2018 en Russie en battant la Croatie 4-2 en finale.",
+    "tags": ["sport", "football"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Le Brésil" },
+      { "id": "b", "label": "La Croatie" },
+      { "id": "c", "label": "La France" },
+      { "id": "d", "label": "L'Allemagne" }
+    ]
+  },
+  {
+    "id": "qcm_028",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "jeux vidéo",
+    "label": "Dans quel jeu vidéo explore-t-on un monde ouvert appelé Hyrule ?",
+    "answer": "The Legend of Zelda",
+    "acceptedAnswers": ["The Legend of Zelda", "Zelda"],
+    "explanation": "Hyrule est le royaume principal de la série The Legend of Zelda de Nintendo, apparaissant depuis le premier épisode en 1986.",
+    "tags": ["jeux vidéo", "nintendo"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Final Fantasy" },
+      { "id": "b", "label": "The Legend of Zelda" },
+      { "id": "c", "label": "Dark Souls" },
+      { "id": "d", "label": "The Elder Scrolls" }
+    ]
+  },
+  {
+    "id": "qcm_029",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "gastronomie",
+    "label": "Quel plat traditionnel espagnol est à base de riz, safran et fruits de mer ?",
+    "answer": "La paella",
+    "acceptedAnswers": ["La paella", "Paella"],
+    "explanation": "La paella est originaire de la région de Valence en Espagne. La version aux fruits de mer est l'une des plus populaires.",
+    "tags": ["gastronomie", "espagne"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Le risotto" },
+      { "id": "b", "label": "La paella" },
+      { "id": "c", "label": "Le couscous" },
+      { "id": "d", "label": "Le tajine" }
+    ]
+  },
+  {
+    "id": "qcm_030",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "technologie",
+    "label": "Quel langage de programmation a été créé par Guido van Rossum en 1991 ?",
+    "answer": "Python",
+    "acceptedAnswers": ["Python"],
+    "explanation": "Python a été conçu par Guido van Rossum et publié pour la première fois en 1991. Son nom vient des Monty Python.",
+    "tags": ["technologie", "programmation"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Java" },
+      { "id": "b", "label": "Python" },
+      { "id": "c", "label": "Ruby" },
+      { "id": "d", "label": "C++" }
+    ]
+  },
+  {
+    "id": "qcm_031",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "art",
+    "label": "Quel mouvement artistique est associé à Claude Monet et ses nymphéas ?",
+    "answer": "L'impressionnisme",
+    "acceptedAnswers": ["L'impressionnisme", "Impressionnisme"],
+    "explanation": "Claude Monet est l'un des fondateurs de l'impressionnisme. Le nom du mouvement vient de son tableau « Impression, soleil levant » (1872).",
+    "tags": ["art", "peinture"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Le cubisme" },
+      { "id": "b", "label": "L'impressionnisme" },
+      { "id": "c", "label": "Le surréalisme" },
+      { "id": "d", "label": "Le romantisme" }
+    ]
+  },
+  {
+    "id": "qcm_032",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "histoire",
+    "label": "Quel empereur français a été exilé sur l'île de Sainte-Hélène ?",
+    "answer": "Napoléon Bonaparte",
+    "acceptedAnswers": ["Napoléon Bonaparte", "Napoléon", "Napoleon"],
+    "explanation": "Napoléon Bonaparte a été exilé à Sainte-Hélène après sa défaite à Waterloo en 1815, où il est mort en 1821.",
+    "tags": ["histoire", "france"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Louis XIV" },
+      { "id": "b", "label": "Charlemagne" },
+      { "id": "c", "label": "Napoléon Bonaparte" },
+      { "id": "d", "label": "Charles de Gaulle" }
+    ]
+  },
+  {
+    "id": "qcm_033",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "sciences",
+    "label": "Quelle est la vitesse de la lumière dans le vide (approximativement) ?",
+    "answer": "300 000 km/s",
+    "acceptedAnswers": ["300 000 km/s", "300000 km/s"],
+    "explanation": "La vitesse de la lumière dans le vide est d'environ 299 792 km/s, souvent arrondie à 300 000 km/s.",
+    "tags": ["sciences", "physique"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "150 000 km/s" },
+      { "id": "b", "label": "300 000 km/s" },
+      { "id": "c", "label": "500 000 km/s" },
+      { "id": "d", "label": "1 000 000 km/s" }
+    ]
+  },
+  {
+    "id": "qcm_034",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "géographie",
+    "label": "Quel fleuve traverse Paris ?",
+    "answer": "La Seine",
+    "acceptedAnswers": ["La Seine", "Seine"],
+    "explanation": "La Seine traverse Paris d'est en ouest sur environ 13 km, divisant la ville en rive droite et rive gauche.",
+    "tags": ["géographie", "france"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "La Loire" },
+      { "id": "b", "label": "Le Rhône" },
+      { "id": "c", "label": "La Seine" },
+      { "id": "d", "label": "La Garonne" }
+    ]
+  },
+  {
+    "id": "qcm_035",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "cinéma",
+    "label": "Quel film a remporté la Palme d'Or à Cannes en 2019 ?",
+    "answer": "Parasite",
+    "acceptedAnswers": ["Parasite"],
+    "explanation": "Parasite de Bong Joon-ho a remporté la Palme d'Or en 2019, puis l'Oscar du meilleur film en 2020, une première pour un film non anglophone.",
+    "tags": ["cinéma", "festival"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Parasite" },
+      { "id": "b", "label": "Once Upon a Time in Hollywood" },
+      { "id": "c", "label": "Joker" },
+      { "id": "d", "label": "1917" }
+    ]
+  },
+  {
+    "id": "qcm_036",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "musique",
+    "label": "Quel compositeur autrichien a composé « Les Quatre Saisons » ?",
+    "answer": "Antonio Vivaldi",
+    "acceptedAnswers": ["Antonio Vivaldi", "Vivaldi"],
+    "explanation": "Antonio Vivaldi, compositeur italien (et non autrichien), a composé Les Quatre Saisons vers 1723. C'est l'une des œuvres baroques les plus célèbres.",
+    "tags": ["musique", "classique"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Wolfgang Amadeus Mozart" },
+      { "id": "b", "label": "Johann Sebastian Bach" },
+      { "id": "c", "label": "Antonio Vivaldi" },
+      { "id": "d", "label": "Ludwig van Beethoven" }
+    ]
+  },
+  {
+    "id": "qcm_037",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "sport",
+    "label": "Quel nageur américain détient le record de médailles d'or olympiques ?",
+    "answer": "Michael Phelps",
+    "acceptedAnswers": ["Michael Phelps", "Phelps"],
+    "explanation": "Michael Phelps a remporté 23 médailles d'or olympiques entre 2004 et 2016, un record absolu.",
+    "tags": ["sport", "natation"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Michael Phelps" },
+      { "id": "b", "label": "Mark Spitz" },
+      { "id": "c", "label": "Ian Thorpe" },
+      { "id": "d", "label": "Ryan Lochte" }
+    ]
+  },
+  {
+    "id": "qcm_038",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "littérature",
+    "label": "Quel roman commence par « Longtemps, je me suis couché de bonne heure » ?",
+    "answer": "Du côté de chez Swann",
+    "acceptedAnswers": ["Du côté de chez Swann", "À la recherche du temps perdu"],
+    "explanation": "C'est l'incipit de « Du côté de chez Swann », premier tome d'« À la recherche du temps perdu » de Marcel Proust (1913).",
+    "tags": ["littérature", "classique"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Madame Bovary" },
+      { "id": "b", "label": "Du côté de chez Swann" },
+      { "id": "c", "label": "L'Étranger" },
+      { "id": "d", "label": "Le Rouge et le Noir" }
+    ]
+  },
+  {
+    "id": "qcm_039",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "technologie",
+    "label": "En quelle année Facebook (maintenant Meta) a-t-il été lancé ?",
+    "answer": "2004",
+    "acceptedAnswers": ["2004"],
+    "explanation": "Facebook a été lancé le 4 février 2004 par Mark Zuckerberg depuis sa chambre à l'université Harvard.",
+    "tags": ["technologie", "réseaux sociaux"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "2002" },
+      { "id": "b", "label": "2004" },
+      { "id": "c", "label": "2006" },
+      { "id": "d", "label": "2008" }
+    ]
+  },
+  {
+    "id": "qcm_040",
+    "type": "qcm",
+    "difficulty": "medium",
+    "category": "gastronomie",
+    "label": "Quel est l'ingrédient principal du guacamole ?",
+    "answer": "L'avocat",
+    "acceptedAnswers": ["L'avocat", "Avocat"],
+    "explanation": "Le guacamole est une sauce mexicaine à base d'avocat écrasé, agrémenté de citron vert, coriandre et piment.",
+    "tags": ["gastronomie", "mexique"],
+    "baseTimer": 25,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "La tomate" },
+      { "id": "b", "label": "Le poivron" },
+      { "id": "c", "label": "L'avocat" },
+      { "id": "d", "label": "Le concombre" }
+    ]
+  },
+  {
+    "id": "qcm_041",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "histoire",
+    "label": "En quelle année le mur de Berlin est-il tombé ?",
+    "answer": "1989",
+    "acceptedAnswers": ["1989"],
+    "explanation": "Le mur de Berlin est tombé le 9 novembre 1989, marquant la fin symbolique de la Guerre froide.",
+    "tags": ["histoire", "guerre froide"],
+    "baseTimer": 35,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "1987" },
+      { "id": "b", "label": "1989" },
+      { "id": "c", "label": "1991" },
+      { "id": "d", "label": "1993" }
+    ]
+  },
+  {
+    "id": "qcm_042",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "sciences",
+    "label": "Quel élément chimique a le numéro atomique 79 ?",
+    "answer": "L'or",
+    "acceptedAnswers": ["L'or", "Or", "Au"],
+    "explanation": "L'or (Au) possède le numéro atomique 79. C'est un métal noble utilisé depuis l'Antiquité.",
+    "tags": ["sciences", "chimie"],
+    "baseTimer": 35,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "L'argent" },
+      { "id": "b", "label": "Le platine" },
+      { "id": "c", "label": "L'or" },
+      { "id": "d", "label": "Le cuivre" }
+    ]
+  },
+  {
+    "id": "qcm_043",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "géographie",
+    "label": "Quel est le point culminant de l'Afrique ?",
+    "answer": "Le Kilimandjaro",
+    "acceptedAnswers": ["Le Kilimandjaro", "Kilimandjaro", "Mont Kilimandjaro"],
+    "explanation": "Le Kilimandjaro, situé en Tanzanie, culmine à 5 895 mètres. C'est un volcan endormi.",
+    "tags": ["géographie", "montagnes"],
+    "baseTimer": 35,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Le mont Kenya" },
+      { "id": "b", "label": "Le Kilimandjaro" },
+      { "id": "c", "label": "Le mont Elbrouz" },
+      { "id": "d", "label": "Le Ruwenzori" }
+    ]
+  },
+  {
+    "id": "qcm_044",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "art",
+    "label": "Quel peintre espagnol a cofondé le mouvement cubiste avec Georges Braque ?",
+    "answer": "Pablo Picasso",
+    "acceptedAnswers": ["Pablo Picasso", "Picasso"],
+    "explanation": "Pablo Picasso et Georges Braque ont développé le cubisme à partir de 1907, révolutionnant la représentation artistique.",
+    "tags": ["art", "peinture"],
+    "baseTimer": 35,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Salvador Dalí" },
+      { "id": "b", "label": "Pablo Picasso" },
+      { "id": "c", "label": "Joan Miró" },
+      { "id": "d", "label": "Juan Gris" }
+    ]
+  },
+  {
+    "id": "qcm_045",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "jeux vidéo",
+    "label": "Quel jeu vidéo sorti en 2011 est célèbre pour sa phrase « I used to be an adventurer like you, then I took an arrow in the knee » ?",
+    "answer": "The Elder Scrolls V: Skyrim",
+    "acceptedAnswers": ["The Elder Scrolls V: Skyrim", "Skyrim"],
+    "explanation": "Cette réplique culte est prononcée par les gardes de Skyrim (Bethesda, 2011) et est devenue un mème Internet majeur.",
+    "tags": ["jeux vidéo", "rpg"],
+    "baseTimer": 35,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "The Witcher 3" },
+      { "id": "b", "label": "The Elder Scrolls V: Skyrim" },
+      { "id": "c", "label": "Dragon Age: Origins" },
+      { "id": "d", "label": "Dark Souls" }
+    ]
+  },
+  {
+    "id": "qcm_046",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "littérature",
+    "label": "Quel écrivain français a reçu le prix Nobel de littérature en 1957 ?",
+    "answer": "Albert Camus",
+    "acceptedAnswers": ["Albert Camus", "Camus"],
+    "explanation": "Albert Camus a reçu le prix Nobel de littérature en 1957 à 44 ans, pour l'ensemble de son œuvre incluant L'Étranger et La Peste.",
+    "tags": ["littérature", "prix nobel"],
+    "baseTimer": 35,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Jean-Paul Sartre" },
+      { "id": "b", "label": "André Gide" },
+      { "id": "c", "label": "Albert Camus" },
+      { "id": "d", "label": "François Mauriac" }
+    ]
+  },
+  {
+    "id": "qcm_047",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "musique",
+    "label": "Quel album de Pink Floyd est resté le plus longtemps dans les classements musicaux mondiaux ?",
+    "answer": "The Dark Side of the Moon",
+    "acceptedAnswers": ["The Dark Side of the Moon"],
+    "explanation": "The Dark Side of the Moon (1973) est resté 937 semaines dans le Billboard 200, un record absolu dans l'histoire de la musique.",
+    "tags": ["musique", "rock"],
+    "baseTimer": 35,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "The Wall" },
+      { "id": "b", "label": "The Dark Side of the Moon" },
+      { "id": "c", "label": "Wish You Were Here" },
+      { "id": "d", "label": "Animals" }
+    ]
+  },
+  {
+    "id": "qcm_048",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "sport",
+    "label": "Quel boxeur est surnommé « The Greatest » et a remporté trois fois le titre mondial des poids lourds ?",
+    "answer": "Mohamed Ali",
+    "acceptedAnswers": ["Mohamed Ali", "Muhammad Ali"],
+    "explanation": "Mohamed Ali (né Cassius Clay) a remporté le titre mondial des poids lourds en 1964, 1974 et 1978.",
+    "tags": ["sport", "boxe"],
+    "baseTimer": 35,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Mike Tyson" },
+      { "id": "b", "label": "Mohamed Ali" },
+      { "id": "c", "label": "Joe Frazier" },
+      { "id": "d", "label": "George Foreman" }
+    ]
+  },
+  {
+    "id": "qcm_049",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "sciences",
+    "label": "Quel physicien a formulé le principe d'incertitude en mécanique quantique ?",
+    "answer": "Werner Heisenberg",
+    "acceptedAnswers": ["Werner Heisenberg", "Heisenberg"],
+    "explanation": "Werner Heisenberg a formulé le principe d'incertitude en 1927, stipulant qu'on ne peut connaître simultanément la position et la vitesse d'une particule.",
+    "tags": ["sciences", "physique"],
+    "baseTimer": 35,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Niels Bohr" },
+      { "id": "b", "label": "Werner Heisenberg" },
+      { "id": "c", "label": "Erwin Schrödinger" },
+      { "id": "d", "label": "Max Planck" }
+    ]
+  },
+  {
+    "id": "qcm_050",
+    "type": "qcm",
+    "difficulty": "hard",
+    "category": "cinéma",
+    "label": "Quel film de Stanley Kubrick sorti en 1968 est considéré comme un chef-d'œuvre de la science-fiction ?",
+    "answer": "2001, l'Odyssée de l'espace",
+    "acceptedAnswers": ["2001, l'Odyssée de l'espace", "2001 l'Odyssée de l'espace"],
+    "explanation": "2001, l'Odyssée de l'espace (2001: A Space Odyssey) est sorti en 1968 et reste une référence absolue du cinéma de science-fiction.",
+    "tags": ["cinéma", "science-fiction"],
+    "baseTimer": 35,
+    "media": null,
+    "options": [
+      { "id": "a", "label": "Blade Runner" },
+      { "id": "b", "label": "Solaris" },
+      { "id": "c", "label": "2001, l'Odyssée de l'espace" },
+      { "id": "d", "label": "Alien" }
     ]
   }
 ]

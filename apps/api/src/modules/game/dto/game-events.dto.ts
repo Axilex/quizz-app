@@ -94,9 +94,12 @@ export class SubmitAnswerDto {
  * Use Power-Up DTO
  */
 export class UsePowerUpDto {
-  @IsEnum(['malus_blur', 'bonus_fifty50'], {
-    message: 'Type de power-up invalide',
-  })
+  @IsEnum(
+    ['malus_blur', 'malus_freeze', 'malus_speed', 'bonus_fifty50', 'bonus_double', 'bonus_time'],
+    {
+      message: 'Type de power-up invalide',
+    },
+  )
   type!: PowerUpType;
 
   @IsOptional()

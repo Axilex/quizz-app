@@ -67,6 +67,17 @@ export const useTimerStore = defineStore('timer', () => {
   }
 
   /**
+   * Add extra seconds to the running timer
+   */
+  function addTime(seconds: number) {
+    if (!isRunning.value) return;
+    total.value += seconds;
+    remaining.value += seconds;
+    // Adjust internal startTime so elapsed calc stays correct
+    // remaining = total - elapsed => elapsed stays the same, total grows
+  }
+
+  /**
    * Reset timer to initial state
    */
   function reset() {
@@ -91,6 +102,7 @@ export const useTimerStore = defineStore('timer', () => {
     start,
     stop,
     getElapsed,
+    addTime,
     reset,
   };
 });

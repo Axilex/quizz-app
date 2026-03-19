@@ -2,71 +2,999 @@
   {
     "id": "chr_001",
     "type": "chronology",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "category": "histoire",
     "label": "Classez ces événements historiques du plus ancien au plus récent",
     "answer": "chr_001_a,chr_001_b,chr_001_c,chr_001_d",
     "acceptedAnswers": ["chr_001_a,chr_001_b,chr_001_c,chr_001_d"],
-    "explanation": "Ordre chronologique: Chute de Rome (476) → Découverte de l'Amérique (1492) → Révolution française (1789) → Première Guerre mondiale (1914)",
-    "tags": ["histoire", "chronologie"],
+    "explanation": "Ordre : Chute de Rome (476) → Découverte de l'Amérique (1492) → Révolution française (1789) → Première Guerre mondiale (1914)",
+    "tags": ["histoire", "événements majeurs"],
     "baseTimer": 40,
     "media": null,
     "items": [
-      {
-        "id": "chr_001_a",
-        "label": "Chute de Rome",
-        "year": 476
-      },
-      {
-        "id": "chr_001_b",
-        "label": "Découverte de l'Amérique",
-        "year": 1492
-      },
-      {
-        "id": "chr_001_c",
-        "label": "Révolution française",
-        "year": 1789
-      },
-      {
-        "id": "chr_001_d",
-        "label": "Première Guerre mondiale",
-        "year": 1914
-      }
+      { "id": "chr_001_a", "label": "Chute de l'Empire romain d'Occident", "year": 476 },
+      { "id": "chr_001_b", "label": "Découverte de l'Amérique par Colomb", "year": 1492 },
+      { "id": "chr_001_c", "label": "Révolution française", "year": 1789 },
+      { "id": "chr_001_d", "label": "Début de la Première Guerre mondiale", "year": 1914 }
     ]
   },
   {
     "id": "chr_002",
     "type": "chronology",
-    "difficulty": "hard",
+    "difficulty": "easy",
     "category": "histoire",
-    "label": "Classez ces inventions majeurs du plus ancien au plus récent",
+    "label": "Classez ces conflits du plus ancien au plus récent",
     "answer": "chr_002_a,chr_002_b,chr_002_c,chr_002_d",
     "acceptedAnswers": ["chr_002_a,chr_002_b,chr_002_c,chr_002_d"],
-    "explanation": "Ordre: Imprimerie de Gutenberg (1440) → Machine à vapeur (1769) → Électricité (1879) → Internet (1989)",
-    "tags": ["histoire", "technologie"],
-    "baseTimer": 45,
+    "explanation": "Ordre : Guerre de Cent Ans (1337) → Guerre de Trente Ans (1618) → Guerre de Sécession (1861) → Guerre du Vietnam (1955)",
+    "tags": ["histoire", "guerres"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_002_a", "label": "Début de la guerre de Cent Ans", "year": 1337 },
+      { "id": "chr_002_b", "label": "Début de la guerre de Trente Ans", "year": 1618 },
+      { "id": "chr_002_c", "label": "Début de la guerre de Sécession", "year": 1861 },
+      { "id": "chr_002_d", "label": "Début de la guerre du Vietnam", "year": 1955 }
+    ]
+  },
+  {
+    "id": "chr_003",
+    "type": "chronology",
+    "difficulty": "easy",
+    "category": "sciences",
+    "label": "Classez ces découvertes scientifiques du plus ancien au plus récent",
+    "answer": "chr_003_a,chr_003_b,chr_003_c,chr_003_d",
+    "acceptedAnswers": ["chr_003_a,chr_003_b,chr_003_c,chr_003_d"],
+    "explanation": "Ordre : Héliocentrisme de Copernic (1543) → Gravitation de Newton (1687) → Théorie de la relativité (1905) → ADN par Watson et Crick (1953)",
+    "tags": ["sciences", "découvertes"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_003_a", "label": "Publication de l'héliocentrisme par Copernic", "year": 1543 },
+      { "id": "chr_003_b", "label": "Loi de la gravitation de Newton", "year": 1687 },
+      {
+        "id": "chr_003_c",
+        "label": "Théorie de la relativité restreinte d'Einstein",
+        "year": 1905
+      },
+      { "id": "chr_003_d", "label": "Découverte de la structure de l'ADN", "year": 1953 }
+    ]
+  },
+  {
+    "id": "chr_004",
+    "type": "chronology",
+    "difficulty": "easy",
+    "category": "technologie",
+    "label": "Classez ces inventions technologiques du plus ancien au plus récent",
+    "answer": "chr_004_a,chr_004_b,chr_004_c,chr_004_d",
+    "acceptedAnswers": ["chr_004_a,chr_004_b,chr_004_c,chr_004_d"],
+    "explanation": "Ordre : Téléphone (1876) → Télévision (1926) → Premier ordinateur personnel (1975) → World Wide Web (1991)",
+    "tags": ["technologie", "inventions"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_004_a", "label": "Invention du téléphone par Bell", "year": 1876 },
+      { "id": "chr_004_b", "label": "Première démonstration de la télévision", "year": 1926 },
+      { "id": "chr_004_c", "label": "Lancement de l'Altair 8800 (premier PC)", "year": 1975 },
+      { "id": "chr_004_d", "label": "Création du World Wide Web", "year": 1991 }
+    ]
+  },
+  {
+    "id": "chr_005",
+    "type": "chronology",
+    "difficulty": "easy",
+    "category": "sport",
+    "label": "Classez ces événements sportifs du plus ancien au plus récent",
+    "answer": "chr_005_a,chr_005_b,chr_005_c,chr_005_d",
+    "acceptedAnswers": ["chr_005_a,chr_005_b,chr_005_c,chr_005_d"],
+    "explanation": "Ordre : Premiers JO modernes (1896) → Première Coupe du monde de football (1930) → JO de Pékin (2008) → Coupe du monde au Qatar (2022)",
+    "tags": ["sport", "compétitions"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_005_a", "label": "Premiers Jeux olympiques modernes à Athènes", "year": 1896 },
+      {
+        "id": "chr_005_b",
+        "label": "Première Coupe du monde de football en Uruguay",
+        "year": 1930
+      },
+      { "id": "chr_005_c", "label": "Jeux olympiques de Pékin", "year": 2008 },
+      { "id": "chr_005_d", "label": "Coupe du monde de football au Qatar", "year": 2022 }
+    ]
+  },
+  {
+    "id": "chr_006",
+    "type": "chronology",
+    "difficulty": "easy",
+    "category": "cinéma",
+    "label": "Classez ces films du plus ancien au plus récent",
+    "answer": "chr_006_a,chr_006_b,chr_006_c,chr_006_d",
+    "acceptedAnswers": ["chr_006_a,chr_006_b,chr_006_c,chr_006_d"],
+    "explanation": "Ordre : Blanche-Neige (1937) → Les Dents de la mer (1975) → Titanic (1997) → Avatar (2009)",
+    "tags": ["cinéma", "films célèbres"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_006_a", "label": "Sortie de Blanche-Neige et les Sept Nains", "year": 1937 },
+      { "id": "chr_006_b", "label": "Sortie des Dents de la mer", "year": 1975 },
+      { "id": "chr_006_c", "label": "Sortie de Titanic", "year": 1997 },
+      { "id": "chr_006_d", "label": "Sortie d'Avatar", "year": 2009 }
+    ]
+  },
+  {
+    "id": "chr_007",
+    "type": "chronology",
+    "difficulty": "easy",
+    "category": "musique",
+    "label": "Classez ces albums musicaux du plus ancien au plus récent",
+    "answer": "chr_007_a,chr_007_b,chr_007_c,chr_007_d",
+    "acceptedAnswers": ["chr_007_a,chr_007_b,chr_007_c,chr_007_d"],
+    "explanation": "Ordre : Sgt. Pepper's (1967) → Thriller (1982) → Nevermind (1991) → 21 d'Adele (2011)",
+    "tags": ["musique", "albums"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_007_a", "label": "Sgt. Pepper's des Beatles", "year": 1967 },
+      { "id": "chr_007_b", "label": "Thriller de Michael Jackson", "year": 1982 },
+      { "id": "chr_007_c", "label": "Nevermind de Nirvana", "year": 1991 },
+      { "id": "chr_007_d", "label": "21 d'Adele", "year": 2011 }
+    ]
+  },
+  {
+    "id": "chr_008",
+    "type": "chronology",
+    "difficulty": "easy",
+    "category": "histoire",
+    "label": "Classez ces rois de France du plus ancien au plus récent",
+    "answer": "chr_008_a,chr_008_b,chr_008_c,chr_008_d",
+    "acceptedAnswers": ["chr_008_a,chr_008_b,chr_008_c,chr_008_d"],
+    "explanation": "Ordre : Clovis (481) → Charlemagne (768) → Louis XIV (1643) → Louis XVI (1774)",
+    "tags": ["histoire", "France", "royauté"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_008_a", "label": "Début du règne de Clovis", "year": 481 },
+      { "id": "chr_008_b", "label": "Début du règne de Charlemagne", "year": 768 },
+      { "id": "chr_008_c", "label": "Début du règne de Louis XIV", "year": 1643 },
+      { "id": "chr_008_d", "label": "Début du règne de Louis XVI", "year": 1774 }
+    ]
+  },
+  {
+    "id": "chr_009",
+    "type": "chronology",
+    "difficulty": "easy",
+    "category": "technologie",
+    "label": "Classez ces produits Apple du plus ancien au plus récent",
+    "answer": "chr_009_a,chr_009_b,chr_009_c,chr_009_d",
+    "acceptedAnswers": ["chr_009_a,chr_009_b,chr_009_c,chr_009_d"],
+    "explanation": "Ordre : Macintosh (1984) → iMac (1998) → iPhone (2007) → Apple Watch (2015)",
+    "tags": ["technologie", "Apple"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_009_a", "label": "Lancement du Macintosh", "year": 1984 },
+      { "id": "chr_009_b", "label": "Lancement de l'iMac", "year": 1998 },
+      { "id": "chr_009_c", "label": "Lancement de l'iPhone", "year": 2007 },
+      { "id": "chr_009_d", "label": "Lancement de l'Apple Watch", "year": 2015 }
+    ]
+  },
+  {
+    "id": "chr_010",
+    "type": "chronology",
+    "difficulty": "easy",
+    "category": "histoire",
+    "label": "Classez ces événements du XXe siècle du plus ancien au plus récent",
+    "answer": "chr_010_a,chr_010_b,chr_010_c,chr_010_d",
+    "acceptedAnswers": ["chr_010_a,chr_010_b,chr_010_c,chr_010_d"],
+    "explanation": "Ordre : Titanic (1912) → Krach boursier (1929) → Débarquement en Normandie (1944) → Chute du mur de Berlin (1989)",
+    "tags": ["histoire", "XXe siècle"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_010_a", "label": "Naufrage du Titanic", "year": 1912 },
+      { "id": "chr_010_b", "label": "Krach boursier de Wall Street", "year": 1929 },
+      { "id": "chr_010_c", "label": "Débarquement en Normandie", "year": 1944 },
+      { "id": "chr_010_d", "label": "Chute du mur de Berlin", "year": 1989 }
+    ]
+  },
+  {
+    "id": "chr_011",
+    "type": "chronology",
+    "difficulty": "easy",
+    "category": "littérature",
+    "label": "Classez ces œuvres littéraires du plus ancien au plus récent",
+    "answer": "chr_011_a,chr_011_b,chr_011_c,chr_011_d",
+    "acceptedAnswers": ["chr_011_a,chr_011_b,chr_011_c,chr_011_d"],
+    "explanation": "Ordre : Don Quichotte (1605) → Les Misérables (1862) → Le Petit Prince (1943) → Harry Potter (1997)",
+    "tags": ["littérature", "romans"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_011_a", "label": "Publication de Don Quichotte", "year": 1605 },
+      { "id": "chr_011_b", "label": "Publication des Misérables", "year": 1862 },
+      { "id": "chr_011_c", "label": "Publication du Petit Prince", "year": 1943 },
+      {
+        "id": "chr_011_d",
+        "label": "Publication de Harry Potter à l'école des sorciers",
+        "year": 1997
+      }
+    ]
+  },
+  {
+    "id": "chr_012",
+    "type": "chronology",
+    "difficulty": "easy",
+    "category": "sciences",
+    "label": "Classez ces exploits spatiaux du plus ancien au plus récent",
+    "answer": "chr_012_a,chr_012_b,chr_012_c,chr_012_d",
+    "acceptedAnswers": ["chr_012_a,chr_012_b,chr_012_c,chr_012_d"],
+    "explanation": "Ordre : Spoutnik (1957) → Gagarine (1961) → Apollo 11 (1969) → ISS habitée (2000)",
+    "tags": ["sciences", "espace"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_012_a", "label": "Lancement de Spoutnik", "year": 1957 },
+      { "id": "chr_012_b", "label": "Premier homme dans l'espace (Gagarine)", "year": 1961 },
+      { "id": "chr_012_c", "label": "Premier pas sur la Lune (Apollo 11)", "year": 1969 },
+      { "id": "chr_012_d", "label": "Premier équipage permanent sur l'ISS", "year": 2000 }
+    ]
+  },
+  {
+    "id": "chr_013",
+    "type": "chronology",
+    "difficulty": "easy",
+    "category": "histoire",
+    "label": "Classez ces révolutions du plus ancien au plus récent",
+    "answer": "chr_013_a,chr_013_b,chr_013_c,chr_013_d",
+    "acceptedAnswers": ["chr_013_a,chr_013_b,chr_013_c,chr_013_d"],
+    "explanation": "Ordre : Révolution anglaise (1642) → Révolution américaine (1776) → Révolution française (1789) → Révolution russe (1917)",
+    "tags": ["histoire", "révolutions"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_013_a", "label": "Début de la Révolution anglaise", "year": 1642 },
+      { "id": "chr_013_b", "label": "Déclaration d'indépendance américaine", "year": 1776 },
+      { "id": "chr_013_c", "label": "Prise de la Bastille", "year": 1789 },
+      { "id": "chr_013_d", "label": "Révolution russe d'Octobre", "year": 1917 }
+    ]
+  },
+  {
+    "id": "chr_014",
+    "type": "chronology",
+    "difficulty": "easy",
+    "category": "sport",
+    "label": "Classez ces exploits sportifs du plus ancien au plus récent",
+    "answer": "chr_014_a,chr_014_b,chr_014_c,chr_014_d",
+    "acceptedAnswers": ["chr_014_a,chr_014_b,chr_014_c,chr_014_d"],
+    "explanation": "Ordre : Premier Tour de France (1903) → Jesse Owens à Berlin (1936) → Pelé champion du monde (1958) → Usain Bolt record du 100m (2009)",
+    "tags": ["sport", "exploits"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_014_a", "label": "Premier Tour de France cycliste", "year": 1903 },
+      { "id": "chr_014_b", "label": "4 médailles d'or de Jesse Owens à Berlin", "year": 1936 },
+      { "id": "chr_014_c", "label": "Pelé remporte sa première Coupe du monde", "year": 1958 },
+      { "id": "chr_014_d", "label": "Record du monde du 100m par Usain Bolt", "year": 2009 }
+    ]
+  },
+  {
+    "id": "chr_015",
+    "type": "chronology",
+    "difficulty": "easy",
+    "category": "technologie",
+    "label": "Classez ces réseaux sociaux par date de lancement",
+    "answer": "chr_015_a,chr_015_b,chr_015_c,chr_015_d",
+    "acceptedAnswers": ["chr_015_a,chr_015_b,chr_015_c,chr_015_d"],
+    "explanation": "Ordre : Facebook (2004) → Twitter (2006) → Instagram (2010) → TikTok (2016)",
+    "tags": ["technologie", "réseaux sociaux"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_015_a", "label": "Lancement de Facebook", "year": 2004 },
+      { "id": "chr_015_b", "label": "Lancement de Twitter", "year": 2006 },
+      { "id": "chr_015_c", "label": "Lancement d'Instagram", "year": 2010 },
+      { "id": "chr_015_d", "label": "Lancement de TikTok", "year": 2016 }
+    ]
+  },
+  {
+    "id": "chr_016",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "histoire",
+    "label": "Classez ces traités de paix du plus ancien au plus récent",
+    "answer": "chr_016_a,chr_016_b,chr_016_c,chr_016_d",
+    "acceptedAnswers": ["chr_016_a,chr_016_b,chr_016_c,chr_016_d"],
+    "explanation": "Ordre : Traité de Westphalie (1648) → Traité de Versailles (1783) → Traité de Versailles (1919) → Accords de Paris sur le climat (2015)",
+    "tags": ["histoire", "diplomatie"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_016_a", "label": "Traités de Westphalie", "year": 1648 },
+      { "id": "chr_016_b", "label": "Traité de Versailles (indépendance USA)", "year": 1783 },
+      { "id": "chr_016_c", "label": "Traité de Versailles (fin WWI)", "year": 1919 },
+      { "id": "chr_016_d", "label": "Accords de Paris sur le climat", "year": 2015 }
+    ]
+  },
+  {
+    "id": "chr_017",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "cinéma",
+    "label": "Classez ces sagas cinématographiques par leur premier film",
+    "answer": "chr_017_a,chr_017_b,chr_017_c,chr_017_d",
+    "acceptedAnswers": ["chr_017_a,chr_017_b,chr_017_c,chr_017_d"],
+    "explanation": "Ordre : Star Wars (1977) → Indiana Jones (1981) → Jurassic Park (1993) → Le Seigneur des Anneaux (2001)",
+    "tags": ["cinéma", "sagas"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_017_a", "label": "Star Wars : Un nouvel espoir", "year": 1977 },
+      { "id": "chr_017_b", "label": "Les Aventuriers de l'arche perdue", "year": 1981 },
+      { "id": "chr_017_c", "label": "Jurassic Park", "year": 1993 },
+      {
+        "id": "chr_017_d",
+        "label": "Le Seigneur des Anneaux : La Communauté de l'Anneau",
+        "year": 2001
+      }
+    ]
+  },
+  {
+    "id": "chr_018",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "musique",
+    "label": "Classez ces chansons françaises du plus ancien au plus récent",
+    "answer": "chr_018_a,chr_018_b,chr_018_c,chr_018_d",
+    "acceptedAnswers": ["chr_018_a,chr_018_b,chr_018_c,chr_018_d"],
+    "explanation": "Ordre : La Vie en rose (1947) → Ne me quitte pas (1959) → Les Lacs du Connemara (1981) → Alors on danse (2009)",
+    "tags": ["musique", "chanson française"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_018_a", "label": "La Vie en rose d'Édith Piaf", "year": 1947 },
+      { "id": "chr_018_b", "label": "Ne me quitte pas de Jacques Brel", "year": 1959 },
+      { "id": "chr_018_c", "label": "Les Lacs du Connemara de Michel Sardou", "year": 1981 },
+      { "id": "chr_018_d", "label": "Alors on danse de Stromae", "year": 2009 }
+    ]
+  },
+  {
+    "id": "chr_019",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "sciences",
+    "label": "Classez ces découvertes médicales du plus ancien au plus récent",
+    "answer": "chr_019_a,chr_019_b,chr_019_c,chr_019_d",
+    "acceptedAnswers": ["chr_019_a,chr_019_b,chr_019_c,chr_019_d"],
+    "explanation": "Ordre : Vaccin contre la variole (1796) → Pénicilline (1928) → Première greffe du cœur (1967) → Premier vaccin ARNm contre le COVID (2020)",
+    "tags": ["sciences", "médecine"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_019_a", "label": "Vaccin contre la variole par Jenner", "year": 1796 },
+      { "id": "chr_019_b", "label": "Découverte de la pénicilline par Fleming", "year": 1928 },
+      { "id": "chr_019_c", "label": "Première greffe du cœur par Barnard", "year": 1967 },
+      { "id": "chr_019_d", "label": "Premier vaccin ARNm contre le COVID-19", "year": 2020 }
+    ]
+  },
+  {
+    "id": "chr_020",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "technologie",
+    "label": "Classez ces consoles de jeux vidéo par date de sortie",
+    "answer": "chr_020_a,chr_020_b,chr_020_c,chr_020_d",
+    "acceptedAnswers": ["chr_020_a,chr_020_b,chr_020_c,chr_020_d"],
+    "explanation": "Ordre : NES (1983) → PlayStation (1994) → Xbox 360 (2005) → Nintendo Switch (2017)",
+    "tags": ["technologie", "jeux vidéo"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_020_a", "label": "Sortie de la NES (Famicom)", "year": 1983 },
+      { "id": "chr_020_b", "label": "Sortie de la PlayStation", "year": 1994 },
+      { "id": "chr_020_c", "label": "Sortie de la Xbox 360", "year": 2005 },
+      { "id": "chr_020_d", "label": "Sortie de la Nintendo Switch", "year": 2017 }
+    ]
+  },
+  {
+    "id": "chr_021",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "histoire",
+    "label": "Classez ces constitutions et déclarations du plus ancien au plus récent",
+    "answer": "chr_021_a,chr_021_b,chr_021_c,chr_021_d",
+    "acceptedAnswers": ["chr_021_a,chr_021_b,chr_021_c,chr_021_d"],
+    "explanation": "Ordre : Magna Carta (1215) → Déclaration des droits de l'homme (1789) → Abolition de l'esclavage en France (1848) → Déclaration universelle des droits de l'homme (1948)",
+    "tags": ["histoire", "droits"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_021_a", "label": "Signature de la Magna Carta", "year": 1215 },
+      {
+        "id": "chr_021_b",
+        "label": "Déclaration des droits de l'homme et du citoyen",
+        "year": 1789
+      },
+      { "id": "chr_021_c", "label": "Abolition définitive de l'esclavage en France", "year": 1848 },
+      {
+        "id": "chr_021_d",
+        "label": "Déclaration universelle des droits de l'homme (ONU)",
+        "year": 1948
+      }
+    ]
+  },
+  {
+    "id": "chr_022",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "cinéma",
+    "label": "Classez ces films d'animation Disney/Pixar du plus ancien au plus récent",
+    "answer": "chr_022_a,chr_022_b,chr_022_c,chr_022_d",
+    "acceptedAnswers": ["chr_022_a,chr_022_b,chr_022_c,chr_022_d"],
+    "explanation": "Ordre : Le Roi Lion (1994) → Toy Story (1995) → Monstres et Cie (2001) → La Reine des Neiges (2013)",
+    "tags": ["cinéma", "animation"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_022_a", "label": "Sortie du Roi Lion", "year": 1994 },
+      { "id": "chr_022_b", "label": "Sortie de Toy Story", "year": 1995 },
+      { "id": "chr_022_c", "label": "Sortie de Monstres et Cie", "year": 2001 },
+      { "id": "chr_022_d", "label": "Sortie de La Reine des Neiges", "year": 2013 }
+    ]
+  },
+  {
+    "id": "chr_023",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "sport",
+    "label": "Classez ces victoires françaises en Coupe du monde de football",
+    "answer": "chr_023_a,chr_023_b,chr_023_c,chr_023_d",
+    "acceptedAnswers": ["chr_023_a,chr_023_b,chr_023_c,chr_023_d"],
+    "explanation": "Ordre : Fontaine 13 buts en 1958 → Platini Ballon d'or 1983 → France championne 1998 → France championne 2018",
+    "tags": ["sport", "football", "France"],
+    "baseTimer": 40,
     "media": null,
     "items": [
       {
-        "id": "chr_002_a",
-        "label": "Imprimerie de Gutenberg",
-        "year": 1440
+        "id": "chr_023_a",
+        "label": "Record de 13 buts de Just Fontaine en Coupe du monde",
+        "year": 1958
       },
+      { "id": "chr_023_b", "label": "Premier Ballon d'or de Michel Platini", "year": 1983 },
+      { "id": "chr_023_c", "label": "La France remporte la Coupe du monde", "year": 1998 },
+      { "id": "chr_023_d", "label": "La France remporte sa 2e Coupe du monde", "year": 2018 }
+    ]
+  },
+  {
+    "id": "chr_024",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "sciences",
+    "label": "Classez ces prix Nobel de physique du plus ancien au plus récent",
+    "answer": "chr_024_a,chr_024_b,chr_024_c,chr_024_d",
+    "acceptedAnswers": ["chr_024_a,chr_024_b,chr_024_c,chr_024_d"],
+    "explanation": "Ordre : Marie Curie (1903) → Einstein (1921) → Feynman (1965) → Boson de Higgs confirmé (2013)",
+    "tags": ["sciences", "Nobel"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_024_a", "label": "Nobel de physique de Marie Curie", "year": 1903 },
+      { "id": "chr_024_b", "label": "Nobel de physique d'Albert Einstein", "year": 1921 },
+      { "id": "chr_024_c", "label": "Nobel de physique de Richard Feynman", "year": 1965 },
+      { "id": "chr_024_d", "label": "Nobel pour la découverte du boson de Higgs", "year": 2013 }
+    ]
+  },
+  {
+    "id": "chr_025",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "histoire",
+    "label": "Classez ces présidents de la Ve République française",
+    "answer": "chr_025_a,chr_025_b,chr_025_c,chr_025_d",
+    "acceptedAnswers": ["chr_025_a,chr_025_b,chr_025_c,chr_025_d"],
+    "explanation": "Ordre : De Gaulle (1958) → Mitterrand (1981) → Chirac (1995) → Macron (2017)",
+    "tags": ["histoire", "politique", "France"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_025_a", "label": "Élection de Charles de Gaulle", "year": 1958 },
+      { "id": "chr_025_b", "label": "Élection de François Mitterrand", "year": 1981 },
+      { "id": "chr_025_c", "label": "Élection de Jacques Chirac", "year": 1995 },
+      { "id": "chr_025_d", "label": "Élection d'Emmanuel Macron", "year": 2017 }
+    ]
+  },
+  {
+    "id": "chr_026",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "technologie",
+    "label": "Classez ces langages de programmation par date de création",
+    "answer": "chr_026_a,chr_026_b,chr_026_c,chr_026_d",
+    "acceptedAnswers": ["chr_026_a,chr_026_b,chr_026_c,chr_026_d"],
+    "explanation": "Ordre : C (1972) → Python (1991) → Java (1995) → Rust (2010)",
+    "tags": ["technologie", "programmation"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_026_a", "label": "Création du langage C", "year": 1972 },
+      { "id": "chr_026_b", "label": "Création du langage Python", "year": 1991 },
+      { "id": "chr_026_c", "label": "Création du langage Java", "year": 1995 },
+      { "id": "chr_026_d", "label": "Création du langage Rust", "year": 2010 }
+    ]
+  },
+  {
+    "id": "chr_027",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "littérature",
+    "label": "Classez ces prix Nobel de littérature du plus ancien au plus récent",
+    "answer": "chr_027_a,chr_027_b,chr_027_c,chr_027_d",
+    "acceptedAnswers": ["chr_027_a,chr_027_b,chr_027_c,chr_027_d"],
+    "explanation": "Ordre : Romain Rolland (1915) → Albert Camus (1957) → Gabriel García Márquez (1982) → Annie Ernaux (2022)",
+    "tags": ["littérature", "Nobel"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_027_a", "label": "Nobel de littérature de Romain Rolland", "year": 1915 },
+      { "id": "chr_027_b", "label": "Nobel de littérature d'Albert Camus", "year": 1957 },
+      { "id": "chr_027_c", "label": "Nobel de littérature de García Márquez", "year": 1982 },
+      { "id": "chr_027_d", "label": "Nobel de littérature d'Annie Ernaux", "year": 2022 }
+    ]
+  },
+  {
+    "id": "chr_028",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "musique",
+    "label": "Classez ces festivals de musique par date de première édition",
+    "answer": "chr_028_a,chr_028_b,chr_028_c,chr_028_d",
+    "acceptedAnswers": ["chr_028_a,chr_028_b,chr_028_c,chr_028_d"],
+    "explanation": "Ordre : Woodstock (1969) → Glastonbury (1970) → Les Vieilles Charrues (1992) → Tomorrowland (2005)",
+    "tags": ["musique", "festivals"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_028_a", "label": "Premier festival de Woodstock", "year": 1969 },
+      { "id": "chr_028_b", "label": "Premier festival de Glastonbury", "year": 1970 },
+      { "id": "chr_028_c", "label": "Première édition des Vieilles Charrues", "year": 1992 },
+      { "id": "chr_028_d", "label": "Première édition de Tomorrowland", "year": 2005 }
+    ]
+  },
+  {
+    "id": "chr_029",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "histoire",
+    "label": "Classez ces catastrophes du plus ancien au plus récent",
+    "answer": "chr_029_a,chr_029_b,chr_029_c,chr_029_d",
+    "acceptedAnswers": ["chr_029_a,chr_029_b,chr_029_c,chr_029_d"],
+    "explanation": "Ordre : Éruption du Vésuve (79) → Grande peste noire (1347) → Tchernobyl (1986) → Fukushima (2011)",
+    "tags": ["histoire", "catastrophes"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_029_a", "label": "Éruption du Vésuve et destruction de Pompéi", "year": 79 },
+      { "id": "chr_029_b", "label": "Début de la grande peste noire en Europe", "year": 1347 },
+      { "id": "chr_029_c", "label": "Catastrophe nucléaire de Tchernobyl", "year": 1986 },
+      { "id": "chr_029_d", "label": "Catastrophe nucléaire de Fukushima", "year": 2011 }
+    ]
+  },
+  {
+    "id": "chr_030",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "cinéma",
+    "label": "Classez ces films français par date de sortie",
+    "answer": "chr_030_a,chr_030_b,chr_030_c,chr_030_d",
+    "acceptedAnswers": ["chr_030_a,chr_030_b,chr_030_c,chr_030_d"],
+    "explanation": "Ordre : Les Enfants du paradis (1945) → Les 400 Coups (1959) → Le Grand Bleu (1988) → Intouchables (2011)",
+    "tags": ["cinéma", "France"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_030_a", "label": "Sortie des Enfants du paradis", "year": 1945 },
+      { "id": "chr_030_b", "label": "Sortie des 400 Coups de Truffaut", "year": 1959 },
+      { "id": "chr_030_c", "label": "Sortie du Grand Bleu de Besson", "year": 1988 },
+      { "id": "chr_030_d", "label": "Sortie d'Intouchables", "year": 2011 }
+    ]
+  },
+  {
+    "id": "chr_031",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "sport",
+    "label": "Classez ces premières participations olympiques",
+    "answer": "chr_031_a,chr_031_b,chr_031_c,chr_031_d",
+    "acceptedAnswers": ["chr_031_a,chr_031_b,chr_031_c,chr_031_d"],
+    "explanation": "Ordre : Femmes aux JO (1900) → JO d'hiver (1924) → JO à Tokyo (1964) → JO à Paris (2024)",
+    "tags": ["sport", "Jeux olympiques"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
       {
-        "id": "chr_002_b",
-        "label": "Machine à vapeur",
-        "year": 1769
+        "id": "chr_031_a",
+        "label": "Première participation féminine aux JO (Paris)",
+        "year": 1900
       },
+      { "id": "chr_031_b", "label": "Premiers Jeux olympiques d'hiver (Chamonix)", "year": 1924 },
+      { "id": "chr_031_c", "label": "Jeux olympiques d'été à Tokyo", "year": 1964 },
+      { "id": "chr_031_d", "label": "Jeux olympiques d'été à Paris", "year": 2024 }
+    ]
+  },
+  {
+    "id": "chr_032",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "technologie",
+    "label": "Classez ces innovations Internet du plus ancien au plus récent",
+    "answer": "chr_032_a,chr_032_b,chr_032_c,chr_032_d",
+    "acceptedAnswers": ["chr_032_a,chr_032_b,chr_032_c,chr_032_d"],
+    "explanation": "Ordre : Premier e-mail (1971) → Premier site web (1991) → Lancement de Google (1998) → Lancement de ChatGPT (2022)",
+    "tags": ["technologie", "Internet"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_032_a", "label": "Envoi du premier e-mail", "year": 1971 },
+      { "id": "chr_032_b", "label": "Mise en ligne du premier site web", "year": 1991 },
+      { "id": "chr_032_c", "label": "Création de Google", "year": 1998 },
+      { "id": "chr_032_d", "label": "Lancement de ChatGPT", "year": 2022 }
+    ]
+  },
+  {
+    "id": "chr_033",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "musique",
+    "label": "Classez ces groupes de rock par date de formation",
+    "answer": "chr_033_a,chr_033_b,chr_033_c,chr_033_d",
+    "acceptedAnswers": ["chr_033_a,chr_033_b,chr_033_c,chr_033_d"],
+    "explanation": "Ordre : The Rolling Stones (1962) → Led Zeppelin (1968) → U2 (1976) → Radiohead (1985)",
+    "tags": ["musique", "rock"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_033_a", "label": "Formation des Rolling Stones", "year": 1962 },
+      { "id": "chr_033_b", "label": "Formation de Led Zeppelin", "year": 1968 },
+      { "id": "chr_033_c", "label": "Formation de U2", "year": 1976 },
+      { "id": "chr_033_d", "label": "Formation de Radiohead", "year": 1985 }
+    ]
+  },
+  {
+    "id": "chr_034",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "littérature",
+    "label": "Classez ces romans français du plus ancien au plus récent",
+    "answer": "chr_034_a,chr_034_b,chr_034_c,chr_034_d",
+    "acceptedAnswers": ["chr_034_a,chr_034_b,chr_034_c,chr_034_d"],
+    "explanation": "Ordre : Les Trois Mousquetaires (1844) → Germinal (1885) → L'Étranger (1942) → Les Bienveillantes (2006)",
+    "tags": ["littérature", "France"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_034_a", "label": "Les Trois Mousquetaires d'Alexandre Dumas", "year": 1844 },
+      { "id": "chr_034_b", "label": "Germinal d'Émile Zola", "year": 1885 },
+      { "id": "chr_034_c", "label": "L'Étranger d'Albert Camus", "year": 1942 },
+      { "id": "chr_034_d", "label": "Les Bienveillantes de Jonathan Littell", "year": 2006 }
+    ]
+  },
+  {
+    "id": "chr_035",
+    "type": "chronology",
+    "difficulty": "medium",
+    "category": "histoire",
+    "label": "Classez ces empires par date de chute",
+    "answer": "chr_035_a,chr_035_b,chr_035_c,chr_035_d",
+    "acceptedAnswers": ["chr_035_a,chr_035_b,chr_035_c,chr_035_d"],
+    "explanation": "Ordre : Empire romain d'Occident (476) → Empire byzantin (1453) → Empire ottoman (1922) → Empire soviétique (1991)",
+    "tags": ["histoire", "empires"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_035_a", "label": "Chute de l'Empire romain d'Occident", "year": 476 },
+      { "id": "chr_035_b", "label": "Chute de l'Empire byzantin (Constantinople)", "year": 1453 },
+      { "id": "chr_035_c", "label": "Dissolution de l'Empire ottoman", "year": 1922 },
+      { "id": "chr_035_d", "label": "Dissolution de l'Union soviétique", "year": 1991 }
+    ]
+  },
+  {
+    "id": "chr_036",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "histoire",
+    "label": "Classez ces batailles napoléoniennes du plus ancien au plus récent",
+    "answer": "chr_036_a,chr_036_b,chr_036_c,chr_036_d",
+    "acceptedAnswers": ["chr_036_a,chr_036_b,chr_036_c,chr_036_d"],
+    "explanation": "Ordre : Pyramides (1798) → Austerlitz (1805) → Moscou (1812) → Waterloo (1815)",
+    "tags": ["histoire", "Napoléon", "batailles"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_036_a", "label": "Bataille des Pyramides", "year": 1798 },
+      { "id": "chr_036_b", "label": "Bataille d'Austerlitz", "year": 1805 },
+      { "id": "chr_036_c", "label": "Bataille de la Moskova (Borodino)", "year": 1812 },
+      { "id": "chr_036_d", "label": "Bataille de Waterloo", "year": 1815 }
+    ]
+  },
+  {
+    "id": "chr_037",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "sciences",
+    "label": "Classez ces éléments chimiques par date de découverte",
+    "answer": "chr_037_a,chr_037_b,chr_037_c,chr_037_d",
+    "acceptedAnswers": ["chr_037_a,chr_037_b,chr_037_c,chr_037_d"],
+    "explanation": "Ordre : Oxygène (1774) → Radium (1898) → Plutonium (1940) → Oganesson (2002)",
+    "tags": ["sciences", "chimie"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_037_a", "label": "Découverte de l'oxygène par Lavoisier", "year": 1774 },
+      { "id": "chr_037_b", "label": "Découverte du radium par les Curie", "year": 1898 },
+      { "id": "chr_037_c", "label": "Découverte du plutonium par Seaborg", "year": 1940 },
+      { "id": "chr_037_d", "label": "Synthèse de l'oganesson", "year": 2002 }
+    ]
+  },
+  {
+    "id": "chr_038",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "cinéma",
+    "label": "Classez ces Palmes d'or à Cannes du plus ancien au plus récent",
+    "answer": "chr_038_a,chr_038_b,chr_038_c,chr_038_d",
+    "acceptedAnswers": ["chr_038_a,chr_038_b,chr_038_c,chr_038_d"],
+    "explanation": "Ordre : Le Salaire de la peur (1953) → Taxi Driver (1976) → Pulp Fiction (1994) → Parasite (2019)",
+    "tags": ["cinéma", "Cannes"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_038_a", "label": "Palme d'or pour Le Salaire de la peur", "year": 1953 },
+      { "id": "chr_038_b", "label": "Palme d'or pour Taxi Driver", "year": 1976 },
+      { "id": "chr_038_c", "label": "Palme d'or pour Pulp Fiction", "year": 1994 },
+      { "id": "chr_038_d", "label": "Palme d'or pour Parasite", "year": 2019 }
+    ]
+  },
+  {
+    "id": "chr_039",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "musique",
+    "label": "Classez ces opéras par date de première représentation",
+    "answer": "chr_039_a,chr_039_b,chr_039_c,chr_039_d",
+    "acceptedAnswers": ["chr_039_a,chr_039_b,chr_039_c,chr_039_d"],
+    "explanation": "Ordre : Les Noces de Figaro (1786) → Carmen (1875) → La Bohème (1896) → Wozzeck (1925)",
+    "tags": ["musique", "opéra", "classique"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_039_a", "label": "Les Noces de Figaro de Mozart", "year": 1786 },
+      { "id": "chr_039_b", "label": "Carmen de Bizet", "year": 1875 },
+      { "id": "chr_039_c", "label": "La Bohème de Puccini", "year": 1896 },
+      { "id": "chr_039_d", "label": "Wozzeck d'Alban Berg", "year": 1925 }
+    ]
+  },
+  {
+    "id": "chr_040",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "sport",
+    "label": "Classez ces records du monde d'athlétisme du plus ancien au plus récent",
+    "answer": "chr_040_a,chr_040_b,chr_040_c,chr_040_d",
+    "acceptedAnswers": ["chr_040_a,chr_040_b,chr_040_c,chr_040_d"],
+    "explanation": "Ordre : Roger Bannister mile < 4 min (1954) → Bob Beamon saut en longueur 8,90m (1968) → Florence Griffith-Joyner 100m (1988) → Eliud Kipchoge marathon < 2h (2019)",
+    "tags": ["sport", "athlétisme", "records"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_040_a", "label": "Bannister court le mile en moins de 4 minutes", "year": 1954 },
       {
-        "id": "chr_002_c",
-        "label": "Ampoule électrique",
-        "year": 1879
+        "id": "chr_040_b",
+        "label": "Record du saut en longueur de Bob Beamon (8,90m)",
+        "year": 1968
       },
+      { "id": "chr_040_c", "label": "Record du 100m féminin par Griffith-Joyner", "year": 1988 },
       {
-        "id": "chr_002_d",
-        "label": "Internet public (WWW)",
-        "year": 1989
+        "id": "chr_040_d",
+        "label": "Kipchoge court le marathon en moins de 2 heures",
+        "year": 2019
       }
+    ]
+  },
+  {
+    "id": "chr_041",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "histoire",
+    "label": "Classez ces événements de la Guerre froide du plus ancien au plus récent",
+    "answer": "chr_041_a,chr_041_b,chr_041_c,chr_041_d",
+    "acceptedAnswers": ["chr_041_a,chr_041_b,chr_041_c,chr_041_d"],
+    "explanation": "Ordre : Blocus de Berlin (1948) → Crise des missiles de Cuba (1962) → Accords d'Helsinki (1975) → Chute du mur de Berlin (1989)",
+    "tags": ["histoire", "Guerre froide"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_041_a", "label": "Blocus de Berlin-Ouest", "year": 1948 },
+      { "id": "chr_041_b", "label": "Crise des missiles de Cuba", "year": 1962 },
+      { "id": "chr_041_c", "label": "Accords d'Helsinki", "year": 1975 },
+      { "id": "chr_041_d", "label": "Chute du mur de Berlin", "year": 1989 }
+    ]
+  },
+  {
+    "id": "chr_042",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "littérature",
+    "label": "Classez ces mouvements littéraires français du plus ancien au plus récent",
+    "answer": "chr_042_a,chr_042_b,chr_042_c,chr_042_d",
+    "acceptedAnswers": ["chr_042_a,chr_042_b,chr_042_c,chr_042_d"],
+    "explanation": "Ordre : Classicisme (~1660) → Romantisme (~1820) → Naturalisme (~1870) → Surréalisme (~1924)",
+    "tags": ["littérature", "mouvements"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_042_a", "label": "Apogée du classicisme français", "year": 1660 },
+      { "id": "chr_042_b", "label": "Essor du romantisme en France", "year": 1820 },
+      { "id": "chr_042_c", "label": "Début du naturalisme (Zola)", "year": 1870 },
+      { "id": "chr_042_d", "label": "Manifeste du surréalisme de Breton", "year": 1924 }
+    ]
+  },
+  {
+    "id": "chr_043",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "sciences",
+    "label": "Classez ces missions spatiales du plus ancien au plus récent",
+    "answer": "chr_043_a,chr_043_b,chr_043_c,chr_043_d",
+    "acceptedAnswers": ["chr_043_a,chr_043_b,chr_043_c,chr_043_d"],
+    "explanation": "Ordre : Voyager 1 (1977) → Hubble (1990) → Curiosity sur Mars (2012) → James Webb (2021)",
+    "tags": ["sciences", "espace", "missions"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_043_a", "label": "Lancement de la sonde Voyager 1", "year": 1977 },
+      { "id": "chr_043_b", "label": "Mise en orbite du télescope Hubble", "year": 1990 },
+      { "id": "chr_043_c", "label": "Atterrissage de Curiosity sur Mars", "year": 2012 },
+      { "id": "chr_043_d", "label": "Lancement du télescope James Webb", "year": 2021 }
+    ]
+  },
+  {
+    "id": "chr_044",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "technologie",
+    "label": "Classez ces systèmes d'exploitation par date de sortie",
+    "answer": "chr_044_a,chr_044_b,chr_044_c,chr_044_d",
+    "acceptedAnswers": ["chr_044_a,chr_044_b,chr_044_c,chr_044_d"],
+    "explanation": "Ordre : MS-DOS (1981) → Windows 95 (1995) → Mac OS X (2001) → Android (2008)",
+    "tags": ["technologie", "systèmes d'exploitation"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_044_a", "label": "Sortie de MS-DOS", "year": 1981 },
+      { "id": "chr_044_b", "label": "Sortie de Windows 95", "year": 1995 },
+      { "id": "chr_044_c", "label": "Sortie de Mac OS X", "year": 2001 },
+      { "id": "chr_044_d", "label": "Sortie d'Android", "year": 2008 }
+    ]
+  },
+  {
+    "id": "chr_045",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "histoire",
+    "label": "Classez ces croisades du plus ancien au plus récent",
+    "answer": "chr_045_a,chr_045_b,chr_045_c,chr_045_d",
+    "acceptedAnswers": ["chr_045_a,chr_045_b,chr_045_c,chr_045_d"],
+    "explanation": "Ordre : Première croisade (1096) → Troisième croisade (1189) → Cinquième croisade (1217) → Huitième croisade (1270)",
+    "tags": ["histoire", "croisades", "Moyen Âge"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_045_a", "label": "Première croisade (prise de Jérusalem)", "year": 1096 },
+      { "id": "chr_045_b", "label": "Troisième croisade (Richard Cœur de Lion)", "year": 1189 },
+      { "id": "chr_045_c", "label": "Cinquième croisade", "year": 1217 },
+      { "id": "chr_045_d", "label": "Huitième croisade (mort de Saint Louis)", "year": 1270 }
+    ]
+  },
+  {
+    "id": "chr_046",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "cinéma",
+    "label": "Classez ces films ayant remporté l'Oscar du meilleur film",
+    "answer": "chr_046_a,chr_046_b,chr_046_c,chr_046_d",
+    "acceptedAnswers": ["chr_046_a,chr_046_b,chr_046_c,chr_046_d"],
+    "explanation": "Ordre : Casablanca (1944) → Le Parrain (1973) → La Liste de Schindler (1994) → Moonlight (2017)",
+    "tags": ["cinéma", "Oscars"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_046_a", "label": "Oscar du meilleur film pour Casablanca", "year": 1944 },
+      { "id": "chr_046_b", "label": "Oscar du meilleur film pour Le Parrain", "year": 1973 },
+      {
+        "id": "chr_046_c",
+        "label": "Oscar du meilleur film pour La Liste de Schindler",
+        "year": 1994
+      },
+      { "id": "chr_046_d", "label": "Oscar du meilleur film pour Moonlight", "year": 2017 }
+    ]
+  },
+  {
+    "id": "chr_047",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "sport",
+    "label": "Classez ces exploits du tennis du plus ancien au plus récent",
+    "answer": "chr_047_a,chr_047_b,chr_047_c,chr_047_d",
+    "acceptedAnswers": ["chr_047_a,chr_047_b,chr_047_c,chr_047_d"],
+    "explanation": "Ordre : Suzanne Lenglen domine Wimbledon (1919) → Borg 5 Wimbledon consécutifs (1980) → Federer 1er titre à Wimbledon (2003) → Nadal 14e Roland-Garros (2022)",
+    "tags": ["sport", "tennis"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_047_a", "label": "Premier titre de Suzanne Lenglen à Wimbledon", "year": 1919 },
+      { "id": "chr_047_b", "label": "5e Wimbledon consécutif de Björn Borg", "year": 1980 },
+      { "id": "chr_047_c", "label": "Premier Wimbledon de Roger Federer", "year": 2003 },
+      { "id": "chr_047_d", "label": "14e Roland-Garros de Rafael Nadal", "year": 2022 }
+    ]
+  },
+  {
+    "id": "chr_048",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "sciences",
+    "label": "Classez ces théories physiques par date de publication",
+    "answer": "chr_048_a,chr_048_b,chr_048_c,chr_048_d",
+    "acceptedAnswers": ["chr_048_a,chr_048_b,chr_048_c,chr_048_d"],
+    "explanation": "Ordre : Lois de Kepler (1619) → Équations de Maxwell (1865) → Mécanique quantique de Heisenberg (1925) → Théorie des cordes (1968)",
+    "tags": ["sciences", "physique"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      {
+        "id": "chr_048_a",
+        "label": "Troisième loi de Kepler sur le mouvement des planètes",
+        "year": 1619
+      },
+      { "id": "chr_048_b", "label": "Équations de Maxwell sur l'électromagnétisme", "year": 1865 },
+      { "id": "chr_048_c", "label": "Principe d'incertitude de Heisenberg", "year": 1927 },
+      { "id": "chr_048_d", "label": "Première formulation de la théorie des cordes", "year": 1968 }
+    ]
+  },
+  {
+    "id": "chr_049",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "histoire",
+    "label": "Classez ces événements de l'histoire de France du plus ancien au plus récent",
+    "answer": "chr_049_a,chr_049_b,chr_049_c,chr_049_d",
+    "acceptedAnswers": ["chr_049_a,chr_049_b,chr_049_c,chr_049_d"],
+    "explanation": "Ordre : Édit de Nantes (1598) → Révocation de l'édit de Nantes (1685) → Loi de séparation Église-État (1905) → Mai 68 (1968)",
+    "tags": ["histoire", "France"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_049_a", "label": "Édit de Nantes par Henri IV", "year": 1598 },
+      { "id": "chr_049_b", "label": "Révocation de l'édit de Nantes par Louis XIV", "year": 1685 },
+      { "id": "chr_049_c", "label": "Loi de séparation des Églises et de l'État", "year": 1905 },
+      { "id": "chr_049_d", "label": "Événements de Mai 68", "year": 1968 }
+    ]
+  },
+  {
+    "id": "chr_050",
+    "type": "chronology",
+    "difficulty": "hard",
+    "category": "technologie",
+    "label": "Classez ces avancées de l'intelligence artificielle du plus ancien au plus récent",
+    "answer": "chr_050_a,chr_050_b,chr_050_c,chr_050_d",
+    "acceptedAnswers": ["chr_050_a,chr_050_b,chr_050_c,chr_050_d"],
+    "explanation": "Ordre : Test de Turing proposé (1950) → Deep Blue bat Kasparov (1997) → AlphaGo bat Lee Sedol (2016) → Lancement de ChatGPT (2022)",
+    "tags": ["technologie", "intelligence artificielle"],
+    "baseTimer": 40,
+    "media": null,
+    "items": [
+      { "id": "chr_050_a", "label": "Alan Turing propose le test de Turing", "year": 1950 },
+      { "id": "chr_050_b", "label": "Deep Blue bat Garry Kasparov aux échecs", "year": 1997 },
+      { "id": "chr_050_c", "label": "AlphaGo bat Lee Sedol au jeu de Go", "year": 2016 },
+      { "id": "chr_050_d", "label": "Lancement public de ChatGPT", "year": 2022 }
     ]
   }
 ]

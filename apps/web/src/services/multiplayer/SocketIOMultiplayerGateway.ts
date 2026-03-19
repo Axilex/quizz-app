@@ -480,10 +480,45 @@ export class SocketIOMultiplayerGateway implements MultiplayerGateway {
       } as MultiplayerEvent);
     });
 
+    socket.on('game:freeze', (data: { fromPlayerName: string; duration: number }) => {
+      this.emit({
+        type: 'game:freeze',
+        fromPlayerName: data.fromPlayerName,
+        duration: data.duration,
+      } as MultiplayerEvent);
+    });
+
+    socket.on(
+      'game:speed',
+      (data: { fromPlayerName: string; duration: number; multiplier: number }) => {
+        this.emit({
+          type: 'game:speed',
+          fromPlayerName: data.fromPlayerName,
+          duration: data.duration,
+          multiplier: data.multiplier,
+        } as MultiplayerEvent);
+      },
+    );
+
     socket.on('game:bonus5050', (data: { removeOptionIds: string[]; powerUpsLeft: number }) => {
       this.emit({
         type: 'game:bonus5050',
         removeOptionIds: data.removeOptionIds,
+        powerUpsLeft: data.powerUpsLeft,
+      } as MultiplayerEvent);
+    });
+
+    socket.on('game:bonusDouble', (data: { powerUpsLeft: number }) => {
+      this.emit({
+        type: 'game:bonusDouble',
+        powerUpsLeft: data.powerUpsLeft,
+      } as MultiplayerEvent);
+    });
+
+    socket.on('game:bonusTime', (data: { extraSeconds: number; powerUpsLeft: number }) => {
+      this.emit({
+        type: 'game:bonusTime',
+        extraSeconds: data.extraSeconds,
         powerUpsLeft: data.powerUpsLeft,
       } as MultiplayerEvent);
     });

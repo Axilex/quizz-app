@@ -83,6 +83,8 @@ export interface Player {
   isHost: boolean;
   answers: AnswerRecord[];
   powerUpsLeft: number;
+  /** When true, next correct answer scores double points */
+  doubleNextAnswer: boolean;
 }
 
 export interface AnswerRecord {
@@ -118,7 +120,13 @@ export interface GameConfig {
   debug?: boolean;
 }
 
-export type PowerUpType = 'malus_blur' | 'bonus_fifty50';
+export type PowerUpType =
+  | 'malus_blur'
+  | 'malus_freeze'
+  | 'malus_speed'
+  | 'bonus_fifty50'
+  | 'bonus_double'
+  | 'bonus_time';
 
 export const POWERUPS_PER_GAME = 3;
 

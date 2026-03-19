@@ -5,56 +5,43 @@
     "difficulty": "easy",
     "category": "jeux de mots",
     "label": "Quel mot ou expression se cache dans ce rébus ?",
-    "answer": "Photosynthèse",
-    "acceptedAnswers": ["Photosynthèse", "photosynthèse"],
-    "explanation": "PHOTO + SAINT + THÈSE = PHOTOSYNTHÈSE. Le processus biologique d'assimilation du CO2.",
+    "answer": "Chapeau",
+    "acceptedAnswers": ["Chapeau", "chapeau"],
+    "explanation": "CHAT + PEAU = CHAPEAU",
     "tags": ["jeux de mots", "rébus"],
     "baseTimer": 25,
     "media": null,
     "clues": [
       {
-        "imageUrl": "https://www.monfairepart.com/images/satellite/243/Bannierequaliteetresolution.jpg",
-        "alt": "PHOTO"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/400px-Cat03.jpg",
+        "alt": "CHAT"
       },
       {
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/21/Saint_Patrick_Catholic_Church_%28Junction_City%2C_Ohio%29_-_stained_glass%2C_Saint_Patrick_-_detail.jpg",
-        "alt": "SAINT"
-      },
-      {
-        "imageUrl": "https://doctorat.univ-grenoble-alpes.fr/medias/photo/doctorat-shutterstock-643638364_1616777010318-png?ID_FICHE=1083712",
-        "alt": "THÈSE"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Human_skin_structure.svg/400px-Human_skin_structure.svg.png",
+        "alt": "PEAU"
       }
     ]
   },
   {
     "id": "reb_002",
     "type": "rebus",
-    "difficulty": "hard",
+    "difficulty": "easy",
     "category": "jeux de mots",
     "label": "Quel mot ou expression se cache dans ce rébus ?",
-    "answer": "Génocide",
-    "acceptedAnswers": ["Génocide", "génocide", "genocide", "Genocide"],
-    "explanation": "GÉNOCIDE = GÉ + NO + SI + 2 (littéralement: meurtre d'un peuple)",
+    "answer": "Château",
+    "acceptedAnswers": ["Château", "château", "Chateau", "chateau"],
+    "explanation": "CHAT + TEAU (taux) = CHÂTEAU",
     "tags": ["jeux de mots", "rébus"],
-    "baseTimer": 35,
+    "baseTimer": 25,
     "media": null,
     "clues": [
       {
-        "imageUrl": "https://www.oiseaux.net/photos/ghislain.riou/images/id/geai.des.chenes.ghri.4p.jpg",
-        "alt": "GÉ"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/400px-Cat03.jpg",
+        "alt": "CHAT"
       },
       {
-        "imageUrl": "https://images.unsplash.com/photo-1693168058063-f8e3474ce214?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "alt": "NO"
-      },
-
-      {
-        "imageUrl": "https://thumbs.dreamstime.com/b/symbole-de-musique-noire-note-b-ou-si-sur-les-lignes-du-personnel-illustration-vectorielle-221015599.jpg",
-        "alt": "SI"
-      },
-      {
-        "imageUrl": "https://images.unsplash.com/photo-1579172342894-e6d751ec390c?q=80&w=750&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "alt": "DE"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/400px-Smiley.svg.png",
+        "alt": "TEAU"
       }
     ]
   },
@@ -64,24 +51,1181 @@
     "difficulty": "easy",
     "category": "jeux de mots",
     "label": "Quel mot ou expression se cache dans ce rébus ?",
-    "answer": "Sodomie",
-    "acceptedAnswers": ["Sodomie", "sodomie"],
-    "explanation": "Sodomie = SEAU + DOS + MIE",
+    "answer": "Soleil",
+    "acceptedAnswers": ["Soleil", "soleil"],
+    "explanation": "SEAU + LAID = SOLEIL",
     "tags": ["jeux de mots", "rébus"],
-    "baseTimer": 20,
+    "baseTimer": 25,
     "media": null,
     "clues": [
       {
-        "imageUrl": "https://images.unsplash.com/photo-1596028921064-f82860b67f28?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Metal_bucket.jpg/400px-Metal_bucket.jpg",
         "alt": "SEAU"
       },
       {
-        "imageUrl": "https://images.unsplash.com/photo-1639520721459-c75c788483e2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "alt": "DOS"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Shrek_%28character%29.png/400px-Shrek_%28character%29.png",
+        "alt": "LAID"
+      }
+    ]
+  },
+  {
+    "id": "reb_004",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Radeau",
+    "acceptedAnswers": ["Radeau", "radeau"],
+    "explanation": "RAT + DEUX = RADEAU",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Rattus_norvegicus_1.jpg/400px-Rattus_norvegicus_1.jpg",
+        "alt": "RAT"
       },
       {
-        "imageUrl": "https://images.unsplash.com/photo-1639407503825-f8e665c49b00?q=80&w=1473&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "alt": "MIE"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Deux_%28number%29.svg/400px-Deux_%28number%29.svg.png",
+        "alt": "DEUX"
+      }
+    ]
+  },
+  {
+    "id": "reb_005",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Police",
+    "acceptedAnswers": ["Police", "police"],
+    "explanation": "POT + LISSE = POLICE",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Terracotta_pot.jpg/400px-Terracotta_pot.jpg",
+        "alt": "POT"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Silk_cloth.jpg/400px-Silk_cloth.jpg",
+        "alt": "LISSE"
+      }
+    ]
+  },
+  {
+    "id": "reb_006",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Bateau",
+    "acceptedAnswers": ["Bateau", "bateau"],
+    "explanation": "BAS + TEAU (taux) = BATEAU",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/400px-Camponotus_flavomarginatus_ant.jpg",
+        "alt": "BAS"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Pont_Alexandre_III.jpg/400px-Pont_Alexandre_III.jpg",
+        "alt": "TEAU"
+      }
+    ]
+  },
+  {
+    "id": "reb_007",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Rideau",
+    "acceptedAnswers": ["Rideau", "rideau"],
+    "explanation": "RIZ + DEUX = RIDEAU",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/White_rice.jpg/400px-White_rice.jpg",
+        "alt": "RIZ"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Dice_2.svg/400px-Dice_2.svg.png",
+        "alt": "DEUX"
+      }
+    ]
+  },
+  {
+    "id": "reb_008",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Cadeau",
+    "acceptedAnswers": ["Cadeau", "cadeau"],
+    "explanation": "CAD (cadenas) + EAU = CADEAU",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Cadenas_ouvert.jpg/400px-Cadenas_ouvert.jpg",
+        "alt": "CAD"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Water_drop_001.jpg/400px-Water_drop_001.jpg",
+        "alt": "EAU"
+      }
+    ]
+  },
+  {
+    "id": "reb_009",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Manteau",
+    "acceptedAnswers": ["Manteau", "manteau"],
+    "explanation": "MAIN + TEAU (taux) = MANTEAU",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Hands_-_Pair.jpg/400px-Hands_-_Pair.jpg",
+        "alt": "MAIN"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/400px-Smiley.svg.png",
+        "alt": "TEAU"
+      }
+    ]
+  },
+  {
+    "id": "reb_010",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Couteau",
+    "acceptedAnswers": ["Couteau", "couteau"],
+    "explanation": "COU + TEAU (taux) = COUTEAU",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Human_neck.jpg/400px-Human_neck.jpg",
+        "alt": "COU"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Smiley.svg/400px-Smiley.svg.png",
+        "alt": "TEAU"
+      }
+    ]
+  },
+  {
+    "id": "reb_011",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Poteau",
+    "acceptedAnswers": ["Poteau", "poteau"],
+    "explanation": "POT + EAU = POTEAU",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Terracotta_pot.jpg/400px-Terracotta_pot.jpg",
+        "alt": "POT"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Water_drop_001.jpg/400px-Water_drop_001.jpg",
+        "alt": "EAU"
+      }
+    ]
+  },
+  {
+    "id": "reb_012",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Chameau",
+    "acceptedAnswers": ["Chameau", "chameau"],
+    "explanation": "CHAT + MEAUX (mot) = CHAMEAU",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/400px-Cat03.jpg",
+        "alt": "CHAT"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Water_drop_001.jpg/400px-Water_drop_001.jpg",
+        "alt": "MEAU"
+      }
+    ]
+  },
+  {
+    "id": "reb_013",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Lilas",
+    "acceptedAnswers": ["Lilas", "lilas"],
+    "explanation": "LIT + LAS (là) = LILAS",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Bedroom_Furniture.jpg/400px-Bedroom_Furniture.jpg",
+        "alt": "LIT"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/LA_%28letters%29.svg/400px-LA_%28letters%29.svg.png",
+        "alt": "LAS"
+      }
+    ]
+  },
+  {
+    "id": "reb_014",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Ravin",
+    "acceptedAnswers": ["Ravin", "ravin"],
+    "explanation": "RAT + VIN = RAVIN",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Rattus_norvegicus_1.jpg/400px-Rattus_norvegicus_1.jpg",
+        "alt": "RAT"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Red_Wine_Glass.jpg/400px-Red_Wine_Glass.jpg",
+        "alt": "VIN"
+      }
+    ]
+  },
+  {
+    "id": "reb_015",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Raisin",
+    "acceptedAnswers": ["Raisin", "raisin"],
+    "explanation": "RAI (raie) + SAIN (sein) = RAISIN",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Manta_birostris-Thailand.jpg/400px-Manta_birostris-Thailand.jpg",
+        "alt": "RAIE"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Saint_Patrick_Catholic_Church_%28Junction_City%2C_Ohio%29_-_stained_glass%2C_Saint_Patrick_-_detail.jpg/400px-Saint_Patrick_Catholic_Church_%28Junction_City%2C_Ohio%29_-_stained_glass%2C_Saint_Patrick_-_detail.jpg",
+        "alt": "SAIN"
+      }
+    ]
+  },
+  {
+    "id": "reb_016",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Poney",
+    "acceptedAnswers": ["Poney", "poney"],
+    "explanation": "POT + NEZ = PONEY",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Terracotta_pot.jpg/400px-Terracotta_pot.jpg",
+        "alt": "POT"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Neus1.jpg/400px-Neus1.jpg",
+        "alt": "NEZ"
+      }
+    ]
+  },
+  {
+    "id": "reb_017",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Cousin",
+    "acceptedAnswers": ["Cousin", "cousin"],
+    "explanation": "COU + SAIN (saint) = COUSIN",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Human_neck.jpg/400px-Human_neck.jpg",
+        "alt": "COU"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Saint_Patrick_Catholic_Church_%28Junction_City%2C_Ohio%29_-_stained_glass%2C_Saint_Patrick_-_detail.jpg/400px-Saint_Patrick_Catholic_Church_%28Junction_City%2C_Ohio%29_-_stained_glass%2C_Saint_Patrick_-_detail.jpg",
+        "alt": "SAIN"
+      }
+    ]
+  },
+  {
+    "id": "reb_018",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Savon",
+    "acceptedAnswers": ["Savon", "savon"],
+    "explanation": "SA (sas) + VON (vont) = SAVON",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Sac_%C3%A0_dos.jpg/400px-Sac_%C3%A0_dos.jpg",
+        "alt": "SA"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Pont_Alexandre_III.jpg/400px-Pont_Alexandre_III.jpg",
+        "alt": "VON"
+      }
+    ]
+  },
+  {
+    "id": "reb_019",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Marin",
+    "acceptedAnswers": ["Marin", "marin"],
+    "explanation": "MARE + AIN (un) = MARIN",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Polder_Nieuwkoop.jpg/400px-Polder_Nieuwkoop.jpg",
+        "alt": "MARE"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Red_Wine_Glass.jpg/400px-Red_Wine_Glass.jpg",
+        "alt": "RIN"
+      }
+    ]
+  },
+  {
+    "id": "reb_020",
+    "type": "rebus",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Potage",
+    "acceptedAnswers": ["Potage", "potage"],
+    "explanation": "POT + AGE = POTAGE",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 25,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Terracotta_pot.jpg/400px-Terracotta_pot.jpg",
+        "alt": "POT"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/400px-The_Earth_seen_from_Apollo_17.jpg",
+        "alt": "AGE"
+      }
+    ]
+  },
+  {
+    "id": "reb_021",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Peinture",
+    "acceptedAnswers": ["Peinture", "peinture"],
+    "explanation": "PAIN + TURE (tour) = PEINTURE",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Fresh_made_bread_05.jpg/400px-Fresh_made_bread_05.jpg",
+        "alt": "PAIN"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/400px-Tour_Eiffel_Wikimedia_Commons.jpg",
+        "alt": "TURE"
+      }
+    ]
+  },
+  {
+    "id": "reb_022",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Rivière",
+    "acceptedAnswers": ["Rivière", "rivière", "Riviere", "riviere"],
+    "explanation": "RIZ + VERRE = RIVIÈRE",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/White_rice.jpg/400px-White_rice.jpg",
+        "alt": "RIZ"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_alcohol.svg/400px-No_alcohol.svg.png",
+        "alt": "VERRE"
+      }
+    ]
+  },
+  {
+    "id": "reb_023",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Morceau",
+    "acceptedAnswers": ["Morceau", "morceau"],
+    "explanation": "MORT + SEAU = MORCEAU",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Skull_and_crossbones.svg/400px-Skull_and_crossbones.svg.png",
+        "alt": "MORT"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Metal_bucket.jpg/400px-Metal_bucket.jpg",
+        "alt": "SEAU"
+      }
+    ]
+  },
+  {
+    "id": "reb_024",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Tableau",
+    "acceptedAnswers": ["Tableau", "tableau"],
+    "explanation": "TAS + BLEAU (bleu) = TABLEAU",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Wood_pile.jpg/400px-Wood_pile.jpg",
+        "alt": "TAS"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Solid_blue.svg/400px-Solid_blue.svg.png",
+        "alt": "BLEAU"
+      }
+    ]
+  },
+  {
+    "id": "reb_025",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Champignon",
+    "acceptedAnswers": ["Champignon", "champignon"],
+    "explanation": "CHAMP + PIE + GNON (oignon) = CHAMPIGNON",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Wheat_field.jpg/400px-Wheat_field.jpg",
+        "alt": "CHAMP"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Eurasian_magpie.jpg/400px-Eurasian_magpie.jpg",
+        "alt": "PIE"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Onion_on_White.JPG/400px-Onion_on_White.JPG",
+        "alt": "GNON"
+      }
+    ]
+  },
+  {
+    "id": "reb_026",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Papillon",
+    "acceptedAnswers": ["Papillon", "papillon"],
+    "explanation": "PA (pas) + PIE + LLON (lion) = PAPILLON",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Above-charging-bull.jpg/400px-Above-charging-bull.jpg",
+        "alt": "PA"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Eurasian_magpie.jpg/400px-Eurasian_magpie.jpg",
+        "alt": "PIE"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/400px-Lion_waiting_in_Namibia.jpg",
+        "alt": "LLON"
+      }
+    ]
+  },
+  {
+    "id": "reb_027",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Pantalon",
+    "acceptedAnswers": ["Pantalon", "pantalon"],
+    "explanation": "PANDA + LONT (long) = PANTALON",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Grosser_Panda.JPG/400px-Grosser_Panda.JPG",
+        "alt": "PAN"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Cup_of_black_tea.jpg/400px-Cup_of_black_tea.jpg",
+        "alt": "TA"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/400px-Lion_waiting_in_Namibia.jpg",
+        "alt": "LON"
+      }
+    ]
+  },
+  {
+    "id": "reb_028",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Ceinture",
+    "acceptedAnswers": ["Ceinture", "ceinture"],
+    "explanation": "SAIN (saint) + TURE (tour) = CEINTURE",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Saint_Patrick_Catholic_Church_%28Junction_City%2C_Ohio%29_-_stained_glass%2C_Saint_Patrick_-_detail.jpg/400px-Saint_Patrick_Catholic_Church_%28Junction_City%2C_Ohio%29_-_stained_glass%2C_Saint_Patrick_-_detail.jpg",
+        "alt": "SAIN"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/400px-Tour_Eiffel_Wikimedia_Commons.jpg",
+        "alt": "TURE"
+      }
+    ]
+  },
+  {
+    "id": "reb_029",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Pointure",
+    "acceptedAnswers": ["Pointure", "pointure"],
+    "explanation": "POINT + TURE (tour) = POINTURE",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/GD-EG-Caire-Mus%C3%A9e061.JPG/400px-GD-EG-Caire-Mus%C3%A9e061.JPG",
+        "alt": "POING"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/400px-Tour_Eiffel_Wikimedia_Commons.jpg",
+        "alt": "TURE"
+      }
+    ]
+  },
+  {
+    "id": "reb_030",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Poisson",
+    "acceptedAnswers": ["Poisson", "poisson"],
+    "explanation": "POIS + SON = POISSON",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Peas_in_pods_-_Studio.jpg/400px-Peas_in_pods_-_Studio.jpg",
+        "alt": "POIS"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Headphones_1.jpg/400px-Headphones_1.jpg",
+        "alt": "SON"
+      }
+    ]
+  },
+  {
+    "id": "reb_031",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Volcan",
+    "acceptedAnswers": ["Volcan", "volcan"],
+    "explanation": "VOL (vol d'oiseau) + CAMP = VOLCAN",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Pilot_in_cockpit_of_airplane.jpg/400px-Pilot_in_cockpit_of_airplane.jpg",
+        "alt": "VOL"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Canard_colvert_couple.jpg/400px-Canard_colvert_couple.jpg",
+        "alt": "CAN"
+      }
+    ]
+  },
+  {
+    "id": "reb_032",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Bouton",
+    "acceptedAnswers": ["Bouton", "bouton"],
+    "explanation": "BOUT + THON = BOUTON",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Candle_flame_%282%29.jpg/400px-Candle_flame_%282%29.jpg",
+        "alt": "BOUT"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Thunnus_alalunga.jpg/400px-Thunnus_alalunga.jpg",
+        "alt": "THON"
+      }
+    ]
+  },
+  {
+    "id": "reb_033",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Raton",
+    "acceptedAnswers": ["Raton", "raton"],
+    "explanation": "RAT + THON = RATON",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Rattus_norvegicus_1.jpg/400px-Rattus_norvegicus_1.jpg",
+        "alt": "RAT"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Thunnus_alalunga.jpg/400px-Thunnus_alalunga.jpg",
+        "alt": "THON"
+      }
+    ]
+  },
+  {
+    "id": "reb_034",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Mouton",
+    "acceptedAnswers": ["Mouton", "mouton"],
+    "explanation": "MOU + THON = MOUTON",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Oreiller.jpg/400px-Oreiller.jpg",
+        "alt": "MOU"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Thunnus_alalunga.jpg/400px-Thunnus_alalunga.jpg",
+        "alt": "THON"
+      }
+    ]
+  },
+  {
+    "id": "reb_035",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Melon",
+    "acceptedAnswers": ["Melon", "melon"],
+    "explanation": "MÊLE + LONG = MELON",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Polder_Nieuwkoop.jpg/400px-Polder_Nieuwkoop.jpg",
+        "alt": "MEL"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/400px-Lion_waiting_in_Namibia.jpg",
+        "alt": "LON"
+      }
+    ]
+  },
+  {
+    "id": "reb_036",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Limonade",
+    "acceptedAnswers": ["Limonade", "limonade"],
+    "explanation": "LIT + MAUX + NADE (nattes) = LIMONADE",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Bedroom_Furniture.jpg/400px-Bedroom_Furniture.jpg",
+        "alt": "LI"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/400px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg",
+        "alt": "MONA"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Dice_2.svg/400px-Dice_2.svg.png",
+        "alt": "DE"
+      }
+    ]
+  },
+  {
+    "id": "reb_037",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Chocolat",
+    "acceptedAnswers": ["Chocolat", "chocolat"],
+    "explanation": "CHOC + COU + LAS (là) = CHOCOLAT",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Chocolate_bar.jpg/400px-Chocolate_bar.jpg",
+        "alt": "CHOC"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Human_neck.jpg/400px-Human_neck.jpg",
+        "alt": "COU"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/LA_%28letters%29.svg/400px-LA_%28letters%29.svg.png",
+        "alt": "LA"
+      }
+    ]
+  },
+  {
+    "id": "reb_038",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Tournesol",
+    "acceptedAnswers": ["Tournesol", "tournesol"],
+    "explanation": "TOUR + NEZ + SOL = TOURNESOL",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/400px-Tour_Eiffel_Wikimedia_Commons.jpg",
+        "alt": "TOUR"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Neus1.jpg/400px-Neus1.jpg",
+        "alt": "NEZ"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Grasgroen.jpg/400px-Grasgroen.jpg",
+        "alt": "SOL"
+      }
+    ]
+  },
+  {
+    "id": "reb_039",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Carnaval",
+    "acceptedAnswers": ["Carnaval", "carnaval"],
+    "explanation": "CAR + NAVET + AL = CARNAVAL",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Autocar_Setra.jpg/400px-Autocar_Setra.jpg",
+        "alt": "CAR"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Hands_-_Pair.jpg/400px-Hands_-_Pair.jpg",
+        "alt": "NA"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Red_Wine_Glass.jpg/400px-Red_Wine_Glass.jpg",
+        "alt": "VAL"
+      }
+    ]
+  },
+  {
+    "id": "reb_040",
+    "type": "rebus",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Drapeau",
+    "acceptedAnswers": ["Drapeau", "drapeau"],
+    "explanation": "DRAP + EAU = DRAPEAU",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 30,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Bedroom_Furniture.jpg/400px-Bedroom_Furniture.jpg",
+        "alt": "DRAP"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Water_drop_001.jpg/400px-Water_drop_001.jpg",
+        "alt": "EAU"
+      }
+    ]
+  },
+  {
+    "id": "reb_041",
+    "type": "rebus",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Photosynthèse",
+    "acceptedAnswers": ["Photosynthèse", "photosynthèse", "Photosynthese", "photosynthese"],
+    "explanation": "PHOTO + SAINT + THÈSE = PHOTOSYNTHÈSE",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 35,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Old_Camera.jpg/400px-Old_Camera.jpg",
+        "alt": "PHOTO"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Saint_Patrick_Catholic_Church_%28Junction_City%2C_Ohio%29_-_stained_glass%2C_Saint_Patrick_-_detail.jpg/400px-Saint_Patrick_Catholic_Church_%28Junction_City%2C_Ohio%29_-_stained_glass%2C_Saint_Patrick_-_detail.jpg",
+        "alt": "SAIN"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Cup_of_black_tea.jpg/400px-Cup_of_black_tea.jpg",
+        "alt": "THÈSE"
+      }
+    ]
+  },
+  {
+    "id": "reb_042",
+    "type": "rebus",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Parachute",
+    "acceptedAnswers": ["Parachute", "parachute"],
+    "explanation": "PA (pas) + RAT + CHUTE = PARACHUTE",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 35,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Above-charging-bull.jpg/400px-Above-charging-bull.jpg",
+        "alt": "PA"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Rattus_norvegicus_1.jpg/400px-Rattus_norvegicus_1.jpg",
+        "alt": "RAT"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Waterfall_near_Keldur.jpg/400px-Waterfall_near_Keldur.jpg",
+        "alt": "CHUTE"
+      }
+    ]
+  },
+  {
+    "id": "reb_043",
+    "type": "rebus",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Architecture",
+    "acceptedAnswers": ["Architecture", "architecture"],
+    "explanation": "ARC + CHI (ki) + TURE (tour) = ARCHITECTURE",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 35,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Arc_de_Triomphe%2C_Paris_21_October_2010.jpg/400px-Arc_de_Triomphe%2C_Paris_21_October_2010.jpg",
+        "alt": "ARC"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Cup_of_black_tea.jpg/400px-Cup_of_black_tea.jpg",
+        "alt": "HI"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Chess_king.jpg/400px-Chess_king.jpg",
+        "alt": "TEC"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/400px-Tour_Eiffel_Wikimedia_Commons.jpg",
+        "alt": "TURE"
+      }
+    ]
+  },
+  {
+    "id": "reb_044",
+    "type": "rebus",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Portefeuille",
+    "acceptedAnswers": ["Portefeuille", "portefeuille"],
+    "explanation": "PORT + FEU +ILLE (île) = PORTEFEUILLE",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 35,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Port_of_Singapore.jpg/400px-Port_of_Singapore.jpg",
+        "alt": "PORT"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Campfire_Pinecone.jpg/400px-Campfire_Pinecone.jpg",
+        "alt": "FEU"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Bora_Bora_ISS006.jpg/400px-Bora_Bora_ISS006.jpg",
+        "alt": "ILLE"
+      }
+    ]
+  },
+  {
+    "id": "reb_045",
+    "type": "rebus",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Sentimentale",
+    "acceptedAnswers": ["Sentimentale", "sentimentale"],
+    "explanation": "CENT + TI (thé) + MENTHE + AL = SENTIMENTALE",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 35,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/100_euro_note.jpg/400px-100_euro_note.jpg",
+        "alt": "CENT"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Cup_of_black_tea.jpg/400px-Cup_of_black_tea.jpg",
+        "alt": "TI"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Mentha_x_piperita_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-095.jpg/400px-Mentha_x_piperita_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-095.jpg",
+        "alt": "MEN"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/LA_%28letters%29.svg/400px-LA_%28letters%29.svg.png",
+        "alt": "TALE"
+      }
+    ]
+  },
+  {
+    "id": "reb_046",
+    "type": "rebus",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Marguerite",
+    "acceptedAnswers": ["Marguerite", "marguerite"],
+    "explanation": "MARE + GUEULE + RITE = MARGUERITE",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 35,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Polder_Nieuwkoop.jpg/400px-Polder_Nieuwkoop.jpg",
+        "alt": "MAR"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Guerre_14-18-Artillerie-de-tranchee-1918.jpg/400px-Guerre_14-18-Artillerie-de-tranchee-1918.jpg",
+        "alt": "GUE"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/White_rice.jpg/400px-White_rice.jpg",
+        "alt": "RI"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Cup_of_black_tea.jpg/400px-Cup_of_black_tea.jpg",
+        "alt": "TE"
+      }
+    ]
+  },
+  {
+    "id": "reb_047",
+    "type": "rebus",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Passeport",
+    "acceptedAnswers": ["Passeport", "passeport"],
+    "explanation": "PAS + SE (sept) + PORT = PASSEPORT",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 35,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Above-charging-bull.jpg/400px-Above-charging-bull.jpg",
+        "alt": "PAS"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Metal_bucket.jpg/400px-Metal_bucket.jpg",
+        "alt": "SE"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Port_of_Singapore.jpg/400px-Port_of_Singapore.jpg",
+        "alt": "PORT"
+      }
+    ]
+  },
+  {
+    "id": "reb_048",
+    "type": "rebus",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Paratonerre",
+    "acceptedAnswers": ["Paratonnerre", "paratonnerre", "Paratonerre", "paratonerre"],
+    "explanation": "PA (pas) + RAT + THON + AIR = PARATONNERRE",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 35,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Above-charging-bull.jpg/400px-Above-charging-bull.jpg",
+        "alt": "PA"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Rattus_norvegicus_1.jpg/400px-Rattus_norvegicus_1.jpg",
+        "alt": "RAT"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Thunnus_alalunga.jpg/400px-Thunnus_alalunga.jpg",
+        "alt": "THON"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/400px-The_Earth_seen_from_Apollo_17.jpg",
+        "alt": "ERRE"
+      }
+    ]
+  },
+  {
+    "id": "reb_049",
+    "type": "rebus",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Charpentier",
+    "acceptedAnswers": ["Charpentier", "charpentier"],
+    "explanation": "CHAR + PENTE + HIER = CHARPENTIER",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 35,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Merkava4m-tank-1.jpg/400px-Merkava4m-tank-1.jpg",
+        "alt": "CHAR"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Fresh_made_bread_05.jpg/400px-Fresh_made_bread_05.jpg",
+        "alt": "PAN"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Cup_of_black_tea.jpg/400px-Cup_of_black_tea.jpg",
+        "alt": "THIER"
+      }
+    ]
+  },
+  {
+    "id": "reb_050",
+    "type": "rebus",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Quel mot ou expression se cache dans ce rébus ?",
+    "answer": "Cauchemar",
+    "acceptedAnswers": ["Cauchemar", "cauchemar"],
+    "explanation": "COCHE + MARE = CAUCHEMAR",
+    "tags": ["jeux de mots", "rébus"],
+    "baseTimer": 35,
+    "media": null,
+    "clues": [
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Human_neck.jpg/400px-Human_neck.jpg",
+        "alt": "COCHE"
+      },
+      {
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Polder_Nieuwkoop.jpg/400px-Polder_Nieuwkoop.jpg",
+        "alt": "MAR"
       }
     ]
   }

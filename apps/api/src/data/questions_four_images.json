@@ -6,16 +6,971 @@
     "category": "culture",
     "label": "Quel mot relie ces 4 images ?",
     "answer": "Feu",
-    "acceptedAnswers": ["Feu", "feu", "Le feu"],
+    "acceptedAnswers": ["Feu", "feu", "Le feu", "le feu"],
     "media": null,
     "explanation": "Flamme, pompier, cheminée, dragon — tous liés au feu.",
     "tags": ["culture", "vocabulaire"],
     "baseTimer": 25,
     "images": [
-      { "svg": "flame", "alt": "Flamme" },
-      { "svg": "firefighter", "alt": "Pompier" },
-      { "svg": "fireplace", "alt": "Cheminée" },
-      { "svg": "dragon", "alt": "Dragon" }
+      { "svg": "🔥", "alt": "Flamme" },
+      { "svg": "🚒", "alt": "Camion de pompier" },
+      { "svg": "🏠", "alt": "Cheminée" },
+      { "svg": "🐉", "alt": "Dragon" }
+    ]
+  },
+  {
+    "id": "fi_002",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Eau",
+    "acceptedAnswers": ["Eau", "eau", "L'eau", "l'eau"],
+    "media": null,
+    "explanation": "Vague, poisson, goutte, robinet — tous liés à l'eau.",
+    "tags": ["nature", "vocabulaire"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "🌊", "alt": "Vague" },
+      { "svg": "🐟", "alt": "Poisson" },
+      { "svg": "💧", "alt": "Goutte d'eau" },
+      { "svg": "🚿", "alt": "Douche" }
+    ]
+  },
+  {
+    "id": "fi_003",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Soleil",
+    "acceptedAnswers": ["Soleil", "soleil", "Le soleil", "le soleil"],
+    "media": null,
+    "explanation": "Soleil, lunettes de soleil, tournesol, crème solaire — tous liés au soleil.",
+    "tags": ["nature", "vocabulaire"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "☀️", "alt": "Soleil" },
+      { "svg": "😎", "alt": "Lunettes de soleil" },
+      { "svg": "🌻", "alt": "Tournesol" },
+      { "svg": "🏖️", "alt": "Plage ensoleillée" }
+    ]
+  },
+  {
+    "id": "fi_004",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "musique",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Musique",
+    "acceptedAnswers": ["Musique", "musique", "La musique", "la musique"],
+    "media": null,
+    "explanation": "Note, guitare, micro, casque — tous liés à la musique.",
+    "tags": ["musique", "culture"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "🎵", "alt": "Note de musique" },
+      { "svg": "🎸", "alt": "Guitare" },
+      { "svg": "🎤", "alt": "Microphone" },
+      { "svg": "🎧", "alt": "Casque audio" }
+    ]
+  },
+  {
+    "id": "fi_005",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "sport",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Football",
+    "acceptedAnswers": [
+      "Football",
+      "football",
+      "Le football",
+      "le football",
+      "Foot",
+      "foot",
+      "Le foot"
+    ],
+    "media": null,
+    "explanation": "Ballon, stade, but, carton rouge — tous liés au football.",
+    "tags": ["sport"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "⚽", "alt": "Ballon de football" },
+      { "svg": "🏟️", "alt": "Stade" },
+      { "svg": "🥅", "alt": "But" },
+      { "svg": "🟥", "alt": "Carton rouge" }
+    ]
+  },
+  {
+    "id": "fi_006",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "gastronomie",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Fromage",
+    "acceptedAnswers": ["Fromage", "fromage", "Le fromage", "le fromage"],
+    "media": null,
+    "explanation": "Fromage, vache, souris, pizza — tous liés au fromage.",
+    "tags": ["gastronomie", "culture"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "🧀", "alt": "Fromage" },
+      { "svg": "🐄", "alt": "Vache" },
+      { "svg": "🐭", "alt": "Souris" },
+      { "svg": "🍕", "alt": "Pizza" }
+    ]
+  },
+  {
+    "id": "fi_007",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Nuit",
+    "acceptedAnswers": ["Nuit", "nuit", "La nuit", "la nuit"],
+    "media": null,
+    "explanation": "Lune, étoiles, chouette, lit — tous liés à la nuit.",
+    "tags": ["nature", "vocabulaire"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "🌙", "alt": "Lune" },
+      { "svg": "⭐", "alt": "Étoile" },
+      { "svg": "🦉", "alt": "Chouette" },
+      { "svg": "🛏️", "alt": "Lit" }
+    ]
+  },
+  {
+    "id": "fi_008",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Roi",
+    "acceptedAnswers": ["Roi", "roi", "Le roi", "le roi", "Royauté", "royauté"],
+    "media": null,
+    "explanation": "Couronne, château, trône, lion — tous liés au roi.",
+    "tags": ["culture", "vocabulaire"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "👑", "alt": "Couronne" },
+      { "svg": "🏰", "alt": "Château" },
+      { "svg": "🪑", "alt": "Trône" },
+      { "svg": "🦁", "alt": "Lion" }
+    ]
+  },
+  {
+    "id": "fi_009",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "gastronomie",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Chocolat",
+    "acceptedAnswers": ["Chocolat", "chocolat", "Le chocolat", "le chocolat"],
+    "media": null,
+    "explanation": "Tablette de chocolat, gâteau, cacao, lapin de Pâques — tous liés au chocolat.",
+    "tags": ["gastronomie"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "🍫", "alt": "Tablette de chocolat" },
+      { "svg": "🎂", "alt": "Gâteau au chocolat" },
+      { "svg": "🌰", "alt": "Fève de cacao" },
+      { "svg": "🐰", "alt": "Lapin de Pâques" }
+    ]
+  },
+  {
+    "id": "fi_010",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Montagne",
+    "acceptedAnswers": ["Montagne", "montagne", "La montagne", "la montagne"],
+    "media": null,
+    "explanation": "Montagne, ski, chèvre, aigle — tous liés à la montagne.",
+    "tags": ["nature", "sport"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "🏔️", "alt": "Montagne enneigée" },
+      { "svg": "⛷️", "alt": "Skieur" },
+      { "svg": "🐐", "alt": "Chèvre" },
+      { "svg": "🦅", "alt": "Aigle" }
+    ]
+  },
+  {
+    "id": "fi_011",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Voyage",
+    "acceptedAnswers": ["Voyage", "voyage", "Le voyage", "le voyage"],
+    "media": null,
+    "explanation": "Avion, valise, carte, appareil photo — tous liés au voyage.",
+    "tags": ["culture", "vocabulaire"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "✈️", "alt": "Avion" },
+      { "svg": "🧳", "alt": "Valise" },
+      { "svg": "🗺️", "alt": "Carte du monde" },
+      { "svg": "📸", "alt": "Appareil photo" }
+    ]
+  },
+  {
+    "id": "fi_012",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Forêt",
+    "acceptedAnswers": ["Forêt", "forêt", "La forêt", "la forêt", "Foret", "foret"],
+    "media": null,
+    "explanation": "Arbre, champignon, cerf, bûcheron — tous liés à la forêt.",
+    "tags": ["nature"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "🌲", "alt": "Sapin" },
+      { "svg": "🍄", "alt": "Champignon" },
+      { "svg": "🦌", "alt": "Cerf" },
+      { "svg": "🪓", "alt": "Hache de bûcheron" }
+    ]
+  },
+  {
+    "id": "fi_013",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "gastronomie",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Pain",
+    "acceptedAnswers": ["Pain", "pain", "Le pain", "le pain"],
+    "media": null,
+    "explanation": "Baguette, blé, boulanger, sandwich — tous liés au pain.",
+    "tags": ["gastronomie", "culture"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "🥖", "alt": "Baguette" },
+      { "svg": "🌾", "alt": "Blé" },
+      { "svg": "👨‍🍳", "alt": "Boulanger" },
+      { "svg": "🥪", "alt": "Sandwich" }
+    ]
+  },
+  {
+    "id": "fi_014",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Anniversaire",
+    "acceptedAnswers": ["Anniversaire", "anniversaire", "L'anniversaire", "l'anniversaire"],
+    "media": null,
+    "explanation": "Gâteau, bougies, cadeau, ballon — tous liés à l'anniversaire.",
+    "tags": ["culture", "vocabulaire"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "🎂", "alt": "Gâteau d'anniversaire" },
+      { "svg": "🕯️", "alt": "Bougie" },
+      { "svg": "🎁", "alt": "Cadeau" },
+      { "svg": "🎈", "alt": "Ballon de fête" }
+    ]
+  },
+  {
+    "id": "fi_015",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Hiver",
+    "acceptedAnswers": ["Hiver", "hiver", "L'hiver", "l'hiver"],
+    "media": null,
+    "explanation": "Flocon, bonhomme de neige, écharpe, chocolat chaud — tous liés à l'hiver.",
+    "tags": ["nature", "vocabulaire"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "❄️", "alt": "Flocon de neige" },
+      { "svg": "⛄", "alt": "Bonhomme de neige" },
+      { "svg": "🧣", "alt": "Écharpe" },
+      { "svg": "☕", "alt": "Chocolat chaud" }
+    ]
+  },
+  {
+    "id": "fi_016",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Fleur",
+    "acceptedAnswers": ["Fleur", "fleur", "La fleur", "la fleur", "Fleurs", "fleurs"],
+    "media": null,
+    "explanation": "Rose, tulipe, abeille, bouquet — tous liés aux fleurs.",
+    "tags": ["nature"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "🌹", "alt": "Rose" },
+      { "svg": "🌷", "alt": "Tulipe" },
+      { "svg": "🐝", "alt": "Abeille" },
+      { "svg": "💐", "alt": "Bouquet" }
+    ]
+  },
+  {
+    "id": "fi_017",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "École",
+    "acceptedAnswers": ["École", "école", "L'école", "l'école", "Ecole", "ecole"],
+    "media": null,
+    "explanation": "Livre, crayon, sac à dos, tableau — tous liés à l'école.",
+    "tags": ["culture", "vocabulaire"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "📚", "alt": "Livres" },
+      { "svg": "✏️", "alt": "Crayon" },
+      { "svg": "🎒", "alt": "Sac à dos" },
+      { "svg": "📝", "alt": "Tableau et notes" }
+    ]
+  },
+  {
+    "id": "fi_018",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "sport",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Course",
+    "acceptedAnswers": ["Course", "course", "La course", "la course"],
+    "media": null,
+    "explanation": "Chaussure de sport, chronomètre, médaille, piste — tous liés à la course.",
+    "tags": ["sport"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "👟", "alt": "Chaussure de sport" },
+      { "svg": "⏱️", "alt": "Chronomètre" },
+      { "svg": "🏅", "alt": "Médaille" },
+      { "svg": "🏃", "alt": "Coureur" }
+    ]
+  },
+  {
+    "id": "fi_019",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "nature",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Mer",
+    "acceptedAnswers": ["Mer", "mer", "La mer", "la mer", "Océan", "océan"],
+    "media": null,
+    "explanation": "Ancre, coquillage, bateau, dauphin — tous liés à la mer.",
+    "tags": ["nature"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "⚓", "alt": "Ancre" },
+      { "svg": "🐚", "alt": "Coquillage" },
+      { "svg": "⛵", "alt": "Bateau à voile" },
+      { "svg": "🐬", "alt": "Dauphin" }
+    ]
+  },
+  {
+    "id": "fi_020",
+    "type": "fourImages",
+    "difficulty": "easy",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Temps",
+    "acceptedAnswers": ["Temps", "temps", "Le temps", "le temps"],
+    "media": null,
+    "explanation": "Horloge, sablier, calendrier, montre — tous liés au temps.",
+    "tags": ["culture", "vocabulaire"],
+    "baseTimer": 25,
+    "images": [
+      { "svg": "🕐", "alt": "Horloge" },
+      { "svg": "⏳", "alt": "Sablier" },
+      { "svg": "📅", "alt": "Calendrier" },
+      { "svg": "⌚", "alt": "Montre" }
+    ]
+  },
+  {
+    "id": "fi_021",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "sciences",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Électricité",
+    "acceptedAnswers": [
+      "Électricité",
+      "électricité",
+      "L'électricité",
+      "l'électricité",
+      "Electricité",
+      "electricité",
+      "Electricite",
+      "electricite"
+    ],
+    "media": null,
+    "explanation": "Éclair, ampoule, prise, batterie — tous liés à l'électricité.",
+    "tags": ["sciences"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "⚡", "alt": "Éclair" },
+      { "svg": "💡", "alt": "Ampoule" },
+      { "svg": "🔌", "alt": "Prise électrique" },
+      { "svg": "🔋", "alt": "Batterie" }
+    ]
+  },
+  {
+    "id": "fi_022",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "cinéma",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Cinéma",
+    "acceptedAnswers": ["Cinéma", "cinéma", "Le cinéma", "le cinéma", "Cinema", "cinema"],
+    "media": null,
+    "explanation": "Caméra, pop-corn, clap, projecteur — tous liés au cinéma.",
+    "tags": ["cinéma", "culture"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "🎬", "alt": "Clap de cinéma" },
+      { "svg": "🍿", "alt": "Pop-corn" },
+      { "svg": "📽️", "alt": "Projecteur" },
+      { "svg": "🎥", "alt": "Caméra" }
+    ]
+  },
+  {
+    "id": "fi_023",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "sciences",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Espace",
+    "acceptedAnswers": ["Espace", "espace", "L'espace", "l'espace"],
+    "media": null,
+    "explanation": "Fusée, astronaute, planète, satellite — tous liés à l'espace.",
+    "tags": ["sciences"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "🚀", "alt": "Fusée" },
+      { "svg": "👨‍🚀", "alt": "Astronaute" },
+      { "svg": "🪐", "alt": "Planète Saturne" },
+      { "svg": "🛸", "alt": "Soucoupe volante" }
+    ]
+  },
+  {
+    "id": "fi_024",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "gastronomie",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Vin",
+    "acceptedAnswers": ["Vin", "vin", "Le vin", "le vin"],
+    "media": null,
+    "explanation": "Raisin, verre à vin, tonneau, tire-bouchon — tous liés au vin.",
+    "tags": ["gastronomie", "culture"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "🍇", "alt": "Raisin" },
+      { "svg": "🍷", "alt": "Verre de vin" },
+      { "svg": "🛢️", "alt": "Tonneau" },
+      { "svg": "🔓", "alt": "Tire-bouchon" }
+    ]
+  },
+  {
+    "id": "fi_025",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Magie",
+    "acceptedAnswers": ["Magie", "magie", "La magie", "la magie"],
+    "media": null,
+    "explanation": "Baguette magique, chapeau, lapin, cartes — tous liés à la magie.",
+    "tags": ["culture"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "🪄", "alt": "Baguette magique" },
+      { "svg": "🎩", "alt": "Chapeau de magicien" },
+      { "svg": "🐇", "alt": "Lapin" },
+      { "svg": "🃏", "alt": "Cartes" }
+    ]
+  },
+  {
+    "id": "fi_026",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Pirate",
+    "acceptedAnswers": ["Pirate", "pirate", "Le pirate", "le pirate", "Pirates", "pirates"],
+    "media": null,
+    "explanation": "Tête de mort, coffre au trésor, perroquet, bateau — tous liés aux pirates.",
+    "tags": ["culture"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "☠️", "alt": "Tête de mort" },
+      { "svg": "💰", "alt": "Coffre au trésor" },
+      { "svg": "🦜", "alt": "Perroquet" },
+      { "svg": "🏴‍☠️", "alt": "Drapeau pirate" }
+    ]
+  },
+  {
+    "id": "fi_027",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "sport",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Tennis",
+    "acceptedAnswers": ["Tennis", "tennis", "Le tennis", "le tennis"],
+    "media": null,
+    "explanation": "Raquette, balle, filet, trophée — tous liés au tennis.",
+    "tags": ["sport"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "🎾", "alt": "Balle de tennis" },
+      { "svg": "🏸", "alt": "Raquette" },
+      { "svg": "🥇", "alt": "Médaille d'or" },
+      { "svg": "👟", "alt": "Chaussure de sport" }
+    ]
+  },
+  {
+    "id": "fi_028",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "gastronomie",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Café",
+    "acceptedAnswers": ["Café", "café", "Le café", "le café", "Cafe", "cafe"],
+    "media": null,
+    "explanation": "Tasse, grain, moulin, croissant — tous liés au café.",
+    "tags": ["gastronomie"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "☕", "alt": "Tasse de café" },
+      { "svg": "🫘", "alt": "Grains de café" },
+      { "svg": "🇮🇹", "alt": "Drapeau italien (espresso)" },
+      { "svg": "🥐", "alt": "Croissant" }
+    ]
+  },
+  {
+    "id": "fi_029",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "nature",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Orage",
+    "acceptedAnswers": ["Orage", "orage", "L'orage", "l'orage", "Tempête", "tempête"],
+    "media": null,
+    "explanation": "Éclair, nuage, pluie, parapluie — tous liés à l'orage.",
+    "tags": ["nature"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "⛈️", "alt": "Nuage d'orage" },
+      { "svg": "⚡", "alt": "Éclair" },
+      { "svg": "🌧️", "alt": "Pluie" },
+      { "svg": "☂️", "alt": "Parapluie" }
+    ]
+  },
+  {
+    "id": "fi_030",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Japon",
+    "acceptedAnswers": ["Japon", "japon", "Le Japon", "le Japon", "le japon"],
+    "media": null,
+    "explanation": "Sushi, torii, cerisier, samouraï — tous liés au Japon.",
+    "tags": ["culture", "gastronomie"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "🍣", "alt": "Sushi" },
+      { "svg": "⛩️", "alt": "Torii" },
+      { "svg": "🌸", "alt": "Fleur de cerisier" },
+      { "svg": "🗾", "alt": "Carte du Japon" }
+    ]
+  },
+  {
+    "id": "fi_031",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "musique",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Orchestre",
+    "acceptedAnswers": ["Orchestre", "orchestre", "L'orchestre", "l'orchestre"],
+    "media": null,
+    "explanation": "Violon, trompette, chef d'orchestre, partition — tous liés à l'orchestre.",
+    "tags": ["musique", "culture"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "🎻", "alt": "Violon" },
+      { "svg": "🎺", "alt": "Trompette" },
+      { "svg": "🤵", "alt": "Chef d'orchestre" },
+      { "svg": "🎼", "alt": "Partition musicale" }
+    ]
+  },
+  {
+    "id": "fi_032",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "sciences",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Médecine",
+    "acceptedAnswers": [
+      "Médecine",
+      "médecine",
+      "La médecine",
+      "la médecine",
+      "Medecine",
+      "medecine"
+    ],
+    "media": null,
+    "explanation": "Seringue, stéthoscope, pilule, hôpital — tous liés à la médecine.",
+    "tags": ["sciences"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "💉", "alt": "Seringue" },
+      { "svg": "🩺", "alt": "Stéthoscope" },
+      { "svg": "💊", "alt": "Pilule" },
+      { "svg": "🏥", "alt": "Hôpital" }
+    ]
+  },
+  {
+    "id": "fi_033",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Argent",
+    "acceptedAnswers": ["Argent", "argent", "L'argent", "l'argent"],
+    "media": null,
+    "explanation": "Billet, tirelire, banque, diamant — tous liés à l'argent.",
+    "tags": ["culture", "vocabulaire"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "💵", "alt": "Billet de banque" },
+      { "svg": "🐷", "alt": "Tirelire cochon" },
+      { "svg": "🏦", "alt": "Banque" },
+      { "svg": "💎", "alt": "Diamant" }
+    ]
+  },
+  {
+    "id": "fi_034",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "nature",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Désert",
+    "acceptedAnswers": ["Désert", "désert", "Le désert", "le désert", "Desert", "desert"],
+    "media": null,
+    "explanation": "Chameau, cactus, pyramide, soleil brûlant — tous liés au désert.",
+    "tags": ["nature"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "🐪", "alt": "Chameau" },
+      { "svg": "🌵", "alt": "Cactus" },
+      { "svg": "🏜️", "alt": "Désert" },
+      { "svg": "🔆", "alt": "Soleil brûlant" }
+    ]
+  },
+  {
+    "id": "fi_035",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "sport",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Natation",
+    "acceptedAnswers": ["Natation", "natation", "La natation", "la natation"],
+    "media": null,
+    "explanation": "Nageur, piscine, lunettes de natation, bonnet — tous liés à la natation.",
+    "tags": ["sport"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "🏊", "alt": "Nageur" },
+      { "svg": "🩱", "alt": "Maillot de bain" },
+      { "svg": "🥽", "alt": "Lunettes de natation" },
+      { "svg": "🌊", "alt": "Eau de piscine" }
+    ]
+  },
+  {
+    "id": "fi_036",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "gastronomie",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Miel",
+    "acceptedAnswers": ["Miel", "miel", "Le miel", "le miel"],
+    "media": null,
+    "explanation": "Abeille, ruche, ours, tartine — tous liés au miel.",
+    "tags": ["gastronomie", "nature"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "🐝", "alt": "Abeille" },
+      { "svg": "🪺", "alt": "Ruche" },
+      { "svg": "🐻", "alt": "Ours" },
+      { "svg": "🍯", "alt": "Pot de miel" }
+    ]
+  },
+  {
+    "id": "fi_037",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Cirque",
+    "acceptedAnswers": ["Cirque", "cirque", "Le cirque", "le cirque"],
+    "media": null,
+    "explanation": "Clown, chapiteau, lion, jongleur — tous liés au cirque.",
+    "tags": ["culture"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "🤡", "alt": "Clown" },
+      { "svg": "🎪", "alt": "Chapiteau" },
+      { "svg": "🦁", "alt": "Lion" },
+      { "svg": "🤹", "alt": "Jongleur" }
+    ]
+  },
+  {
+    "id": "fi_038",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "sciences",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Volcan",
+    "acceptedAnswers": ["Volcan", "volcan", "Le volcan", "le volcan"],
+    "media": null,
+    "explanation": "Montagne en éruption, lave, cendres, île volcanique — tous liés au volcan.",
+    "tags": ["sciences", "nature"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "🌋", "alt": "Volcan en éruption" },
+      { "svg": "🔴", "alt": "Lave" },
+      { "svg": "🌫️", "alt": "Cendres volcaniques" },
+      { "svg": "🏝️", "alt": "Île volcanique" }
+    ]
+  },
+  {
+    "id": "fi_039",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Noël",
+    "acceptedAnswers": ["Noël", "noël", "Noel", "noel"],
+    "media": null,
+    "explanation": "Sapin, père Noël, cadeau, renne — tous liés à Noël.",
+    "tags": ["culture"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "🎄", "alt": "Sapin de Noël" },
+      { "svg": "🎅", "alt": "Père Noël" },
+      { "svg": "🎁", "alt": "Cadeau" },
+      { "svg": "🦌", "alt": "Renne" }
+    ]
+  },
+  {
+    "id": "fi_040",
+    "type": "fourImages",
+    "difficulty": "medium",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Peinture",
+    "acceptedAnswers": ["Peinture", "peinture", "La peinture", "la peinture"],
+    "media": null,
+    "explanation": "Palette, pinceau, tableau, chevalet — tous liés à la peinture.",
+    "tags": ["culture"],
+    "baseTimer": 30,
+    "images": [
+      { "svg": "🎨", "alt": "Palette de peinture" },
+      { "svg": "🖌️", "alt": "Pinceau" },
+      { "svg": "🖼️", "alt": "Tableau" },
+      { "svg": "👩‍🎨", "alt": "Artiste peintre" }
+    ]
+  },
+  {
+    "id": "fi_041",
+    "type": "fourImages",
+    "difficulty": "hard",
+    "category": "vocabulaire",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Glace",
+    "acceptedAnswers": ["Glace", "glace", "La glace", "la glace"],
+    "media": null,
+    "explanation": "Cornet de glace, miroir, glaçon, patinoire — le mot 'glace' a plusieurs sens : dessert, miroir, eau gelée, patinoire.",
+    "tags": ["vocabulaire"],
+    "baseTimer": 35,
+    "images": [
+      { "svg": "🍦", "alt": "Cornet de glace" },
+      { "svg": "🪞", "alt": "Miroir" },
+      { "svg": "🧊", "alt": "Glaçon" },
+      { "svg": "⛸️", "alt": "Patin à glace" }
+    ]
+  },
+  {
+    "id": "fi_042",
+    "type": "fourImages",
+    "difficulty": "hard",
+    "category": "vocabulaire",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Carte",
+    "acceptedAnswers": ["Carte", "carte", "La carte", "la carte", "Cartes", "cartes"],
+    "media": null,
+    "explanation": "Carte géographique, carte à jouer, carte bancaire, carte postale — le mot 'carte' a de multiples sens.",
+    "tags": ["vocabulaire"],
+    "baseTimer": 35,
+    "images": [
+      { "svg": "🗺️", "alt": "Carte géographique" },
+      { "svg": "🃏", "alt": "Carte à jouer" },
+      { "svg": "💳", "alt": "Carte bancaire" },
+      { "svg": "📮", "alt": "Carte postale" }
+    ]
+  },
+  {
+    "id": "fi_043",
+    "type": "fourImages",
+    "difficulty": "hard",
+    "category": "vocabulaire",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Pied",
+    "acceptedAnswers": ["Pied", "pied", "Le pied", "le pied"],
+    "media": null,
+    "explanation": "Pied humain, pied de table, pied de vigne, prendre son pied — le mot 'pied' a plusieurs sens.",
+    "tags": ["vocabulaire"],
+    "baseTimer": 35,
+    "images": [
+      { "svg": "🦶", "alt": "Pied humain" },
+      { "svg": "🪑", "alt": "Chaise (pied de meuble)" },
+      { "svg": "🍇", "alt": "Vigne (pied de vigne)" },
+      { "svg": "📏", "alt": "Règle (unité de mesure)" }
+    ]
+  },
+  {
+    "id": "fi_044",
+    "type": "fourImages",
+    "difficulty": "hard",
+    "category": "vocabulaire",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Plume",
+    "acceptedAnswers": ["Plume", "plume", "La plume", "la plume"],
+    "media": null,
+    "explanation": "Plume d'oiseau, stylo-plume, oreiller en plume, poids plume — le mot 'plume' a plusieurs sens.",
+    "tags": ["vocabulaire"],
+    "baseTimer": 35,
+    "images": [
+      { "svg": "🪶", "alt": "Plume d'oiseau" },
+      { "svg": "🖊️", "alt": "Stylo-plume" },
+      { "svg": "🛏️", "alt": "Oreiller en plume" },
+      { "svg": "🥊", "alt": "Boxe (poids plume)" }
+    ]
+  },
+  {
+    "id": "fi_045",
+    "type": "fourImages",
+    "difficulty": "hard",
+    "category": "vocabulaire",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Courant",
+    "acceptedAnswers": ["Courant", "courant", "Le courant", "le courant"],
+    "media": null,
+    "explanation": "Courant électrique, courant marin, au courant (actualités), courant d'air — le mot 'courant' a plusieurs sens.",
+    "tags": ["vocabulaire", "sciences"],
+    "baseTimer": 35,
+    "images": [
+      { "svg": "⚡", "alt": "Courant électrique" },
+      { "svg": "🌊", "alt": "Courant marin" },
+      { "svg": "📰", "alt": "Au courant (actualités)" },
+      { "svg": "💨", "alt": "Courant d'air" }
+    ]
+  },
+  {
+    "id": "fi_046",
+    "type": "fourImages",
+    "difficulty": "hard",
+    "category": "vocabulaire",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Bouchon",
+    "acceptedAnswers": ["Bouchon", "bouchon", "Le bouchon", "le bouchon"],
+    "media": null,
+    "explanation": "Bouchon de bouteille, bouchon de circulation, bouchon de pêche, bouchon d'oreille — le mot 'bouchon' a plusieurs sens.",
+    "tags": ["vocabulaire"],
+    "baseTimer": 35,
+    "images": [
+      { "svg": "🍾", "alt": "Bouteille (bouchon)" },
+      { "svg": "🚗", "alt": "Embouteillage" },
+      { "svg": "🎣", "alt": "Pêche (bouchon)" },
+      { "svg": "👂", "alt": "Oreille (bouchon)" }
+    ]
+  },
+  {
+    "id": "fi_047",
+    "type": "fourImages",
+    "difficulty": "hard",
+    "category": "culture",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Étoile",
+    "acceptedAnswers": ["Étoile", "étoile", "L'étoile", "l'étoile", "Etoile", "etoile"],
+    "media": null,
+    "explanation": "Étoile du ciel, étoile de mer, étoile de cinéma, étoile du berger — le mot 'étoile' a plusieurs sens.",
+    "tags": ["culture", "vocabulaire"],
+    "baseTimer": 35,
+    "images": [
+      { "svg": "⭐", "alt": "Étoile du ciel" },
+      { "svg": "🌟", "alt": "Étoile brillante (célébrité)" },
+      { "svg": "🪐", "alt": "Étoile du berger (Vénus)" },
+      { "svg": "🔯", "alt": "Étoile de David" }
+    ]
+  },
+  {
+    "id": "fi_048",
+    "type": "fourImages",
+    "difficulty": "hard",
+    "category": "vocabulaire",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Chaîne",
+    "acceptedAnswers": ["Chaîne", "chaîne", "La chaîne", "la chaîne", "Chaine", "chaine"],
+    "media": null,
+    "explanation": "Chaîne en métal, chaîne de télévision, chaîne de montagnes, chaîne de vélo — le mot 'chaîne' a plusieurs sens.",
+    "tags": ["vocabulaire"],
+    "baseTimer": 35,
+    "images": [
+      { "svg": "⛓️", "alt": "Chaîne en métal" },
+      { "svg": "📺", "alt": "Chaîne de télévision" },
+      { "svg": "🏔️", "alt": "Chaîne de montagnes" },
+      { "svg": "🚲", "alt": "Vélo (chaîne)" }
+    ]
+  },
+  {
+    "id": "fi_049",
+    "type": "fourImages",
+    "difficulty": "hard",
+    "category": "vocabulaire",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Marche",
+    "acceptedAnswers": ["Marche", "marche", "La marche", "la marche"],
+    "media": null,
+    "explanation": "Marche à pied, marche d'escalier, marché, marche militaire — le mot 'marche' a plusieurs sens.",
+    "tags": ["vocabulaire"],
+    "baseTimer": 35,
+    "images": [
+      { "svg": "🚶", "alt": "Marche à pied" },
+      { "svg": "🪜", "alt": "Escalier (marche)" },
+      { "svg": "🪖", "alt": "Militaire (marche)" },
+      { "svg": "▶️", "alt": "Bouton marche" }
+    ]
+  },
+  {
+    "id": "fi_050",
+    "type": "fourImages",
+    "difficulty": "hard",
+    "category": "vocabulaire",
+    "label": "Quel mot relie ces 4 images ?",
+    "answer": "Palme",
+    "acceptedAnswers": ["Palme", "palme", "La palme", "la palme"],
+    "media": null,
+    "explanation": "Palme de plongée, palmier, Palme d'or, palme académique — le mot 'palme' a plusieurs sens.",
+    "tags": ["vocabulaire", "cinéma"],
+    "baseTimer": 35,
+    "images": [
+      { "svg": "🤿", "alt": "Palme de plongée" },
+      { "svg": "🌴", "alt": "Palmier" },
+      { "svg": "🏆", "alt": "Palme d'or (trophée)" },
+      { "svg": "🎓", "alt": "Palme académique" }
     ]
   }
 ]

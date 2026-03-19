@@ -10,6 +10,7 @@ import type {
   QuestionReviewData,
   ReviewViewMode,
   GameConfig,
+  PowerUpType,
 } from '@/types';
 import { multiplayerGateway } from '@/services';
 import { useFeedbackStore } from './feedbackStore';
@@ -49,6 +50,26 @@ export const useLobbyStore = defineStore('lobby', () => {
   const pendingMalus = ref<{ fromPlayerName: string; duration: number } | null>(null);
   const removedOptionIds = ref<string[]>([]);
   const powerUpNotification = ref<string | null>(null);
+
+  // Freeze state (malus_freeze)
+  const isFreezeActive = ref(false);
+  const freezeFromName = ref('');
+  const freezeTimer = ref<ReturnType<typeof setTimeout> | null>(null);
+  const pendingFreeze = ref<{ fromPlayerName: string; duration: number } | null>(null);
+
+  // Speed state (malus_speed)
+  const isSpeedActive = ref(false);
+  const speedFromName = ref('');
+  const speedMultiplier = ref(1);
+  const speedTimer = ref<ReturnType<typeof setTimeout> | null>(null);
+  const pendingSpeed = ref<{
+    fromPlayerName: string;
+    duration: number;
+    multiplier: number;
+  } | null>(null);
+
+  // Double state (bonus_double)
+  const isDoubleActive = ref(false);
 
   // Post-game review
   const finalScores = ref<Record<string, { name: string; score: number }> | null>(null);
@@ -199,6 +220,39 @@ export const useLobbyStore = defineStore('lobby', () => {
         }
         // If pendingMalus exists but question is image-based, keep it pending
 
+        // Activate pending freeze (applies to all question types)
+        if (pendingFreeze.value) {
+          isFreezeActive.value = true;
+          freezeFromName.value = pendingFreeze.value.fromPlayerName;
+          if (freezeTimer.value) clearTimeout(freezeTimer.value);
+          freezeTimer.value = setTimeout(() => {
+            isFreezeActive.value = false;
+            freezeFromName.value = '';
+          }, pendingFreeze.value.duration);
+          pendingFreeze.value = null;
+        } else {
+          isFreezeActive.value = false;
+          freezeFromName.value = '';
+        }
+
+        // Activate pending speed (applies to all question types)
+        if (pendingSpeed.value) {
+          isSpeedActive.value = true;
+          speedFromName.value = pendingSpeed.value.fromPlayerName;
+          speedMultiplier.value = pendingSpeed.value.multiplier;
+          if (speedTimer.value) clearTimeout(speedTimer.value);
+          speedTimer.value = setTimeout(() => {
+            isSpeedActive.value = false;
+            speedFromName.value = '';
+            speedMultiplier.value = 1;
+          }, pendingSpeed.value.duration);
+          pendingSpeed.value = null;
+        } else {
+          isSpeedActive.value = false;
+          speedFromName.value = '';
+          speedMultiplier.value = 1;
+        }
+
         // Timer du serveur
         timer.start(event.timer ?? 30);
         totalQuestions.value = Math.max(totalQuestions.value, event.index + 1);
@@ -231,9 +285,35 @@ export const useLobbyStore = defineStore('lobby', () => {
         };
         break;
 
+      case 'game:freeze':
+        pendingFreeze.value = {
+          fromPlayerName: event.fromPlayerName,
+          duration: event.duration,
+        };
+        break;
+
+      case 'game:speed':
+        pendingSpeed.value = {
+          fromPlayerName: event.fromPlayerName,
+          duration: event.duration,
+          multiplier: event.multiplier,
+        };
+        break;
+
       case 'game:bonus5050':
         removedOptionIds.value = event.removeOptionIds;
         myPowerUpsLeft.value = event.powerUpsLeft;
+        break;
+
+      case 'game:bonusDouble':
+        isDoubleActive.value = true;
+        myPowerUpsLeft.value = event.powerUpsLeft;
+        break;
+
+      case 'game:bonusTime':
+        myPowerUpsLeft.value = event.powerUpsLeft;
+        // Add extra time to the timer store
+        timer.addTime(event.extraSeconds);
         break;
 
       case 'game:powerupUsed':
@@ -245,8 +325,16 @@ export const useLobbyStore = defineStore('lobby', () => {
         const targetName = event.targetName;
         if (event.powerUpType === 'malus_blur') {
           powerUpNotification.value = `${fromName} a flouté la question de ${targetName ?? '?'} !`;
+        } else if (event.powerUpType === 'malus_freeze') {
+          powerUpNotification.value = `${fromName} a gelé ${targetName ?? '?'} !`;
+        } else if (event.powerUpType === 'malus_speed') {
+          powerUpNotification.value = `${fromName} a accéléré le timer de ${targetName ?? '?'} !`;
         } else if (event.powerUpType === 'bonus_fifty50') {
           powerUpNotification.value = `${fromName} a utilisé le 50/50 !`;
+        } else if (event.powerUpType === 'bonus_double') {
+          powerUpNotification.value = `${fromName} a activé le Double !`;
+        } else if (event.powerUpType === 'bonus_time') {
+          powerUpNotification.value = `${fromName} a gagné +10 secondes !`;
         }
         setTimeout(() => {
           powerUpNotification.value = null;
@@ -341,7 +429,7 @@ export const useLobbyStore = defineStore('lobby', () => {
     multiplayerGateway.submitAnswer(questionId, answer, timeSpent);
   }
 
-  function usePowerUp(type: 'malus_blur' | 'bonus_fifty50', targetPlayerId?: string) {
+  function usePowerUp(type: PowerUpType, targetPlayerId?: string) {
     if (myPowerUpsLeft.value <= 0) return;
     multiplayerGateway.usePowerUp(type, targetPlayerId);
   }
@@ -377,6 +465,12 @@ export const useLobbyStore = defineStore('lobby', () => {
     isFlashQuestion.value = false;
     removedOptionIds.value = [];
     wasReconnected.value = false;
+    isFreezeActive.value = false;
+    freezeFromName.value = '';
+    isSpeedActive.value = false;
+    speedFromName.value = '';
+    speedMultiplier.value = 1;
+    isDoubleActive.value = false;
     timer.reset();
   }
 
@@ -397,6 +491,12 @@ export const useLobbyStore = defineStore('lobby', () => {
     malusFromName.value = '';
     removedOptionIds.value = [];
     myPowerUpsLeft.value = 3;
+    isFreezeActive.value = false;
+    freezeFromName.value = '';
+    isSpeedActive.value = false;
+    speedFromName.value = '';
+    speedMultiplier.value = 1;
+    isDoubleActive.value = false;
     wasReconnected.value = false;
     isReconnecting.value = false;
     feedback.reset();
@@ -421,6 +521,12 @@ export const useLobbyStore = defineStore('lobby', () => {
     malusFromName,
     removedOptionIds,
     powerUpNotification,
+    isFreezeActive,
+    freezeFromName,
+    isSpeedActive,
+    speedFromName,
+    speedMultiplier,
+    isDoubleActive,
     finalScores,
     reviewData,
     reviewViewMode,

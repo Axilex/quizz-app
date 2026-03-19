@@ -7,16 +7,16 @@
     "label": "Moitié requin, moitié dauphin. Quel est ce mot composé ?",
     "answer": "Requiphin",
     "acceptedAnswers": ["Requiphin", "requiphin"],
-    "explanation": "REQUIn + dauPHIN = REQUIPHIN. Le jeu de mots combine deux animaux marins.",
+    "explanation": "REQUIn + dauPHIN = REQUIPHIN",
     "tags": ["jeux de mots", "animaux"],
     "baseTimer": 30,
     "media": null,
     "topHalf": {
-      "imageUrl": "https://images.unsplash.com/photo-1559825481-12a05cc00344?w=400&q=80",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/400px-White_shark.jpg",
       "alt": "Tête de requin"
     },
     "bottomHalf": {
-      "imageUrl": "https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=400&q=80",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Tursiops_truncatus_01.jpg/400px-Tursiops_truncatus_01.jpg",
       "alt": "Queue de dauphin"
     }
   },
@@ -25,20 +25,1028 @@
     "type": "splitImage",
     "difficulty": "easy",
     "category": "jeux de mots",
-    "label": "Moitié lion, moitié tigre. Quel est ce animal hybride ?",
+    "label": "Moitié lion, moitié tigre. Quel est ce mot composé ?",
     "answer": "Ligre",
-    "acceptedAnswers": ["Ligre", "ligre", "Liger"],
-    "explanation": "LIon + tiGRE = LIGRE. Ce croisement existe vraiment dans certains zoos du monde.",
+    "acceptedAnswers": ["Ligre", "ligre"],
+    "explanation": "LIon + tiGRE = LIGRE",
     "tags": ["jeux de mots", "animaux"],
     "baseTimer": 30,
     "media": null,
     "topHalf": {
-      "imageUrl": "https://images.unsplash.com/photo-1535338454770-8be927b5a00b?w=400&q=80",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/400px-Lion_waiting_in_Namibia.jpg",
       "alt": "Crinière de lion"
     },
     "bottomHalf": {
-      "imageUrl": "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=400&q=80",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Walking_tiger_female.jpg/400px-Walking_tiger_female.jpg",
       "alt": "Rayures de tigre"
+    }
+  },
+  {
+    "id": "split_003",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié chat, moitié lion. Quel est ce mot composé ?",
+    "answer": "Chalion",
+    "acceptedAnswers": ["Chalion", "chalion"],
+    "explanation": "CHAt + lION = CHALION",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/400px-Cat03.jpg",
+      "alt": "Tête de chat"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/400px-Lion_waiting_in_Namibia.jpg",
+      "alt": "Corps de lion"
+    }
+  },
+  {
+    "id": "split_004",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié crocodile, moitié papillon. Quel est ce mot composé ?",
+    "answer": "Crocollon",
+    "acceptedAnswers": ["Crocollon", "crocollon"],
+    "explanation": "CROCOdile + papilLON = CROCOLLON",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nile_crocodile_head.jpg/400px-Nile_crocodile_head.jpg",
+      "alt": "Tête de crocodile"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg/400px-Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg",
+      "alt": "Ailes de papillon"
+    }
+  },
+  {
+    "id": "split_005",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié tigre, moitié éléphant. Quel est ce mot composé ?",
+    "answer": "Tigréphant",
+    "acceptedAnswers": ["Tigréphant", "tigrephant", "Tigrephant", "tigréphant"],
+    "explanation": "TIGRe + éléPHANT = TIGRÉPHANT",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Walking_tiger_female.jpg/400px-Walking_tiger_female.jpg",
+      "alt": "Tête de tigre"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/400px-African_Bush_Elephant.jpg",
+      "alt": "Corps d'éléphant"
+    }
+  },
+  {
+    "id": "split_006",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié cheval, moitié tortue. Quel est ce mot composé ?",
+    "answer": "Chevortue",
+    "acceptedAnswers": ["Chevortue", "chevortue"],
+    "explanation": "CHEVal + tORTUE = CHEVORTUE",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Nokota_Horses_croance.jpg/400px-Nokota_Horses_croance.jpg",
+      "alt": "Tête de cheval"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Florida_Box_Turtle.jpg/400px-Florida_Box_Turtle.jpg",
+      "alt": "Carapace de tortue"
+    }
+  },
+  {
+    "id": "split_007",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié chien, moitié pingouin. Quel est ce mot composé ?",
+    "answer": "Chiengouin",
+    "acceptedAnswers": ["Chiengouin", "chiengouin"],
+    "explanation": "CHIENd + pinGOUIN = CHIENGOUIN",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/YellowLabradorLooking_new.jpg/400px-YellowLabradorLooking_new.jpg",
+      "alt": "Tête de chien"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Emperor_Penguin_Manchot_empereur.jpg/400px-Emperor_Penguin_Manchot_empereur.jpg",
+      "alt": "Corps de pingouin"
+    }
+  },
+  {
+    "id": "split_008",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié girafe, moitié tortue. Quel est ce mot composé ?",
+    "answer": "Giraftue",
+    "acceptedAnswers": ["Giraftue", "giraftue"],
+    "explanation": "GIRAFe + torTUE = GIRAFTUE",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Giraffe_Mikumi_National_Park.jpg/400px-Giraffe_Mikumi_National_Park.jpg",
+      "alt": "Tête de girafe"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Florida_Box_Turtle.jpg/400px-Florida_Box_Turtle.jpg",
+      "alt": "Carapace de tortue"
+    }
+  },
+  {
+    "id": "split_009",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié perroquet, moitié chien. Quel est ce mot composé ?",
+    "answer": "Perrochien",
+    "acceptedAnswers": ["Perrochien", "perrochien"],
+    "explanation": "PERROquet + CHIEN = PERROCHIEN",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Ara_ararauna_Luc_Viatour.jpg/400px-Ara_ararauna_Luc_Viatour.jpg",
+      "alt": "Tête de perroquet"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/YellowLabradorLooking_new.jpg/400px-YellowLabradorLooking_new.jpg",
+      "alt": "Corps de chien"
+    }
+  },
+  {
+    "id": "split_010",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié éléphant, moitié girafe. Quel est ce mot composé ?",
+    "answer": "Éléphrafe",
+    "acceptedAnswers": ["Éléphrafe", "Elephrafe", "elephrafe", "éléphrafe"],
+    "explanation": "ÉLÉPHant + giRAFE = ÉLÉPHRAFE",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/400px-African_Bush_Elephant.jpg",
+      "alt": "Tête d'éléphant"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Giraffe_Mikumi_National_Park.jpg/400px-Giraffe_Mikumi_National_Park.jpg",
+      "alt": "Corps de girafe"
+    }
+  },
+  {
+    "id": "split_011",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié chat, moitié perroquet. Quel est ce mot composé ?",
+    "answer": "Charroquet",
+    "acceptedAnswers": ["Charroquet", "charroquet"],
+    "explanation": "CHAt + peRROQUET = CHARROQUET",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/400px-Cat03.jpg",
+      "alt": "Tête de chat"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Ara_ararauna_Luc_Viatour.jpg/400px-Ara_ararauna_Luc_Viatour.jpg",
+      "alt": "Plumes de perroquet"
+    }
+  },
+  {
+    "id": "split_012",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié lion, moitié papillon. Quel est ce mot composé ?",
+    "answer": "Liillon",
+    "acceptedAnswers": ["Liillon", "liillon"],
+    "explanation": "LIon + papILLON = LIILLON",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/400px-Lion_waiting_in_Namibia.jpg",
+      "alt": "Crinière de lion"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg/400px-Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg",
+      "alt": "Ailes de papillon"
+    }
+  },
+  {
+    "id": "split_013",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié tortue, moitié requin. Quel est ce mot composé ?",
+    "answer": "Torquin",
+    "acceptedAnswers": ["Torquin", "torquin"],
+    "explanation": "TORtue + reQUIN = TORQUIN",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Florida_Box_Turtle.jpg/400px-Florida_Box_Turtle.jpg",
+      "alt": "Tête de tortue"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/400px-White_shark.jpg",
+      "alt": "Queue de requin"
+    }
+  },
+  {
+    "id": "split_014",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié pingouin, moitié chat. Quel est ce mot composé ?",
+    "answer": "Pingochat",
+    "acceptedAnswers": ["Pingochat", "pingochat"],
+    "explanation": "PINGOuin + CHAT = PINGOCHAT",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Emperor_Penguin_Manchot_empereur.jpg/400px-Emperor_Penguin_Manchot_empereur.jpg",
+      "alt": "Tête de pingouin"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/400px-Cat03.jpg",
+      "alt": "Corps de chat"
+    }
+  },
+  {
+    "id": "split_015",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié dauphin, moitié cheval. Quel est ce mot composé ?",
+    "answer": "Daupheval",
+    "acceptedAnswers": ["Daupheval", "daupheval"],
+    "explanation": "DAUPHin + chEVAL = DAUPHEVAL",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Tursiops_truncatus_01.jpg/400px-Tursiops_truncatus_01.jpg",
+      "alt": "Tête de dauphin"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Nokota_Horses_croance.jpg/400px-Nokota_Horses_croance.jpg",
+      "alt": "Corps de cheval"
+    }
+  },
+  {
+    "id": "split_016",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié papillon, moitié crocodile. Quel est ce mot composé ?",
+    "answer": "Papilodile",
+    "acceptedAnswers": ["Papilodile", "papilodile"],
+    "explanation": "PAPILlon + crocODILE = PAPILODILE",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg/400px-Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg",
+      "alt": "Ailes de papillon"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nile_crocodile_head.jpg/400px-Nile_crocodile_head.jpg",
+      "alt": "Queue de crocodile"
+    }
+  },
+  {
+    "id": "split_017",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié chien, moitié chat. Quel est ce mot composé ?",
+    "answer": "Chiat",
+    "acceptedAnswers": ["Chiat", "chiat"],
+    "explanation": "CHIen + chAT = CHIAT",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/YellowLabradorLooking_new.jpg/400px-YellowLabradorLooking_new.jpg",
+      "alt": "Tête de chien"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/400px-Cat03.jpg",
+      "alt": "Corps de chat"
+    }
+  },
+  {
+    "id": "split_018",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié crocodile, moitié chien. Quel est ce mot composé ?",
+    "answer": "Crocochien",
+    "acceptedAnswers": ["Crocochien", "crocochien"],
+    "explanation": "CROCOdile + CHIEN = CROCOCHIEN",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nile_crocodile_head.jpg/400px-Nile_crocodile_head.jpg",
+      "alt": "Tête de crocodile"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/YellowLabradorLooking_new.jpg/400px-YellowLabradorLooking_new.jpg",
+      "alt": "Corps de chien"
+    }
+  },
+  {
+    "id": "split_019",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié cheval, moitié pingouin. Quel est ce mot composé ?",
+    "answer": "Chevagouin",
+    "acceptedAnswers": ["Chevagouin", "chevagouin"],
+    "explanation": "CHEVAl + pinGOUIN = CHEVAGOUIN",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Nokota_Horses_croance.jpg/400px-Nokota_Horses_croance.jpg",
+      "alt": "Tête de cheval"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Emperor_Penguin_Manchot_empereur.jpg/400px-Emperor_Penguin_Manchot_empereur.jpg",
+      "alt": "Corps de pingouin"
+    }
+  },
+  {
+    "id": "split_020",
+    "type": "splitImage",
+    "difficulty": "easy",
+    "category": "jeux de mots",
+    "label": "Moitié tigre, moitié dauphin. Quel est ce mot composé ?",
+    "answer": "Tigriphin",
+    "acceptedAnswers": ["Tigriphin", "tigriphin"],
+    "explanation": "TIGRe + dauPHIN = TIGRIPHIN",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 30,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Walking_tiger_female.jpg/400px-Walking_tiger_female.jpg",
+      "alt": "Tête de tigre"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Tursiops_truncatus_01.jpg/400px-Tursiops_truncatus_01.jpg",
+      "alt": "Queue de dauphin"
+    }
+  },
+  {
+    "id": "split_021",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié pizza, moitié guitare. Quel est ce mot composé ?",
+    "answer": "Pizzatare",
+    "acceptedAnswers": ["Pizzatare", "pizzatare"],
+    "explanation": "PIZZa + guiTARE = PIZZATARE",
+    "tags": ["jeux de mots", "objets"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/400px-Eq_it-na_pizza-margherita_sep2005_sml.jpg",
+      "alt": "Pizza vue du dessus"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/GuitareClassique5.png/400px-GuitareClassique5.png",
+      "alt": "Manche de guitare"
+    }
+  },
+  {
+    "id": "split_022",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié voiture, moitié avion. Quel est ce mot composé ?",
+    "answer": "Voivion",
+    "acceptedAnswers": ["Voivion", "voivion"],
+    "explanation": "VOIture + aVION = VOIVION",
+    "tags": ["jeux de mots", "véhicules"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Fiat_500_in_Turin.jpg/400px-Fiat_500_in_Turin.jpg",
+      "alt": "Avant de voiture"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/A380_Emirates_A6-EOC.jpg/400px-A380_Emirates_A6-EOC.jpg",
+      "alt": "Queue d'avion"
+    }
+  },
+  {
+    "id": "split_023",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié guitare, moitié pizza. Quel est ce mot composé ?",
+    "answer": "Guizza",
+    "acceptedAnswers": ["Guizza", "guizza"],
+    "explanation": "GUItare + piZZA = GUIZZA",
+    "tags": ["jeux de mots", "objets"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/GuitareClassique5.png/400px-GuitareClassique5.png",
+      "alt": "Tête de guitare"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/400px-Eq_it-na_pizza-margherita_sep2005_sml.jpg",
+      "alt": "Part de pizza"
+    }
+  },
+  {
+    "id": "split_024",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié avion, moitié voiture. Quel est ce mot composé ?",
+    "answer": "Avioture",
+    "acceptedAnswers": ["Avioture", "avioture"],
+    "explanation": "AVIONn + voiTURE = AVIOTURE",
+    "tags": ["jeux de mots", "véhicules"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/A380_Emirates_A6-EOC.jpg/400px-A380_Emirates_A6-EOC.jpg",
+      "alt": "Nez d'avion"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Fiat_500_in_Turin.jpg/400px-Fiat_500_in_Turin.jpg",
+      "alt": "Arrière de voiture"
+    }
+  },
+  {
+    "id": "split_025",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié pizza, moitié lion. Quel est ce mot composé ?",
+    "answer": "Pizzalion",
+    "acceptedAnswers": ["Pizzalion", "pizzalion"],
+    "explanation": "PIZZA + LION = PIZZALION",
+    "tags": ["jeux de mots", "animaux", "objets"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/400px-Eq_it-na_pizza-margherita_sep2005_sml.jpg",
+      "alt": "Pizza vue du dessus"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/400px-Lion_waiting_in_Namibia.jpg",
+      "alt": "Corps de lion"
+    }
+  },
+  {
+    "id": "split_026",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié guitare, moitié éléphant. Quel est ce mot composé ?",
+    "answer": "Guitéphant",
+    "acceptedAnswers": ["Guitéphant", "guitephant", "Guitephant", "guitéphant"],
+    "explanation": "GUITare + éléPHANT = GUITÉPHANT",
+    "tags": ["jeux de mots", "animaux", "objets"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/GuitareClassique5.png/400px-GuitareClassique5.png",
+      "alt": "Tête de guitare"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/400px-African_Bush_Elephant.jpg",
+      "alt": "Corps d'éléphant"
+    }
+  },
+  {
+    "id": "split_027",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié voiture, moitié requin. Quel est ce mot composé ?",
+    "answer": "Voiquin",
+    "acceptedAnswers": ["Voiquin", "voiquin"],
+    "explanation": "VOIture + reQUIN = VOIQUIN",
+    "tags": ["jeux de mots", "véhicules", "animaux"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Fiat_500_in_Turin.jpg/400px-Fiat_500_in_Turin.jpg",
+      "alt": "Avant de voiture"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/400px-White_shark.jpg",
+      "alt": "Queue de requin"
+    }
+  },
+  {
+    "id": "split_028",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié avion, moitié tortue. Quel est ce mot composé ?",
+    "answer": "Aviortue",
+    "acceptedAnswers": ["Aviortue", "aviortue"],
+    "explanation": "AVIONn + tORTUE = AVIORTUE",
+    "tags": ["jeux de mots", "véhicules", "animaux"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/A380_Emirates_A6-EOC.jpg/400px-A380_Emirates_A6-EOC.jpg",
+      "alt": "Nez d'avion"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Florida_Box_Turtle.jpg/400px-Florida_Box_Turtle.jpg",
+      "alt": "Carapace de tortue"
+    }
+  },
+  {
+    "id": "split_029",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié perroquet, moitié tigre. Quel est ce mot composé ?",
+    "answer": "Perrotigre",
+    "acceptedAnswers": ["Perrotigre", "perrotigre"],
+    "explanation": "PERROquet + TIGRE = PERROTIGRE",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Ara_ararauna_Luc_Viatour.jpg/400px-Ara_ararauna_Luc_Viatour.jpg",
+      "alt": "Tête de perroquet"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Walking_tiger_female.jpg/400px-Walking_tiger_female.jpg",
+      "alt": "Corps de tigre"
+    }
+  },
+  {
+    "id": "split_030",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié lion, moitié voiture. Quel est ce mot composé ?",
+    "answer": "Lioture",
+    "acceptedAnswers": ["Lioture", "lioture"],
+    "explanation": "LIONn + voiTURE = LIOTURE",
+    "tags": ["jeux de mots", "animaux", "véhicules"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Lion_waiting_in_Namibia.jpg/400px-Lion_waiting_in_Namibia.jpg",
+      "alt": "Crinière de lion"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Fiat_500_in_Turin.jpg/400px-Fiat_500_in_Turin.jpg",
+      "alt": "Arrière de voiture"
+    }
+  },
+  {
+    "id": "split_031",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié pizza, moitié perroquet. Quel est ce mot composé ?",
+    "answer": "Pizzoquet",
+    "acceptedAnswers": ["Pizzoquet", "pizzoquet"],
+    "explanation": "PIZZa + perrOQUET = PIZZOQUET",
+    "tags": ["jeux de mots", "animaux", "objets"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/400px-Eq_it-na_pizza-margherita_sep2005_sml.jpg",
+      "alt": "Pizza vue du dessus"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Ara_ararauna_Luc_Viatour.jpg/400px-Ara_ararauna_Luc_Viatour.jpg",
+      "alt": "Plumes de perroquet"
+    }
+  },
+  {
+    "id": "split_032",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié crocodile, moitié guitare. Quel est ce mot composé ?",
+    "answer": "Crocotare",
+    "acceptedAnswers": ["Crocotare", "crocotare"],
+    "explanation": "CROCOdile + guiTARE = CROCOTARE",
+    "tags": ["jeux de mots", "animaux", "objets"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nile_crocodile_head.jpg/400px-Nile_crocodile_head.jpg",
+      "alt": "Tête de crocodile"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/GuitareClassique5.png/400px-GuitareClassique5.png",
+      "alt": "Manche de guitare"
+    }
+  },
+  {
+    "id": "split_033",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié girafe, moitié avion. Quel est ce mot composé ?",
+    "answer": "Giravion",
+    "acceptedAnswers": ["Giravion", "giravion"],
+    "explanation": "GIRAfe + aVION = GIRAVION",
+    "tags": ["jeux de mots", "animaux", "véhicules"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Giraffe_Mikumi_National_Park.jpg/400px-Giraffe_Mikumi_National_Park.jpg",
+      "alt": "Tête de girafe"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/A380_Emirates_A6-EOC.jpg/400px-A380_Emirates_A6-EOC.jpg",
+      "alt": "Queue d'avion"
+    }
+  },
+  {
+    "id": "split_034",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié éléphant, moitié pizza. Quel est ce mot composé ?",
+    "answer": "Éléphizza",
+    "acceptedAnswers": ["Éléphizza", "Elephizza", "elephizza", "éléphizza"],
+    "explanation": "ÉLÉPHant + pIZZA = ÉLÉPHIZZA",
+    "tags": ["jeux de mots", "animaux", "objets"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/400px-African_Bush_Elephant.jpg",
+      "alt": "Tête d'éléphant"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/400px-Eq_it-na_pizza-margherita_sep2005_sml.jpg",
+      "alt": "Part de pizza"
+    }
+  },
+  {
+    "id": "split_035",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié pingouin, moitié guitare. Quel est ce mot composé ?",
+    "answer": "Pinguitare",
+    "acceptedAnswers": ["Pinguitare", "pinguitare"],
+    "explanation": "PINGouin + guITARE = PINGUITARE",
+    "tags": ["jeux de mots", "animaux", "objets"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Emperor_Penguin_Manchot_empereur.jpg/400px-Emperor_Penguin_Manchot_empereur.jpg",
+      "alt": "Tête de pingouin"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/GuitareClassique5.png/400px-GuitareClassique5.png",
+      "alt": "Manche de guitare"
+    }
+  },
+  {
+    "id": "split_036",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié chat, moitié avion. Quel est ce mot composé ?",
+    "answer": "Chavion",
+    "acceptedAnswers": ["Chavion", "chavion"],
+    "explanation": "CHAt + aVION = CHAVION",
+    "tags": ["jeux de mots", "animaux", "véhicules"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/400px-Cat03.jpg",
+      "alt": "Tête de chat"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/A380_Emirates_A6-EOC.jpg/400px-A380_Emirates_A6-EOC.jpg",
+      "alt": "Queue d'avion"
+    }
+  },
+  {
+    "id": "split_037",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié requin, moitié voiture. Quel est ce mot composé ?",
+    "answer": "Requiture",
+    "acceptedAnswers": ["Requiture", "requiture"],
+    "explanation": "REQUIn + voITURE = REQUITURE",
+    "tags": ["jeux de mots", "animaux", "véhicules"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/White_shark.jpg/400px-White_shark.jpg",
+      "alt": "Tête de requin"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Fiat_500_in_Turin.jpg/400px-Fiat_500_in_Turin.jpg",
+      "alt": "Arrière de voiture"
+    }
+  },
+  {
+    "id": "split_038",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié tortue, moitié perroquet. Quel est ce mot composé ?",
+    "answer": "Torroquet",
+    "acceptedAnswers": ["Torroquet", "torroquet"],
+    "explanation": "TORtue + peRROQUET = TORROQUET",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Florida_Box_Turtle.jpg/400px-Florida_Box_Turtle.jpg",
+      "alt": "Tête de tortue"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Ara_ararauna_Luc_Viatour.jpg/400px-Ara_ararauna_Luc_Viatour.jpg",
+      "alt": "Plumes de perroquet"
+    }
+  },
+  {
+    "id": "split_039",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié chien, moitié pizza. Quel est ce mot composé ?",
+    "answer": "Chiezza",
+    "acceptedAnswers": ["Chiezza", "chiezza"],
+    "explanation": "CHIEn + piZZA = CHIEZZA",
+    "tags": ["jeux de mots", "animaux", "objets"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/YellowLabradorLooking_new.jpg/400px-YellowLabradorLooking_new.jpg",
+      "alt": "Tête de chien"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/400px-Eq_it-na_pizza-margherita_sep2005_sml.jpg",
+      "alt": "Part de pizza"
+    }
+  },
+  {
+    "id": "split_040",
+    "type": "splitImage",
+    "difficulty": "medium",
+    "category": "jeux de mots",
+    "label": "Moitié dauphin, moitié crocodile. Quel est ce mot composé ?",
+    "answer": "Dauphidile",
+    "acceptedAnswers": ["Dauphidile", "dauphidile"],
+    "explanation": "DAUPHIn + crocoDILE = DAUPHIDILE",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 35,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Tursiops_truncatus_01.jpg/400px-Tursiops_truncatus_01.jpg",
+      "alt": "Tête de dauphin"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nile_crocodile_head.jpg/400px-Nile_crocodile_head.jpg",
+      "alt": "Queue de crocodile"
+    }
+  },
+  {
+    "id": "split_041",
+    "type": "splitImage",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Moitié crocodile, moitié éléphant. Quel est ce mot composé ?",
+    "answer": "Crocoéphant",
+    "acceptedAnswers": ["Crocoéphant", "crocoephant", "Crocoephant", "crocoéphant"],
+    "explanation": "CROCOdile + éléPHANT = CROCOÉPHANT",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 40,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nile_crocodile_head.jpg/400px-Nile_crocodile_head.jpg",
+      "alt": "Tête de crocodile"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/400px-African_Bush_Elephant.jpg",
+      "alt": "Corps d'éléphant"
+    }
+  },
+  {
+    "id": "split_042",
+    "type": "splitImage",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Moitié girafe, moitié perroquet. Quel est ce mot composé ?",
+    "answer": "Giraroquet",
+    "acceptedAnswers": ["Giraroquet", "giraroquet"],
+    "explanation": "GIRAfe + peRROQUET = GIRAROQUET",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 40,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Giraffe_Mikumi_National_Park.jpg/400px-Giraffe_Mikumi_National_Park.jpg",
+      "alt": "Tête de girafe"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Ara_ararauna_Luc_Viatour.jpg/400px-Ara_ararauna_Luc_Viatour.jpg",
+      "alt": "Plumes de perroquet"
+    }
+  },
+  {
+    "id": "split_043",
+    "type": "splitImage",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Moitié papillon, moitié éléphant. Quel est ce mot composé ?",
+    "answer": "Papilléphant",
+    "acceptedAnswers": ["Papilléphant", "papillephant", "Papillephant", "papilléphant"],
+    "explanation": "PAPILLon + éléPHANT = PAPILLÉPHANT",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 40,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg/400px-Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg",
+      "alt": "Ailes de papillon"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/400px-African_Bush_Elephant.jpg",
+      "alt": "Corps d'éléphant"
+    }
+  },
+  {
+    "id": "split_044",
+    "type": "splitImage",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Moitié pingouin, moitié crocodile. Quel est ce mot composé ?",
+    "answer": "Pingodile",
+    "acceptedAnswers": ["Pingodile", "pingodile"],
+    "explanation": "PINGOuin + crocoDILE = PINGODILE",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 40,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Emperor_Penguin_Manchot_empereur.jpg/400px-Emperor_Penguin_Manchot_empereur.jpg",
+      "alt": "Tête de pingouin"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nile_crocodile_head.jpg/400px-Nile_crocodile_head.jpg",
+      "alt": "Queue de crocodile"
+    }
+  },
+  {
+    "id": "split_045",
+    "type": "splitImage",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Moitié éléphant, moitié pingouin. Quel est ce mot composé ?",
+    "answer": "Élégouin",
+    "acceptedAnswers": ["Élégouin", "Elegouin", "elegouin", "élégouin"],
+    "explanation": "ÉLÉphant + pinGOUIN = ÉLÉGOUIN",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 40,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/African_Bush_Elephant.jpg/400px-African_Bush_Elephant.jpg",
+      "alt": "Tête d'éléphant"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Emperor_Penguin_Manchot_empereur.jpg/400px-Emperor_Penguin_Manchot_empereur.jpg",
+      "alt": "Corps de pingouin"
+    }
+  },
+  {
+    "id": "split_046",
+    "type": "splitImage",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Moitié perroquet, moitié voiture. Quel est ce mot composé ?",
+    "answer": "Perroture",
+    "acceptedAnswers": ["Perroture", "perroture"],
+    "explanation": "PERROquet + voiTURE = PERROTURE",
+    "tags": ["jeux de mots", "animaux", "véhicules"],
+    "baseTimer": 40,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Ara_ararauna_Luc_Viatour.jpg/400px-Ara_ararauna_Luc_Viatour.jpg",
+      "alt": "Tête de perroquet"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Fiat_500_in_Turin.jpg/400px-Fiat_500_in_Turin.jpg",
+      "alt": "Arrière de voiture"
+    }
+  },
+  {
+    "id": "split_047",
+    "type": "splitImage",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Moitié tortue, moitié girafe. Quel est ce mot composé ?",
+    "answer": "Torturafe",
+    "acceptedAnswers": ["Torturafe", "torturafe"],
+    "explanation": "TORTUe + giRAFE = TORTURAFE",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 40,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Florida_Box_Turtle.jpg/400px-Florida_Box_Turtle.jpg",
+      "alt": "Tête de tortue"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Giraffe_Mikumi_National_Park.jpg/400px-Giraffe_Mikumi_National_Park.jpg",
+      "alt": "Corps de girafe"
+    }
+  },
+  {
+    "id": "split_048",
+    "type": "splitImage",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Moitié papillon, moitié guitare. Quel est ce mot composé ?",
+    "answer": "Papillitare",
+    "acceptedAnswers": ["Papillitare", "papillitare"],
+    "explanation": "PAPILLon + guITARE = PAPILLITARE",
+    "tags": ["jeux de mots", "animaux", "objets"],
+    "baseTimer": 40,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg/400px-Monarch_Butterfly_Danaus_plexippus_Male_2664px.jpg",
+      "alt": "Ailes de papillon"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/GuitareClassique5.png/400px-GuitareClassique5.png",
+      "alt": "Manche de guitare"
+    }
+  },
+  {
+    "id": "split_049",
+    "type": "splitImage",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Moitié crocodile, moitié avion. Quel est ce mot composé ?",
+    "answer": "Crocovion",
+    "acceptedAnswers": ["Crocovion", "crocovion"],
+    "explanation": "CROCOdile + aVION = CROCOVION",
+    "tags": ["jeux de mots", "animaux", "véhicules"],
+    "baseTimer": 40,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Nile_crocodile_head.jpg/400px-Nile_crocodile_head.jpg",
+      "alt": "Tête de crocodile"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/A380_Emirates_A6-EOC.jpg/400px-A380_Emirates_A6-EOC.jpg",
+      "alt": "Queue d'avion"
+    }
+  },
+  {
+    "id": "split_050",
+    "type": "splitImage",
+    "difficulty": "hard",
+    "category": "jeux de mots",
+    "label": "Moitié girafe, moitié pingouin. Quel est ce mot composé ?",
+    "answer": "Girafouin",
+    "acceptedAnswers": ["Girafouin", "girafouin"],
+    "explanation": "GIRAFe + pingOUIN = GIRAFOUIN",
+    "tags": ["jeux de mots", "animaux"],
+    "baseTimer": 40,
+    "media": null,
+    "topHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Giraffe_Mikumi_National_Park.jpg/400px-Giraffe_Mikumi_National_Park.jpg",
+      "alt": "Tête de girafe"
+    },
+    "bottomHalf": {
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Emperor_Penguin_Manchot_empereur.jpg/400px-Emperor_Penguin_Manchot_empereur.jpg",
+      "alt": "Corps de pingouin"
     }
   }
 ]

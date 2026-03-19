@@ -14,6 +14,7 @@ import imagesQuestions from '../../data/questions_image.json';
 import splitImageQuestions from '../../data/questions_splitimage.json';
 import mathMaxQuestions from '../../data/questions_math_max.json';
 import geoClickQuestions from '../../data/questions_geo_click.json';
+import questionsAllTypes from '../../data/questions_all_types.json';
 
 interface QuestionFilter {
   difficulties?: Difficulty[];
@@ -96,6 +97,7 @@ export class QuestionsService {
       ...(splitImageQuestions as Question[]),
       ...(mathMaxQuestions as Question[]),
       ...(geoClickQuestions as Question[]),
+      ...(questionsAllTypes as Question[]),
     ];
     // Generate a pool of math simple questions
     this.mathSimplePool = generateMathSimpleQuestions(50);
